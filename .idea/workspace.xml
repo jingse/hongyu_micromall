@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="修改标签管理bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-545881338">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="js" value="1" />
+          <entry key="jsx" value="38" />
+          <entry key="less" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JSX Harmony" value="38" />
+          <entry key="JavaScript" value="1" />
+          <entry key="Less" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="jsx" value="721" />
+          <entry key="txt" value="100" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSX Harmony" value="721" />
+          <entry key="PLAIN_TEXT" value="100" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="89" column="63" lean-forward="true" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4148">
+              <caret line="283" column="133" selection-start-line="283" selection-start-column="125" selection-end-line="283" selection-end-column="133" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#330#377#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="220" column="43" lean-forward="true" selection-start-line="220" selection-start-column="43" selection-end-line="220" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>gridCategory</find>
+      <find>Category</find>
+      <find>price</find>
+      <find>this.context</find>
+      <find>balance</find>
+      <find>localstorage.setItem(&quot;price&quot;</find>
+      <find>requestPayOrder</find>
+      <find>res</find>
+      <find>appId</find>
+      <find>payCharge</find>
+      <find>LoadingHoc</find>
+      <find>isLoading</find>
+      <find>checkLo</find>
+      <find>删除</find>
+      <find>this.context.router.history</find>
+      <find>modal2</find>
+      <find>productCoupon</find>
+      <find>item</find>
+      <find>this.props.location</find>
+      <find>getT</find>
+      <find>isGroupPromotion</find>
+      <find>localStorage</find>
+      <find>presents</find>
+      <find>createOrder</find>
+      <find>items</find>
+      <find>this.state.presents</find>
+      <find>data</find>
+      <find>requestInfo</find>
+      <find>checkB</find>
+      <find>requestCategoryList</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/static/realdata/cart.js" />
+        <option value="E:/Download/网站内容/service.html" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/search/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.less" />
+        <option value="$PROJECT_DIR$/src/api/my.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/putincart.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/address/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recommend/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/product.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/payment.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/coupon.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/exchange/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/demo.jsx" />
+        <option value="$PROJECT_DIR$/src/api/points.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/points/records/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" />
+        <option value="$PROJECT_DIR$/src/common/http.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/product/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/app.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
+        <option value="$PROJECT_DIR$/src/api/home.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="35" />
+    <option name="y" value="60" />
+    <option name="width" value="760" />
+    <option name="height" value="450" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SpecialtyShoppingMall" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../supermallDemo" />
+    <property name="settings.editor.selected.configurable" value="file.status.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Codes\React\SpecialtyShoppingMall\src\page\mobile\my\points" />
+      <recent name="E:\Codes\React\SpecialtyShoppingMall\src\page\mobile\home\sales_group\detail" />
+      <recent name="E:\Codes\React\SpecialtyShoppingMall\src\page\mobile\my\setting" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="" />
+      <created>1516514689732</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516514689732</updated>
+      <workItem from="1516514691087" duration="1163000" />
+      <workItem from="1516515884069" duration="500000" />
+      <workItem from="1516516406778" duration="11816000" />
+      <workItem from="1516535615232" duration="16000" />
+      <workItem from="1516535647390" duration="20612000" />
+      <workItem from="1516856709723" duration="37745000" />
+      <workItem from="1516961442776" duration="2534000" />
+      <workItem from="1520165423185" duration="299000" />
+      <workItem from="1520232125532" duration="18065000" />
+      <workItem from="1520495101755" duration="4882000" />
+      <workItem from="1520500015810" duration="1365000" />
+      <workItem from="1520501398612" duration="8134000" />
+      <workItem from="1520512670953" duration="594000" />
+      <workItem from="1520513276566" duration="4600000" />
+      <workItem from="1520580664815" duration="48000" />
+      <workItem from="1520582959734" duration="4131000" />
+      <workItem from="1520592877602" duration="5118000" />
+      <workItem from="1520598046752" duration="3290000" />
+      <workItem from="1520674916950" duration="252000" />
+      <workItem from="1520675184223" duration="346000" />
+      <workItem from="1520776974717" duration="337000" />
+      <workItem from="1520820388980" duration="5197000" />
+      <workItem from="1520841012070" duration="998000" />
+      <workItem from="1520850718935" duration="7408000" />
+      <workItem from="1520911576495" duration="11603000" />
+      <workItem from="1520925810109" duration="1453000" />
+      <workItem from="1520927282452" duration="5212000" />
+      <workItem from="1520940388699" duration="5006000" />
+      <workItem from="1520945569550" duration="3490000" />
+      <workItem from="1521278329158" duration="21000" />
+      <workItem from="1521525775996" duration="170000" />
+      <workItem from="1521771852583" duration="18389000" />
+      <workItem from="1522049625218" duration="6606000" />
+      <workItem from="1522056251064" duration="1206000" />
+      <workItem from="1522063410990" duration="961000" />
+      <workItem from="1522070372884" duration="139000" />
+      <workItem from="1522113854486" duration="2161000" />
+      <workItem from="1522116034899" duration="27687000" />
+      <workItem from="1522235864203" duration="23507000" />
+      <workItem from="1522634540905" duration="24834000" />
+      <workItem from="1522766548586" duration="1553000" />
+      <workItem from="1522824872893" duration="15187000" />
+      <workItem from="1523252789714" duration="29803000" />
+      <workItem from="1523514324146" duration="19308000" />
+      <workItem from="1523538939799" duration="2377000" />
+      <workItem from="1523587356915" duration="4588000" />
+      <workItem from="1523604095973" duration="3914000" />
+      <workItem from="1524187481403" duration="711000" />
+      <workItem from="1524202214119" duration="333000" />
+      <workItem from="1524206366617" duration="613000" />
+      <workItem from="1524211048580" duration="9000" />
+      <workItem from="1524211069383" duration="1419000" />
+      <workItem from="1524212905692" duration="2092000" />
+      <workItem from="1524486093487" duration="19914000" />
+      <workItem from="1524554887468" duration="8605000" />
+      <workItem from="1524571937088" duration="4460000" />
+      <workItem from="1524576411995" duration="5176000" />
+      <workItem from="1524626906436" duration="10282000" />
+      <workItem from="1524640274287" duration="6139000" />
+      <workItem from="1524650757210" duration="3358000" />
+      <workItem from="1524655603089" duration="8309000" />
+      <workItem from="1524663930275" duration="8081000" />
+      <workItem from="1524704679471" duration="22465000" />
+      <workItem from="1524729241429" duration="5228000" />
+      <workItem from="1524734486104" duration="3744000" />
+      <workItem from="1524740639223" duration="750000" />
+      <workItem from="1524741400715" duration="3759000" />
+      <workItem from="1524745173011" duration="19714000" />
+      <workItem from="1524816585436" duration="10980000" />
+      <workItem from="1524832929957" duration="4247000" />
+      <workItem from="1524837194154" duration="18603000" />
+      <workItem from="1524903421352" duration="2154000" />
+      <workItem from="1524906883979" duration="14487000" />
+      <workItem from="1524989291244" duration="16044000" />
+      <workItem from="1525008160288" duration="14668000" />
+      <workItem from="1525232702433" duration="22038000" />
+      <workItem from="1525265690392" duration="8227000" />
+      <workItem from="1525331484615" duration="7335000" />
+      <workItem from="1525338898753" duration="33977000" />
+      <workItem from="1525424391137" duration="2120000" />
+      <workItem from="1525426525163" duration="12243000" />
+      <workItem from="1525441988513" duration="8894000" />
+      <workItem from="1525492805397" duration="353000" />
+      <workItem from="1525503207362" duration="177000" />
+      <workItem from="1525503394807" duration="8680000" />
+      <workItem from="1525744390958" duration="10115000" />
+      <workItem from="1525765118246" duration="15452000" />
+      <workItem from="1525846752692" duration="3191000" />
+      <workItem from="1525941294525" duration="12376000" />
+      <workItem from="1525955729355" duration="2500000" />
+      <workItem from="1526024305894" duration="2291000" />
+      <workItem from="1526029961872" duration="704000" />
+      <workItem from="1526037222738" duration="657000" />
+      <workItem from="1526960054801" duration="2537000" />
+      <workItem from="1527042255618" duration="11086000" />
+      <workItem from="1527058006611" duration="20905000" />
+      <workItem from="1527079542930" duration="9052000" />
+      <workItem from="1527159061299" duration="2266000" />
+      <workItem from="1527168738033" duration="642000" />
+      <workItem from="1527255824052" duration="1008000" />
+      <workItem from="1527334030911" duration="3922000" />
+      <workItem from="1527402083610" duration="593000" />
+      <workItem from="1527404802841" duration="610000" />
+      <workItem from="1527505619157" duration="3451000" />
+      <workItem from="1527558318878" duration="11435000" />
+      <workItem from="1527570753695" duration="11469000" />
+      <workItem from="1527582246719" duration="15480000" />
+      <workItem from="1527599727346" duration="1135000" />
+      <workItem from="1527600959472" duration="2164000" />
+      <workItem from="1527604142809" duration="11000" />
+      <workItem from="1527855568431" duration="1567000" />
+      <workItem from="1527857146072" duration="8275000" />
+      <workItem from="1528096945212" duration="37526000" />
+      <workItem from="1528190127611" duration="3426000" />
+      <workItem from="1528193567584" duration="2334000" />
+      <workItem from="1528274313928" duration="10289000" />
+      <workItem from="1528296974319" duration="794000" />
+      <workItem from="1528297783066" duration="660000" />
+      <workItem from="1528330869606" duration="18597000" />
+      <workItem from="1528375574131" duration="2146000" />
+      <workItem from="1528379242170" duration="2401000" />
+      <workItem from="1528381655430" duration="290000" />
+      <workItem from="1528421608857" duration="13340000" />
+      <workItem from="1528442763957" duration="3109000" />
+      <workItem from="1528451501005" duration="825000" />
+      <workItem from="1528712335581" duration="1071000" />
+      <workItem from="1528722127916" duration="2024000" />
+      <workItem from="1528760659538" duration="765000" />
+      <workItem from="1528970294508" duration="65000" />
+      <workItem from="1528970389219" duration="8000" />
+      <workItem from="1528970410888" duration="132000" />
+      <workItem from="1528971413394" duration="19000" />
+      <workItem from="1528971696238" duration="65000" />
+      <workItem from="1528973365127" duration="20000" />
+      <workItem from="1529896386307" duration="807000" />
+      <workItem from="1529898168141" duration="1151000" />
+      <workItem from="1529912874591" duration="762000" />
+      <workItem from="1529914414059" duration="7444000" />
+      <workItem from="1530007096348" duration="5655000" />
+      <workItem from="1530013160424" duration="1572000" />
+      <workItem from="1530063132351" duration="4273000" />
+      <workItem from="1530858541130" duration="32000" />
+      <workItem from="1531115788314" duration="148000" />
+      <workItem from="1531193998356" duration="171000" />
+      <workItem from="1531277569951" duration="16000" />
+      <workItem from="1531311935000" duration="1434000" />
+      <workItem from="1531314737135" duration="960000" />
+      <workItem from="1531315983496" duration="116000" />
+      <workItem from="1531364924835" duration="210000" />
+      <workItem from="1531474521363" duration="1270000" />
+      <workItem from="1531905610254" duration="172000" />
+      <workItem from="1532075571418" duration="9912000" />
+      <workItem from="1532395148157" duration="3540000" />
+      <workItem from="1532510740947" duration="314000" />
+      <workItem from="1532511304239" duration="559000" />
+      <workItem from="1532514394699" duration="2351000" />
+      <workItem from="1532590132129" duration="9742000" />
+      <workItem from="1532676140814" duration="4632000" />
+      <workItem from="1532697449107" duration="28000" />
+      <workItem from="1532697599902" duration="43000" />
+      <workItem from="1532754745959" duration="5152000" />
+      <workItem from="1532775793766" duration="8870000" />
+      <workItem from="1532926683062" duration="385000" />
+      <workItem from="1532937303840" duration="2715000" />
+      <workItem from="1533011403202" duration="18309000" />
+      <workItem from="1533045494769" duration="929000" />
+      <workItem from="1533046629873" duration="523000" />
+      <workItem from="1533102832520" duration="355000" />
+      <workItem from="1533108891389" duration="20976000" />
+      <workItem from="1533180900934" duration="70000" />
+      <workItem from="1533189557397" duration="349000" />
+      <workItem from="1533195532643" duration="4043000" />
+      <workItem from="1533200389062" duration="4899000" />
+      <workItem from="1533263368395" duration="1859000" />
+      <workItem from="1533267029974" duration="2152000" />
+      <workItem from="1533282151344" duration="2334000" />
+      <workItem from="1533284683022" duration="273000" />
+      <workItem from="1533292073604" duration="238000" />
+      <workItem from="1533300222825" duration="533000" />
+      <workItem from="1533366315272" duration="5860000" />
+      <workItem from="1534227511676" duration="81000" />
+      <workItem from="1534228588646" duration="572000" />
+      <workItem from="1534405071535" duration="3923000" />
+    </task>
+    <task id="LOCAL-00038" summary="fix a cart bug">
+      <created>1527078636108</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1527078636108</updated>
+    </task>
+    <task id="LOCAL-00039" summary="update a lot">
+      <created>1527086418448</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1527086418448</updated>
+    </task>
+    <task id="LOCAL-00040" summary="update payment and badge">
+      <created>1527088513901</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1527088513901</updated>
+    </task>
+    <task id="LOCAL-00041" summary="update">
+      <created>1527574047115</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1527574047115</updated>
+    </task>
+    <task id="LOCAL-00042" summary="update">
+      <created>1527602044319</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1527602044320</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fix a lot of bugs">
+      <created>1528168374200</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1528168374200</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fix a lot of bugs">
+      <created>1528181863935</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1528181863935</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix a lot of bugs">
+      <created>1528183487310</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1528183487310</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix a lot of bugs">
+      <created>1528195899389</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1528195899390</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix a lot of bugs">
+      <created>1528381685916</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1528381685916</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fix a lot of bugs">
+      <created>1528443829906</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1528443829906</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix a lot of bugs">
+      <created>1528445652250</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1528445652250</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fix a lot of bugs">
+      <created>1530016123792</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1530016123792</updated>
+    </task>
+    <task id="LOCAL-00051" summary="解决待评价订单总数问题">
+      <created>1530064845757</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1530064845758</updated>
+    </task>
+    <task id="LOCAL-00052" summary="解决刷新不及时的问题">
+      <created>1530068832854</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1530068832854</updated>
+    </task>
+    <task id="LOCAL-00053" summary="解决删除不在同一行的问题">
+      <created>1530069581699</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1530069581699</updated>
+    </task>
+    <task id="LOCAL-00054" summary="解决问题11 13">
+      <created>1531315578570</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1531315578570</updated>
+    </task>
+    <task id="LOCAL-00055" summary="添加推荐产品专区，产品里的推荐区，以及服务承诺接口">
+      <created>1532098595157</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1532098595158</updated>
+    </task>
+    <task id="LOCAL-00056" summary="推荐产品">
+      <created>1532397751390</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1532397751390</updated>
+    </task>
+    <task id="LOCAL-00057" summary="解决7.25的问题1、2、3">
+      <created>1532511849540</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1532511849540</updated>
+    </task>
+    <task id="LOCAL-00058" summary="解决7.25的问题7">
+      <created>1532514768555</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1532514768555</updated>
+    </task>
+    <task id="LOCAL-00059" summary="解决7.25的问题7">
+      <created>1532515518300</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1532515518300</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix bug">
+      <created>1532591004628</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1532591004628</updated>
+    </task>
+    <task id="LOCAL-00061" summary="fix bug">
+      <created>1532591705210</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1532591705210</updated>
+    </task>
+    <task id="LOCAL-00062" summary="fix bug">
+      <created>1532592196821</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1532592196821</updated>
+    </task>
+    <task id="LOCAL-00063" summary="fix bug">
+      <created>1532593142378</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1532593142378</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix bug">
+      <created>1532593377675</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1532593377675</updated>
+    </task>
+    <task id="LOCAL-00065" summary="fix bug">
+      <created>1532595010492</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1532595010492</updated>
+    </task>
+    <task id="LOCAL-00066" summary="fix bug">
+      <created>1532676246996</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1532676246996</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix bug">
+      <created>1532763038863</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1532763038863</updated>
+    </task>
+    <task id="LOCAL-00068" summary="增加积分的相关页面">
+      <created>1532785561723</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1532785561724</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fix bug">
+      <created>1532951651815</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1532951651815</updated>
+    </task>
+    <task id="LOCAL-00070" summary="对了会员与积分部分的接口">
+      <created>1533044625446</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1533044625446</updated>
+    </task>
+    <task id="LOCAL-00071" summary="修改积分的一些bug">
+      <created>1533047061857</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1533047061857</updated>
+    </task>
+    <task id="LOCAL-00072" summary="增加满赠的产品显示，以及产品详情页面的优惠相关，修改优惠的bug">
+      <created>1533116808429</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1533116808429</updated>
+    </task>
+    <task id="LOCAL-00073" summary="修改优惠的bug">
+      <created>1533117329448</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1533117329448</updated>
+    </task>
+    <task id="LOCAL-00074" summary="修改产品详情的bug">
+      <created>1533121130647</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1533121130647</updated>
+    </task>
+    <task id="LOCAL-00075" summary="修改余额显示的小bug">
+      <created>1533121767919</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1533121767919</updated>
+    </task>
+    <task id="LOCAL-00076" summary="对了满赠的接口">
+      <created>1533137832660</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1533137832660</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix bug">
+      <created>1533196238343</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1533196238343</updated>
+    </task>
+    <task id="LOCAL-00078" summary="修改微商提成的bug">
+      <created>1533199821233</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1533199821233</updated>
+    </task>
+    <task id="LOCAL-00079" summary="修改微商提成的bug">
+      <created>1533201998565</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1533201998565</updated>
+    </task>
+    <task id="LOCAL-00080" summary="修改微商openid的bug">
+      <created>1533205796377</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1533205796377</updated>
+    </task>
+    <task id="LOCAL-00081" summary="修改微商openid的bug">
+      <created>1533208504814</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1533208504816</updated>
+    </task>
+    <task id="LOCAL-00082" summary="不显示该微信已被注册成微商的信息">
+      <created>1533266376929</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1533266376929</updated>
+    </task>
+    <task id="LOCAL-00083" summary="fix bug">
+      <created>1533366743567</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1533366743567</updated>
+    </task>
+    <task id="LOCAL-00084" summary="去掉产品页面写死的视频">
+      <created>1534228985853</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1534228985853</updated>
+    </task>
+    <task id="LOCAL-00085" summary="标签管理">
+      <created>1534407963860</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1534407963860</updated>
+    </task>
+    <task id="LOCAL-00086" summary="修改标签管理bug">
+      <created>1534408764025</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1534408764025</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1067512000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17559944" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32775453" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32775453" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.08643617" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.15691489" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19714588" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32850242" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32850242" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50744045" side_tool="true" weight="0.14814815" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32849163" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49702382" weight="0.32850242" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13519552" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix a lot of bugs" />
+    <MESSAGE value="解决待评价订单总数问题" />
+    <MESSAGE value="解决刷新不及时的问题" />
+    <MESSAGE value="解决删除不在同一行的问题" />
+    <MESSAGE value="解决问题13" />
+    <MESSAGE value="解决问题11 13" />
+    <MESSAGE value="添加推荐产品专区，产品里的推荐区，以及服务承诺接口" />
+    <MESSAGE value="推荐产品" />
+    <MESSAGE value="解决7.25的问题1、2、3" />
+    <MESSAGE value="解决7.25的问题7" />
+    <MESSAGE value="增加积分的相关页面" />
+    <MESSAGE value="对了会员与积分部分的接口" />
+    <MESSAGE value="修改积分的一些bug" />
+    <MESSAGE value="增加满赠的产品显示，以及产品详情页面的优惠相关，修改优惠的bug" />
+    <MESSAGE value="修改优惠的bug" />
+    <MESSAGE value="修改产品详情的bug" />
+    <MESSAGE value="修改余额显示的小bug" />
+    <MESSAGE value="对了满赠的接口" />
+    <MESSAGE value="修改微商提成的bug" />
+    <MESSAGE value="修改微商openid的bug" />
+    <MESSAGE value="不显示该微信已被注册成微商的信息" />
+    <MESSAGE value="fix bug" />
+    <MESSAGE value="去掉产品页面写死的视频" />
+    <MESSAGE value="标签管理" />
+    <MESSAGE value="修改标签管理bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改标签管理bug" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="59" column="19" lean-forward="true" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/recharge/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2700">
+          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="263" column="50" lean-forward="true" selection-start-line="263" selection-start-column="8" selection-end-line="263" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="462" column="29" selection-start-line="462" selection-start-column="29" selection-end-line="462" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/navigation/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/wechat.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/demo.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="58" lean-forward="true" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/product.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/points.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/comment.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="134" column="33" lean-forward="true" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="252" column="28" lean-forward="true" selection-start-line="252" selection-start-column="28" selection-end-line="252" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/points/records/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="261" column="36" selection-start-line="261" selection-start-column="36" selection-end-line="261" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/detail.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="28" column="15" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/coupon.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="115" column="41" lean-forward="true" selection-start-line="115" selection-start-column="41" selection-end-line="115" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="99" column="20" lean-forward="true" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="393" column="51" lean-forward="true" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/cartmodal.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="29" column="56" lean-forward="true" selection-start-line="29" selection-start-column="56" selection-end-line="29" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/static/realdata/groupSales.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="312" column="20" selection-start-line="312" selection-start-column="20" selection-end-line="312" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/http.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="56" column="12" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/cart.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/points/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/my.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="101" column="13" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="170" column="64" lean-forward="true" selection-start-line="170" selection-start-column="64" selection-end-line="170" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="136" column="92" lean-forward="true" selection-start-line="136" selection-start-column="92" selection-end-line="136" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="117" column="15" selection-start-line="117" selection-start-column="15" selection-end-line="117" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="98" column="5" lean-forward="true" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="132" column="5" lean-forward="true" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="731" column="29" lean-forward="true" selection-start-line="731" selection-start-column="29" selection-end-line="731" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="659" column="51" selection-start-line="659" selection-start-column="51" selection-end-line="659" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/recommend/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/category/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/app.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/category/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1186">
+          <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="89" column="63" lean-forward="true" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4148">
+          <caret line="283" column="133" selection-start-line="283" selection-start-column="125" selection-end-line="283" selection-end-column="133" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#330#377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="220" column="43" lean-forward="true" selection-start-line="220" selection-start-column="43" selection-end-line="220" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

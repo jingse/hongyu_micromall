@@ -1,0 +1,69 @@
+{
+  "name": "supermall",
+  "version": "1.0.0",
+  "description": "土特产微商城",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server",
+    "build": "rm -rf dist && set NODE_ENV=production && webpack --config ./webpack.prod.config.js --color --progress",
+    "clean-start": "rm -rf node_modules && yarn install && rm -rf $TMPDIR/react* && npm start --reset-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jingse/SpecialtyShoppingMall"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jingse/SpecialtyShoppingMallissues"
+  },
+  "theme": {
+    "brand-primary": "#f28b12",
+    "tabHeight": "3.125rem",
+    "searchHeight": "2.75rem"
+  },
+  "dependencies": {
+    "antd-mobile": "^2.0.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-import": "^1.6.1",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babelify": "^7.3.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "html-withimg-loader": "^0.1.16",
+    "imagemin-webpack-plugin": "^1.5.2",
+    "json-loader": "^0.5.7",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "prop-types": "^15.6.0",
+    "query-string": "^5.0.1",
+    "rc-form": "^2.0.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.1",
+    "react-mobile-imgview": "^1.0.1",
+    "react-responsive": "^1.3.4",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-sticky": "^6.0.1",
+    "react-swipe": "^5.1.1",
+    "react-swipes": "^1.1.0",
+    "react-transform-hmr": "^1.0.4",
+    "style-loader": "^0.18.2",
+    "svg-sprite-loader": "^0.3.1",
+    "swipe-js-iso": "^2.0.4",
+    "url-loader": "^0.5.9",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "devDependencies": {
+    "pingpp-js": "^2.1.16",
+    "webpack": "^3.10.0"
+  }
+}

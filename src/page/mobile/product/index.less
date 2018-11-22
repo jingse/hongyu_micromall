@@ -1,0 +1,321 @@
+@sectionHeight: 3.125rem;
+
+.general_container {
+    margin-top: @sectionHeight;
+    line-height: initial;
+    font-size: 1rem;
+}
+
+.selector_container {
+    font-size: 0.9rem;
+    background: #fff;
+     height: 7.2rem;
+    .selector_sec {
+         height: 3rem;
+         line-height: 3rem;
+        border-bottom: 1px solid #eee;
+        &:last-child {
+            border-bottom: none;
+        }
+        span {
+            &:first-child {
+                // color: #ccc;
+            }
+            &:nth-child(2) {
+                margin-left: 1rem;
+            }
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+}
+
+.popup_modal {
+    .am-modal-button-group-v .am-modal-button {
+        background: @brand-primary;
+        color: #fff;
+    }
+    .popup_modal_header {
+        border-bottom: 1px solid #eee;
+        font-size: 1rem;
+        .title {
+            padding-left: 5%;
+            margin-top: 0.5rem; 
+            margin-bottom: 0.5rem; 
+           
+        }
+        .salePrice_inbound {
+            padding-left: 5%;
+            margin-top: 0.5rem; 
+            margin-bottom: 0.5rem; 
+            font-size: 0.9rem;
+        }
+        .extractPrice {
+            padding-left: 5%;
+            margin-top: 0.5rem; 
+            margin-bottom: 0.5rem; 
+            font-size: 0.9rem;
+        }
+
+
+    }
+    .popup_modal_content {
+        max-height: 20rem;
+
+        .content_sec {
+            padding-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+
+            header {
+                color: #333;
+            }
+            .select_item {
+                display: inline-block;
+                text-align: center;
+                min-width: 2rem;
+                border: 1px solid #eee;
+                border-radius: 25px;
+                margin: 0.5rem 1rem 0 0;
+                padding: 0.2rem 1rem;
+            }
+            .select_active {
+                color: #333;
+                border-color: #999;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+//.separator_line_1{
+//  height:10px;
+//  border:none;
+//  //color: #179708;
+//}
+
+.product_info_div{
+    line-height:25px;
+    .comm_num{
+        //font-size: 0.7rem;
+        text-align: end;
+    }
+
+    .detail_info {
+        flex:0 0 25%;
+        text-align: right;
+        font-size: 0.8rem;
+    }
+    .detail_val_left {
+        flex:0 0 15%;
+        font-size: 0.8rem;
+    }
+    .detail_val_right {
+        flex:0 0 30%;
+        font-size: 0.8rem;
+    }
+
+}
+
+.specialty_title{
+  color: darkorange;
+  font-weight: bold;
+  border-bottom: 1px dashed darkorange;
+}
+
+.shop_container {
+    padding: 0.8rem 0;
+    line-height: 2rem;
+    .shop_header_img {
+        width: 4rem;
+        border-radius: 2rem;
+        margin-right: 1rem;
+    }
+    .shop_name {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .sub_title {}
+    .shop_link {
+        display: block;
+        width: 8rem;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid @brand-primary;
+        border-radius: 1rem;
+        color: @brand-primary;
+    }
+}
+
+
+.putincart {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: @sectionHeight;
+    background: #eee;
+
+    .primary_btn {
+        display: block;
+        float: right;
+        height: 100%;
+        text-align: center;
+        line-height: @sectionHeight;
+        background-color: darkorange;
+        //background: @brand-primary;
+        color: #fff;
+        font-size: 1.0rem;
+        box-sizing: border-box;
+    }
+
+    .secondary_btn {
+        display: block;
+        float: left;
+        height: 100%;
+        text-align: center;
+        line-height: @sectionHeight;
+        //font-size: 0.5rem;
+        box-sizing: border-box;
+        border-top: 1px solid #eee;
+        &:first-child {
+            border-right: 1px solid #eee;
+        }
+    }
+
+    .ternary_btn{
+        display: block;
+        float: left;
+        height: 100%;
+        text-align: center;
+        line-height: @sectionHeight;
+        background-color: darkorange;
+        color: #fff;
+        font-size: 0.5rem;
+        box-sizing: border-box;
+    }
+}
+
+.content_select{
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    //border-bottom: 1px solid #ccc;
+
+    header {
+        color: #333;
+    }
+    .select_item {
+        display: inline-block;
+        text-align: center;
+        min-width: 2rem;
+        border: 1px solid #ccc;
+        margin: 0.5rem 1rem 0 0;
+        padding: 0.2rem 1rem;
+    }
+    .select_active {
+        color: #333;
+        border-color: darkorange;
+        font-weight: bold;
+    }
+}
+
+.ship_common_info{
+  text-align: center;
+  color: red;
+  font-size: 1.3rem;
+  //font-weight: bold;
+  line-height:25px;
+}
+
+.para_title{
+  font-weight: bold;
+  font-size: 1rem;
+}
+.para_html{
+    
+}
+.para_html img{
+    width:100%,
+}
+.paragraph{
+  line-height:25px;
+  text-indent: 2em;
+}
+
+// properties of comment.jsx are as follows
+.comment{
+    //border-bottom: 1px solid #ccc;
+
+    .comment_title{
+        color: darkorange;
+        border-bottom: 1px dashed darkorange;
+        font-weight: bold;
+    }
+
+    .custom-pagination{
+        //font-size: 0.5rem;
+        
+        .arrow-align{
+            // height:'80%'
+            font-size: 0.8rem;
+            // height: 5px;
+        }
+    }
+
+}
+
+
+// properties of recommend.jsx are as follows
+.recommend{
+    // border-top: 1px solid #eee;
+    // border-bottom: 1px solid #eee;
+    clear:both;
+    //visibility: hidden;
+
+    .recommend_title{
+        color: darkorange;
+        background-color: white;
+        border-bottom: 1px dashed darkorange;
+    }
+
+    //.recommend_product_card{
+    //    margin-left: 0.5rem;
+    //    margin-right: 0.5rem;
+    //}
+
+
+
+}
+
+.product_footer{
+    position: fixed;
+    bottom: 0;
+    width: 35%;
+    z-index: 10;
+}
+.step {
+    margin-left: 4rem;
+    margin-bottom: 4px;
+    width: 50%;
+    display: flex; 
+}
+.add_minus { 
+    width: 2rem;
+    height: 2rem;
+    line-height:2.2rem;
+    border: 1px solid rgb(136, 128, 128);
+    border-radius: 25%;
+    text-align: center;
+    font-size: 2rem;
+}
+.value {
+    width: 4rem;
+    height: 2rem;
+    line-height:2.2rem;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2rem;
+}

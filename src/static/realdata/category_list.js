@@ -1,0 +1,212 @@
+const data = {
+    "success": true,
+    "msg": "查询成功",
+    "obj": [
+        {
+            "recommends": [],
+            "divideRatio": null,
+            "mPrice": 33,
+            "specification": {
+                "id": 22,
+                "specification": "2x袋",
+                "hasSold": null,
+                "marketPrice": null,
+                "platformPrice": null,
+                "costPrice": null,
+                "isActive": true,
+                "creatorName": null,
+                "createTime": 1516003817000,
+                "modifyTime": null,
+                "modifierName": null,
+                "isFreeGift": null
+            },
+            "pPrice": 22,
+            "inbound": 5,
+            "specialty": {
+                "id": 26,
+                "code": "4",
+                "name": "毛氏红烧肉",
+                "category": {
+                    "id": 1,
+                    "name": "美食",
+                    "parent": null,
+                    "orders": null,
+                    "ishow": null,
+                    "operator": "1111",
+                    "createTime": 1515056164000,
+                    "deadTime": null,
+                    "isActive": true,
+                    "iconUrl": "undefined"
+                },
+                "descriptions": "鲜嫩好吃，肉质鲜美",
+                "originalPlace": "湖南湘潭",
+                "brand": "1",
+                "storageMethod": "冷藏",
+                "orders": null,
+                "isRecommend": true,
+                "isReturnable": true,
+                "couponAvailable": true,
+                "isActive": true,
+                "provider": {
+                    "id": 3,
+                    "providerType": 0,
+                    "providerName": "优品铺子",
+                    "address": "北京邮电大学学五公寓",
+                    "postcode": "100000",
+                    "introduction": "优选精品，值得信赖",
+                    "isContracted": null,
+                    "contractNumber": "00000020180108",
+                    "startTime": 1514796378000,
+                    "endTime": 1517917166000,
+                    "state": true,
+                    "contactorName": "郭新泽",
+                    "contactorMobile": "18888888888",
+                    "contactorEmail": "qqqqqqq@qq.com",
+                    "contactorWechat": "lulux_GD",
+                    "contactorQq": "492462532",
+                    "contactorPostcode": "100876",
+                    "bankName": "邮政储蓄银行",
+                    "accountName": null,
+                    "bankAccount": "8888888888888888",
+                    "accountType": 0,
+                    "remark": null,
+                    "bankCode": "989584027708",
+                    "createTime": 1515400797000,
+                    "modifyTime": 1520582942000,
+                    "cancelTime": null,
+                    "account": {
+                        "username": "gonghuoshangcs",
+                        "department": {
+                            "id": 18,
+                            "createDate": 1516621981000,
+                            "modifyDate": null,
+                            "order": null,
+                            "fullName": "总公司商贸部采购部",
+                            "isCompany": false
+                        },
+                        "role": {
+                            "id": 13,
+                            "createDate": 1520404266000,
+                            "modifyDate": 1520404270000,
+                            "name": "业务员",
+                            "description": "计调、采购",
+                            "status": true
+                        },
+                        "name": "供货商",
+                        "mobile": "11111111111",
+                        "isEnabled": true,
+                        "wechat": "123",
+                        "wechatUrl": null,
+                        "qq": null,
+                        "address": "南京",
+                        "areaQiche": [],
+                        "areaGuonei": [],
+                        "areaChujing": []
+                    }
+                },
+                "shipType": 0,
+                "deliverType": 0,
+                "saleState": 1,
+                "putonTime": null,
+                "putoffTime": null,
+                "createTime": 1516003817000,
+                "modifyTime": null,
+                "area": {
+                    "id": 0,
+                    "createDate": null,
+                    "modifyDate": null,
+                    "fullName": "北京市昌平县",
+                    "name": "昌平县",
+                    "status": null,
+                    "treePath": null,
+                    "order": null
+                },
+                "productionLicenseNumber": "1",
+                "creator": {
+                    "username": "bianjics",
+                    "department": {
+                        "id": 17,
+                        "createDate": 1516621183000,
+                        "modifyDate": null,
+                        "order": null,
+                        "fullName": "总公司商贸部编辑部",
+                        "isCompany": false
+                    },
+                    "role": {
+                        "id": 23,
+                        "createDate": 1516621261000,
+                        "modifyDate": 1516621267000,
+                        "name": "商贸编辑部编辑员",
+                        "description": "编辑部员工",
+                        "status": true
+                    },
+                    "name": "商贸部编辑部编辑员",
+                    "mobile": "12345678910",
+                    "isEnabled": null,
+                    "wechat": "1111111111",
+                    "wechatUrl": null,
+                    "qq": null,
+                    "address": null,
+                    "areaQiche": [],
+                    "areaGuonei": [],
+                    "areaChujing": []
+                },
+                "creatorName": null,
+                "modifierName": null,
+                "isBanner": null,
+                "specifications": [
+                    {
+                        "id": 21,
+                        "specification": "1x袋",
+                        "hasSold": null,
+                        "marketPrice": null,
+                        "platformPrice": null,
+                        "costPrice": null,
+                        "isActive": true,
+                        "creatorName": null,
+                        "createTime": 1516003817000,
+                        "modifyTime": null,
+                        "modifierName": null,
+                        "isFreeGift": null
+                    },
+                    {
+                        "id": 22,
+                        "specification": "2x袋",
+                        "hasSold": null,
+                        "marketPrice": null,
+                        "platformPrice": null,
+                        "costPrice": null,
+                        "isActive": true,
+                        "creatorName": null,
+                        "createTime": 1516003817000,
+                        "modifyTime": null,
+                        "modifierName": null,
+                        "isFreeGift": null
+                    }
+                ],
+                "images": [
+                    {
+                        "id": 32,
+                        "orders": null,
+                        "sourcePath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-source.jpg",
+                        "largePath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-large.jpg",
+                        "mediumPath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-medium.jpg",
+                        "thumbnailPath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-thumbnail.jpg",
+                        "isLogo": true
+                    }
+                ],
+                "specialtiesForRecommendSpecialtyId": [],
+                "icon": null
+            },
+            "iconURL": {
+                "id": 32,
+                "orders": null,
+                "sourcePath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-source.jpg",
+                "largePath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-large.jpg",
+                "mediumPath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-medium.jpg",
+                "thumbnailPath": "/upload/image/201802/604b0e1e-7ed5-43ca-91df-8e48b9572316-thumbnail.jpg",
+                "isLogo": true
+            }
+        }
+    ]
+};

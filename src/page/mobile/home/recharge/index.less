@@ -1,0 +1,42 @@
+@sectionHeight: 3.125rem;
+
+.coupon_cart.cart_summary {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.coupon_cart {
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: @sectionHeight;
+  background: white;
+
+  .primary_btn {
+    display: block;
+    float: right;
+    height: 100%;
+    text-align: center;
+    line-height: @sectionHeight;
+    background-color: darkorange;
+    color: #fff;
+    font-size: 1.0rem;
+    box-sizing: border-box;
+  }
+
+  .secondary_btn {
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+    line-height: @sectionHeight;
+    //font-size: 0.5rem;
+    box-sizing: border-box;
+    border-top: 1px solid #eee;
+    &:first-child {
+      border-right: 1px solid #eee;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@sectionHeight: 3.125rem;
+
+.putincart {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: @sectionHeight;
+  background: white;
+
+  .primary_btn {
+    display: block;
+    float: right;
+    height: 100%;
+    text-align: center;
+    line-height: @sectionHeight;
+    background-color: darkorange;
+    //background: @brand-primary;
+    color: #fff;
+    font-size: 1.0rem;
+    box-sizing: border-box;
+  }
+
+  .secondary_btn {
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+    line-height: @sectionHeight;
+    //font-size: 0.5rem;
+    box-sizing: border-box;
+    border-top: 1px solid #eee;
+    &:first-child {
+      border-right: 1px solid #eee;
+    }
+  }
+
+  .ternary_btn{
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+    line-height: @sectionHeight;
+    background-color: darkorange;
+    color: #fff;
+    font-size: 0.5rem;
+    box-sizing: border-box;
+  }
+}
+
+
+.step2 {
+  width: 100%;
+  display: flex; 
+}
+.add_minus { 
+  width: 2rem;
+  height: 2rem;
+  line-height:2.2rem;
+  border: 1px solid rgb(136, 128, 128);
+  border-radius: 25%;
+  text-align: center;
+  font-size: 2rem;
+}
+.value {
+  width: 4rem;
+  height: 2rem;
+  line-height:2.2rem;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
