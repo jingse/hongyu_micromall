@@ -43,7 +43,7 @@ export default class Tagshow extends React.Component {
                                style={{marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>
                 {/*<Link to={{pathname:"/product", state: item.specialty.id }}>*/}
                 <Link to={`/product/${item.specialty.id}`}>
-                    <div><img src={"http://" + getServerIp() + item.iconURL.sourcePath} style={{width:'6rem', height: '6rem'}}/></div>
+                    <div><img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width:'6rem', height: '6rem'}}/></div>
                     <WhiteSpace/>
                     <div className="product_name">{item.specialty.name}</div> 
                     <WhiteSpace/>

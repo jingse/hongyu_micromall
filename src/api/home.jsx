@@ -128,7 +128,7 @@ var api = {
 
     getTopNOFRecommend(size,callback){
         http.ajax({
-            url: getServerHost() + 'product/sub_list_for_recommend?size=' + size,
+            url: getServerHost() + '/product/sub_list_for_recommend?size=' + size,
             crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);
