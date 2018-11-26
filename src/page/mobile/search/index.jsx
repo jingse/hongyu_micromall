@@ -338,7 +338,7 @@ export default class Search extends React.Component {
 
         };
       
-        return <Layout header={true} footer={true}>
+        return <Layout header={true} footer={true} isSearchAgain={true}>
 
             {/* <SearchNavBar/> */}
             <WhiteSpace size="xs"/>

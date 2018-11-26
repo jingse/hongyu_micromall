@@ -9,6 +9,8 @@ import My from "./mobile/my/index.jsx";
 import Search from "./mobile/search/index.jsx";
 
 import redirect from "./mobile/product/redirect.jsx";
+import searchRedirect from "./mobile/search/searchRedirect.jsx";
+
 
 import Product from "./mobile/product/index.jsx";
 import Recommend from "./mobile/home/recommend/index.jsx";
@@ -81,6 +83,7 @@ export default class App extends React.Component {
                         <Route component={Recommend} path='/home/recommend' exact/>
 
                         <Route component={Search} path='/search'/>
+                        <Route component={searchRedirect} path='/searchRedirect'/>
                         <Route component={Product} path='/product/:id'/>
                         <Route component={redirect} path='/redirect'/>
 
