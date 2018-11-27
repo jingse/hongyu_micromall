@@ -375,7 +375,7 @@ export default class Search extends React.Component {
                 renderRow={row}
                 renderSeparator={separator}
                 style={{
-                    height: this.state.height,
+                    height: '100%',
                     overflow: 'auto',
                 }}
                 pageSize={10}
