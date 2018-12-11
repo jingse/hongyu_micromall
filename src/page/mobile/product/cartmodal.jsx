@@ -82,6 +82,7 @@ export default class CartModal extends React.Component {
                     mPrice: mPrice,
                     inbound: inboud,
                     specificationId: option.id,
+                    divideMoney: rs.obj[0].divideMoney
                 });
             }
             

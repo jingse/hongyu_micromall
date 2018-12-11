@@ -97,7 +97,7 @@ export default class PutInCart extends React.Component {
                         />}
                         key="联系卖家"
                         selected={this.state.selectedTab === 'phone'}
-                        onPress={()=>{window.location.href="tel:" + "13903375458"}}
+                        onPress={()=>{window.location.href="tel:" + "13103361866"}}
                     />
                 </TabBar>
             </span>
