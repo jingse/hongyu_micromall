@@ -24,7 +24,7 @@ function getServerHost() {
 
 
 function getServerIp() {
-    return "//ymymmall.lvxingbox.cn";
+    return "//admin.lvxingbox.cn";
     // return "//ymymmall.swczyc.com";
 }
 
