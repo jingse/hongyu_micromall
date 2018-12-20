@@ -672,6 +672,7 @@ class Product extends React.Component {
             <WingBlank>
                 {/* <div style={{width:'100%'}}> */}
                 <div className="para_title">产品介绍</div>
+                {console.log("lalala",proData.specialty.descriptions)}
                 <div  className="para_html" dangerouslySetInnerHTML={{ __html: proData.specialty.descriptions}} />
                 <hr/>
                 {/* </div> */}

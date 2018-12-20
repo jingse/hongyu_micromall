@@ -19,60 +19,61 @@ export default class TelManage extends React.Component {
             siv:null
         };
     }
-    // validatePhone() {
-    //     const phone = this.state.phone.replace(/\s+/g,"");
-    //     console.log("phone", phone);
-    //     myApi.validatePhone(phone, (rs)=>{
-    //         console.log("rs", rs);
-    //         if(rs && rs.success) {
-    //             Toast.info("发送成功，注意查收", 1);
-    //             console.log(rs);
-    //             // this.setState({delay:true},()=>{
-    //             //     setTimeout(() => {
-    //             //         this.setState({delay:false})
-    //             //     }, 1000*30);
-    //             // })
-    //             let siv = setInterval(() => {
-    //                 this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
-    //                     if (this.state.timer === 0) {
-    //                         clearInterval(siv);
-    //                         this.setState({ delay: false,timer:60 })
-    //                     }
-    //                 });
-    //             }, 1000);
+    validatePhone() {
+        const phone = this.state.phone.replace(/\s+/g,"");
+        console.log("phone", phone);
+        myApi.validatePhone(phone, (rs)=>{
+            console.log("rs", rs);
+            if(rs && rs.success) {
+                Toast.info("发送成功，注意查收", 1);
+                console.log(rs);
+                // this.setState({delay:true},()=>{
+                //     setTimeout(() => {
+                //         this.setState({delay:false})
+                //     }, 1000*30);
+                // })
+                let siv = setInterval(() => {
+                    this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                        if (this.state.timer === 0) {
+                            clearInterval(siv);
+                            this.setState({ delay: false,timer:60 })
+                        }
+                    });
+                }, 1000);
                 
-    //         }
-    //         else{
-    //             Toast.info(rs.msg);
-    //             console.log(rs);
-    //             // let siv = setInterval(() => {
-    //             //     this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
-    //             //         if (this.state.timer === 0) {
-    //             //             clearInterval(siv);
-    //             //             this.setState({ delay: false })
-    //             //         }
-    //             //     });
-    //             // }, 1000);
-    //         }
-    //     });
-    // }
-    // componentWillUnmount(){
-    //     clearInterval(this.state.siv);
-    // }
+            }
+            else{
+                Toast.info(rs.msg);
+                console.log(rs);
+                // let siv = setInterval(() => {
+                //     this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                //         if (this.state.timer === 0) {
+                //             clearInterval(siv);
+                //             this.setState({ delay: false })
+                //         }
+                //     });
+                // }, 1000);
+            }
+        });
+    }
+    componentWillUnmount(){
+        clearInterval(this.state.siv);
+    }
 
-    // bindTel(wechatId, phone, code) {
-    //     console.log("code", code);
-    //     myApi.bindPhoneOrTel(wechatId, phone, code, (rs) =>{
-    //         if (rs && rs.success) {
-    //             console.log(rs);
-    //             localStorage.setItem("bindPhone", this.state.phone.replace(/\s+/g,""));
-    //             Toast.info(rs.msg, 1);
-    //             // history.back();
-    //         } else {
-    //             Toast.info(rs.msg, 1);
-    //         }
-    //     });
-    // }
+    bindTel(wechatId, phone, code) {
+        console.log("code", code);
+        myApi.bindPhoneOrTel(wechatId, phone, code, (rs) =>{
+            if (rs && rs.success) {
+                console.log(rs);
+                console.log(this.state.phone);
+                localStorage.setItem("bindPhone", this.state.phone.replace(/\s+/g,""));
+                Toast.info(rs.msg, 1);
+                // history.back();
+            } else {
+                Toast.info(rs.msg, 1);
+            }
+        });
+    }
 
 
     render() {
@@ -81,9 +82,9 @@ export default class TelManage extends React.Component {
         return <Layout>
 
             <Navigation title="手机管理" left={true}/>
-            <p> 当前暂时无法修改绑定手机号</p>
+            {/* <p> 当前暂时无法修改绑定手机号</p> */}
 
-            {/* <Card>
+            <Card>
                 <InputItem placeholder="11位手机号" type = "phone" onChange={(val)=>{this.setState({phone: val})}}>手机号</InputItem>
 
                 <Flex>
@@ -104,7 +105,7 @@ export default class TelManage extends React.Component {
                         this.context.router.history.push('/my');
                     }}>
                 绑定手机
-            </Button> */}
+            </Button>
         </Layout>
 
     }
