@@ -19,6 +19,7 @@ export default class Setting extends React.Component {
         this.state={
             isVip:(localStorage.getItem("isVip")=="true")?true:false,
             isWebusiness:(localStorage.getItem("isWebusiness")=="1")?true:false,
+            hadBindPhone:(localStorage.getItem("bindPhone")!='null')?true:false,
             dateNow:now, //当前时间
             dateSet:null, //会员设置时间
             vipAddress:null,
@@ -29,7 +30,7 @@ export default class Setting extends React.Component {
     }
     componentWillMount(){
         //获得会员地址and生日
-        console.log('this.props isVip',localStorage.getItem("isVip"))
+        console.log('this.props isVip',localStorage.getItem("isVip"),wechatId,localStorage.getItem("bindPhone"))
         myApi.vipAddressView(wechatId,(rs)=>{
             console.log('会员地址and生日',rs,new Date(rs.obj.birthday))
             if(rs && rs.success){
@@ -62,6 +63,7 @@ export default class Setting extends React.Component {
             <Navigation title="设置" left={true}/>
             <WhiteSpace/>
             <List>
+                <div style={{display:(this.state.hadBindPhone)?'none':'line'}}>
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                     arrow="horizontal"
@@ -69,7 +71,7 @@ export default class Setting extends React.Component {
                 >
                     修改绑定手机号
                 </List.Item>
-
+                </div>
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                     onClick={() => {this.context.router.history.push({pathname: '/address', state: {fromSet:'set'} })}}

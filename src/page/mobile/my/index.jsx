@@ -295,7 +295,9 @@ export default class My extends React.Component {
     checkPhone() {
         // console.log("my bindPhone", localStorage.getItem("bindPhone"));
         console.log("bindPhone", this.state.userData.phone);
-        if (this.state.userData.phone || localStorage.getItem("bindPhone")) {
+        localStorage.setItem("bindPhone", this.state.userData.phone);
+        //if (this.state.userData.phone || localStorage.getItem("bindPhone")) {      
+        if (this.state.userData.phone) {
             return <div className="my_header_text">
                 <img src="./images/icons/手机.png" style={{width:'5%'}}/>
                 {(!this.state.userData.phone) ? localStorage.getItem("bindPhone") : this.state.userData.phone}
