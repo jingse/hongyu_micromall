@@ -102,7 +102,7 @@ export default class CategoryGrid extends React.Component {
         return <div>
             {content.length > 0 ?<Separator separatorData={categoryData} categoryData={this.props.categoryId} picUrl={this.props.picUrl}/> : <div></div>}
             
-            <Flex style={{flexWrap:'nowrap',overflow:'scroll'}}>
+            <Flex className="flex" style={{flexWrap:'nowrap',overflow:'scroll'}}>
                 {content}
             </Flex>       
         </div>

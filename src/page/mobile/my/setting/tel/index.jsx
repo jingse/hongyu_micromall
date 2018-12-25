@@ -69,6 +69,7 @@ export default class TelManage extends React.Component {
                 localStorage.setItem("bindPhone", this.state.phone.replace(/\s+/g,""));
                 Toast.info(rs.msg, 1);
                 // history.back();
+                // this.context.router.history.push('/my');
             } else {
                 Toast.info(rs.msg, 1);
             }
@@ -102,7 +103,9 @@ export default class TelManage extends React.Component {
             <Button  type="primary" style={{ marginLeft:'4px', marginRight: '4px' }}
                     onClick={() => {
                         this.bindTel(wechat_id, this.state.phone.replace(/\s+/g,""), this.state.code);
-                        this.context.router.history.push('/my');
+                        // this.context.router.history.push('/my');
+                        history.go(-1);
+                        // this.context.router.history.push({pathname:'/my'});
                     }}>
                 绑定手机
             </Button>
