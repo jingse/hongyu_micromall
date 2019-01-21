@@ -88,7 +88,7 @@ export default class Comment extends React.Component {
             return name.substr(0, 1) + "********" + name.substr(-1);
         } else{
             let s = name;
-            if(name.length>10){
+            if(name!=null&&name.length>10){
             s = name.substring(0,10)+"...";
             }
             return s

@@ -138,7 +138,7 @@ var api = {
 
     getTopNOfTags(TagId, size, callback) {
         http.ajax({
-            url: getServerHost() + '/product/sub_list_by_category_id?category_id='+ TagId + '&size=' + size,
+            url: getServerHost() + '/product/sub_list_by_label_id?id='+ TagId + '&size=' + size,
             crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);
