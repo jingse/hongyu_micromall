@@ -12,6 +12,13 @@ function getMyNickname(){
 }
 
 function getUId() {
+    if (window.location.href.split("?")[0] !== "http://ymymmall.lvxingbox.cn/") {
+        const oldUid = queryString.parse(location.search).uid;
+        const oldCompanyUid = queryString.parse(location.search).companyuid;
+
+        // TODO：此处调用后台接口获取新的uid
+    }
+
     return queryString.parse(location.search).uid;
 }
 
