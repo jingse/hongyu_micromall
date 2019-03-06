@@ -2,6 +2,7 @@
 模拟分销
  */
 import queryString from 'query-string';
+import { Toast} from 'antd-mobile';
 
 function getMyOpenId(){
     return localStorage.getItem("openid");
@@ -17,6 +18,7 @@ function getUId() {
         const oldCompanyUid = queryString.parse(location.search).companyuid;
 
         // TODO：此处调用后台接口获取新的uid
+        return 18
     }
 
     return queryString.parse(location.search).uid;

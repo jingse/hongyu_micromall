@@ -61,6 +61,7 @@ class Home extends React.Component {
 
         // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=你自己的appid&redirect_uri=微信想要回调的你的页面&response_type=code&scope=snsapi_userinfo&state=xxx#wechat_redirect'
         var uid = locManager.getUId();
+        // Toast.info(`oldUid: ${oldUid}`,1)
         const from_user = locManager.getFromUser();
         const myopenid = locManager.getMyOpenId();
 
