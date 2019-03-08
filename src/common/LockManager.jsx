@@ -13,14 +13,15 @@ function getMyNickname(){
 }
 
 function getUId() {
-    if (window.location.href.split("?")[0] !== "http://ymymmall.lvxingbox.cn/") {
+    if (window.location.href.indexOf("companyUid")>=0) {
         const oldUid = queryString.parse(location.search).uid;
         const oldCompanyUid = queryString.parse(location.search).companyuid;
 
         // TODO：此处调用后台接口获取新的uid
         return 18
     }
-
+    // var Url=window.location.href
+    // Toast.info(`Url: ${Url}`,2)
     return queryString.parse(location.search).uid;
 }
 
