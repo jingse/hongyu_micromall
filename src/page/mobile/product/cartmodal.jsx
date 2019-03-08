@@ -3,7 +3,7 @@ import { WingBlank, Flex, Modal, Toast, LocaleProvider } from 'antd-mobile';
 import "./index.less";
 import proApi from "../../../api/product.jsx";
 import {getServerIp} from "../../../config.jsx";
-
+var temp=new Array()
 export default class CartModal extends React.Component {
     constructor(props) {
         super(props);
@@ -32,6 +32,34 @@ export default class CartModal extends React.Component {
             divideMoney: this.props.productData[0].divideMoney,
             isWebusiness : localStorage.getItem('isWebusiness'),
         };
+    }
+
+    componentWillMount(){
+
+            this.props.modalData.map((option, key) => {
+            let tempID = option.id;
+            proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
+                console.log("test",key,rs);
+                if (rs.obj.length == 0) {
+                    temp[key]=false;
+                    console.log("temp",key,temp[key]);
+                    return
+                }
+                if (!rs.success) {
+                    temp[key]=false;
+                    console.log("temp",key,temp[key]);
+                    return
+                }
+                if(rs && rs.success) {
+                    temp[key]=true;
+                    console.log("temp",key,temp[key]);
+                    return
+                }
+                
+            });
+            // temp[key]=option.show
+        })
+        console.log("temp",temp);
     }
 
     onChange = (val) => {
@@ -87,9 +115,6 @@ export default class CartModal extends React.Component {
             }
             
         });
-
-
-
         // const index = this.findOptionIndex(option);
         // const salePrice = this.props.productData[index].pPrice;
         // const mPrice = this.props.productData[index].mPrice;
@@ -104,18 +129,41 @@ export default class CartModal extends React.Component {
         // });
     }
 
+    // myclickSelector(option) {
+    //     let tempID = option.id;
+    //     proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
+    //         console.log("LCC",rs);
+    //         if (rs.obj.length == 0) {
+    //             option.show=false;
+    //             return
+    //         }
+    //         if (!rs.success) {
+    //             option.show=false;
+    //             return
+    //         }
+    //         if(rs && rs.success) {
+    //             option.show=true;
+    //             return
+    //         }
+            
+    //     });
+    // }
+
     generateDataSet() {
         const optionsData = this.props.modalData.map((option, key) => {
             let className = "select_item";
             if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
                 className +=" select_active";
             }
-            return <div className={className}
+            // this.myclickSelector(option)
+            console.log("asdf",key,option.show);
+            console.log("sfdas",temp[key]);
+            return temp[key]?<div className={className}
                         key={key}
                         onClick={() => {this.clickSelector(option)}}
                     >
                 {option.specification}
-            </div>});
+            </div>:<div key={key}></div>});
 
         return <Flex wrap="wrap" className="content_sec">
             <Flex.Item>
