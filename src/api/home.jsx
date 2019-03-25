@@ -327,6 +327,17 @@ var api = {
     paySaleCoupon(callback) {
 
     },
+
+    getRedictUid(oid,callback){
+        console.log("redirect!",getServerHost());
+        http.ajax({
+            url: getServerHost() + '/webusiness/get_id_by_oid?oid=' + oid,
+            crossDomain:true,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
 };
 
 export default api;

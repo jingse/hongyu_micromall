@@ -3,7 +3,8 @@
  */
 import queryString from 'query-string';
 import { Toast} from 'antd-mobile';
-
+import homeApi from "../api/home.jsx";
+var a;
 function getMyOpenId(){
     return localStorage.getItem("openid");
 }
@@ -14,11 +15,14 @@ function getMyNickname(){
 
 function getUId() {
     if (window.location.href.indexOf("companyUid")>=0) {
-        const oldUid = queryString.parse(location.search).uid;
+        var oldUid = queryString.parse(location.search).uid;
         const oldCompanyUid = queryString.parse(location.search).companyuid;
-
+        homeApi.getRedictUid(oldUid,(rs) => {
+            a=rs.obj;
+        });
+        console.log("returnlcc",a);
+        return a;
         // TODO：此处调用后台接口获取新的uid
-        return 18
     }
     // var Url=window.location.href
     // Toast.info(`Url: ${Url}`,2)
