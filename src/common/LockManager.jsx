@@ -17,7 +17,7 @@ function getUId() {
     if (window.location.href.indexOf("companyUid")>=0) {
         var oldUid = queryString.parse(location.search).uid;
         const oldCompanyUid = queryString.parse(location.search).companyuid;
-        homeApi.getRedictUid(oldUid,(rs) => {
+        homeApi.getRedictUid(oldUid,oldCompanyUid,(rs) => {
             a=rs.obj;
         });
         console.log("returnlcc",a);

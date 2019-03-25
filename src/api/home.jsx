@@ -328,10 +328,10 @@ var api = {
 
     },
 
-    getRedictUid(oid,callback){
+    getRedictUid(oid,cid,callback){
         console.log("redirect!",getServerHost());
         http.ajax({
-            url: getServerHost() + '/webusiness/get_id_by_oid?oid=' + oid,
+            url: getServerHost() + '/webusiness/get_id_by_oid?oid=' + oid + '&cid=' + cid,
             crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);
