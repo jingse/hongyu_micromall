@@ -14,12 +14,13 @@ function getMyNickname(){
 }
 
 function getUId() {
-    if (window.location.href.indexOf("companyUid")>=0) {
-        var oldUid = queryString.parse(location.search).uid;
+    if (window.location.href.indexOf("companyuid")>=0) {
+        const oldUid = queryString.parse(location.search).uid;
         const oldCompanyUid = queryString.parse(location.search).companyuid;
         homeApi.getRedictUid(oldUid,oldCompanyUid,(rs) => {
             a=rs.obj;
         });
+        //Toast.info(`lcc: ${a}`,2)
         console.log("returnlcc",a);
         return a;
         // TODO：此处调用后台接口获取新的uid
