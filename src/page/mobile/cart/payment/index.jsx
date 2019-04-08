@@ -569,11 +569,16 @@ class Payment extends React.Component {
 
     checkPromotionMoney(money) {
         if (money > 0) {
+            if(this.props.location.isPromotion==true){
             return <div>
                 <div className="discount_select price_text">-￥{money}</div>
                 <div className="discount_title">立减</div>
                 <WhiteSpace size="xs"/>
             </div>
+            }
+            else{
+                this.state.priceResult.promotionMoney=0;
+            }
         }
         return null
     }

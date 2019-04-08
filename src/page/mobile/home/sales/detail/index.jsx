@@ -75,6 +75,29 @@ export default class SalesDetail extends React.Component {
         this.requestOrdinaryPromotionDetail(promotionId);
     }
 
+    getSalesContent(ruleType, substracts, discounts, presents) {
+        var content = null;
+
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
+            });
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
+            });
+        }
+        else {
+
+        }
+
+        return content
+    }
+
     requestOrdinaryPromotionDetail(promotionId) {
         homeApi.getOrdinaryPromotionDetail(promotionId, (rs) => {
             if(rs && rs.success) {
@@ -140,18 +163,22 @@ export default class SalesDetail extends React.Component {
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
             
             console.log('itemitemitemitem',item)
-            return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: this.state.ruleType,
-                discounts: this.state.discounts, subtracts: this.state.subtracts, presents: this.state.presents,
-                promoteNum: item.promoteNum, limitedNum: item.limitedNum}} key={index}>
+            console.log("mytest",this.state)
+            return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: item.hyPromotion.promotionRule,
+                discounts: item.hyPromotion.hyFullDiscounts, subtracts: item.hyPromotion.hyFullSubstracts, presents: item.hyPromotion.hyFullPresents,
+                promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification}} key={index}>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.specialtyId.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.specialtyId.name}</div>
-                        <div style={{marginBottom: 10}}>优惠价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
-                        <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
+                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.hyPromotion.promotionName}</div>
+                        <div style={{marginBottom: 10}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
+                        <div style={{marginBottom: 10}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
+                        <div style={{marginBottom: 10}}>优惠政策：<span style={{color:'red'}}>
+                        {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
+                        </span></div>
                         <div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
                         <WhiteSpace/>
                     </Flex.Item>
@@ -187,13 +214,17 @@ export default class SalesDetail extends React.Component {
             {/*</Card>*/}
 
 
-
-            <Card>
-                <div dangerouslySetInnerHTML={{ __html: this.state.salesDetail.introduction}} />
-            </Card>
+{/*  
+             <Card>
+                 <div dangerouslySetInnerHTML={{ __html: this.state.salesDetail.introduction}} />
+             </Card> */}
 
             <WhiteSpace/>
-
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
             {this.checkNoticeBar()}
 
             {content}

@@ -230,8 +230,9 @@ export default class SalesGroupDetail extends React.Component {
     }
 
     showWebusinessInfo(item) {
-        if (localStorage.getItem("isWebusiness")) {
-            return <WingBlank>微商提成：{item.businessPersonDivide.proportion}</WingBlank>
+        console.log("??",localStorage.getItem("isWebusiness"));
+        if (localStorage.getItem("isWebusiness")==1) {
+            return <WingBlank>提成比例：{item.businessPersonDivide.proportion}</WingBlank>
         }
     }
 
@@ -274,6 +275,9 @@ export default class SalesGroupDetail extends React.Component {
                     <WhiteSpace/>
                     {this.showWebusinessInfo(item)}
                     <WhiteSpace/>
+                    <WingBlank>
+                        限购数量：{this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+                    </WingBlank>
                 </div>
                 <div style={{background:'#fff'}}>
                     <WhiteSpace/>
@@ -358,7 +362,9 @@ export default class SalesGroupDetail extends React.Component {
             <Bottom style={{height:'3.125rem'}}
                     addToCart={this.addToCart.bind(this)}
                     buyImmediately={this.buyImmediately.bind(this)}
-                    cartNum={this.state.cartNum}/>
+                    cartNum={this.state.cartNum}
+                    limmit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+                    myval={this.state.val}/>
 
 
         </Layout>

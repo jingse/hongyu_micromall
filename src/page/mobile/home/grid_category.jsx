@@ -135,6 +135,19 @@ export default class GridCategory extends React.Component {
         });
         
     }
+
+    requestOrdinaryPromotionDetail(promotionId) {
+        homeApi.getOrdinaryPromotionDetail(promotionId, (rs) => {
+            if(rs && rs.success) {
+                const proDetail = rs.obj;
+                this.setState({
+                    salesDetail: proDetail,
+                    isLoading: false
+                });
+            }
+        });
+    }
+
     componentWillUnmount() {
         // changed = true;
         // category_flex = [];
@@ -314,6 +327,7 @@ export default class GridCategory extends React.Component {
             <Flex.Item  key={index} className="product_card"
                                style={{marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>             
                 <Link to={{pathname: `/home/sales/detail`, state: item.id}}>
+                    {console.log("asjgdskayudg",item.pics[0].mediumPath)}
                     <div><img src={"http://" + getServerIp() + item.pics[0].mediumPath} style={{width:'6rem', height: '6rem'}}/></div> 
                     {/* <div><img style={{width:'6rem', height: '6rem'}}/></div> */}
                     <WhiteSpace/>

@@ -66,7 +66,7 @@ class Product extends React.Component {
     }
 
     componentWillMount() {
-        // console.log(this.state.specialtyId);
+        console.log("wawaw",this.props);
         const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
         this.setState({
             specialtyId
@@ -314,7 +314,11 @@ class Product extends React.Component {
 
                 console.log("buyImmediately price", price);
                 if (price !== {}) {
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price, origin: "product",presents,presents});
+                    var temp=false;
+                    if(this.props.location.isPromotion==true){
+                        temp=true;
+                    }
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product",presents,presents});
                 }
             }
         });
@@ -400,11 +404,11 @@ class Product extends React.Component {
     displayPromotion() {
         if(this.props.location.isPromotion) {
             return <Card className="selector_container">
-                <div className="selector_sec" onClick={this.showModal2.bind(this)}>
+                <div className="selector_sec" >
                     <WingBlank>
                         <span>优惠规则</span>
                         {/*<span>{this.state.chooseCoupon}</span>*/}
-                        <span>{this.props.location.ruleType}</span>
+                        <span>{this.checkRuleType()}</span>
                     </WingBlank>
                 </div>
                 <div className="selector_sec">
@@ -431,41 +435,44 @@ class Product extends React.Component {
         switch (this.props.location.ruleType) {
             case "满减":
                 content = this.props.location.subtracts && this.props.location.subtracts.map((item, index) => {
-                    return <Item key={index} multipleLine
-                          // onClick = {
-                          //     this.onClose('modal2', " 满 " + item.coupon_value + " 减 " + item.reduce_value)
-                          // }
-                    >
-                        <span>{ " 满 " + item.fullFreeRequirement + " 减 " + item.fullFreeAmount }</span>
-                        {/*<Brief>{item.coupon_start_time + " - "}{item.coupon_due_time}</Brief>*/}
-                    </Item>
+                    // return <Item key={index} multipleLine
+                    //       // onClick = {
+                    //       //     this.onClose('modal2', " 满 " + item.coupon_value + " 减 " + item.reduce_value)
+                    //       // }
+                    // >
+                    //     <span>{ " 满 " + item.fullFreeRequirement + " 减 " + item.fullFreeAmount }</span>
+                    //     {/*<Brief>{item.coupon_start_time + " - "}{item.coupon_due_time}</Brief>*/}
+                    // </Item>
+                    return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
                 });
                 break;
             case "满赠":
                 content = this.props.location.presents && this.props.location.presents.map((item, index) => {
-                    return <Flex style={{background:'#fff'}} key={index}>
-                            <Flex.Item style={{flex: '0 0 30%'}}>
-                                <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
-                            </Flex.Item>
-                            <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
-                                <WhiteSpace/>
-                                <div style={{marginBottom: 10, fontWeight:'bold'}}>
-                                    {item.fullPresentProduct.name}
-                                    <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
-                                </div>
-                                <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
-                                <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
-                                {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
-                                <WhiteSpace/>
-                            </Flex.Item>
-                        </Flex>
+                    // return <Flex style={{background:'#fff'}} key={index}>
+                    //         <Flex.Item style={{flex: '0 0 30%'}}>
+                    //             <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                    //         </Flex.Item>
+                    //         <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                    //             <WhiteSpace/>
+                    //             <div style={{marginBottom: 10, fontWeight:'bold'}}>
+                    //                 {item.fullPresentProduct.name}
+                    //                 <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
+                    //             </div>
+                    //             <div style={{marginBottom: 10}}>赠品数量：<span style={{color:'red'}}>{item.fullPresentProductNumber}</span></div>
+                    //             <div style={{marginBottom: 10}}>商品规格：<span style={{color:'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                    //             {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                    //             <WhiteSpace/>
+                    //         </Flex.Item>
+                    //     </Flex>
+                    return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
                 });
                 break;
             case "满折":
                 content = this.props.location.discounts && this.props.location.discounts.map((item, index) => {
-                    return <Item key={index} multipleLine>
-                        <span>{ " 满 " + item.discountRequirenment + " 打 " + item.discountOff + " 折" }</span>
-                    </Item>
+                    // return <Item key={index} multipleLine>
+                    //     <span>{ " 满 " + item.discountRequirenment + " 打 " + item.discountOff + " 折" }</span>
+                    // </Item>
+                    return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
                 });
                 break;
         }
@@ -659,7 +666,13 @@ class Product extends React.Component {
                 {/*</div>*/}
             {/*</Card>*/}
             {this.displayPromotion()}
-
+            {/* <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/>
+            <WhiteSpace/> */}
             <div className="selector_container">
                 <div className="selector_sec" onClick={this.showModal.bind(this)}>
                     <WingBlank>
@@ -763,6 +776,8 @@ class Product extends React.Component {
                 modal={this.state.modal}
                 hideModal={this.hideModal.bind(this)}
                 selectorText={this.changeModalSelectorText.bind(this)}
+                guige={this.props.location.guige}
+                limit={this.props.location.limitedNum}
             />
 
             {/*<Modal*/}

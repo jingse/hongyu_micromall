@@ -55,6 +55,7 @@
     "react-swipe": "^5.1.1",
     "react-swipes": "^1.1.0",
     "react-transform-hmr": "^1.0.4",
+    "react-wx-images-viewer": "^1.0.6",
     "style-loader": "^0.18.2",
     "svg-sprite-loader": "^0.3.1",
     "swipe-js-iso": "^2.0.4",

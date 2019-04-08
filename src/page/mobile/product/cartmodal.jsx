@@ -31,6 +31,7 @@ export default class CartModal extends React.Component {
             //divideRatio: this.props.productData[0].divideRatio,
             divideMoney: this.props.productData[0].divideMoney,
             isWebusiness : localStorage.getItem('isWebusiness'),
+            myoptions : ""
         };
     }
 
@@ -110,7 +111,8 @@ export default class CartModal extends React.Component {
                     mPrice: mPrice,
                     inbound: inboud,
                     specificationId: option.id,
-                    divideMoney: rs.obj[0].divideMoney
+                    divideMoney: rs.obj[0].divideMoney,
+                    myoptions: option.specification
                 });
             }
             
@@ -162,7 +164,7 @@ export default class CartModal extends React.Component {
                         key={key}
                         onClick={() => {this.clickSelector(option)}}
                     >
-                {option.specification}
+                {option.specification==this.props.guige?<font color="red">{option.specification}（优惠）</font>:option.specification}
             </div>:<div key={key}></div>});
 
         return <Flex wrap="wrap" className="content_sec">
@@ -202,8 +204,14 @@ export default class CartModal extends React.Component {
         const footer = [{
             text: '确定',
             onPress: ()=>{
-                this.props.hideModal && this.props.hideModal('success');
-                this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice,'success');
+                console.log("asdasd",this.state.val,this.props.limit,this.state.specificationId,this.props.guige)
+                if(this.state.val>this.props.limit && this.state.myoptions == this.props.guige){
+                    Toast.info("超出限购数量！");
+                }
+                else{
+                    this.props.hideModal && this.props.hideModal('success');
+                    this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice,'success');
+                }
             }
         }];
 

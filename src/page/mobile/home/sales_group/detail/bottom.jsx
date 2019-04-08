@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {Button, TabBar} from 'antd-mobile';
+import {Button, TabBar, Toast} from 'antd-mobile';
 import "./index.less";
 
 export default class Bottom extends React.Component {
@@ -102,13 +102,29 @@ export default class Bottom extends React.Component {
 
             <Button type="primary" inline
                     style={{ marginLeft:'35%', marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'darkorange', fontSize:'1rem'}}
-                    onClick={()=>{this.props.addToCart()}}>
+                    onClick={()=>{
+                        console.log("mmm",this.props.myval,this.props.limmit)
+                        if(this.props.myval>this.props.limmit){
+                            Toast.info("超出限购数量！")
+                        }
+                        else{
+                            this.props.addToCart()
+                        }                     
+                        }}>
                 加购物车
             </Button>
 
             <Button type="primary" inline
                     style={{ marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'red', fontSize:'1rem'}}
-                    onClick={()=>{this.props.buyImmediately()}}>
+                    onClick={()=>{
+                        console.log("mmm",this.props.myval,this.props.limmit)
+                        if(this.props.myval>this.props.limmit){
+                            Toast.info("超出限购数量！")
+                        }
+                        else{
+                            this.props.buyImmediately()
+                        } 
+                        }}>
                 立即购买
             </Button>
 

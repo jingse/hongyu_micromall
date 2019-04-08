@@ -15,7 +15,7 @@ import locManager from "../../../common/LockManager.jsx";
 import cartApi from "../../../api/cart.jsx";
 import { wxconfig ,getServerIp} from '../../../config.jsx';
 import {Link} from 'react-router-dom';
-
+import WxImageViewer from 'react-wx-images-viewer';
 
 const host = wxconfig.hostURL;
 class Home extends React.Component {
@@ -29,7 +29,7 @@ class Home extends React.Component {
 
             isLoading: false,
             animating:false,
-            modalBack:false
+            modalBack:false,
         };
     }
 
@@ -128,7 +128,7 @@ class Home extends React.Component {
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
     }
-
+    
     getCartCount() {
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
@@ -359,6 +359,7 @@ class Home extends React.Component {
         else{
             var content = primaryImages &&primaryImages.map((data, index) => {
                 if (data.type === "广告") {
+                    console.log("hahahahha");
                     return <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
                 } else if (data.type === "活动") {
                     return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
@@ -387,6 +388,9 @@ class Home extends React.Component {
                 >
                 {content}
             </Carousel>
+            {/* {
+            isOpen ? <WxImageViewer onClose={this.onClose} urls={this.state.imags} index={index}/> : ""
+            } */}
             </div>
             
             <InfoCard cardData={this.state.card}/>
