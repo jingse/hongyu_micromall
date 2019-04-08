@@ -19,6 +19,7 @@ export default class GridCategory extends React.Component {
             data2: [],
             data3: [],
             tags:  [],
+            mypic:""
         };
     }
 
@@ -322,13 +323,17 @@ export default class GridCategory extends React.Component {
         });
 
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
+            for(var i=0;i<item.pics.length;i++){
+                if(item.pics[i].isTag == 1){
+                    this.state.mypic = item.pics[i].mediumPath;
+                }
+            }
             return  (
                 
             <Flex.Item  key={index} className="product_card"
                                style={{marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>             
                 <Link to={{pathname: `/home/sales/detail`, state: item.id}}>
-                    {console.log("asjgdskayudg",item.pics[0].mediumPath)}
-                    <div><img src={"http://" + getServerIp() + item.pics[0].mediumPath} style={{width:'6rem', height: '6rem'}}/></div> 
+                    <div><img src={"http://" + getServerIp() + this.state.mypic} style={{width:'6rem', height: '6rem'}}/></div> 
                     {/* <div><img style={{width:'6rem', height: '6rem'}}/></div> */}
                     <WhiteSpace/>
                     <div className="product_name">{item.name}</div> 
@@ -343,11 +348,16 @@ export default class GridCategory extends React.Component {
         });
 
         const content2 = topOfCoupon2 && topOfCoupon2.map((item, index) => {
+            for(var i=0;i<item.pics.length;i++){
+                if(item.pics[i].isTag == 1){
+                    this.state.mypic = item.pics[i].mediumPath;
+                }
+            }
             return  (
             <Flex.Item  key={index} className="product_card"
                                style={{marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>
                 <Link to={{pathname: `/home/sales_group/detail`, state: item.id}}>
-                    <div><img src={"http://" + getServerIp() + item.pics[0].mediumPath} style={{width:'6rem', height: '6rem'}}/></div> 
+                    <div><img src={"http://" + getServerIp() + this.state.mypic} style={{width:'6rem', height: '6rem'}}/></div> 
                     {/* <div><img style={{width:'6rem', height: '6rem'}}/></div> */}
                     <WhiteSpace/>
                     <div className="product_name">{item.name}</div> 

@@ -179,7 +179,8 @@ export default class SalesDetail extends React.Component {
                         <div style={{marginBottom: 10}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
                         </span></div>
-                        <div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
+                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
+                        <div style={{marginBottom: 10}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
