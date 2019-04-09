@@ -294,7 +294,7 @@ class Product extends React.Component {
                     if(this.props.location.isPromotion)
                         temp = true;
 
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents});
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents,shipFee:this.state.data[0].deliverPrice});
                 }
             }
         });
