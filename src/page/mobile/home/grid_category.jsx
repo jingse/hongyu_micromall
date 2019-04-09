@@ -94,7 +94,7 @@ export default class GridCategory extends React.Component {
 
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
             for(let i = 0;i < item.pics.length; i++){
-                if(item.pics[i].isTag === 1){
+                if(item.pics[i].isTag == 1){
                     this.state.mypic = item.pics[i].mediumPath;
                 }
             }
@@ -119,7 +119,7 @@ export default class GridCategory extends React.Component {
 
         const content2 = topOfCoupon2 && topOfCoupon2.map((item, index) => {
             for(var i=0;i<item.pics.length;i++){
-                if(item.pics[i].isTag === 1){
+                if(item.pics[i].isTag == 1){
                     this.state.mypic = item.pics[i].mediumPath;
                 }
             }

@@ -88,7 +88,7 @@ export default class SalesDetail extends React.Component {
             });
         } else if (ruleType === "满赠") {
             content = presents && presents.map((item, index) => {
-                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProduct.name +"*"+item.fullPresentProductNumber 
             });
         }
         else {
@@ -131,8 +131,9 @@ export default class SalesDetail extends React.Component {
 
     checkPresents() {
         var fullPresents = null;
-        if (this.state.presents && JSON.stringify(this.state.presents) !== '[]') {
-            fullPresents = this.state.presents && this.state.presents.map((item, index) => {
+        var temp = this.state.salesDetail;
+        if (temp.hySingleitemPromotions && temp.hySingleitemPromotions[0].hyPromotion.promotionRule=="满赠") {
+            fullPresents = temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents && temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents.map((item, index) => {
                 return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
                     <Flex style={{background:'#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
@@ -173,7 +174,7 @@ export default class SalesDetail extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.hyPromotion.promotionName}</div>
+                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.specialtyId.name}</div>
                         <div style={{marginBottom: 10}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
                         <div style={{marginBottom: 10}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
                         <div style={{marginBottom: 10}}>优惠政策：<span style={{color:'red'}}>
@@ -212,7 +213,6 @@ export default class SalesDetail extends React.Component {
 
 
         return <Layout>
-            
         <Card>
             <Carousel
                     style={{touchAction:'none'}}
@@ -225,6 +225,9 @@ export default class SalesDetail extends React.Component {
                 {bancontent}
             </Carousel>
             <WingBlank>
+            <h3>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
+            </h3>
                     <hr/>
                     <Card>
                         <WingBlank>
@@ -233,30 +236,34 @@ export default class SalesDetail extends React.Component {
                                 {/* <WhiteSpace/> */}
 
                                 <Flex>
-                                    <Flex.Item className="detail_info">优惠类型：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">类型：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">
+                                    {this.state.salesDetail.hySingleitemPromotions?this.getSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                                         this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents):""}
+                                    
+                                    </Flex.Item>
                                     <Flex.Item className="detail_info">运费：</Flex.Item>
                                     <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice:""}</Flex.Item>
                                 </Flex>
 
-                                <Flex>
+                                {/* <Flex>
                                     <Flex.Item className="detail_info">开始时间：</Flex.Item>
                                     <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString():""}</Flex.Item>
                                     <Flex.Item className="detail_info">价格：</Flex.Item>
                                     <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}</Flex.Item>
-                                </Flex>
+                                </Flex> */}
 
                                 <Flex>
-                                    <Flex.Item className="detail_info">结束时间：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?+this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">限购：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}</Flex.Item>
                                     <Flex.Item className="detail_info">销量：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?+this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}</Flex.Item>
                                 </Flex>
                                 <Flex>
-                                    <Flex.Item className="detail_info">限购数量：</Flex.Item>
-                                    {/* <Flex.Item className="detail_val_left">{proData.specialty.productionLicenseNumber}</Flex.Item> */}
-                                    <Flex.Item className="detail_info">提成：</Flex.Item>
-                                    {/* <Flex.Item className="detail_val_right">{proData.product_standard}</Flex.Item> */}
+                                    <Flex.Item className="detail_info">规格：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">价格：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}</Flex.Item>
                                 </Flex>
                             </div>
                         </WingBlank>
