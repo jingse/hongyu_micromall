@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, WhiteSpace, Flex, NoticeBar } from "antd-mobile";
+import { Card, WhiteSpace, Flex, NoticeBar,Carousel,WingBlank } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import SearchNavBar from "../../../../../components/search/index.jsx";
 import "./index.less";
@@ -187,50 +187,86 @@ export default class SalesDetail extends React.Component {
                 <WhiteSpace />
             </Link>
         });
+        console.log("lalalalal",this.state.salesDetail.hySingleitemPromotions);
+
+        var bancontent;
+        if(this.state.salesDetail.hySingleitemPromotions){
+            var tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
+            console.log("before",tempban);
+            for(var i=0;i<tempban.length;i++){
+                if(tempban[i].isTag==true){
+                    tempban.splice(i,1);
+                }
+            }
+            console.log("after",tempban);
+            bancontent = tempban && tempban.map((item, index) => {
+            if(item.isTag==false){
+                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
+            }
+        });
 
 
-        return <Layout header={false} footer={true}>
+        }
 
-            <SearchNavBar/>
-
-            {/*<img src={this.state.salesDetail.img_url} style={{width:'100%'}}/>*/}
-
-            {/*<Card>*/}
-                {/*<WingBlank style={{fontSize:'1rem', textAlign:'center', fontWeight:'bold', margin:'1rem'}}>*/}
-                    {/*{this.state.salesDetail.sales_title}简介*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag'>时间</span>*/}
-                    {/*<span style={{marginLeft:'0.5rem'}}>*/}
-                        {/*{this.state.salesDetail.sales_start_time} - {this.state.salesDetail.sales_end_time}*/}
-                    {/*</span>*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag' style={{marginRight:'0.5rem'}}>{this.state.salesDetail.sales_tag}</span>*/}
-                    {/*{salesContent}*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag'>电子券</span>*/}
-                {/*</WingBlank>*/}
-            {/*</Card>*/}
+        console.log("hello",bancontent)
 
 
-{/*  
-             <Card>
-                 <div dangerouslySetInnerHTML={{ __html: this.state.salesDetail.introduction}} />
-             </Card> */}
+        return <Layout>
+            
+        <Card>
+            <Carousel
+                    style={{touchAction:'none'}}
+                    autoplay={true}
+                    infinite
+                    selectedIndex={0}
+                    swipeSpeed={35}
+                    dots={true}
+                >
+                {bancontent}
+            </Carousel>
+            <WingBlank>
+                    <hr/>
+                    <Card>
+                        <WingBlank>
+                            <div className="product_info_div">
 
-            <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
-            {this.checkNoticeBar()}
+                                {/* <WhiteSpace/> */}
 
-            {content}
-            {this.checkPresents()}
+                                <Flex>
+                                    <Flex.Item className="detail_info">优惠类型：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">运费：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice:""}</Flex.Item>
+                                </Flex>
 
+                                <Flex>
+                                    <Flex.Item className="detail_info">开始时间：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString():""}</Flex.Item>
+                                    <Flex.Item className="detail_info">价格：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}</Flex.Item>
+                                </Flex>
+
+                                <Flex>
+                                    <Flex.Item className="detail_info">结束时间：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?+this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">销量：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?+this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}</Flex.Item>
+                                </Flex>
+                                <Flex>
+                                    <Flex.Item className="detail_info">限购数量：</Flex.Item>
+                                    {/* <Flex.Item className="detail_val_left">{proData.specialty.productionLicenseNumber}</Flex.Item> */}
+                                    <Flex.Item className="detail_info">提成：</Flex.Item>
+                                    {/* <Flex.Item className="detail_val_right">{proData.product_standard}</Flex.Item> */}
+                                </Flex>
+                            </div>
+                        </WingBlank>
+                    </Card>
+
+                    <hr/>
+            </WingBlank>
+        </Card>
+        {content}
+        {this.checkPresents()}  
         </Layout>
     }
 }
