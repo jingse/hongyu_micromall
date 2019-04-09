@@ -231,7 +231,7 @@ export default class SalesDetail extends React.Component {
                     <hr/>
                     <Card>
                         <WingBlank>
-                            <div className="product_info_div">
+                            <div className="my_product_info_div">
 
                                 {/* <WhiteSpace/> */}
 
