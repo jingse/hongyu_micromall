@@ -1,9 +1,13 @@
 import React from 'react';
-import { WingBlank, Flex, Modal, Toast, LocaleProvider } from 'antd-mobile';
+import { Flex, Modal, Toast } from 'antd-mobile';
 import "./index.less";
 import proApi from "../../../api/product.jsx";
 import {getServerIp} from "../../../config.jsx";
-var temp=new Array()
+
+
+var temp = [];
+
+
 export default class CartModal extends React.Component {
     constructor(props) {
         super(props);
@@ -12,13 +16,14 @@ export default class CartModal extends React.Component {
 
     getInitialState() {
         const data = this.props.modalData;
-        console.log('this.props.modalData',data)
-        console.log('this.props.productData',this.props.productData)
-
-        console.log('isWebusiness',localStorage.getItem('isWebusiness'))
         let active = {};
+
+        console.log('this.props.modalData', data)
+        console.log('this.props.productData', this.props.productData)
+        console.log('isWebusiness',localStorage.getItem('isWebusiness'))
+
+
         for (let i in data) {
-            // Object.assign(active, data[i].options[0]);
             Object.assign(active, data[0]);
         }
         return {
@@ -40,59 +45,53 @@ export default class CartModal extends React.Component {
             this.props.modalData.map((option, key) => {
             let tempID = option.id;
             proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
-                console.log("test",key,rs);
-                if (rs.obj.length == 0) {
-                    temp[key]=false;
-                    console.log("temp",key,temp[key]);
+                console.log("test", key, rs);
+                if (rs.obj.length === 0) {
+                    temp[key] = false;
+                    console.log("temp", key, temp[key]);
                     return
                 }
                 if (!rs.success) {
-                    temp[key]=false;
-                    console.log("temp",key,temp[key]);
+                    temp[key] = false;
+                    console.log("temp", key, temp[key]);
                     return
                 }
                 if(rs && rs.success) {
-                    temp[key]=true;
-                    console.log("temp",key,temp[key]);
-                    return
+                    temp[key] = true;
+                    console.log("temp", key, temp[key]);
                 }
                 
             });
             // temp[key]=option.show
-        })
-        console.log("temp",temp);
+        });
+        console.log("temp", temp);
     }
 
     onChange = (val) => {
-        // console.log(val);
         this.setState({ val });
     };
 
-    findOptionIndex(option) {
-        var index = 0;
-        const length = this.props.productData.length;
-        for (var i= 0; i < length; i++) {
-            if (JSON.stringify(this.props.productData[i].specification) === JSON.stringify(option)) {
-                index = i;
-            }
-        }
-        return index;
-        // return this.props.productData && this.props.productData.map((item, index) => {
-        //     if (JSON.stringify(item.specification) === JSON.stringify(option)) {
-        //         console.log("option", option);
-        //         console.log("item.specification", item.specification);
-        //         return index
-        //     }
-        // });
-    }
+    // findOptionIndex(option) {
+    //     var index = 0;
+    //     const length = this.props.productData.length;
+    //     for (var i = 0; i < length; i++) {
+    //         if (JSON.stringify(this.props.productData[i].specification) === JSON.stringify(option)) {
+    //             index = i;
+    //         }
+    //     }
+    //     return index;
+    // }
 
     clickSelector(option) {
-        console.log('option',option);
         let tempID = option.id;
-        console.log('tempID',tempID);
+
+        console.log('option', option);
+        console.log('tempID', tempID);
+
         proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
-            console.log('llrs',rs)
-            if (rs.obj.length == 0) {
+            console.log('llrs', rs);
+
+            if (rs.obj.length === 0) {
                 Toast.fail('暂无库存', 0.7);
                 console.log('暂无库存');
                 return
@@ -117,39 +116,10 @@ export default class CartModal extends React.Component {
             }
             
         });
-        // const index = this.findOptionIndex(option);
-        // const salePrice = this.props.productData[index].pPrice;
-        // const mPrice = this.props.productData[index].mPrice;
-        // const inboud = this.props.productData[index].inbound;
 
-        // this.setState({
-        //     active: Object.assign(this.state.active, option),
-        //     salePrice: salePrice,
-        //     mPrice: mPrice,
-        //     inbound: inboud,
-        //     specificationId: option.id,
-        // });
     }
 
-    // myclickSelector(option) {
-    //     let tempID = option.id;
-    //     proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
-    //         console.log("LCC",rs);
-    //         if (rs.obj.length == 0) {
-    //             option.show=false;
-    //             return
-    //         }
-    //         if (!rs.success) {
-    //             option.show=false;
-    //             return
-    //         }
-    //         if(rs && rs.success) {
-    //             option.show=true;
-    //             return
-    //         }
-            
-    //     });
-    // }
+
 
     generateDataSet() {
         const optionsData = this.props.modalData.map((option, key) => {
@@ -157,15 +127,16 @@ export default class CartModal extends React.Component {
             if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
                 className +=" select_active";
             }
-            // this.myclickSelector(option)
-            console.log("asdf",key,option.show);
-            console.log("sfdas",temp[key]);
-            return temp[key]?<div className={className}
+
+            console.log("asdf", key, option.show);
+            console.log("sfdas", temp[key]);
+
+            return temp[key] ? <div className={className}
                         key={key}
                         onClick={() => {this.clickSelector(option)}}
                     >
-                {option.specification==this.props.guige?<font color="red">{option.specification}（优惠）</font>:option.specification}
-            </div>:<div key={key}></div>});
+                {option.specification === this.props.guige ? <font color="red">{option.specification}（优惠）</font>:option.specification}
+            </div>:<div key={key}/>});
 
         return <Flex wrap="wrap" className="content_sec">
             <Flex.Item>
@@ -178,10 +149,12 @@ export default class CartModal extends React.Component {
         // console.log("active", this.state.active);
         const title = <div className="popup_modal_header">
             <Flex justify="end">
+
                 <Flex.Item style={{flex:'0 0 30%'}}>
                     <img src={"http://" + getServerIp() + this.props.productData[0].iconURL.sourcePath}
-                         style={{width:'100%', height:'3rem'}}/>
+                         style={{width:'100%', height:'3rem'}} alt=""/>
                 </Flex.Item>
+
                 <Flex.Item style={{flex:'0 0 70%'}}>
                     <Flex justify="start" direction="column" align="start">
                     <div className="title">
@@ -196,21 +169,22 @@ export default class CartModal extends React.Component {
                     </Flex>
                     {/* <h3>{this.props.productData[0].specialty.name}</h3>
                     <p>价格：￥{this.state.salePrice}  库存：{this.state.inbound}</p> */}
-                    
                 </Flex.Item>
+
             </Flex>
         </div>;
 
         const footer = [{
             text: '确定',
             onPress: ()=>{
-                console.log("asdasd",this.state.val,this.props.limit,this.state.specificationId,this.props.guige)
-                if(this.state.val>this.props.limit && this.state.myoptions == this.props.guige){
+                console.log("asdasd",this.state.val,this.props.limit,this.state.specificationId,this.props.guige);
+
+                if(this.state.val>this.props.limit && this.state.myoptions === this.props.guige){
                     Toast.info("超出限购数量！");
                 }
-                else{
+                else {
                     this.props.hideModal && this.props.hideModal('success');
-                    this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice,'success');
+                    this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
                 }
             }
         }];
@@ -224,7 +198,6 @@ export default class CartModal extends React.Component {
             closable
             onClose = {()=>{
                 this.props.hideModal && this.props.hideModal('close');
-                //this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId);
             }}
             title = {title}
             footer = {footer}
@@ -245,15 +218,6 @@ export default class CartModal extends React.Component {
                             style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                 </div>
-                {/* <div>
-                    <Stepper
-                        style={{ width: '30%', minWidth: '100px', touchAction: 'none' }}
-                        showNumber
-                        //max={10}
-                        min={1}
-                        value={this.state.val}
-                        onChange={this.onChange}/>
-                </div> */}
             </div>
         </Modal>
     }
