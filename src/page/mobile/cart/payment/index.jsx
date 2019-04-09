@@ -61,7 +61,7 @@ class Payment extends React.Component {
         let products = (!this.props.location.products) ? JSON.parse(localStorage.getItem("products")) : this.props.location.products;
         let priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
         let presents = (!this.props.location.presents) ? JSON.parse(localStorage.getItem("presents")) : this.props.location.presents;
-        let shipType = 0;
+        let shipType = this.props.location.shipFee;
         let shipFee = 0;
         let couponSub = 0.0;
 
@@ -784,6 +784,7 @@ class Payment extends React.Component {
                         <div className="discount_select price_text">￥{this.state.priceResult.totalMoney}</div>
                         <div className="discount_title">商品金额</div>
                         <WhiteSpace size="xs"/>
+                        {console.log("afasdf",this.state.priceResult)}
                         {this.checkPromotionMoney(this.state.priceResult.promotionMoney)}
                         {this.checkFinalBalance()}
                         <div className="discount_select price_text">+￥{this.state.shipFee}</div>

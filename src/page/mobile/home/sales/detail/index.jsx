@@ -11,11 +11,12 @@ import PutInCart from '../../../product/putincart.jsx';
 import cartApi from "../../../../../api/cart.jsx";
 import CartModal from '../../../product/cartmodal.jsx';
 import proApi from "../../../../../api/product.jsx";
+import PropTypes from "prop-types";
 
 export default class SalesDetail extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
         this.state = {
             salesDetail: [],
             isLoading: false,
@@ -164,7 +165,7 @@ export default class SalesDetail extends React.Component {
                     if(this.props.location.isPromotion)
                         temp = true;
 
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents});
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents,isPromotion:true,shipFee:this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice});
                 }
             }
         });
@@ -440,7 +441,7 @@ export default class SalesDetail extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={true}
+                    dots={false}
                 >
                 {bancontent}
             </Carousel>
@@ -513,3 +514,7 @@ export default class SalesDetail extends React.Component {
         </Layout>
     }
 }
+
+SalesDetail.contextTypes = {
+    router: PropTypes.object.isRequired
+};
