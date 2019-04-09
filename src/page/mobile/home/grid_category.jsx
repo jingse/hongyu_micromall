@@ -374,7 +374,7 @@ export default class GridCategory extends React.Component {
         const content3 = topOfCoupon3 && topOfCoupon3.map((item, index) => {
             return  (
             <Flex.Item  key={index} className="product_card"
-                               style={{marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>
+                               style={{backgroundColor:'white', marginBottom:'0.1rem', flex:'0 0 30%', marginLeft:'1.5%', marginRight:'1.5%'}}>
                 <Link to={`/product/${item.specialty.id}`}>
                     <div><img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width:'6rem', height: '6rem'}}/></div>
                     <WhiteSpace/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pagination, Flex, WhiteSpace, Toast,ActivityIndicator,Button} from 'antd-mobile';
+import {Pagination, Flex, WhiteSpace, Toast, ActivityIndicator, Button} from 'antd-mobile';
 // import comment from "../../../static/mockdata/product_comment.js"; //mock假数据
 import productApi from "../../../api/product.jsx";
 import ImageView from 'react-mobile-imgview';
@@ -25,7 +25,6 @@ export default class Comment extends React.Component {
             //    'http://pic5.photophoto.cn/20071228/0034034901778224_b.jpg',
             ],
             showViewer: false
-           
         };
     }
 
@@ -76,10 +75,11 @@ export default class Comment extends React.Component {
     // }
 
     generateStars(star_num) {
-        var stars = [];
-        for(let i = 0; i < star_num; i++){
+        let stars = [];
+
+        for(let i = 0; i < star_num; i++)
             stars.push(<img key={i} src="./images/icons/星.png" style={{width: '4%', marginBottom: 8}}/>);
-        }
+
         return stars;
     }
 
@@ -88,18 +88,12 @@ export default class Comment extends React.Component {
             return name.substr(0, 1) + "********" + name.substr(-1);
         } else{
             let s = name;
-            if(name!=null&&name.length>10){
-            s = name.substring(0,10)+"...";
-            }
+
+            if(name != null && name.length > 10)
+                s = name.substring(0,10) + "...";
+
             return s
         }
-    }
-
-    checkNum(num) {
-        if (num === 0) {
-            return "暂无"
-        }
-        return num
     }
 
 
@@ -153,24 +147,20 @@ export default class Comment extends React.Component {
     }
 
     render() {
-        
-      
+
         const content = this.state.data && this.state.data.map((item, index1) => {
-            //  console.log("*******************",item.images)
             let imgs = item.images && item.images.map((item)=>{
                 return item.sourcePath
                 // return <img src={item.sourcePath} style={{width:'50%',height:'20%',paddingLeft:'1%',paddingRight:'1%',paddingTop:'1%'}}/>
-            
-            })
-            // console.log("*******************",imgs,imgs.length)
-            return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index1}>
+            });
+             return <Flex style={{background:'#fff', borderBottom:'1px solid #eee'}} key={index1}>
                 <Flex.Item>
                     <WhiteSpace/>
                     <div>{this.generateStars(item.contentLevel)}</div>
                     <div style={{}}>{item.appraiseContent}</div>
                     <Flex wrap="wrap" justify="end" style={{paddingTop:'1rem',paddingBottom:'1rem'}}>
-                        <div style={{display:(imgs.length == 0)?'none':'inline'}}>
-                            <Button type="ghost" size="small" inline onClick={e=>this.show(imgs)}>查看评价图片</Button>
+                        <div style={{display:(imgs.length === 0) ? 'none' : 'inline'}}>
+                            <Button type="ghost" size="small" inline onClick={e => this.show(imgs)}>查看评价图片</Button>
                         </div>
                     </Flex>
                     
@@ -184,7 +174,8 @@ export default class Comment extends React.Component {
 
 
         return <div className="comment">
-            <div className="comment_title">评价({this.checkNum(this.props.total)})</div>
+
+            <div className="comment_title">评价({this.props.total})</div>
 
             {content}
 
@@ -200,13 +191,9 @@ export default class Comment extends React.Component {
                 {
                     this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close.bind(this)} />
                 }
-                
-            </div>
+              </div>
 
             </div>
-
-          
-
 
     }
 
