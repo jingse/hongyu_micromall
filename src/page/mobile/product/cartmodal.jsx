@@ -36,7 +36,8 @@ export default class CartModal extends React.Component {
             //divideRatio: this.props.productData[0].divideRatio,
             divideMoney: this.props.productData[0].divideMoney,
             isWebusiness : localStorage.getItem('isWebusiness'),
-            myoptions : ""
+            myoptions : "",
+            ischange :-1
         };
     }
 
@@ -127,8 +128,10 @@ export default class CartModal extends React.Component {
             if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
                 className +=" select_active";
             }
-            if(this.props.limit){
+            if(this.props.limit&&this.state.ischange==-1){
+                console.log("asdasdfaf");
                 this.clickSelector(option)
+                this.state.ischange=0;
             }
             console.log("asdf", key, option.show);
             console.log("sfdas", temp[key]);

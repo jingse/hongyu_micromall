@@ -62,7 +62,7 @@ export default class PutInCart extends React.Component {
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/home-fill.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat' }}
                         />}
                         selected={this.state.selectedTab === 'home'}
                         onPress={() => { this.linkTo('/home'); }}
