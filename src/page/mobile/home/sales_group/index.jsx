@@ -213,15 +213,6 @@ export default class SalesGroup extends React.Component {
             </div>
 
 
-            <div style={{backgroundColor:'white', height:'3rem', borderBottom:'1px solid #eee'}}>
-                <div className="order_button">
-                    <WhiteSpace size='lg'/>
-                    <a style={{marginLeft:'0.6rem'}}>满减</a>
-                    <a style={{marginLeft:'0.6rem'}}>满赠</a>
-                    <a style={{marginLeft:'0.6rem'}}>折扣</a>
-                    {/*<img src="./images/icons/筛选.png" style={{width:'5%'}}/>*/}
-                </div>
-            </div>
 
 
             {content}

@@ -99,12 +99,12 @@ export default class SalesGroupProducts extends React.Component {
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 40%', color:'black'}}>
                             <div style={{marginBottom: 10}}>{item.itemId.name}</div>
-                            <div style={{marginBottom: 10, color:'#ccc'}}>{item.itemSpecificationId.specification}</div>
+                            <div style={{marginBottom: 10, color:'black'}}>{item.itemSpecificationId.specification}</div>
                             <WhiteSpace/>
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 25%'}}>
                             {/* <div style={{marginBottom: 10, color:'black', textAlign:'right'}}>￥{item.itemSpecificationId.platformPrice}</div> */}
-                            <div style={{marginBottom: 10, color:'#ccc', textAlign:'right'}}>x {item.itemSpecificationId.saleNumber}</div>
+                            <div style={{marginBottom: 10, color:'black', textAlign:'right'}}>x {item.itemSpecificationId.saleNumber}</div>
                             <WhiteSpace/>
                         </Flex.Item>
                     </Flex>
