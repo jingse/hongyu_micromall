@@ -387,23 +387,25 @@ export default class SalesDetail extends React.Component {
             return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: item.hyPromotion.promotionRule,
                 discounts: item.hyPromotion.hyFullDiscounts, subtracts: item.hyPromotion.hyFullSubstracts, presents: item.hyPromotion.hyFullPresents,
                 promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification}} key={index}>
+                <Card>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.specialtyId.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                    <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.specialtyId.name}</div>
-                        <div style={{marginBottom: 10}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
-                        <div style={{marginBottom: 10}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
-                        <div style={{marginBottom: 10}}>优惠政策：<span style={{color:'red'}}>
+                        <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.specialtyId.name}</div>
+                        <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
+                        <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
+                        <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
                         </span></div>
                         {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
-                        <div style={{marginBottom: 10}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
+                        <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
+                </Card>
                 <WhiteSpace />
             </Link>
         });
@@ -428,9 +430,8 @@ export default class SalesDetail extends React.Component {
 
         }
 
-        console.log("hello",bancontent)
-
-
+        
+        
         return <Layout>
         <Card>
             <Carousel
@@ -487,11 +488,22 @@ export default class SalesDetail extends React.Component {
                             </div>
                         </WingBlank>
                     </Card>
+                    <WhiteSpace></WhiteSpace>
+                    {content}
+                    {this.state.data[0]?
+                    <Card className="general_container">
+                    <div>
+                    <WingBlank>
+                        <div className="para_title">产品介绍</div>
+                        <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.data[0].specialty.descriptions}} />
+                    </WingBlank>
+                    </div>
+                    </Card>:<div></div>}
 
                     <hr/>
             </WingBlank>
         </Card>
-        {content}
+        {/* {content} */}
         {this.checkPresents()}  
 
         {this.checkCartDisplay()}
