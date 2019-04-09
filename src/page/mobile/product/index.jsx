@@ -329,42 +329,9 @@ class Product extends React.Component {
     }
 
 
-    onClose = (key, val) => () => {
-        this.setState({
-            [key]: false,
-            chooseCoupon: val,
-        });
-    };
-
-
-    checkRuleType() {
-        let content = [];
-        switch (this.props.location.ruleType) {
-            case "满减":
-                content = this.props.location.subtracts && this.props.location.subtracts.map((item, index) => {
-                    return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
-                });
-                break;
-            case "满赠":
-                content = this.props.location.presents && this.props.location.presents.map((item, index) => {
-                    return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
-                });
-                break;
-            case "满折":
-                content = this.props.location.discounts && this.props.location.discounts.map((item, index) => {
-                    return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
-                });
-                break;
-        }
-        return content;
-    }
-
-
-
     checkPromotion() {
         if (this.props.location.isPromotion)
             return <Link to={{pathname: "/home/sales", dest: '/home'}}>
-                    {/*<span style={{color: 'darkorange', fontStyle:'normal'}}> 优惠<span>(点击查看更多优惠)</span></span>*/}
                     <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
                 </Link>;
 

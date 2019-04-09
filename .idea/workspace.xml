@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="修改标签管理bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/content/content.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/content/content.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tmpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tmpl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/cartmodal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/cartmodal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="修改背景颜色以及产品详情页">
       <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="535" column="48" selection-start-line="535" selection-start-column="48" selection-end-line="535" selection-end-column="48" />
+            <state relative-caret-position="331">
+              <caret line="605" column="12" lean-forward="true" selection-start-line="605" selection-start-column="12" selection-end-line="605" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -479,14 +470,7 @@
       <workItem from="1551316641637" duration="600000" />
       <workItem from="1551681938315" duration="4794000" />
       <workItem from="1551689339831" duration="670000" />
-      <workItem from="1554774497407" duration="11325000" />
-    </task>
-    <task id="LOCAL-00038" summary="fix a cart bug">
-      <created>1527078636108</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1527078636108</updated>
+      <workItem from="1554774497407" duration="11642000" />
     </task>
     <task id="LOCAL-00039" summary="update a lot">
       <created>1527086418448</created>
@@ -824,11 +808,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534408764025</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="修改背景颜色以及产品详情页">
+      <created>1554793321090</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1554793321091</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1085651000" />
+    <option name="totallyTimeSpent" value="1085968000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -909,7 +900,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix a lot of bugs" />
     <MESSAGE value="解决待评价订单总数问题" />
     <MESSAGE value="解决刷新不及时的问题" />
     <MESSAGE value="解决删除不在同一行的问题" />
@@ -934,7 +924,8 @@
     <MESSAGE value="去掉产品页面写死的视频" />
     <MESSAGE value="标签管理" />
     <MESSAGE value="修改标签管理bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改标签管理bug" />
+    <MESSAGE value="修改背景颜色以及产品详情页" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改背景颜色以及产品详情页" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx">
@@ -1309,8 +1300,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="535" column="48" selection-start-line="535" selection-start-column="48" selection-end-line="535" selection-end-column="48" />
+        <state relative-caret-position="331">
+          <caret line="605" column="12" lean-forward="true" selection-start-line="605" selection-start-column="12" selection-end-line="605" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
