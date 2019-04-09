@@ -127,7 +127,9 @@ export default class CartModal extends React.Component {
             if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
                 className +=" select_active";
             }
-
+            if(this.props.limit){
+                this.clickSelector(option)
+            }
             console.log("asdf", key, option.show);
             console.log("sfdas", temp[key]);
 
@@ -177,7 +179,7 @@ export default class CartModal extends React.Component {
         const footer = [{
             text: '确定',
             onPress: ()=>{
-                console.log("asdasd",this.state.val,this.props.limit,this.state.specificationId,this.props.guige);
+                console.log("asdasd",this.state.val,this.props.limit,this.state.myoptions,this.props.guige);
 
                 if(this.state.val>this.props.limit && this.state.myoptions === this.props.guige){
                     Toast.info("超出限购数量！");
