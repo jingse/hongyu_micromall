@@ -514,6 +514,10 @@ export default class SalesDetail extends React.Component {
                     <div>
                     <WingBlank>
                         <div className="para_title">产品介绍</div>
+                        <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}} />
+                    </WingBlank>
+                    <WingBlank>
+                        <div className="para_title">活动详情</div>
                         <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.data[0].specialty.descriptions}} />
                     </WingBlank>
                     </div>
