@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, WhiteSpace,Toast } from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
-import SearchNavBar from "../../../../components/search/index.jsx";
-import Bottom from "../../../../components/bottom/index.jsx";
+// import SearchNavBar from "../../../../components/search/index.jsx";
+// import Bottom from "../../../../components/bottom/index.jsx";
 import "./index.less";
 // import sales_data from "../../../../static/mockdata/sales.js"; //mock假数据
  import homeApi from "../../../../api/home.jsx";
@@ -27,9 +27,6 @@ export default class Sales extends React.Component {
         localStorage.setItem("categoryName", "普通优惠");
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
 
     requestOrdinaryPromotionList(page) {
         homeApi.getOrdinaryPromotionList(page,10,(rs) => {
@@ -64,30 +61,13 @@ export default class Sales extends React.Component {
                         isEnd:isEnd1
                     });
                 }
-                // console.log('getOrdinaryPromotionList',rs)
-                // const proList = rs.obj;
-                // this.setState({
-                //     data: proList,
-                //     isLoading: false
-                // });
+
             }
         });
     }
     addMore(){
         this.requestOrdinaryPromotionList(this.state.nextPage);
     }
-
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = sales_data.data;   //mock假数据
-    //         this.setState({
-    //             data: data,
-    //             isLoading: false
-    //         });
-    //     }, 300);
-    // }
 
     getSalesIconImg(salesImages) {
         var img = null;
@@ -122,13 +102,13 @@ export default class Sales extends React.Component {
         return content
     }
 
-    checkDest() {
-        if (this.props.location.dest) {
-            return <SearchNavBar dest={this.props.location.dest}/>
-        } else {
-            return <SearchNavBar/>
-        }
-    }
+    // checkDest() {
+    //     if (this.props.location.dest) {
+    //         return <SearchNavBar dest={this.props.location.dest}/>
+    //     } else {
+    //         return <SearchNavBar/>
+    //     }
+    // }
 
     render() {
 
@@ -170,9 +150,9 @@ export default class Sales extends React.Component {
 
         return <Layout header={false} footer={true}>
 
-            {this.checkDest()}
+            {/*{this.checkDest()}*/}
 
-            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold', marginTop:'3.125rem'}}>
+            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
                 <Flex>
                     <Flex.Item style={{flex: '0 0 4%', marginRight:'0.4rem'}}>
                         <img src='./images/category/菜篮子.png'
@@ -181,10 +161,6 @@ export default class Sales extends React.Component {
                     <Flex.Item>{(!this.props.location.category) ? localStorage.getItem("categoryName") : this.props.location.category}</Flex.Item>
                 </Flex>
             </div>
-
-
-
-
 
             {content}
 

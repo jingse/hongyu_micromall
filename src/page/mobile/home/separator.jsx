@@ -11,8 +11,6 @@ export default class Separator extends React.Component {
         };
     }
 
-    componentDidMount() {
-    }
 
     render(){
         // let separator = this.props.separatorData && this.props.separatorData.data;
@@ -26,11 +24,10 @@ export default class Separator extends React.Component {
                 <div className="separator">
                     <Flex>
                         <Flex.Item style={{textAlign:'right'}}>
+
                             <Link to={{pathname: '/home/category',category: this.props.separatorData, categoryId: this.props.categoryData}} 
-                            style={{color: 'darkorange'}}>
-                            <img src={"http://" + getServerIp() + this.props.picUrl} height='105' width='100%'
-                            
-                                 />
+                                    style={{color: 'darkorange'}}>
+                                <img src={"http://" + getServerIp() + this.props.picUrl} height='105' width='100%'/>
                             </Link>
                             
                         </Flex.Item>

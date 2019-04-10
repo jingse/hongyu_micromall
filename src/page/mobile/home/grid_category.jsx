@@ -19,10 +19,6 @@ export default class GridCategory extends React.Component {
         };
     }
 
-    componentWillMount() {
-
-    }
-
     componentDidMount() {
         this.requestTopNOfCoupon(9);  
     }
@@ -110,7 +106,7 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="product_amount">{item.ruleType}</div>
                     <WhiteSpace/>
-                    {/* <div className="product_price">￥{item.pPrice}元 起</div>
+                    {/* <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/> */}
                 </Link>
             </Flex.Item>
@@ -134,7 +130,7 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="product_amount">{item.ruleType}</div>
                     <WhiteSpace/>
-                    {/* <div className="product_price">￥{item.pPrice}元 起</div>
+                    {/* <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/> */}
                 </Link>
             </Flex.Item>
@@ -152,7 +148,7 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="product_amount">{item.hasSold}人付款</div>
                     <WhiteSpace/>
-                    <div className="product_price">￥{item.pPrice}元 起</div>
+                    <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/>
                 </Link>
             </Flex.Item>
@@ -195,7 +191,6 @@ export default class GridCategory extends React.Component {
         <Flex style={{flexWrap:'nowrap',overflow:'scroll'}}>
             {content3}
         </Flex> 
-
 
 
         {hometags}

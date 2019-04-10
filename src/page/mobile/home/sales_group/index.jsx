@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, WhiteSpace ,Toast} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
-import SearchNavBar from "../../../../components/search/index.jsx";
+// import SearchNavBar from "../../../../components/search/index.jsx";
 import Bottom from "../../../../components/bottom/index.jsx";
 // import sales_group from "../../../../static/mockdata/sales_group.js"; //mock假数据
 import homeApi from "../../../../api/home.jsx";
@@ -26,9 +26,7 @@ export default class SalesGroup extends React.Component {
         localStorage.setItem("categoryName", "组合优惠");
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
+
     addMore(){
         this.requestGroupPromotionList(this.state.nextPage);
     }
@@ -70,18 +68,6 @@ export default class SalesGroup extends React.Component {
             }
         });
     }
-
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = sales_group.data;   //mock假数据
-    //         this.setState({
-    //             data: data,
-    //             isLoading: false
-    //         });
-    //     }, 300);
-    // }
 
     getSalesIconImg(salesImages) {
         var img = null;
@@ -129,39 +115,6 @@ export default class SalesGroup extends React.Component {
 
     render() {
 
-        // const content = this.state.data && this.state.data.map((item, index) => {
-        //     return <Link to={`/home/sales_group/detail`} key={index}>
-        //         <Flex style={{background:'#fff'}}>
-        //             <Flex.Item style={{flex: '0 0 30%'}}>
-        //                 <img src={item.img_url} style={{width: '70%', margin:'0.4rem'}}/>
-        //             </Flex.Item>
-        //             <Flex.Item style={{flex: '0 0 60%', color:'black', fontSize:'0.3rem'}}>
-        //                 <WhiteSpace/>
-        //                 <div style={{marginBottom: 15, fontSize:'1rem', fontWeight:'bold'}}>{item.sales_title}</div>
-        //                 <div style={{marginBottom: 10}}>
-        //                     <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
-        //                         {item.sales_tag}
-        //                     </span>
-        //                     {item.sales_content}
-        //                 </div>
-        //                 <Flex style={{marginBottom: 10}}>
-        //                     <Flex.Item style={{flex:'0 0 30%'}}>
-        //                         <span style={{color:'red', border:'1px solid darkorange', padding:'2px', marginRight:'0.5rem'}}>
-        //                             时间
-        //                         </span>
-        //                     </Flex.Item>
-        //                     <Flex.Item style={{flex:'0 0 70%'}}>
-        //                         <div className="sales_time_text">{item.sales_start_time}</div>
-        //                         <div className="sales_time_text">{item.sales_end_time}</div>
-        //                     </Flex.Item>
-        //                 </Flex>
-        //                 <WhiteSpace/>
-        //             </Flex.Item>
-        //         </Flex>
-        //         <WhiteSpace/>
-        //     </Link>
-        // });
-
         const content = this.state.data && this.state.data.map((item, index) => {
             return <Link to={{pathname: `/home/sales_group/detail`, state: item.id, ruleType: item.ruleType,
                 presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
@@ -200,9 +153,9 @@ export default class SalesGroup extends React.Component {
 
         return <Layout header={false} footer={true}>
 
-            <SearchNavBar dest="/home"/>
+            {/*<SearchNavBar dest="/home"/>*/}
 
-            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold', marginTop:'3.125rem'}}>
+            <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
                 <Flex>
                     <Flex.Item style={{flex: '0 0 4%', marginRight:'0.4rem'}}>
                         <img src='./images/category/菜篮子.png'
@@ -211,8 +164,6 @@ export default class SalesGroup extends React.Component {
                     <Flex.Item>{(!this.props.location.category) ? localStorage.getItem("categoryName") : this.props.location.category}</Flex.Item>
                 </Flex>
             </div>
-
-
 
 
             {content}
