@@ -431,6 +431,17 @@ export default class SalesDetail extends React.Component {
 
         }
 
+        var start,end,a,b;
+        if(this.state.salesDetail.hySingleitemPromotions){
+            start = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString();
+            end = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime).toLocaleString();
+            a=start.indexOf("午");
+            b=end.indexOf("午");
+            console.log("safsfasfsa",a,b,start.substring(0,a+2),end.substring(0,b+2));
+            start.substring(0,a+2);
+            end.substring(0,b+2);
+        }
+        
         
         
         return <Layout>
@@ -449,6 +460,12 @@ export default class SalesDetail extends React.Component {
             <h3>
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
             </h3>
+            <h4>
+                开始时间：{this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时":""}
+            </h4>
+            <h4>
+                结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
+            </h4>
                     <hr/>
                     <Card>
                         <WingBlank>
@@ -491,6 +508,7 @@ export default class SalesDetail extends React.Component {
                     </Card>
                     <WhiteSpace></WhiteSpace>
                     {content}
+                    {this.checkPresents()}  
                     {this.state.data[0]?
                     <Card className="general_container">
                     <div>
@@ -505,7 +523,7 @@ export default class SalesDetail extends React.Component {
             </WingBlank>
         </Card>
         {/* {content} */}
-        {this.checkPresents()}  
+        
 
         {this.checkCartDisplay()}
 
