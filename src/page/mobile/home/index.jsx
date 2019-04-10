@@ -166,13 +166,13 @@ class Home extends React.Component {
 
 
         // 微商测试
-        let leoopid = 'oH0MfxOKM2dnWQBFsMW9KTnPuf-s';
-        let uuuu = 27;
-        let leoname = 'Guihuan';
+        // let leoopid = 'oH0MfxOKM2dnWQBFsMW9KTnPuf-s';
+        // let uuuu = 27;
+        // let leoname = 'Guihuan';
 
 
-        homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
-        // homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
+        // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
+        homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
                 
                 console.log("loginCheck rs:", rs);
@@ -319,7 +319,9 @@ class Home extends React.Component {
             primaryImages[1]=primaryImages[0];
             var content = primaryImages && primaryImages.map((data, index) => {
                 if (data.type === "广告") {
-                    return <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                    return <Link to={{pathname:'/home/ad', state: data.link}} key={index}>
+                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                    </Link>
                 } else if (data.type === "活动") {
                     return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
                         <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
@@ -335,7 +337,9 @@ class Home extends React.Component {
             var content = primaryImages &&primaryImages.map((data, index) => {
                 if (data.type === "广告") {
                     console.log("hahahahha");
-                    return <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                    return <Link to={{pathname:'/home/ad', state: data.link}} key={index}>
+                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                    </Link>
                 } else if (data.type === "活动") {
                     return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
                         <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
