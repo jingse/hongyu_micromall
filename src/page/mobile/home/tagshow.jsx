@@ -48,7 +48,7 @@ export default class Tagshow extends React.Component {
                     <WhiteSpace/>
                     <div className="product_amount">{item.hasSold}人付款</div>
                     <WhiteSpace/>
-                    <div className="product_price">￥{item.pPrice}元 起</div>
+                    <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/>
                 </Link>
             </Flex.Item>

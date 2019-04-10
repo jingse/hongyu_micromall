@@ -1,5 +1,5 @@
 import React from 'react';
-import { WhiteSpace ,ActivityIndicator, Modal,Carousel} from "antd-mobile";
+import { WhiteSpace ,ActivityIndicator, Modal, Carousel} from "antd-mobile";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
@@ -15,9 +15,9 @@ import locManager from "../../../common/LockManager.jsx";
 import cartApi from "../../../api/cart.jsx";
 import { wxconfig ,getServerIp} from '../../../config.jsx';
 import {Link} from 'react-router-dom';
-import WxImageViewer from 'react-wx-images-viewer';
 
 const host = wxconfig.hostURL;
+
 class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -46,6 +46,8 @@ class Home extends React.Component {
         //         WeixinJSBridge.call('closeWindow'); //微信
         //     }
         // }, false);
+
+
         const url = encodeURIComponent(window.location.href.split('#')[0]);
         wxApi.postJsApiData(url, (rs) => {
             const data = rs.result;
@@ -73,6 +75,7 @@ class Home extends React.Component {
             desc: '来自'+locManager.getMyNickname()+'的分享',
             link: host + locManager.generateSaleLink()
         };
+
         if (uid) {          // 第一次扫码，url带uid字段，不带from_user
             console.log("uid存在");
             localStorage.setItem("uid", uid);
@@ -160,10 +163,14 @@ class Home extends React.Component {
         // let leoopid = 'asdfdsfsdfasdsnflkdslfldsgnm';
         // let uuuu = 342;
         // let leoname = 'lulifeng';
+
+
         // 微商测试
         let leoopid = 'oH0MfxOKM2dnWQBFsMW9KTnPuf-s';
         let uuuu = 27;
         let leoname = 'Guihuan';
+
+
         homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
         // homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
@@ -191,6 +198,8 @@ class Home extends React.Component {
                 this.requestCategories();
             }
         });
+
+
         this.requestCarousel();
         localStorage.setItem("firstLog", 'true');
 
@@ -205,46 +214,11 @@ class Home extends React.Component {
         //拿到购物车的数量
         this.getCartCount();
 
-        // }
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
         console.log("localStorage isWebusiness", localStorage.getItem("isWebusiness"));
         console.log("localStorage bindPhone", localStorage.getItem("bindPhone"));
     }
 
-    // componentDidMount() {
-    //     const uid = locManager.getUId();
-    //     const from_user = locManager.getFromUser();
-    //     const myopenid = locManager.getMyOpenId();
-    //     const mynickname = locManager.getMyNickname();
-    //     var shareData = {   // 自定义分享数据
-    //         title: '土特产微商城',
-    //         desc: '来自'+locManager.getMyNickname()+'的分享',
-    //         link: host + locManager.generateSaleLink()
-    //     };
-    //     if (uid) {          // 第一次扫码，url带uid字段，不带from_user
-    //         homeApi.postOpenId(uid, mynickname, myopenid, (rs)=>{
-    //             alert(rs);
-    //         });
-    //     } else {            // 分享后的链接，url不带uid字段，带from_user
-    //         homeApi.createAccount(mynickname, myopenid, (rs)=>{
-    //             alert(rs);
-    //         });
-    //     }
-    //     wx.ready(function(){
-    //         wx.checkJsApi({
-    //             jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"],
-    //             success: function(res) {
-    //                 console.log(res)
-    //             }
-    //         });
-    //         wx.onMenuShareAppMessage(shareData);
-    //         wx.onMenuShareTimeline(shareData);
-    //     });
-    //     wx.error(function(res){
-    //         console.log('wx.error');
-    //         console.log(res);
-    //     });
-    // }
 
 
     requestCarousel() {
@@ -316,6 +290,7 @@ class Home extends React.Component {
             }
         });
     }
+
     checkPromotion(isCheck) {
         if (isCheck === 0) {
             return "/home/sales"
@@ -375,7 +350,6 @@ class Home extends React.Component {
 
         return <Layout header={true} footer={true}>
 
-            {/* <Carousel carouselData={this.state.carousel} /> */}
             <div className="carousel_view">
             <Carousel
                     className="my-carousel"
@@ -388,9 +362,6 @@ class Home extends React.Component {
                 >
                 {content}
             </Carousel>
-            {/* {
-            isOpen ? <WxImageViewer onClose={this.onClose} urls={this.state.imags} index={index}/> : ""
-            } */}
             </div>
             
             <InfoCard cardData={this.state.card}/>
@@ -422,75 +393,3 @@ class Home extends React.Component {
 }
 
 export default LoadingHoc(Home);
-
-
-{/*<Separator separatorData="水果专区"/>*/}
-{/*<Grid gridData={this.state.grid} categoryData={this.state.gridCategory} type="fruits"/>*/}
-
-{/*<Separator separatorData="乳胶产品专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="玩具专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="饰品服饰专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="奢侈品专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="化妆品专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="日用品专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="保健品专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="食品酒水专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="箱包专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-{/*<Separator separatorData="电器专区"/>*/}
-{/*<Grid gridData={this.state.grid} type="emulsion"/>*/}
-
-
-// requestMockData() {
-//     // 通过API获取首页配置文件数据
-//     // 模拟ajax异步获取数据
-//     // setTimeout(() => {
-//     const data = home_data.data.rows;   //mock假数据
-//     let carousel = {},
-//         card = {},
-//         gridCategory = {},
-//         grid = {},
-//         separator = {};
-//     if (data.length) {
-//         for (let i in data) {
-//             if (data[i].style_id === 'carousel_view') {
-//                 carousel = data[i];
-//             } else if (data[i].style_id === 'contact_info_view') {
-//                 card = data[i]
-//             } else if (data[i].style_id === 'grid_category_view') {
-//                 gridCategory = data[i]
-//             } else if (data[i].style_id === 'grid_view') {
-//                 grid = data[i];
-//             }
-//             // else if (data[i].style_id === 'separator_view') {
-//             //     separator = data[i];
-//             // }
-//         }
-//     }
-//     this.setState({
-//         carousel,
-//         card,
-//         gridCategory,
-//         grid,
-//         separator,
-//         isLoading: false
-//     });
-//     // }, 500);
-// }

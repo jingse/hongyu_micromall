@@ -32,6 +32,7 @@ import SalesGroupProducts from "./mobile/home/sales_group/detail/products/index.
 import Recharge from "./mobile/home/recharge/index.jsx";
 import CouponBalance from "./mobile/home/recharge/payment/index.jsx";
 import HomeCoupon from "./mobile/home/coupon/index.jsx";
+import AdDetail from "./mobile/home/adDetail.jsx";
 import Coupon from "./mobile/my/coupon/index.jsx";
 import Balance from "./mobile/my/balance/index.jsx";
 import BalancePurchase from "./mobile/my/balance/purchase/index.jsx";
@@ -80,6 +81,7 @@ export default class App extends React.Component {
                         <Route component={Recharge} path='/home/recharge' exact/>
                         <Route component={CouponBalance} path='/home/recharge/payment' exact/>
                         <Route component={HomeCoupon} path='/home/coupon' exact/>
+                        <Route component={AdDetail} path='/home/ad' exact/>
                         <Route component={Recommend} path='/home/recommend' exact/>
 
                         <Route component={Search} path='/search'/>

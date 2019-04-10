@@ -5,7 +5,7 @@ import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Comment from "./comment.jsx";
 import Recommend from "./recommend.jsx";
-import { Carousel, WhiteSpace, WingBlank, Flex, Toast, Modal, List } from 'antd-mobile';
+import { Carousel, WhiteSpace, WingBlank, Flex, Toast } from 'antd-mobile';
 import CartModal from './cartmodal.jsx';
 import PutInCart from './putincart.jsx';
 import './index.less';
@@ -449,41 +449,39 @@ class Product extends React.Component {
                                 <Flex>
                                     <Flex.Item className="detail_info">产地：</Flex.Item>
                                     <Flex.Item className="detail_val_left">{proData.specialty.originalPlace}</Flex.Item>
-                                    <Flex.Item className="detail_info">厂家电话：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{proData.specialty.provider.contactorMobile}</Flex.Item>
-                                </Flex>
-
-                                <Flex>
-                                    <Flex.Item className="detail_info">许可证：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{proData.specialty.productionLicenseNumber}</Flex.Item>
-                                    <Flex.Item className="detail_info">储藏方法：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{proData.specialty.storageMethod}</Flex.Item>
-                                    {/*<Flex.Item className="detail_info">产品标准：</Flex.Item>*/}
-                                    {/*<Flex.Item className="detail_val_right">{proData.product_standard}</Flex.Item>*/}
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">品牌：</Flex.Item>
                                     <Flex.Item className="detail_val_left">{proData.specialty.brand}</Flex.Item>
-                                    <Flex.Item className="detail_info">规格：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{proData.specification.specification}</Flex.Item>
                                 </Flex>
 
-                                {/*<Flex>*/}
-                                {/*    /!*<Flex.Item className="detail_info">保质期：</Flex.Item>*!/*/}
-                                {/*    /!*<Flex.Item className="detail_val_left">{}</Flex.Item>*!/*/}
-                                {/*    /!*<Flex.Item className="detail_info">储藏方法：</Flex.Item>*!/*/}
-                                {/*    /!*<Flex.Item className="detail_val_right">{proData.specialty.storageMethod}</Flex.Item>*!/*/}
-                                {/*</Flex>*/}
+                                <Flex>
+                                    <Flex.Item className="detail_info">许可证：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{proData.specialty.productionLicenseNumber}</Flex.Item>
+                                </Flex>
+
+                                <Flex>
+                                    <Flex.Item className="detail_info">储藏方法：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{proData.specialty.storageMethod}</Flex.Item>
+                                </Flex>
+
+                                <Flex>
+                                    <Flex.Item className="detail_info">厂家电话：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{proData.specialty.provider.contactorMobile}</Flex.Item>
+                                </Flex>
+
+                                <Flex>
+                                    <Flex.Item className="detail_info">市场价格：</Flex.Item>
+                                    <Flex.Item className="detail_val_right" style={{color:'darkorange', textDecoration:'line-through'}}>
+                                        {this.state.currentMarketPrice}
+                                    </Flex.Item>
+                                </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">优惠价格：</Flex.Item>
                                     <Flex.Item className="detail_val_left" style={{color:'darkorange', fontSize:'1.2rem', fontStyle:'bold'}}>
                                         {this.state.currentPrePrice}
-                                    </Flex.Item>
-                                    <Flex.Item className="detail_info">市场价格：</Flex.Item>
-                                    <Flex.Item className="detail_val_right" style={{color:'darkorange', textDecoration:'line-through'}}>
-                                        {this.state.currentMarketPrice}
                                     </Flex.Item>
                                 </Flex>
 
