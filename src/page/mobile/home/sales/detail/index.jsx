@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, WhiteSpace, Flex, NoticeBar,Carousel,WingBlank } from "antd-mobile";
+import { Card, WhiteSpace, Flex, NoticeBar,Carousel,WingBlank,Toast } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import SearchNavBar from "../../../../../components/search/index.jsx";
 import "./index.less";
 // import sales_detail from "../../../../../static/mockdata/sales_detail.js"; // mock假数据
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
+import PutInCart from '../../../product/putincart.jsx';
+import cartApi from "../../../../../api/cart.jsx";
+import CartModal from '../../../product/cartmodal.jsx';
+import proApi from "../../../../../api/product.jsx";
+import PropTypes from "prop-types";
 
 export default class SalesDetail extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
         this.state = {
             salesDetail: [],
             isLoading: false,
@@ -20,6 +25,27 @@ export default class SalesDetail extends React.Component {
             presents: [],
             subtracts: [],
             discounts: [],
+
+            selectorText: '未选择',
+            modalSelectorText: '未选择',
+
+            isadd: 0,
+            modal: false,
+
+            specialtyId: -1,
+            mynum :-1,
+            
+            //加购物车相关参数
+            specificationId: 0,
+            specification: "",
+            isGroupPromotion: false,
+            quantity: 1,
+            isNull: false,
+
+            data: {},
+            featureData: -1,
+
+            cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
         };
     }
 
@@ -75,6 +101,78 @@ export default class SalesDetail extends React.Component {
         this.requestOrdinaryPromotionDetail(promotionId);
     }
 
+    addToCart() {
+        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+            Toast.info("您还未选择商品规格~", 1);
+            this.showModal(1);
+            return
+        }
+        console.log("???",this.state.specialtyId)
+        cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
+            this.state.isGroupPromotion, this.state.quantity, (rs) => {
+                console.log("发给后台的购物车数量", this.state.quantity);
+            if(rs && rs.success) {
+                Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
+                console.log("rs.msg", rs.msg);
+                this.getCartCount();
+            } else {
+                Toast.info("添加失败！", 1);
+            }
+        });
+    }
+
+    buyImmediately() {
+        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+            Toast.info("您还未选择商品规格~", 1);
+            return
+        }
+
+        const item = [{
+            "id": null,
+            "curPrice": this.state.currentPrePrice,
+            "iconURL": this.state.data[0].iconURL,
+            "isGroupPromotion": this.state.isGroupPromotion,
+            "name": this.state.data[0].specialty.name,
+            "quantity": this.state.quantity,
+            "specialtyId": this.state.specialtyId,
+            "specialtySpecificationId": this.state.specificationId,
+            "specification": this.state.specification,
+        }];
+        let price = {};
+
+        cartApi.getTotalPriceInCart(item, (rs) => {
+            console.log("getTotalPriceInCart rsllff", rs);
+            if (rs && rs.success) {
+                price = rs.obj;
+
+                let presents = [];
+                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
+                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
+                        if (item.promotion.promotionRule === "满赠") {
+                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
+                                pre.promotionId = item.promotionId;
+                                presents.push(pre);
+                            });
+                        }
+                    }
+                });
+
+                console.log("赠品：", presents);
+                console.log("buyImmediately price", price);
+
+                if (price !== {}) {
+                    let temp = false;
+                    if(this.props.location.isPromotion)
+                        temp = true;
+
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents,isPromotion:true,shipFee:this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice});
+                }
+            }
+        });
+
+    }
+
+
     getSalesContent(ruleType, substracts, discounts, presents) {
         var content = null;
 
@@ -98,13 +196,71 @@ export default class SalesDetail extends React.Component {
         return content
     }
 
+    requestProductDetailData(specialtyId) {
+        //传入了this.props.location.specialtyId
+        proApi.getSpecialtySpecificationDetailBySpecialtyID(specialtyId, (rs) => {
+            if (!rs.success) {
+                this.setState({
+                    isNull: true,
+                });
+                return
+            }
+
+            if(rs && rs.success) {
+                const data = rs.obj;
+                if (!data || JSON.stringify(data) === "[]") {
+                    this.setState({
+                        isNull: true,
+                    });
+                } else {
+                    // const specificationId = data[0].specification.id;
+                    // const mPrice = data[0].mPrice;
+                    // const pPrice = data[0].pPrice;
+                    const temp = data[0].specialty.specifications;
+                    const arrlength = temp.length;
+                    var myspecifications;
+                    for(var i=0;i<arrlength;i++){
+                        if(temp[i].specification == this.state.specification){
+                            myspecifications = temp[i];
+                            // console.log("what happened", myspecifications,i,arrlength);
+                        }
+                    }
+                    // const recommends = data[0].recommends;
+                    // const specification = specifications && specifications.map((item, index) => {
+
+                        // return item.specification;
+                    // });
+                    console.log("product specifications", myspecifications);
+
+                    this.setState({
+                        data: data,
+                        // specificationId: specificationId,
+                        featureData: [myspecifications],
+                        // specification: specification,
+                        // recommends: recommends,
+                        // currentPrePrice: pPrice,
+                        // currentMarketPrice: mPrice,
+                    });
+                }
+
+            }
+        });
+    }
+
     requestOrdinaryPromotionDetail(promotionId) {
         homeApi.getOrdinaryPromotionDetail(promotionId, (rs) => {
             if(rs && rs.success) {
                 const proDetail = rs.obj;
                 this.setState({
                     salesDetail: proDetail,
-                    isLoading: false
+                    isLoading: false,
+                    specificationId:rs.obj.hySingleitemPromotions[0].specificationId.id,
+                    specification: rs.obj.hySingleitemPromotions[0].specificationId.specification,
+                    presents: rs.obj.hySingleitemPromotions[0].hyPromotion.hyFullPresents,
+                    subtracts: rs.obj.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                    discounts: rs.obj.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts,
+                    ruleType: rs.obj.hySingleitemPromotions[0].hyPromotion.promotionRule,
+                    specialtyId: rs.obj.hySingleitemPromotions[0].specialtyId.id
                 });
             }
         });
@@ -127,6 +283,66 @@ export default class SalesDetail extends React.Component {
                 您只需要点击优惠商品内购买即可，赠品会附带上
             </NoticeBar>
         }
+    }
+
+    checkSpecificationDisplay() {
+        if(this.state.specialtyId != -1 && this.state.featureData != -1){
+            // console.log("wawawawawa",this.state.salesDetail.hySingleitemPromotions[0].limitedNum);
+            return <CartModal
+            productData={this.state.data}
+            modalData={this.state.featureData}
+            modal={this.state.modal}
+            hideModal={this.hideModal.bind(this)}
+            selectorText={this.changeModalSelectorText.bind(this)}
+            guige={this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification}
+            limit={this.state.salesDetail.hySingleitemPromotions[0].limitedNum}
+            />
+        }
+
+    }
+
+    showModal(val) {
+        this.setState({modal: true, isadd: val});
+    }
+
+    hideModal(status) {
+        this.setState({modal: false});
+        if (status === 'success')
+            Toast.success('选择成功～', 1, null, false);
+    }
+
+    checkCartDisplay() {
+        return <PutInCart style={{height:'3.125rem'}}
+                          addToCart={this.addToCart.bind(this)}
+                          buyImmediately={this.buyImmediately.bind(this)}
+                          cartCount={this.state.cartCount}
+        />
+    }
+
+    changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
+        console.log('加购物车的数量',num);
+        this.setState({
+            currentPrePrice: pPrice,
+            currentMarketPrice: mPrice,
+            quantity: num,
+            specification: active.specification,
+            modalSelectorText: active.specification + '  ×' + num,
+            specificationId: specificationId,
+        },()=>{
+            console.log('this.state.isadd', this.state.isadd);
+            if(this.state.isadd === 1)
+                this.addToCart();
+        });
+    }
+
+    showModal(val) {
+        this.setState({modal: true, isadd: val});
+    }
+
+    hideModal(status) {
+        this.setState({modal: false});
+        if (status === 'success')
+            Toast.success('选择成功～', 1, null, false);
     }
 
     checkPresents() {
@@ -161,6 +377,10 @@ export default class SalesDetail extends React.Component {
 
     render() {
 
+        if(this.state.specialtyId != -1 && this.state.mynum == -1){
+            this.requestProductDetailData(this.state.specialtyId);
+            this.state.mynum = 0;
+        }
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
             
             console.log('itemitemitemitem',item)
@@ -168,23 +388,25 @@ export default class SalesDetail extends React.Component {
             return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: item.hyPromotion.promotionRule,
                 discounts: item.hyPromotion.hyFullDiscounts, subtracts: item.hyPromotion.hyFullSubstracts, presents: item.hyPromotion.hyFullPresents,
                 promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification}} key={index}>
+                <Card>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
                         <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.specialtyId.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
+                    <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight:'bold'}}>{item.specialtyId.name}</div>
-                        <div style={{marginBottom: 10}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
-                        <div style={{marginBottom: 10}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
-                        <div style={{marginBottom: 10}}>优惠政策：<span style={{color:'red'}}>
+                        <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.specialtyId.name}</div>
+                        <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
+                        <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
+                        <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
                         </span></div>
                         {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
-                        <div style={{marginBottom: 10}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
+                        <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
+                </Card>
                 <WhiteSpace />
             </Link>
         });
@@ -209,9 +431,19 @@ export default class SalesDetail extends React.Component {
 
         }
 
-        console.log("hello",bancontent)
-
-
+        var start,end,a,b;
+        if(this.state.salesDetail.hySingleitemPromotions){
+            start = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString();
+            end = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime).toLocaleString();
+            a=start.indexOf("午");
+            b=end.indexOf("午");
+            console.log("safsfasfsa",a,b,start.substring(0,a+2),end.substring(0,b+2));
+            start.substring(0,a+2);
+            end.substring(0,b+2);
+        }
+        
+        
+        
         return <Layout>
         <Card>
             <Carousel
@@ -220,7 +452,7 @@ export default class SalesDetail extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={true}
+                    dots={false}
                 >
                 {bancontent}
             </Carousel>
@@ -228,10 +460,16 @@ export default class SalesDetail extends React.Component {
             <h3>
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
             </h3>
+            <h4>
+                开始时间：{this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时":""}
+            </h4>
+            <h4>
+                结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
+            </h4>
                     <hr/>
                     <Card>
                         <WingBlank>
-                            <div className="product_info_div">
+                            <div className="my_product_info_div">
 
                                 {/* <WhiteSpace/> */}
 
@@ -268,12 +506,37 @@ export default class SalesDetail extends React.Component {
                             </div>
                         </WingBlank>
                     </Card>
+                    <WhiteSpace></WhiteSpace>
+                    {content}
+                    {this.checkPresents()}  
+                    {this.state.data[0]?
+                    <Card className="general_container">
+                    <div>
+                    <WingBlank>
+                        <div className="para_title">产品介绍</div>
+                        <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}} />
+                    </WingBlank>
+                    <WingBlank>
+                        <div className="para_title">活动详情</div>
+                        <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.data[0].specialty.descriptions}} />
+                    </WingBlank>
+                    </div>
+                    </Card>:<div></div>}
 
                     <hr/>
             </WingBlank>
         </Card>
-        {content}
-        {this.checkPresents()}  
+        {/* {content} */}
+        
+
+        {this.checkCartDisplay()}
+
+        {this.checkSpecificationDisplay()}
+
         </Layout>
     }
 }
+
+SalesDetail.contextTypes = {
+    router: PropTypes.object.isRequired
+};
