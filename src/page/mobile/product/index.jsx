@@ -338,6 +338,9 @@ class Product extends React.Component {
                     <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
                 </Link>;
 
+        if (this.props.location.isPresent)
+            return <span style={{color: 'darkorange', fontStyle:'normal'}}> (赠品)</span>;
+
         return null
     }
 
@@ -351,7 +354,7 @@ class Product extends React.Component {
 
     // 如果是优惠产品页进来的，不显示购物车底栏
     checkCartDisplay() {
-        if (this.props.location.isPromotion)
+        if (this.props.location.isPromotion|| this.props.location.isPresent)
             return null;
 
         return <PutInCart style={{height:'3.125rem'}}
@@ -363,7 +366,7 @@ class Product extends React.Component {
 
     // 如果是优惠产品页进来的，不显示规格选择
     checkSpecificationDisplay() {
-        if (this.props.location.isPromotion)
+        if (this.props.location.isPromotion || this.props.location.isPresent)
             return null;
 
         return <CartModal
@@ -379,7 +382,7 @@ class Product extends React.Component {
 
     // 如果是优惠产品页进来的，固定死该产品的规格，不让用户选择
     checkChosenSpecification() {
-        if (this.props.location.isPromotion)
+        if (this.props.location.isPromotion || this.props.location.isPresent)
             return this.props.location.guige;
 
         return this.state.modalSelectorText;
@@ -452,39 +455,39 @@ class Product extends React.Component {
 
                                 <Flex>
                                     <Flex.Item className="detail_info">产地：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{proData.specialty.originalPlace}</Flex.Item>
+                                    <Flex.Item className="detail_val">{proData.specialty.originalPlace}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">品牌：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{proData.specialty.brand}</Flex.Item>
+                                    <Flex.Item className="detail_val">{proData.specialty.brand}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">许可证：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{proData.specialty.productionLicenseNumber}</Flex.Item>
+                                    <Flex.Item className="detail_val">{proData.specialty.productionLicenseNumber}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">储藏方法：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{proData.specialty.storageMethod}</Flex.Item>
+                                    <Flex.Item className="detail_val">{proData.specialty.storageMethod}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">厂家电话：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{proData.specialty.provider.contactorMobile}</Flex.Item>
+                                    <Flex.Item className="detail_val">{proData.specialty.provider.contactorMobile}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">市场价格：</Flex.Item>
-                                    <Flex.Item className="detail_val_right" style={{color:'darkorange', textDecoration:'line-through'}}>
+                                    <Flex.Item className="detail_val" style={{color:'darkorange', textDecoration:'line-through'}}>
                                         {this.state.currentMarketPrice}
                                     </Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">优惠价格：</Flex.Item>
-                                    <Flex.Item className="detail_val_left" style={{color:'darkorange', fontSize:'1.2rem', fontStyle:'bold'}}>
+                                    <Flex.Item className="detail_val" style={{color:'darkorange', fontSize:'1.2rem', fontStyle:'bold'}}>
                                         {this.state.currentPrePrice}
                                     </Flex.Item>
                                 </Flex>
