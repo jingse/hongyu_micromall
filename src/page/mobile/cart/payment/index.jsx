@@ -62,7 +62,7 @@ class Payment extends React.Component {
         let priceResult = (!this.props.location.price) ? JSON.parse(localStorage.getItem("priceResult")) : this.props.location.price;
         let presents = (!this.props.location.presents) ? JSON.parse(localStorage.getItem("presents")) : this.props.location.presents;
         let shipType = 0;
-        let shipFee = this.props.location.shipFee;
+        let shipFee = this.props.location.shipFee?this.props.location.shipFee:0;
         let couponSub = 0.0;
 
         
