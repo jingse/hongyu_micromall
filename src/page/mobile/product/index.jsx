@@ -41,7 +41,7 @@ class Product extends React.Component {
             selectorText: '未选择',
             modalSelectorText: '未选择',
 
-            chooseCoupon: '· · ·',
+            // chooseCoupon: '· · ·',
 
             modal: false,
             modal2: false,
@@ -202,7 +202,6 @@ class Product extends React.Component {
     }
 
     requestProductCommentData(id, page, rows) {
-        //id page rows
         proApi.getSpecialtyCommentDetail(id, page, rows, (rs) => {
             if(rs && rs.success) {
                 console.log('9999999', rs);
@@ -223,9 +222,11 @@ class Product extends React.Component {
             return
         }
 
-        cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
-            this.state.isGroupPromotion, this.state.quantity, (rs) => {
-                console.log("发给后台的购物车数量", this.state.quantity);
+        cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId,
+            this.state.specialtyId, this.state.isGroupPromotion, this.state.quantity, (rs) => {
+
+            console.log("发给后台的购物车数量", this.state.quantity);
+
             if(rs && rs.success) {
                 Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
                 console.log("rs.msg", rs.msg);
@@ -233,6 +234,7 @@ class Product extends React.Component {
             } else {
                 Toast.info("添加失败！", 1);
             }
+
         });
     }
 
@@ -294,7 +296,8 @@ class Product extends React.Component {
                     if(this.props.location.isPromotion)
                         temp = true;
 
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents,shipFee:this.state.data[0].deliverPrice});
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,
+                        isPromotion: temp, origin: "product", presents: presents, shipFee:this.state.data[0].deliverPrice});
                 }
             }
         });
@@ -395,7 +398,8 @@ class Product extends React.Component {
             </Layout>
         }
 
-        if (!this.state.data || JSON.stringify(this.state.data) === "{}" || !this.state.data[0].specialty || !this.state.data[0].specialty.images)
+        if (!this.state.data || JSON.stringify(this.state.data) === "{}" ||
+            !this.state.data[0].specialty || !this.state.data[0].specialty.images)
             return null;
 
 
@@ -411,9 +415,9 @@ class Product extends React.Component {
         }
 
         const images = primaryImages && primaryImages.map((img, index) => {
-            return <img src={"http://" + getServerIp() + img.sourcePath} key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}}
-                        // onLoad={() => {window.dispatchEvent(new Event('resize'));}}
-                     alt=""/>
+            return <img src={"http://" + getServerIp() + img.sourcePath}
+                        key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}}
+                        alt=""/>
         });
 
 
@@ -506,12 +510,12 @@ class Product extends React.Component {
                             <span>{this.checkChosenSpecification()}</span>
                         </WingBlank>
                     </div>
-                    <div className="selector_sec">
-                        <WingBlank>
-                            <span>运费</span>
-                            <span>￥{this.state.data[0].deliverPrice}</span>
-                        </WingBlank>
-                    </div>
+                    {/*<div className="selector_sec">*/}
+                    {/*    <WingBlank>*/}
+                    {/*        <span>运费</span>*/}
+                    {/*        <span>￥{this.state.data[0].deliverPrice}</span>*/}
+                    {/*    </WingBlank>*/}
+                    {/*</div>*/}
                 </div>
             </Card>
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {Button, TabBar, WhiteSpace} from 'antd-mobile';
-// import cart_data from "../../../static/mockdata/cart.js";
-import cartApi from "../../../api/cart.jsx";
+import {Button, TabBar, Modal} from 'antd-mobile';
+
+const alert = Modal.alert;
+
 
 export default class PutInCart extends React.Component {
 
@@ -11,9 +12,6 @@ export default class PutInCart extends React.Component {
         this.state = this.getInitialState();
     }
 
-    componentWillMount() {
-        // this.getCartCount(localStorage.getItem("wechatId"));
-    }
 
     getInitialState() {
         let link = this.getLink() || 'product';
@@ -38,7 +36,6 @@ export default class PutInCart extends React.Component {
             });
         }
     }
-
 
 
     renderButton() {
@@ -97,7 +94,11 @@ export default class PutInCart extends React.Component {
                         />}
                         key="联系卖家"
                         selected={this.state.selectedTab === 'phone'}
-                        onPress={()=>{window.location.href="tel:" + "13103361866"}}
+                        // onPress={()=>{window.location.href="tel:" + "13103361866"}}
+                        onPress={()=>alert('请选择联系电话', <div></div>, [
+                            { text: '手机', onPress: () => {window.location.href="tel:" + "13103361866"} },
+                            { text: '座机', onPress: () => {window.location.href="tel:" + "0316-2360787"} },
+                        ])}
                     />
                 </TabBar>
             </span>
