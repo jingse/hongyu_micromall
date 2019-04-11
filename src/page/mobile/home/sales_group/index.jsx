@@ -116,6 +116,13 @@ export default class SalesGroup extends React.Component {
     render() {
 
         const content = this.state.data && this.state.data.map((item, index) => {
+            var start,end,a,b;
+            start = new Date(item.startTime).toLocaleString()
+            end = new Date(item.endTime).toLocaleString()
+            a=start.indexOf("午");
+            b=end.indexOf("午");
+            start.substring(0,a+2);
+            end.substring(0,b+2);
             return <Link to={{pathname: `/home/sales_group/detail`, state: item.id, ruleType: item.ruleType,
                 presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
                 <Flex style={{background:'#fff'}}>
@@ -138,8 +145,8 @@ export default class SalesGroup extends React.Component {
                                 </span>
                             </Flex.Item>
                             <Flex.Item style={{flex:'0 0 70%'}}>
-                                <div className="sales_time_text">{new Date(item.startTime).toLocaleString()}</div>
-                                <div className="sales_time_text">{new Date(item.endTime).toLocaleString()}</div>
+                                <div className="sales_time_text">{start.substring(0,a+2)+"时"}</div>
+                                <div className="sales_time_text">{end.substring(0,b+2)+"时"}</div>
                             </Flex.Item>
                         </Flex>
                         <WhiteSpace/>

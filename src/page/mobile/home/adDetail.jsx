@@ -13,7 +13,7 @@ export default class AdDetail extends React.Component{
 
     render() {
         return <Layout>
-            <img src={"http://" + getServerIp() + this.props.location.state} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+            <img src={"http://" + getServerIp() + this.props.location.state} style={{width: '100%', height:'auto'}} onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
         </Layout>
     }
 }
