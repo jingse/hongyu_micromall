@@ -385,6 +385,7 @@ export default class SalesDetail extends React.Component {
             
             console.log('itemitemitemitem',item)
             console.log("mytest",this.state)
+
             return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: item.hyPromotion.promotionRule,
                 discounts: item.hyPromotion.hyFullDiscounts, subtracts: item.hyPromotion.hyFullSubstracts, presents: item.hyPromotion.hyFullPresents,
                 promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification}} key={index}>
@@ -401,7 +402,7 @@ export default class SalesDetail extends React.Component {
                         <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
                         </span></div>
-                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
+                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
                         <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
                         <WhiteSpace/>
                     </Flex.Item>
@@ -506,7 +507,7 @@ export default class SalesDetail extends React.Component {
                             </div>
                         </WingBlank>
                     </Card>
-                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace/>
                     {content}
                     {this.checkPresents()}  
                     {this.state.data[0]?
