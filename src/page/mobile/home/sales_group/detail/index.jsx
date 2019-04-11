@@ -149,8 +149,8 @@ export default class SalesGroupDetail extends React.Component {
 
     checkPresents() {
         var fullPresents = null;
-        if (this.state.presents && JSON.stringify(this.state.presents) !== '[]') {
-            fullPresents = this.state.presents && this.state.presents.map((item, index) => {
+        if (this.state.salesGroupDetail.fullPresents && JSON.stringify(this.state.salesGroupDetail.fullPresents) !== '[]') {
+            fullPresents = this.state.salesGroupDetail.fullPresents && this.state.salesGroupDetail.fullPresents.map((item, index) => {
                 return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
                     <Flex style={{background:'#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
@@ -441,24 +441,9 @@ export default class SalesGroupDetail extends React.Component {
             </Card>
 
             <WhiteSpace/>
-
-            {content}
-            {this.checkPresents()}
-
-            {/*<div style={{margin:'1rem'}}>*/}
-                {/**/}
-            {/*</div>*/}
             <List.Item
                 wrap
                 extra={
-                    // <Stepper
-                    //     style={{ width: '90%', minWidth: '100px' }}
-                    //     showNumber
-                    //     // max={10}
-                    //     min={1}
-                    //     value={this.state.val}
-                    //     onChange={this.onChange}
-                    // />
                     <div className="step2">  
                         <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
                             style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
@@ -474,6 +459,8 @@ export default class SalesGroupDetail extends React.Component {
             >
                 数量
             </List.Item>
+            {content}
+            {this.checkPresents()}
 
             <Bottom style={{height:'3.125rem'}}
                     addToCart={this.addToCart.bind(this)}
@@ -482,7 +469,34 @@ export default class SalesGroupDetail extends React.Component {
                     limmit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
                     myval={this.state.val}/>
 
+                    <WingBlank>
+                       <div className="para_title" >服务承诺</div>
+                       <div className="paragraph">
+                           河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
+                       人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
+                       货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
+                       赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
+                       部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
+                       起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
+                       况下验货，则视为您所订购商品的包装无任何问题。
+                           {/* {this.state.servicePromise} */}
+                       </div>
+                    </WingBlank>
 
+                    <WingBlank>
+                       <div className="para_title">温馨提示</div>
+                       <div className="paragraph">
+                           由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
+                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！
+                        {/* /!*{this.state.servicePromise.prompt}*!/ */}
+                       </div>
+                    </WingBlank>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
         </Layout>
     }
 }
