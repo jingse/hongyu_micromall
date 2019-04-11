@@ -165,7 +165,7 @@ export default class SalesDetail extends React.Component {
                     if(this.props.location.isPromotion)
                         temp = true;
 
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,isPromotion: temp, origin: "product", presents: presents,isPromotion:true,shipFee:this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice});
+                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price, origin: "product", presents: presents,isPromotion:true,shipFee:this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice});
                 }
             }
         });
@@ -350,7 +350,8 @@ export default class SalesDetail extends React.Component {
         var temp = this.state.salesDetail;
         if (temp.hySingleitemPromotions && temp.hySingleitemPromotions[0].hyPromotion.promotionRule=="满赠") {
             fullPresents = temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents && temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents.map((item, index) => {
-                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false, isPresent:true}} key={index}>
+                console.log("asfsgastgdrg",item.fullPresentProductSpecification.specification);
+                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false, isPresent:true,guige:item.fullPresentProductSpecification.specification}} key={index}>
                     <Flex style={{background:'#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
                             <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
