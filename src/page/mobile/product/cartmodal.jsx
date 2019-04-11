@@ -43,8 +43,9 @@ export default class CartModal extends React.Component {
 
     componentWillMount(){
 
-            this.props.modalData.map((option, key) => {
+        this.props.modalData.map((option, key) => {
             let tempID = option.id;
+
             proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
                 console.log("test", key, rs);
                 if (rs.obj.length === 0) {
@@ -72,16 +73,6 @@ export default class CartModal extends React.Component {
         this.setState({ val });
     };
 
-    // findOptionIndex(option) {
-    //     var index = 0;
-    //     const length = this.props.productData.length;
-    //     for (var i = 0; i < length; i++) {
-    //         if (JSON.stringify(this.props.productData[i].specification) === JSON.stringify(option)) {
-    //             index = i;
-    //         }
-    //     }
-    //     return index;
-    // }
 
     clickSelector(option) {
         let tempID = option.id;
@@ -125,6 +116,7 @@ export default class CartModal extends React.Component {
     generateDataSet() {
         const optionsData = this.props.modalData.map((option, key) => {
             let className = "select_item";
+
             if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
                 className +=" select_active";
             }
@@ -133,6 +125,7 @@ export default class CartModal extends React.Component {
                 this.clickSelector(option)
                 this.state.ischange=0;
             }
+
             console.log("asdf", key, option.show);
             console.log("sfdas", temp[key]);
 
@@ -169,7 +162,7 @@ export default class CartModal extends React.Component {
                     价格：￥{this.state.salePrice}  库存：{this.state.inbound}
                     </div>
                     <div className="extractPrice" style={{display:(this.state.isWebusiness === '1')?'inline':"none"}}>
-                    提成金额：{(this.state.isWebusiness === '1')?(this.state.divideMoney).toFixed(2):0}
+                    提成金额：{(this.state.isWebusiness === '1')?parseFloat(this.state.divideMoney).toFixed(2):0}
                     </div>
                     </Flex>
                     {/* <h3>{this.props.productData[0].specialty.name}</h3>
@@ -189,7 +182,8 @@ export default class CartModal extends React.Component {
                 }
                 else {
                     this.props.hideModal && this.props.hideModal('success');
-                    this.props.selectorText && this.props.selectorText(this.state.active, this.state.val, this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
+                    this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,
+                        this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
                 }
             }
         }];
@@ -213,14 +207,20 @@ export default class CartModal extends React.Component {
                 {dataSet}
                 <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
                 <div className="step">  
-                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <div className="add_minus" onClick={() => {
+                            this.setState({val:(this.state.val-1)>1?this.state.val-1:1})
+                        }}
+                             style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',
+                                     backgroundPosition:'center'}}>
                         </div>
                         <div className="value">
                         {this.state.val}
                         </div>
-                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <div className="add_minus" onClick={() => {
+                            this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})
+                        }}
+                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',
+                                    backgroundPosition:'center'}}>
                         </div>
                 </div>
             </div>
