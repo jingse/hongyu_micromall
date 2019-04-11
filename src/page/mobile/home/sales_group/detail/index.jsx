@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import {Card, WingBlank, WhiteSpace, Toast, List, Flex} from "antd-mobile";
+import {Card, WingBlank, WhiteSpace, Toast, List, Flex,Carousel} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Bottom from "./bottom.jsx";
@@ -124,12 +124,27 @@ export default class SalesGroupDetail extends React.Component {
         return img
     }
 
-    getSalesContent(salesContent) {
-        const sales = salesContent && salesContent.map((item, index) => {
-            return "满" + item.fullFreeRequirement + "减" + item.fullFreeAmount
-        });
+    getSalesContent(ruleType, substracts, discounts, presents) {
+        var content = null;
 
-        return sales
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
+            });
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProduct.name +"*"+item.fullPresentProductNumber 
+            });
+        }
+        else {
+
+        }
+
+        return content
     }
 
     checkPresents() {
@@ -265,63 +280,164 @@ export default class SalesGroupDetail extends React.Component {
         const groupProducts = this.state.salesGroupDetail.hyGroupitemPromotions;
         // const groupProductsNum = groupProducts.length;
 
-        const content = groupProducts && groupProducts.map((item, index) => {
-            return <Link to={{pathname: `/home/sales_group/detail/products`, state: item.hyGroupitemPromotionDetails}} key={index}>
-                <div style={{backgroundColor:'white', borderBottom:'1px solid #eee', color:'#999'}}>
-                    <WhiteSpace/>
-                    <WingBlank>
-                        共 {item.hyGroupitemPromotionDetails.length} 件商品，优惠价格：{item.sellPrice}，市场价格：{item.marketPrice}
-                    </WingBlank>
-                    <WhiteSpace/>
-                    {this.showWebusinessInfo(item)}
-                    <WhiteSpace/>
-                    <WingBlank>
-                        限购数量：{this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
-                    </WingBlank>
-                </div>
-                <div style={{background:'#fff'}}>
-                    <WhiteSpace/>
-                    { this.showImages(item.hyGroupitemPromotionDetails) }
-                    <WhiteSpace/>
-                </div>
-                <WhiteSpace />
-            </Link>
-        });
+        // const content = groupProducts && groupProducts.map((item, index) => {
+        //     return <Link to={{pathname: `/home/sales_group/detail/products`, state: item.hyGroupitemPromotionDetails}} key={index}>
+        //         <div style={{backgroundColor:'white', borderBottom:'1px solid #eee', color:'#999'}}>
+        //             <WhiteSpace/>
+        //             <WingBlank>
+        //                 共 {item.hyGroupitemPromotionDetails.length} 件商品，优惠价格：{item.sellPrice}，市场价格：{item.marketPrice}
+        //             </WingBlank>
+        //             <WhiteSpace/>
+        //             {this.showWebusinessInfo(item)}
+        //             <WhiteSpace/>
+        //             <WingBlank>
+        //                 限购数量：{this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+        //             </WingBlank>
+        //         </div>
+        //         <div style={{background:'#fff'}}>
+        //             <WhiteSpace/>
+        //             { this.showImages(item.hyGroupitemPromotionDetails) }
+        //             <WhiteSpace/>
+        //         </div>
+        //         <WhiteSpace />
+        //     </Link>
+        // });
         console.log('inbound',this.state.inbound)
 
         // const salesContent = this.state.salesGroupDetail.sales_content && this.state.salesGroupDetail.sales_content.map((item, index) => {
         //     return <span key={index} className='tag' style={{marginRight:'0.5rem'}}>{item}</span>
         // });
+        var bancontent;
+        if(this.state.salesGroupDetail.hyGroupitemPromotions){
+            var tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
+            console.log("before",tempban);
+            for(var i=0;i<tempban.length;i++){
+                if(tempban[i].isTag==true){
+                    tempban.splice(i,1);
+                }
+            }
+            console.log("after",tempban);
+            bancontent = tempban && tempban.map((item, index) => {
+            if(item.isTag==false){
+                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
+            }
+        });
+        }
+        
+        var start,end,a,b;
+        if(this.state.salesGroupDetail.hyGroupitemPromotions){
+            start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
+            end = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime).toLocaleString();
+            a=start.indexOf("午");
+            b=end.indexOf("午");
+            console.log("safsfasfsa",a,b,start.substring(0,a+2),end.substring(0,b+2));
+            start.substring(0,a+2);
+            end.substring(0,b+2);
+        }
+
+        const content = this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails && this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails.map((item, index) => {
+            
+            console.log('itemitemitemitem',item)
+            console.log("mytest",this.state)
+            return <Link to={{pathname: `/product/${item.itemId.id}`, isPromotion: true, ruleType: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule,
+                discounts: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, 
+                subtracts: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts, 
+                presents: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents,
+                promoteNum: this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum, limitedNum: this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum, 
+                guige:item.itemSpecificationId.specification}} key={index}>
+                <Card>
+                <Flex style={{background:'#fff'}}>
+                    <Flex.Item style={{flex: '0 0 30%'}}>
+                        <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.itemId.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                    </Flex.Item>
+                    <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
+                        <WhiteSpace/>
+                        <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.itemId.name}</div>
+                        <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.itemSpecificationId.platformPrice}元</span></div>
+                        <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.itemSpecificationId.specification}</span></div>
+                        <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
+                        {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                                         this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
+                        </span></div>
+                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.itemSpecificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
+                        <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.itemSpecificationId.hasSold}</span></div>
+                        <WhiteSpace/>
+                    </Flex.Item>
+                </Flex>
+                </Card>
+                <WhiteSpace />
+            </Link>
+        });
 
 
-        return <Layout header={false} footer={false}>
 
+
+
+        return <Layout>
             <Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/sales_group'/>
-
-            {/*<img src={"http://" + getServerIp() + this.getSalesIconImg(this.state.salesGroupData.pics)} style={{width:'100%'}}/>*/}
-
-            {/*<Card>*/}
-                {/*<WingBlank style={{fontSize:'1rem', textAlign:'center', fontWeight:'bold', margin:'1rem'}}>*/}
-                    {/*{this.state.salesGroupData.name}简介*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag'>时间</span>*/}
-                    {/*<span style={{marginLeft:'0.5rem'}}>*/}
-                        {/*{this.state.salesGroupData.startTime} - {this.state.salesGroupData.endTime}*/}
-                    {/*</span>*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag' style={{marginRight:'0.5rem'}}>{this.state.salesGroupData.ruleType}</span>*/}
-                    {/*/!*{salesContent}*!/*/}
-                    {/*{this.getSalesContent(this.state.salesGroupData.fullSubstracts)}*/}
-                {/*</WingBlank>*/}
-                {/*<WingBlank className='sales_detail_line'>*/}
-                    {/*<span className='tag'>电子券</span>*/}
-                {/*</WingBlank>*/}
-            {/*</Card>*/}
-
             <Card>
+                <Carousel
+                    style={{touchAction:'none'}}
+                    autoplay={true}
+                    infinite
+                    selectedIndex={0}
+                    swipeSpeed={35}
+                    dots={false}
+                >
+                    {bancontent}
+                </Carousel> 
+            <WingBlank>    
+            <h3>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName:""}
+            </h3>
+            <h4>
+                开始时间：{this.state.salesGroupDetail.hyGroupitemPromotions?start.substring(0,a+2)+"时":""}
+            </h4>
+            <h4>
+                结束时间：{this.state.salesGroupDetail.hyGroupitemPromotions?end.substring(0,b+2)+"时":""}
+            </h4>
+            <hr/>
+            <Card>
+                        <WingBlank>
+                            <div className="my2_product_info_div">
+
+                                {/* <WhiteSpace/> */}
+
+                                <Flex>
+                                    <Flex.Item className="detail_info">类型：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">
+                                    {this.state.salesGroupDetail.hyGroupitemPromotions?this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                                         this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents):""}
+                                    
+                                    </Flex.Item>
+                                    <Flex.Item className="detail_info">运费：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
+                                </Flex>
+                                <Flex>
+                                    <Flex.Item className="detail_info">限购：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">销量：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
+                                </Flex>
+                                <Flex>
+                                    <Flex.Item className="detail_info">市场价：</Flex.Item>
+                                    <Flex.Item className="detail_val_left">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].marketPrice:""}</Flex.Item>
+                                    <Flex.Item className="detail_info">平台价：</Flex.Item>
+                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
+                                </Flex>
+                            </div>
+                        </WingBlank>
+            </Card>
+
+            <WhiteSpace></WhiteSpace>
+
+
+                <WingBlank>
+                <div className="para_title">活动介绍</div>
                 <div dangerouslySetInnerHTML={{ __html: this.state.salesGroupData.introduction}} />
+                </WingBlank>
+
+            </WingBlank>
             </Card>
 
             <WhiteSpace/>

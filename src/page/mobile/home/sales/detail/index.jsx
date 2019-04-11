@@ -350,7 +350,7 @@ export default class SalesDetail extends React.Component {
         var temp = this.state.salesDetail;
         if (temp.hySingleitemPromotions && temp.hySingleitemPromotions[0].hyPromotion.promotionRule=="满赠") {
             fullPresents = temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents && temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents.map((item, index) => {
-                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
+                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false, isPresent:true}} key={index}>
                     <Flex style={{background:'#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
                             <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
@@ -513,11 +513,11 @@ export default class SalesDetail extends React.Component {
                     <Card className="general_container">
                     <div>
                     <WingBlank>
-                        <div className="para_title">产品介绍</div>
+                        <div className="para_title">活动介绍</div>
                         <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}} />
                     </WingBlank>
                     <WingBlank>
-                        <div className="para_title">活动详情</div>
+                        <div className="para_title">产品详情</div>
                         <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.data[0].specialty.descriptions}} />
                     </WingBlank>
                     </div>
