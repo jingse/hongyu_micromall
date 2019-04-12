@@ -1,10 +1,10 @@
 import React from "react";
-import { InputItem, Flex, WhiteSpace, Button, Toast } from 'antd-mobile';
+import { InputItem, Flex, Button, Toast } from 'antd-mobile';
 import Card from "../../../../../components/card/index.jsx";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import myApi from "../../../../../api/my.jsx";
-import PropTypes from "prop-types";
+
 
 export default class TelManage extends React.Component {
 
@@ -103,7 +103,6 @@ export default class TelManage extends React.Component {
             <Button  type="primary" style={{ marginLeft:'4px', marginRight: '4px' }}
                     onClick={() => {
                         this.bindTel(wechat_id, this.state.phone.replace(/\s+/g,""), this.state.code);
-                        // this.context.router.history.push('/my');
                         history.go(-1);
                         // this.context.router.history.push({pathname:'/my'});
                     }}>

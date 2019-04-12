@@ -9,9 +9,6 @@ export default class PayResult extends React.Component {
         super(context, props);
     }
 
-    componentWillMount() {
-
-    }
 
     render() {
         const myImg = src => <img src={src} className="spe am-icon am-icon-md" alt="" />;

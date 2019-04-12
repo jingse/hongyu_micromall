@@ -1,7 +1,6 @@
 import React from 'react';
 import { WhiteSpace, Flex, InputItem, List, Toast, Modal, Badge, NoticeBar } from 'antd-mobile';
 import { Link } from 'react-router-dom';
-// import LoadingHoc from "../../../common/loading-hoc.jsx";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
 import Card from "../../../../components/card/index.jsx";
@@ -202,16 +201,8 @@ class Payment extends React.Component {
             console.log('wx.error');
             console.log(res);
         });
-        // this.requestData();
     }
 
-
-    // requestData() {
-    //     const orderid = this.props.location.query || localStorage.getItem("nowOrderId");
-    //     if (this.props.location.query) {
-    //         localStorage.setItem("nowOrderId", this.props.location.query);
-    //     }
-    // }
 
 
     requestDefaultUserAddress() {
@@ -482,31 +473,10 @@ class Payment extends React.Component {
     checkBalance() {
         const { getFieldProps } = this.props.form;
 
-        // if (localStorage.getItem("balance") && parseInt(localStorage.getItem("balance")) !== 0) {
         if (this.state.balance !== 0) {
-            // return <div className="balance_discount">
-            //     {/*<div className="discount_select">个人明细</div>*/}
-            //     {/*<div className="discount_title">发票信息</div>*/}
-            //     <div className="balance_select">
-            //
-            //
-            //     </div>
-            //     <div className="balance_title">余额 <span style={{"color": 'orange'}}>￥{localStorage.getItem("balance")}</span></div>
-            // </div>
 
             return <List style={{borderBottom: '1px solid #ccc'}}>
                 <InputItem
-                // {...getFieldProps('balanceInput', {
-                //     normalize: (v, prev) => {
-                //         if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-                //             if (v === '.') {
-                //                 return '0.';
-                //             }
-                //             return prev;
-                //         }
-                //         return v;
-                //     },
-                // })}
                 type='money'
                 value={this.state.balanceInput}
                 placeholder="输入金额"
@@ -661,19 +631,6 @@ class Payment extends React.Component {
         }
 
         const orderProducts = this.state.products && this.state.products.map((item, index) => {
-            // if(item.isGroupPromotion) {
-            //     return <Card className="payment_card clearfix" key={index}>
-            //         <div className="payment_card_img">
-            //             <img src={"http://" + getServerIp() + this.getSalesIconImg(item.pics)}/>
-            //         </div>
-            //         <div className="payment_card_text">
-            //             <div className="title_text">{item.name}</div>
-            //             <WhiteSpace/>
-            //             <div className="num_text">x {item.quantity}</div>
-            //             <div className="price_text">￥{item.curPrice}</div>
-            //         </div>
-            //     </Card>
-            // }
             console.log('item11111111111111111111111111111',item)
             return <List.Item  key={index}>      
                 <div className="payment_card_img">
@@ -697,24 +654,6 @@ class Payment extends React.Component {
                 首单奖励：全现金购买，奖励订单金额的20%余额（最多不超过50元）
             </NoticeBar>
             </div>
-            {/*<Card className="payment_card">*/}
-                {/*<Link to="/address">*/}
-                    {/*<Flex>*/}
-                        {/*<Flex.Item style={{flex:'0 0 10%'}}>*/}
-                            {/*<img src="./images/icons/地址.png" style={{width:'%10'}}/>*/}
-                        {/*</Flex.Item>*/}
-                        {/*<Flex.Item style={{flex:'0 0 70%'}}>*/}
-                            {/*<div>收货人：{this.state.address.default_name}*/}
-                                {/*<span style={{float:'right'}}>{this.state.address.default_tel}</span>*/}
-                            {/*</div>*/}
-                            {/*<div>收货地址：{this.state.address.default_address}</div>*/}
-                        {/*</Flex.Item>*/}
-                        {/*<Flex.Item style={{flex:'0 0 15%'}}>*/}
-                            {/*<img src="./images/icons/向右.png" style={{width:'%10', float:'right'}}/>*/}
-                        {/*</Flex.Item>*/}
-                    {/*</Flex>*/}
-                {/*</Link>*/}
-            {/*</Card>*/}
             
             <Card className="payment_card">
                 <Link to={{pathname:"/address",state:{fromSet:'cart'}  }} >
@@ -724,14 +663,6 @@ class Payment extends React.Component {
                             {this.checkDefault()}
                         </Flex.Item>
                         <Flex.Item style={{flex:'0 0 70%'}}>
-                            {/*<Flex>*/}
-                                {/*<Flex.Item style={{flex:'0 0 35%'}}>*/}
-                                    {/*收货人：{this.state.address.receiverName}*/}
-                                {/*</Flex.Item>*/}
-                                {/*<Flex.Item style={{flex:'0 0 65%'}}>*/}
-                                    {/*{this.state.address.receiverMobile}*/}
-                                {/*</Flex.Item>*/}
-                            {/*</Flex>*/}
                             <div>收货人：{this.state.address.receiverName}
                                 <span style={{marginLeft:'10%'}}>{this.state.address.receiverMobile}</span>
                             </div>
@@ -760,20 +691,11 @@ class Payment extends React.Component {
                 <div>
                     {this.checkBalance()}
 
-                    {/*<div className="discount" onClick={()=>{this.linkTo('/cart/payment/coupon')}}>*/}
-                        {/*<div className="discount_select">暂无可用</div>*/}
-                        {/*<div className="discount_title">优惠券</div>*/}
-                    {/*</div>*/}
 
                     {this.checkAvailableCoupon()}
 
-                    {/*<div className="discount">*/}
-                        {/*<InputItem placeholder="选填">买家留言：</InputItem>*/}
-                        {/*/!*<div>买家留言：</div>*!/*/}
-                    {/*</div>*/}
                     <List style={{borderBottom:'1px solid #ccc'}}>
                         <InputItem {...getFieldProps("liuyan")} value={this.state.marks} onChange={(v) => { this.setState({marks:v}); }}>买家留言：</InputItem>
-                        {/*<div>买家留言：</div>*/}
                     </List>
                     <List>
                         <List.Item>
@@ -801,13 +723,7 @@ class Payment extends React.Component {
                 </div>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                {/*<div className="bigbutton"*/}
-                     {/*onClick={()=>{*/}
-                         {/*// this.cartCreateOrder();*/}
-                         {/*this.payCharge.bind(this);*/}
-                     {/*}}>*/}
-                    {/*确认支付*/}
-                {/*</div>*/}
+
                 <div className="bigbutton" onClick={this.payCharge.bind(this)}>确认支付</div>
                 <div className="bigbutton cancel" onClick={() => {this.backTo(this.state.products[0].specialtyId)}}>取消付款</div>
             </Card>
@@ -821,5 +737,3 @@ Payment.contextTypes = {
 
 const PaymentWrapper = createForm()(Payment);
 export default PaymentWrapper;
-
-// export default LoadingHoc(Payment);

@@ -1,13 +1,11 @@
 import React from 'react';
 import { InputItem, Flex, WhiteSpace, Button, Toast } from 'antd-mobile';
-//import { Link } from 'react-router-dom';
 import Card from "../../../../components/card/index.jsx";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import myApi from "../../../../api/my.jsx";
 import PropTypes from "prop-types";
 
-const wechatId = localStorage.getItem("wechatId");
 
 export default class TelBinding extends React.Component {
     constructor(props) {

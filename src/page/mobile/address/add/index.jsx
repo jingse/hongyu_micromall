@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputItem, TextareaItem, WhiteSpace, Toast, List } from 'antd-mobile';
+import { InputItem, WhiteSpace, Toast} from 'antd-mobile';
 import Card from "../../../../components/card/index.jsx";
 import Submit from "../../../../components/submit/index.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
@@ -57,11 +57,11 @@ export default class AddAddress extends React.Component {
         });
     };
 
-    onReceiverAddressDetailChange = (value) => {
-        this.setState({
-            detail: value,
-        });
-    };
+    // onReceiverAddressDetailChange = (value) => {
+    //     this.setState({
+    //         detail: value,
+    //     });
+    // };
 
     render(){
         return <div>

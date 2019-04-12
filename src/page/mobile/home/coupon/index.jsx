@@ -30,7 +30,6 @@ export default class HomeCoupon extends React.Component {
                 this.setState({
                     couponData
                 });
-                // console.log("gridCategory", gridCategory);
             }
         });
     }
@@ -44,63 +43,33 @@ export default class HomeCoupon extends React.Component {
         });
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = home_coupon;   //mock假数据
-    //         this.setState({
-    //             couponData: data,
-    //         });
-    //     }, 300);
-    // }
-
     checkCoupon(acquired, id) {
-        // console.log("acquired: ", acquired);
-        if (acquired) {
+        if (acquired)
             return
-        }
 
         this.getSpecificCoupon(id, wechatId);
     }
 
     isSuperimposed(isSuperimposed) {
-        if (isSuperimposed) {
+        if (isSuperimposed)
             return <a style={{fontSize:'0.4rem', color:'darkorange'}}>叠</a>
-        }
-        return
+
+        return null
     }
 
     getColor(isReceived) {
-        // console.log("isReceived: ", isReceived);
-        if(isReceived) {
-            return '#999'
-        }
+        if(isReceived)
+            return '#999';
+
         return 'black'
     }
 
     checkDisabled(acquired) {
-        if (acquired) {
-            return true
-        }
-        return false
+        return !!acquired;
     }
 
     render() {
 
-        // const content = this.state.couponData.data && this.state.couponData.data.map((item, index) => {
-        //     return  <Item key={index} multipleLine onClick={() => {}} extra={item.coupon_due_time + "到期"}>
-        //         <span style={{color:this.getColor(item.isReceived)}}>
-        //             ￥{item.coupon_value} {this.isSuperimposed(item.isSuperimposed)}
-        //         </span>
-        //         <Brief>{item.coupon_category}{item.coupon_tag}</Brief>
-        //     </Item>
-        //
-        // });
         const content = this.state.couponData && this.state.couponData.map((item, index) => {
             return  <Item key={index} multipleLine disabled={this.checkDisabled(item.hasAcquired)}
                           onClick={() => {this.checkCoupon(item.hasAcquired, item.id)}}

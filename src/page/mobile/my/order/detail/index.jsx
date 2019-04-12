@@ -80,32 +80,8 @@ export default class OrderDetail extends React.Component {
             console.log('wx.error');
             console.log(res);
         });
-
-
-        // this.requestData();
     }
 
-    // requestData() {
-    //     const orderid = this.props.location.query || localStorage.getItem("nowOrderId");
-    //     if (this.props.location.query) {
-    //         localStorage.setItem("nowOrderId", this.props.location.query);
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const detail = order_detail.data;     //mock data
-    //         this.setState({
-    //             detail: detail,
-    //         })
-    //     }, 100);
-    // }
 
     // 微信支付接口
     onBridgeReady() {
@@ -120,14 +96,10 @@ export default class OrderDetail extends React.Component {
             },
             function(res){
                 if(res.err_msg === "get_brand_wcpay_request:ok") {
-                    // paymentApi.successfulPaymentCallback(this.code, (rs) => {
-                    //     // this.context.router.history.push({pathname: '/cart/payment/result', originalPrice: 0, finalPrice: this.state.shouldPay});
-                    // });
                     this.linkTo({pathname: '/my/order', state:2});
                 }
             }
         );
-        // this.requestRealData();
     }
 
     payCharge() {
@@ -217,7 +189,6 @@ export default class OrderDetail extends React.Component {
 
     getOrderButtonContent(orderState) {
         if (orderState === 0 || orderState === 1 || orderState === 2) {
-            //return "退款";
             return <Button type="ghost" inline size="small"
             style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
             width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
@@ -228,7 +199,6 @@ export default class OrderDetail extends React.Component {
                             取消订单
                     </Button>
         } else if (orderState === 5) {
-            //return "申请售后";
             return <Button type="ghost" inline size="small"
             style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
             width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
@@ -242,7 +212,6 @@ export default class OrderDetail extends React.Component {
 
     getButtonContent(orderState) {
         if (orderState === 0) {
-            //return "取消订单";
             orderCode = this.state.detail.baseInfo.orderCode;
             payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100); //TODO
             return <Button type="ghost" inline size="small"
@@ -252,7 +221,6 @@ export default class OrderDetail extends React.Component {
                 去付款
             </Button>
         }  else if (orderState === 4) {
-            //return "确认收货";
             return <Button type="ghost" inline size="small"
                             style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
                             width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
@@ -331,23 +299,6 @@ export default class OrderDetail extends React.Component {
         const buttonContent = this.getButtonContent(this.state.orderState);
 
         const productDetail = this.state.detail.orderItems && this.state.detail.orderItems.map((item, index) => {
-            {/*<Link to='/product/1'>*/}
-                {/*<Flex style={{background:'#fff'}}>*/}
-                    {/*<Flex.Item style={{flex: '0 0 25%'}}>*/}
-                        {/*<img src={this.state.detail.product_order_img} style={{width: '60%', margin:'0.8rem'}}/>*/}
-                    {/*</Flex.Item>*/}
-                    {/*<Flex.Item style={{flex: '0 0 40%', color:'black', fontSize:'0.3rem'}}>*/}
-                        {/*<div style={{marginBottom: 10}}>{this.state.detail.product_name}</div>*/}
-                        {/*<div style={{marginBottom: 10, color:'#ccc'}}>{this.state.detail.product_specification}</div>*/}
-                        {/*<WhiteSpace/>*/}
-                    {/*</Flex.Item>*/}
-                    {/*<Flex.Item style={{flex: '0 0 25%', fontSize:'0.3rem'}}>*/}
-                        {/*<div style={{marginBottom: 10, color:'black', textAlign:'right'}}>{this.state.detail.cost}</div>*/}
-                        {/*<div style={{marginBottom: 10, color:'#ccc', textAlign:'right'}}>x {this.state.detail.product_amount}</div>*/}
-                        {/*<WhiteSpace/>*/}
-                    {/*</Flex.Item>*/}
-                {/*</Flex>*/}
-            {/*</Link>*/}
             return <Link key={index} to={`/product/${item.specialtyId}`}>
                 <Flex style={{background:'#fff'}}
                       onClick={()=>{
@@ -414,7 +365,6 @@ export default class OrderDetail extends React.Component {
             {productDetail}
 
             <div style={{background:'#fff', textAlign:'right'}}>
-                {/*<Button type="ghost" inline size="small" style={{marginRight:'2rem'}}>{orderButtonContent}</Button>*/}
                 {orderButtonContent}
                 <WhiteSpace/>
             </div>
@@ -458,25 +408,9 @@ export default class OrderDetail extends React.Component {
                 <WhiteSpace/>
             </div>
 
-            {/* <div className='buttons'> */}
             <div style={{background:'#fff', textAlign:'right'}}>
                 <span>
                     {buttonContent}
-                    {/*<Button type="ghost" inline size="small"*/}
-                            {/*style={{  position:'fixed', right:'1rem', marginTop: '4px', marginBottom:'4px',*/}
-                                {/*backgroundColor:'white', fontSize:'0.8rem'}}*/}
-                            {/*onClick={()=>{this.context.router.history.push({pathname : '/my/order/logistic', orderId: this.state.orderId})}}>*/}
-                            {/*查看物流*/}
-                    {/*</Button>*/}
-
-                    {/*<Button type="ghost" inline size="small"*/}
-                    {/*style={{ marginTop: '4px', marginBottom:'4px', marginRight:'4px',*/}
-                    {/*width:'5.3rem', backgroundColor:'white', fontSize:'0.8rem'}}*/}
-                    {/*onClick={()=>{}}>*/}
-                    {/*{buttonContent}*/}
-                    {/*</Button>*/}
-
-
                 </span>
             </div>
 

@@ -7,7 +7,6 @@ import couponApi from "../../../../../api/coupon.jsx";
 const Item = List.Item;
 const Brief = Item.Brief;
 
-// const wechatId = localStorage.getItem("wechatId");
 
 export default class BalancePurchase extends React.Component {
 

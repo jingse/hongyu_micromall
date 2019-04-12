@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { ListView, Flex, WhiteSpace, Tabs } from 'antd-mobile';
 import Layout from "../../../../common/layout/layout.jsx";
-import SearchNavBar from "../../../../components/search/index.jsx";
 import homeApi from "../../../../api/home.jsx";
 // import category_data from "../../../../static/mockdata/category.js";
 import {getServerIp} from "../../../../config.jsx";   //mock假数据
@@ -59,8 +58,10 @@ export default class Category extends React.Component {
             localStorage.setItem("categoryId", this.props.location.categoryId);
             localStorage.setItem("categoryName", this.props.location.category);
         }
+
         console.log("进入到categoryId",  this.props.location.categoryId);
         this.requestCategoryList(categoryId, 1, 10, 0);
+
         hasMore = true;
         pageIndex = 0;
         dataBlobs = {};
@@ -255,35 +256,7 @@ export default class Category extends React.Component {
                 }}
             />
         );
-        // const data = category_data;
         const data = this.state.categoryData;
-
-        // console.log("this.state.categoryData", this.state.categoryData);
-        // console.log("category", category);
-
-        // if (!category || category.length === 0) {
-        //     return <Layout header={false} footer={true}>
-        //
-        //         <SearchNavBar/>
-        //         <WhiteSpace size="xs"/>
-        //
-        //         <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
-        //             <Flex>
-        //                 <Flex.Item style={{flex: '0 0 4%', marginRight:'0.4rem'}}>
-        //                     <img src='./images/category/菜篮子.png'
-        //                          style={{width:'90%', margin:'0.4rem'}}/>
-        //                 </Flex.Item>
-        //                 <Flex.Item>{this.props.location.category}</Flex.Item>
-        //             </Flex>
-        //         </div>
-        //
-        //
-        //         <div style={{textAlign: 'center'}}>
-        //             哎呀，这个分区没有数据
-        //         </div>
-        //     </Layout>
-        // }
-
 
         let index = data.length - 1;
         const row = (rowdata, sectionID, rowID) => {
@@ -312,7 +285,6 @@ export default class Category extends React.Component {
                 );
             }
             else{
-                // return(<div></div>);
                 return null;
             }
 
@@ -340,7 +312,6 @@ export default class Category extends React.Component {
                       onChange={this.onTabsChange.bind(this)}
                       initialPage={this.state.tabIndex}
                       useOnPan={false}
-                    // className="search_tabs"
                 >
                 </Tabs>
             </div>

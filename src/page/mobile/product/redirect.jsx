@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import { WhiteSpace,ActivityIndicator} from "antd-mobile";
+import { ActivityIndicator} from "antd-mobile";
 import Layout from "../../../common/layout/layout.jsx";
 import Navigation from "../../../components/navigation/index.jsx";
 

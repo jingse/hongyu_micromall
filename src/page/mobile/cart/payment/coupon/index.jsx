@@ -1,5 +1,5 @@
 import React from "react";
-import { WhiteSpace, NoticeBar, Flex, Checkbox, Button } from "antd-mobile";
+import { WhiteSpace, NoticeBar, Flex, Checkbox} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 // import coupon_available from "../../../../../static/mockdata/payment_coupon_available.js";
@@ -30,26 +30,6 @@ export default class CouponChoose extends React.Component {
         localStorage.removeItem("price");
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const available_data = coupon_available.data;     //mock data
-    //         this.setState({
-    //             available: available_data,
-    //         });
-    //     }, 100);
-    // }
-
-    // onTabsChange(tab, index) {
-    //     this.setState({
-    //         tabIndex: index
-    //     });
-    // }
 
     requestAvailableCoupon(price) {
         couponApi.getAvailableCoupon(wechatId, price, (rs) => {
@@ -122,83 +102,16 @@ export default class CouponChoose extends React.Component {
             </div>
         });
 
-        // const unavailable_coupon = this.state.unavailable && this.state.unavailable.map((item, index) => {
-        //     return <div key={index} style={{ padding: '0 15px' }}>
-        //         <Flex style={{background:'#fff'}}>
-        //             <Flex.Item style={{flex: '0 0 25%', backgroundColor:"#99CCFF"}}>
-        //                 <div style={{textAlign:'center', color:'white'}}>
-        //                     <WhiteSpace/>
-        //                     <WhiteSpace/>
-        //                     <div style={{marginBottom:'0.5rem'}}>
-        //                         <span>￥</span><span style={{fontSize:'1.3rem'}}>{item.reduce_value}</span>
-        //                     </div>
-        //                     <div>{item.coupon_tag}</div>
-        //                     <WhiteSpace/>
-        //                     <WhiteSpace/>
-        //                 </div>
-        //             </Flex.Item>
-        //             <Flex.Item style={{flex: '0 0 50%', color:'black', fontSize:'0.3rem'}}>
-        //                 <WhiteSpace/>
-        //                 <div style={{marginBottom: 10}}>{item.coupon_category}</div>
-        //                 <div style={{marginBottom: 10, color:'#ccc'}}>{item.coupon_due_time + " - " + item.coupon_due_time}</div>
-        //                 <WhiteSpace/>
-        //             </Flex.Item>
-        //         </Flex>
-        //         <WhiteSpace/>
-        //     </div>
-        // });
 
 
         return <Layout header={false} footer={false}>
 
             <Navigation title="使用优惠券" left={true}/>
 
-            {/*<div className="order_container">*/}
-                {/*<Tabs tabs={ tabs }*/}
-                      {/*onChange={this.onTabsChange.bind(this)}*/}
-                      {/*initialPage={this.state.tabIndex}*/}
-                      {/*animated={false}*/}
-                      {/*useOnPan={false}*/}
-                {/*>*/}
-                    {/*<div style={{backgroundColor:'#eee'}}>*/}
-                        {/*{this.isChosen()}*/}
-                        {/*<WhiteSpace/>*/}
-                        {/*{available_coupon}*/}
-
-                        {/*<div style={{textAlign:'center'}}>*/}
-                            {/*<Button style={{width:'30%', marginLeft:'34%', position: "fixed",*/}
-                                            {/*fontSize:'0.5rem'}}*/}
-                                    {/*type="primary"*/}
-                                    {/*onClick={() =>{history.back()}}>*/}
-                                {/*确定*/}
-                            {/*</Button>*/}
-                            {/*<WhiteSpace/>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-
-                    {/*<div style={{backgroundColor:'#eee'}}>*/}
-                        {/*<WhiteSpace/>*/}
-                        {/*{unavailable_coupon}*/}
-                    {/*</div>*/}
-
-
-                {/*</Tabs>*/}
-            {/*</div>*/}
-
             <div style={{backgroundColor:'#eee'}}>
                 {this.isChosen()}
                 <WhiteSpace/>
                 {available_coupon}
-
-                {/*<div style={{textAlign:'center'}}>*/}
-                    {/*<Button style={{width:'30%', marginLeft:'34%', position: "fixed",*/}
-                        {/*fontSize:'0.5rem'}}*/}
-                            {/*type="primary"*/}
-                            {/*onClick={() =>{history.back()}}>*/}
-                        {/*确定*/}
-                    {/*</Button>*/}
-                    {/*<WhiteSpace/>*/}
-                {/*</div>*/}
             </div>
 
         </Layout>
