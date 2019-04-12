@@ -525,7 +525,6 @@ export default class SalesDetail extends React.Component {
                     </div>
                     </Card>:<div></div>}
 
-                    <hr/>
             </WingBlank>
         </Card>
         {/* {content} */}

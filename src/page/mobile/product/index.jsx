@@ -333,10 +333,10 @@ class Product extends React.Component {
 
 
     checkPromotion() {
-        if (this.props.location.isPromotion)
-            return <Link to={{pathname: "/home/sales", dest: '/home'}}>
-                    <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
-                </Link>;
+        // if (this.props.location.isPromotion)
+        //     return <Link to={{pathname: "/home/sales", dest: '/home'}}>
+        //             <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
+        //         </Link>;
 
         if (this.props.location.isPresent)
             return <span style={{color: 'darkorange', fontStyle:'normal'}}> (赠品)</span>;
