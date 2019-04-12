@@ -10,23 +10,12 @@ export default class Bottom extends React.Component {
         this.state = this.getInitialState();
     }
 
-    componentWillMount() {
-        // this.getCartCount(localStorage.getItem("wechatId"));
-    }
 
     getInitialState() {
-        // let link = this.getLink() || 'product';
         return {
             selectedTab: ''
         };
     }
-
-    // getLink(){
-    //     let links = window.location.hash.match(/(\w+)/g);
-    //     if (!links)
-    //         return null;
-    //     return links[0].toLowerCase();
-    // }
 
 
     linkTo(link) {

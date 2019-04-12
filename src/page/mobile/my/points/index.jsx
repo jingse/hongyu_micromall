@@ -5,7 +5,6 @@ import Navigation from "../../../../components/navigation/index.jsx";
 import PropTypes from "prop-types";
 import myApi from "../../../../api/my.jsx";
 
-const wechatId = localStorage.getItem("wechatId");
 
 export default class MyPoints extends React.Component {
 
@@ -49,13 +48,11 @@ export default class MyPoints extends React.Component {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WingBlank>总积分：
-                    {/*{(!this.props.location.totalPoints)? localStorage.getItem("totalPoints") : this.props.location.totalPoints}*/}
                     {(this.state.totalPoints === 0 || !this.state.totalPoints) ? '0' : this.state.totalPoints}
                 </WingBlank>
                 <WhiteSpace/>
                 <WingBlank>可用积分：</WingBlank>
                 <WingBlank style={{fontSize:'2rem', marginTop:'1rem'}}>
-                    {/*{(!this.props.location.availablePoints) ? localStorage.getItem("availablePoints") : this.props.location.availablePoints}*/}
                     {(this.state.availablePoints === 0 || !this.state.availablePoints) ? '0' : this.state.availablePoints}
                 </WingBlank>
             </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Card, WhiteSpace, Flex, NoticeBar,Carousel,WingBlank,Toast } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
-import SearchNavBar from "../../../../../components/search/index.jsx";
 import "./index.less";
 // import sales_detail from "../../../../../static/mockdata/sales_detail.js"; // mock假数据
 import homeApi from "../../../../../api/home.jsx";
@@ -397,10 +396,10 @@ export default class SalesDetail extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
                         <WhiteSpace/>
-                        <WhiteSpace></WhiteSpace>
+                        <WhiteSpace/>
                         <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.specialtyId.name}</div>
-                        <WhiteSpace></WhiteSpace>
-                        <WhiteSpace></WhiteSpace>
+                        <WhiteSpace/>
+                        <WhiteSpace/>
                         {/* <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div> */}
                         <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
                         {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
@@ -558,14 +557,14 @@ export default class SalesDetail extends React.Component {
                         {/* /!*{this.state.servicePromise.prompt}*!/ */}
                        </div>
                     </WingBlank>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
                     </div>
-                    </Card>:<div></div>}
+                    </Card>:<div/>}
 
             </WingBlank>
         </Card>

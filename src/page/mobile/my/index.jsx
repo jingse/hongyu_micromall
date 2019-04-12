@@ -42,11 +42,11 @@ export default class My extends React.Component {
 
     componentWillMount() {
         wechatIdmy = localStorage.getItem("wechatId");
-         var str = localStorage.getItem("nickname");
+        var str = localStorage.getItem("nickname");
         let s = str;
-        if(str.length>10){
+        if(str.length>10)
             s = str.substring(0,10)+"...";
-        }
+
         this.nickname = s;
         this.headimgurl = localStorage.getItem("headimgurl");
 
@@ -122,7 +122,6 @@ export default class My extends React.Component {
     }
 
     requestOrderCounts() {
-
         this.requestAllOrderCount();
         this.requestPayCount();
         this.requestDeliverCount();
@@ -250,8 +249,7 @@ export default class My extends React.Component {
 
 
     checkWebusiness() {
-        
-    
+
         if (this.state.isWebusiness) {
             return <Card>
                 <div className="card_group">
@@ -389,67 +387,42 @@ export default class My extends React.Component {
                     <WhiteSpace/>
                     <Flex>
                         <Flex.Item style={{marginLeft:'1rem'}}>
-                            {/*badge={order_deliver.data.count}*/}
                             <Link to={{pathname:'/my/order', state:1 }}>
                                 <WhiteSpace/>
                                 <Badge text={this.state.payCount}>
-                                    {/*<div className="div_order">*/}
-                                        {/*<img src='./images/icons/待付款.png' style={{width:'35%', height:'1.5rem'}}/>*/}
-                                        {/*<div className="to_be_value">待付款</div>*/}
-                                    {/*</div>*/}
                                     <div className="iconH icon_pay"/>待付款
                                 </Badge>
                             </Link>
                         </Flex.Item>
                         <Flex.Item style={{marginLeft:'1rem'}}>
-                            {/*badge={order_deliver.data.count}*/}
                             <Link to={{pathname:'/my/order', state:2 }}>
                                 <WhiteSpace/>
                                 <Badge text={this.state.deliverCount}>
-                                    {/*<div className="div_order">*/}
-                                        {/*<img src='./images/icons/待发货.png' style={{width:'30%', height:'1.5rem'}}/>*/}
-                                        {/*<div className="to_be_value">待发货</div>*/}
-                                    {/*</div>*/}
                                     <div className="iconH icon_deliver"/>待发货
                                 </Badge>
                             </Link>
                         </Flex.Item>
                         <Flex.Item style={{marginLeft:'1rem'}}>
-                            {/*badge={order_receive.data.count}*/}
                             <Link to={{pathname:'/my/order', state:3 }}>
                                 <WhiteSpace/>
                                 <Badge text={this.state.receiveCount}>
-                                {/*<div className="div_order">*/}
-                                    {/*<img src='./images/icons/待收货.png' style={{width:'30%', height:'1.5rem'}}/>*/}
-                                    {/*<div className="to_be_value">待收货</div>*/}
-                                {/*</div>*/}
                                     <div className="iconH icon_receive"/>待收货
                                 </Badge>
                             </Link>
 
                         </Flex.Item>
                         <Flex.Item style={{marginLeft:'1rem'}}>
-                            {/*badge={order_evaluate.data.count}*/}
                             <Link to={{pathname:'/my/order', state:4 }}>
                                 <WhiteSpace/>
                                 <Badge text={this.state.evaluateCount}>
-                                    {/*<div className="div_order">*/}
-                                        {/*<img src='./images/icons/待评价.png' style={{width:'40%', height:'1.5rem'}}/>*/}
-                                        {/*<div className="to_be_value">待评价</div>*/}
-                                    {/*</div>*/}
                                     <div className="iconH icon_comment"/>待评价
                                 </Badge>
                             </Link>
                         </Flex.Item>
                         <Flex.Item style={{marginLeft:'1rem'}}>
-                            {/*badge={order_refund.data.count}*/}
                             <Link to={{pathname:'/my/order', state:5 }}>
                                 <WhiteSpace/>
                                 <Badge text={this.state.refundCount}>
-                                    {/*<div className="div_order">*/}
-                                        {/*<img src='./images/icons/退款.png' style={{width:'35%', height:'1.5rem'}}/>*/}
-                                        {/*<div className="to_be_value">退款</div>*/}
-                                    {/*</div>*/}
                                     <div className="iconH icon_refund"/>退款
                                 </Badge>
                             </Link>
@@ -460,47 +433,6 @@ export default class My extends React.Component {
                 </div>
             </Card>
 
-            {/*<Card>*/}
-                {/*<div className="card_group">*/}
-                    {/*<Link to='/my/coupon'>*/}
-                        {/*<WingBlank>*/}
-                            {/*<span>我的可用电子券<span style={{color:'red', marginLeft:'8px'}}>{counts}</span></span>*/}
-                            {/*<span className="my_content_right">></span>*/}
-                        {/*</WingBlank>*/}
-                    {/*</Link>*/}
-                {/*</div>*/}
-
-                {/*{merchant()}*/}
-
-            {/*</Card>*/}
-
-
-            {/*<Card>*/}
-                {/*<div className="card_group">*/}
-                    {/*<Link to={{pathname:"/my/coupon"}}>*/}
-                        {/*<WingBlank>*/}
-                            {/*<span>我的优惠</span>*/}
-                            {/*<span className="my_content_right">全部优惠券></span>*/}
-                        {/*</WingBlank>*/}
-                    {/*</Link>*/}
-                {/*</div>*/}
-                {/*<div className="card_group">*/}
-                    {/*<Flex style={{textAlign:'center',height:'5rem'}}>*/}
-                        {/*<Flex.Item><Link to={{pathname:"/my/coupon"}}>*/}
-                            {/*<span style={{lineHeight:1, fontSize:"0.7rem"}}><div className="iconH icon_ticket"/>优惠券(6)</span>*/}
-                        {/*</Link></Flex.Item>*/}
-                        {/*<Flex.Item><Link to={{pathname:"/my/coupon"}}>*/}
-                            {/*<span style={{lineHeight:1, fontSize:"0.7rem"}}><div className="iconH icon_ticket"/>未使用(3)</span>*/}
-                        {/*</Link></Flex.Item>*/}
-                        {/*<Flex.Item><Link to={{pathname:"/my/coupon"}}>*/}
-                            {/*<span style={{lineHeight:1, fontSize:"0.7rem"}}><div className="iconH icon_ticket"/>已使用(1)</span>*/}
-                        {/*</Link></Flex.Item>*/}
-                        {/*<Flex.Item><Link to={{pathname:"/my/coupon"}}>*/}
-                            {/*<span style={{lineHeight:1, fontSize:"0.7rem"}}><div className="iconH icon_ticket"/>已过期(2)</span>*/}
-                        {/*</Link></Flex.Item>*/}
-                    {/*</Flex>*/}
-                {/*</div>*/}
-            {/*</Card>*/}
 
             <Card>
                 <List>
@@ -531,17 +463,6 @@ export default class My extends React.Component {
             </Card>
 
             {this.checkWebusiness()}
-
-            {/*<Card>*/}
-                {/*<div className="card_group">*/}
-                    {/*<Link to='/my/help'>*/}
-                        {/*<WingBlank>*/}
-                            {/*<span>设置</span>*/}
-                            {/*<span className="my_content_right">></span>*/}
-                        {/*</WingBlank>*/}
-                    {/*</Link>*/}
-                {/*</div>*/}
-            {/*</Card>*/}
 
         </Layout>
     }

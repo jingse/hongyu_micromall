@@ -9,7 +9,7 @@ import addressApi from "../../../api/address.jsx";
 // import ship_data from "../../../static/mockdata/user_ship_address.js";   //mock假数据
 import './index.less';
 //add 注释
-// const wechatId = parseInt(localStorage.getItem("wechatId"));
+
 
 export default class Address extends React.Component {
     constructor(props, context) {
@@ -115,26 +115,6 @@ export default class Address extends React.Component {
     }
     
     render(){
-
-        // const content = this.state.shipData && this.state.shipData.map((item, index) => {
-        //     return <Card className="address_card" key={index}>
-        //         <div className="address_card_underline">
-        //             <div className="addr_name">{item.name}</div>
-        //             <div className="addr_phone">{item.tel}</div>
-        //             <div className="addr_detail">{item.ship_address}</div>
-        //         </div>
-        //         <div className="address_card_edit">
-        //             <input type="checkbox" id="check1" style={{marginRight:'0.8rem'}}  />
-        //             <label htmlFor="check1">默认地址</label>
-        //             {/*<img src="./images/icons/删除.png" style={{float: 'right', width:'4%'}}/>*/}
-        //             <div className="addr_delete">删除</div>
-        //             <Link to={{pathname:'/address/edit'}}>
-        //                 {/*<img src="./images/icons/编辑.png" style={{float: 'right', width:'4%'}}/>*/}
-        //                 <div className="addr_edit">编辑</div>
-        //             </Link>
-        //         </div>
-        //     </Card>
-        // });
 
         const content = this.state.shipData && this.state.shipData.map((item, index) => {
             return <Card className="address_card" key={index}>

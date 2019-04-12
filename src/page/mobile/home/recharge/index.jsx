@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Flex, WhiteSpace, Card, Button, WingBlank, Stepper, InputItem, Modal, List, Toast } from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
@@ -13,6 +12,8 @@ import { createForm } from 'rc-form';
 const Item = List.Item;
 const Brief = Item.Brief;
 const wechatId = localStorage.getItem("wechatId");
+
+
 class Recharge extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -59,20 +60,7 @@ class Recharge extends React.Component {
         });
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = recharge_coupon.data;   //mock假数据
-    //         this.setState({
-    //             couponAvailable: data,
-    //         });
-    //     }, 300);
-    // }
+
     addNum = (val) => {
         this.setState({
             num: (val+1)<11?val+1:10,
@@ -83,12 +71,7 @@ class Recharge extends React.Component {
             num: (val-1)>1?val-1:1,
         });
     };
-    onNumChange = (val) => {
-        // console.log(val);
-        this.setState({
-            num: val,
-        });
-    };
+
 
     onPhoneChange = (val) => {
         // console.log(val);
@@ -166,18 +149,13 @@ class Recharge extends React.Component {
             rechargeInfo: info,
         });
         this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
-
-        // this.context.router.history.push({pathname: '/home/recharge/payment', state: this.state.rechargeInfo});
-        // this.linkTo('/home/recharge/payment');
     }
 
     checkParams() {
         if (this.state.price === 0) {
             Toast.info("请选择电子券金额！", 1);
-            return
         } else if (this.state.phone === "") {
             Toast.info("请先输入手机号！", 1);
-            return
         } else if (!this.props.form.getFieldsValue().confirmCode) {
             Toast.info("请输入验证码！", 1);
         } else {
@@ -208,13 +186,6 @@ class Recharge extends React.Component {
                     <Flex>
                         <Flex.Item style={{flex:'0 0 20%', fontSize:'1.1rem'}}>数量</Flex.Item>
                         <Flex.Item style={{flex:'0 0 80%'}}>
-                            {/* <Stepper
-                                style={{ width: '30%', minWidth: '100px', touchAction: 'none' }}
-                                showNumber
-                                //max={10}
-                                min={1}
-                                value={this.state.num}
-                                onChange={this.onNumChange}/> */}
                         <div className="step1">              
                             <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
                             style={{backgroundImage:'url(./images/icons/minus.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
@@ -248,10 +219,6 @@ class Recharge extends React.Component {
                 <div className="secondary_btn" style={{width:'60%',fontSize:'0.8rem'}}>
                     合计：￥{this.state.price * this.state.num}
                 </div>
-                {/*<Link to={{pathname: "/home/recharge/payment", state: this.state.rechargeInfo}} className="primary_btn" style={{width:'40%'}}*/}
-                      {/*onClick = {()=>{this.rechargePay()}}>*/}
-                    {/*结算*/}
-                {/*</Link>*/}
                 <div className="primary_btn" style={{width:'40%'}} onClick = {()=>{this.checkParams()}}>
                     结算
                 </div>

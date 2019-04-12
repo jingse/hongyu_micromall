@@ -1,21 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Carousel, WhiteSpace, WingBlank, Flex, Toast } from 'antd-mobile';
+import PropTypes from "prop-types";
+
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
+
+import locManager from "../../../common/LockManager.jsx";
+import {getServerIp, wxconfig} from "../../../config.jsx";
+
 import Card from "../../../components/card/index.jsx";
 import Comment from "./comment.jsx";
 import Recommend from "./recommend.jsx";
-import { Carousel, WhiteSpace, WingBlank, Flex, Toast } from 'antd-mobile';
 import CartModal from './cartmodal.jsx';
 import PutInCart from './putincart.jsx';
 import './index.less';
 
 import wxApi from "../../../api/wechat.jsx";
-import locManager from "../../../common/LockManager.jsx";
 import proApi from "../../../api/product.jsx";
 import cartApi from "../../../api/cart.jsx";
-import {getServerIp, wxconfig} from "../../../config.jsx";
-import PropTypes from "prop-types";
 
 // import product_data from "../../../static/mockdata/product.js";   //mock假数据
 // import comment from "../../../static/mockdata/product_comment.js"; // mock假数据
@@ -63,14 +65,11 @@ class Product extends React.Component {
     }
 
     componentWillMount() {
-        console.log("wawaw", this.props);
         const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
         this.setState({
             specialtyId
         });
 
-        // console.log("split specialtyId", specialtyId);
-        // console.log("window.location.href.split('#')", window.location.href.split('#'));
 
         this.requestProductDetailData(specialtyId);
         this.requestProductCommentData(specialtyId, 1, 10);
@@ -94,9 +93,6 @@ class Product extends React.Component {
     }
 
     componentDidMount() {
-        const uid = locManager.getUId();
-        const from_user = locManager.getFromUser();
-        const myopenid = locManager.getMyOpenId();
 
         let shareData = {//自定义分享数据
             title: '土特产微商城',
@@ -159,7 +155,7 @@ class Product extends React.Component {
 
             if(rs && rs.success) {
                 const data = rs.obj;
-                console.log('data', data);
+
                 if (!data || JSON.stringify(data) === "[]") {
                     this.setState({
                         isNull: true,
@@ -173,7 +169,6 @@ class Product extends React.Component {
                     const specification = specifications && specifications.map((item, index) => {
                         return item.specification;
                     });
-                    console.log("product specifications", specification);
 
                     this.setState({
                         data: data,
@@ -204,7 +199,6 @@ class Product extends React.Component {
     requestProductCommentData(id, page, rows) {
         proApi.getSpecialtyCommentDetail(id, page, rows, (rs) => {
             if(rs && rs.success) {
-                console.log('9999999', rs);
                 const comment = rs.obj.rows;
                 const commentNum = rs.obj.total;
                 this.setState({
@@ -225,11 +219,9 @@ class Product extends React.Component {
         cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId,
             this.state.specialtyId, this.state.isGroupPromotion, this.state.quantity, (rs) => {
 
-            console.log("发给后台的购物车数量", this.state.quantity);
-
             if(rs && rs.success) {
                 Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
-                console.log("rs.msg", rs.msg);
+
                 this.getCartCount();
             } else {
                 Toast.info("添加失败！", 1);
@@ -239,12 +231,11 @@ class Product extends React.Component {
     }
 
     getCartCount() {
-        console.log("getCartCount");
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 const count = rs.obj.length;
                 localStorage.setItem("cartCount", count);
-                console.log("count: ", count);
+
                 this.setState({
                     cartCount: count,
                 });
@@ -272,7 +263,6 @@ class Product extends React.Component {
         let price = {};
 
         cartApi.getTotalPriceInCart(item, (rs) => {
-            console.log("getTotalPriceInCart rsllff", rs);
             if (rs && rs.success) {
                 price = rs.obj;
 
@@ -306,7 +296,6 @@ class Product extends React.Component {
 
 
     changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
-        console.log('加购物车的数量',num);
         this.setState({
             currentPrePrice: pPrice,
             currentMarketPrice: mPrice,
@@ -315,7 +304,6 @@ class Product extends React.Component {
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
         },()=>{
-            console.log('this.state.isadd', this.state.isadd);
             if(this.state.isadd === 1)
                 this.addToCart();
         });
@@ -361,7 +349,7 @@ class Product extends React.Component {
                           addToCart={this.addToCart.bind(this)}
                           buyImmediately={this.buyImmediately.bind(this)}
                           cartCount={this.state.cartCount}
-        />
+                />
     }
 
     // 如果是优惠产品页进来的，不显示规格选择
@@ -390,8 +378,6 @@ class Product extends React.Component {
 
 
     render() {
-        console.log(this.state);
-        console.log("dadsds", this.state.data);
 
         if (this.state.isNull) {
             return <Layout>
@@ -413,9 +399,9 @@ class Product extends React.Component {
             if(primaryImages[i].isLogo)
                 primaryImages.splice(i, 1);
         }
-        if(primaryImages.length === 1){
+        if(primaryImages.length === 1)
             primaryImages[1] = primaryImages[0];
-        }
+
 
         const images = primaryImages && primaryImages.map((img, index) => {
             return <img src={"http://" + getServerIp() + img.sourcePath}

@@ -8,6 +8,7 @@ import './index.less';
 // import profit_data from "../../../../static/mockdata/profit_share.js"; // mock假数据
 import myApi from "../../../../api/my.jsx";
 
+
 export default class ProfitShare extends React.Component {
 
     constructor(props, context) {
@@ -53,18 +54,9 @@ export default class ProfitShare extends React.Component {
                 break;
         }
 
-        //this.requestData();
     }
 
     requestData() {
-        // // 通过API获取首页配置文件数据
-        // // 模拟ajax异步获取数据
-        // setTimeout(() => {
-        //     const data = profit_data.data;     //mock data
-        //     this.setState({
-        //         profit: data,
-        //     });
-        // }, 100);
 
         myApi.getTotalDivideList(localStorage.getItem("weBusinessID"), (rs)=>{
             const data = rs.obj.rows;
@@ -81,18 +73,6 @@ export default class ProfitShare extends React.Component {
         });
     }
 
-    // onTabsChange(tab, index) {
-    //     this.setState({
-    //         isLoading: false,
-    //         tabIndex: index
-    //     });
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         this.setState({
-    //             isLoading: false
-    //         });
-    //     }, 300);
-    // }
 
 
     render() {
@@ -104,27 +84,12 @@ export default class ProfitShare extends React.Component {
             dataList = this.state.totalDataList;
         }
 
-        // const tabs = [
-        //     { title: '已分成', sub: 'already' },
-        //     { title: '未分成', sub: 'not' },
-        // ];
-
 
         return <Layout header={false} footer={false}>
             <Navigation title="微商分成" left={true}/>
 
             <WhiteSpace size="xs"/>
 
-            {/*<div className="search_container">*/}
-                {/*<Tabs tabs={tabs}*/}
-                      {/*onChange={this.onTabsChange.bind(this)}*/}
-                      {/*initialPage={this.state.tabIndex}*/}
-                      {/*useOnPan={false}*/}
-                {/*>*/}
-
-
-                {/*</Tabs>*/}
-            {/*</div>*/}
 
             <Card className="profitshare_infocard">
                 <Flex justify="around">
@@ -144,18 +109,7 @@ export default class ProfitShare extends React.Component {
                 return <InfoCard data={data} key={index}/>
             })}
 
-            {/*<InfoCard data={data} />*/}
-            {/*<InfoCard data={data} />*/}
 
         </Layout>
     }
 }
-
-// const data = {
-//     time: '2017-06-07 18:23:09',
-//     user_name: 'toby_20121118',
-//     // product_name: '帝王企鹅茶叶蛋',
-//     // shop_name: '鸡蛋专卖店',
-//     total_fee: '80',
-//     share_fee: '8'
-// };

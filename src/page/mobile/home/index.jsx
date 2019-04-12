@@ -1,9 +1,8 @@
 import React from 'react';
-import { WhiteSpace ,ActivityIndicator, Modal, Carousel} from "antd-mobile";
+import { WhiteSpace, ActivityIndicator, Modal, Carousel} from "antd-mobile";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
-// import Carousel from "./carousel.jsx";
 import InfoCard from "./card.jsx";
 import GridCategory from "./grid_category.jsx"
 import Grid from "./grid_categoryList.jsx";
@@ -63,10 +62,10 @@ class Home extends React.Component {
 
         // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=你自己的appid&redirect_uri=微信想要回调的你的页面&response_type=code&scope=snsapi_userinfo&state=xxx#wechat_redirect'
         var uid = locManager.getUId();
-        // Toast.info(`oldUid: ${oldUid}`,1)
         const from_user = locManager.getFromUser();
         const myopenid = locManager.getMyOpenId();
 
+        // Toast.info(`oldUid: ${oldUid}`,1)
         console.log("openid: ", myopenid);
 
         const mynickname = locManager.getMyNickname();
@@ -77,18 +76,18 @@ class Home extends React.Component {
         };
 
         if (uid) {          // 第一次扫码，url带uid字段，不带from_user
-            console.log("uid存在");
             localStorage.setItem("uid", uid);
+
+            console.log("uid存在");
             console.log("myopenid", myopenid);
+
             homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
-                console.log("提交openid给后台的结果：", rs);
-                if (rs.msg && rs.msg !== "") {
-                    // Toast.info(rs.msg);
+                if (rs.msg && rs.msg !== "")
                     console.log(rs);
-                }
-                if(rs.obj !== null){
+
+                if(rs.obj !== null)
                     window.location.href = rs.obj;
-                }
+
             });
 
         } else {            // 分享后的链接，url不带uid字段，带from_user
@@ -122,7 +121,6 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // this.checkLogin();  //拿到wechatId webusinessId
         this.closeTimer = setTimeout(() => {
             this.setState({ animating: !this.state.animating });
           }, 1000);
@@ -135,7 +133,6 @@ class Home extends React.Component {
     getCartCount() {
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
-                console.log('返回的购物车列表',rs);
                 const count = rs.obj.length;
                 localStorage.setItem("cartCount", count);
             }
@@ -143,22 +140,18 @@ class Home extends React.Component {
     }
 
     checkLogin() {
-        
-        // let logtemp = localStorage.getItem("firstLog")
-        // if(logtemp == "false"){
 
         var uid = locManager.getUId();
         const myopenid = locManager.getMyOpenId();
         const wechatName = localStorage.getItem('nickname');
 
-        
-        console.log("login param openid", myopenid);
-        console.log("login param wechatName", wechatName);
-
         if(!uid)
             uid=-1;
 
+        console.log("login param openid", myopenid);
+        console.log("login param wechatName", wechatName);
         console.log(" uiduiduid", uid);
+
         //非微商测试
         // let leoopid = 'asdfdsfsdfasdsnflkdslfldsgnm';
         // let uuuu = 342;
@@ -176,11 +169,14 @@ class Home extends React.Component {
             if (rs && rs.success) {
                 
                 console.log("loginCheck rs:", rs);
+
                 const wechatId = rs.obj.id;
-                // const bindPhone = rs.obj.phone;
                 const balance = rs.obj.totalbalance;
                 const isVip = rs.obj.isVip;
+                // const bindPhone = rs.obj.phone;
+
                 localStorage.setItem("wechatId", wechatId);
+
                 if(rs.obj.isWeBusiness){
                     localStorage.setItem("isWebusiness", '1');
                 }
@@ -211,8 +207,8 @@ class Home extends React.Component {
         //     // localStorage.setItem("isWebusiness", "1");
         // }
 
-        //拿到购物车的数量
-        this.getCartCount();
+
+        this.getCartCount(); //拿到购物车的数量
 
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
         console.log("localStorage isWebusiness", localStorage.getItem("isWebusiness"));
@@ -231,25 +227,18 @@ class Home extends React.Component {
                 });
             }
         });
-        //console.log("this.state.carousel: ", this.state.carousel);
     }
 
     requestMerchantInfo(merchantId) {
         homeApi.getMerchantInfo(merchantId, (rs) => {
-            console.log('RS',rs);
-            if(rs.obj.weBusiness.isActive != true){
+            if(rs.obj.weBusiness.isActive != true)
                 this.setState({ modalBack: true });
-            }
+
             if (rs && rs.success) {
                 const card = rs.obj;
-                // let merchant = card;
                 this.setState({
                     card
                 }, ()=>{
-                    console.log("this.state.card", this.state.card);
-                    console.log("this.state.card.weBusiness.openid", this.state.card.weBusiness.openid);
-                    console.log("localStorage.getItem(\"openid\")", localStorage.getItem("openid"));
-                    console.log("二者相等？", this.state.card.weBusiness.openid === localStorage.getItem("openid"));
 
                     if (this.state.card.weBusiness.openid === localStorage.getItem("openid")){
                         console.log("isWebusiness设为1");
@@ -258,12 +247,8 @@ class Home extends React.Component {
                     
                 });
             }
-            else{
-                
-            }
             
         });
-        console.log("requestMerchantInfo", this.state.card);
     }
 
     requestTags() {
@@ -280,13 +265,11 @@ class Home extends React.Component {
     requestCategories() {
         homeApi.getCategories((rs) => {
             // this.checkLogin();//延迟重新登录
-             console.log("lalala",rs);
             if (rs && rs.success) {
                 const gridCategory = rs.obj;
                 this.setState({
                     gridCategory
                 });
-                // console.log("gridCategory", gridCategory);
             }
         });
     }
@@ -304,17 +287,12 @@ class Home extends React.Component {
 
     render() {
 
-        // if (!this.state.gridCategory || JSON.stringify(this.state.gridCategory) === '[]') {
-        //     return null
-        // }
-
         const category = this.state.gridCategory;
         const categories = category && category.map((item, index) => {
             return <Grid key={index} categoryId={item.id} categoryData={item.name} picUrl={item.iconUrl} type="fruits"/>
         });
 
         var primaryImages = this.state.carousel;
-        console.log('primaryImages',primaryImages[0].type)
         if(primaryImages.length==1){
             primaryImages[1]=primaryImages[0];
             var content = primaryImages && primaryImages.map((data, index) => {
@@ -336,7 +314,6 @@ class Home extends React.Component {
         else{
             var content = primaryImages &&primaryImages.map((data, index) => {
                 if (data.type === "广告") {
-                    console.log("hahahahha");
                     return <Link to={{pathname:'/home/ad', state: data.link}} key={index}>
                     <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
                     </Link>

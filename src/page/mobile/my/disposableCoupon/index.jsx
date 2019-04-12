@@ -7,7 +7,6 @@ import couponApi from "../../../../api/coupon.jsx";
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const wechatId = localStorage.getItem("wechatId");
 
 export default class DisposableCoupon extends React.Component {
 
@@ -83,10 +82,8 @@ export default class DisposableCoupon extends React.Component {
     }
 
     isSuperimposed(isSuperimposed) {
-        if (isSuperimposed) {
+        if (isSuperimposed)
             return <a style={{fontSize:'0.4rem', color:'darkorange'}}>叠</a>
-        }
-        return
     }
 
     getUnusedContent() {

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Card, WhiteSpace } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
@@ -7,7 +6,6 @@ import wxApi from "../../../../../api/wechat.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
 import PropTypes from "prop-types";
 
-const wechatId = localStorage.getItem("wechatId");
 
 export default class CouponBalance extends React.Component {
     constructor(props, context) {
@@ -56,30 +54,7 @@ export default class CouponBalance extends React.Component {
             console.log('wx.error');
             console.log(res);
         });
-        // this.requestData();
     }
-
-    // createCouponOrderOperation(phone, confirmCode, couponTypeId, amount) {
-    //     console.log("create coupon order: ");
-    //     couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
-    //         console.log("rs.msg", rs.msg);
-    //         console.log("rs", rs);
-    //         if (rs && rs.success) {
-    //             const couponOrderId = rs.obj;
-    //             console.log("orderId: ", couponOrderId);
-    //             this.setState({
-    //                 orderId: couponOrderId,
-    //             });
-    //         }
-    //     });
-    // }
-
-    // requestData() {
-    //     const orderid = this.props.location.query || localStorage.getItem("nowOrderId");
-    //     if (this.props.location.query) {
-    //         localStorage.setItem("nowOrderId", this.props.location.query);
-    //     }
-    // }
 
 
     // 微信支付接口

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
-// import LoadingHoc from "../../../common/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Navigation from "../../../components/navigation/index.jsx"
-//import { Link } from 'react-router-dom';
 import { Flex, WhiteSpace, Toast, ActivityIndicator, Popover, Modal,SwipeAction} from 'antd-mobile';
 import { createForm } from 'rc-form';
 // import cart_data from "../../../static/mockdata/cart.js"; //mock假数据
@@ -51,11 +49,12 @@ class Cart extends React.Component {
 
     componentWillMount() {
         this.setState({ animating: !this.state.animating });
+
         // window.onpopstate = function(event) {this.console.log("event",event)}
-       
         // console.log("window.history",window.onpopstate)
         // history.back();
         // const wechatId = (!localStorage.getItem("wechatId")) ? 8 : localStorage.getItem("wechatId");
+
         this.requestCartList();
         this.closeNav();
 
@@ -282,34 +281,19 @@ class Cart extends React.Component {
                  <Flex.Item style={{flex:'0 0 70%'}}>
                  <div>
                     <div className="step1">              
-                        {/* <div className="add_minus" onClick={() => {this.addNum(this.state.num)}}>
-                        +
-                        </div> */}
+
                         <div className="add_minus"onClick={() => this.addNum(this.state.num)}
                             style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                         <div className="value">
                         {this.state.num}
                         </div>
-                        {/* <div className="add_minus"onClick={() => {this.minusNum(this.state.num)}}>
-                        -
-                        </div> */}
+
                         <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
                             style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                         </div>
                     </div>
                 </div>
-                {/* <div className="step">  
-                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                        </div>
-                        <div className="value">
-                        {this.state.val}
-                        </div>
-                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                        </div>
-                </div> */}
                      
 
                  </Flex.Item>
@@ -362,33 +346,6 @@ class Cart extends React.Component {
         });
     }
 
-    // //TODO: 将时间差和删除关联起来，即canDelete和visible属性
-    // timeDifferenceOperation(index) {
-    //     const timeDifference = this.state.endTime - this.state.startTime;
-    //     const secondsDifference = timeDifference / 1000;
-    //     console.log("second difference: ", secondsDifference);
-    //     if (secondsDifference > 2) {
-    //         console.log("secondsDifference > 2");
-    //         this.state.visible[index] = true;
-    //         this.setState({
-    //             visible: this.state.visible,
-    //         });
-    //     }
-    // }
-
-    // onSelect = (index) => {
-    //     this.state.visible[index] = false;
-    //     this.setState({
-    //         visible: this.state.visible,
-    //     });
-    // };
-    // handleVisibleChange = (visible, index) => {
-    //     // console.log("index2: ", index);
-    //     this.state.visible[index] = visible;
-    //     this.setState({
-    //         visible: this.state.visible,
-    //     });
-    // };
 
     linkTo(link) {
         // console.log("items", items);
@@ -411,8 +368,7 @@ class Cart extends React.Component {
 
     render() {
         console.log("this.state.cartData", this.state.cartData);
-        // console.log("this.state.cartItems", this.state.cartItems);
-        const content = this.state.cartData && this.state.cartData.map((item, index) => {         
+        const content = this.state.cartData && this.state.cartData.map((item, index) => {
 
             // 普通商品
             return <div key={index} >
@@ -457,15 +413,11 @@ class Cart extends React.Component {
                         this.requestTotalPrice(this.state.cartItems);
                     }} style={{width:'50%'}}/>
 
-                    <div className="cart_card_img"
-                        //  onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
-                    >
+                    <div className="cart_card_img">
                         <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{height:'4rem'}}/>
                     </div>
 
-                    <Flex.Item style={{flex:'0 0 50%'}}
-                        // onTouchStart={(e)=>{this.getStartTime(e)}} onTouchEnd={(e) => {this.getEndTime(e, item.id)}}
-                    >
+                    <Flex.Item style={{flex:'0 0 50%'}}>
                     <div style={{display:this.state.showEdit[index]===true?'none':'block'}}>
                         <div className="title_text">{item.name}</div>
                         <div className="commodity_prop">{item.specification}</div>
@@ -514,7 +466,6 @@ class Cart extends React.Component {
                     </Flex.Item>
                 </Flex>
                 </SwipeAction>
-                {/*</Popover>*/}
             </Card>
             </div>
         });
@@ -550,7 +501,7 @@ class Cart extends React.Component {
                                 </div>
                                 <div style={{height:'1rem',lineHeight:'1rem',fontSize:'0.5rem'}}>
                                 总额：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.totalPrice}</a>
-                                立减：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
+                                 立减：<a style={{color:'darkorange',wordBreak:'break-word'}}>￥{this.state.payP}</a>
                                 </div>
                             </div>
                         </Flex.Item>
@@ -582,4 +533,3 @@ export default BasicInputExampleWrapper;
 Cart.contextTypes = {
     router: PropTypes.object.isRequired
 };
-// export default LoadingHoc(Cart);

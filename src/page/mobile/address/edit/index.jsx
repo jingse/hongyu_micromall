@@ -1,10 +1,9 @@
 import React from 'react';
-import { InputItem, TextareaItem, WhiteSpace } from 'antd-mobile';
+import { InputItem, WhiteSpace, Toast } from 'antd-mobile';
 import Card from "../../../../components/card/index.jsx";
 import Submit from "../../../../components/submit/index.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import addressApi from "../../../../api/address.jsx";
-import {Toast} from "antd-mobile/lib/index";
 import PropTypes from "prop-types";
 
 
@@ -51,8 +50,7 @@ export default class EditAddress extends React.Component {
                 // console.log("rs.msg: ", rs.msg);
                 Toast.info(rs.msg, 1);
                 history.go(-1);
-                // this.context.router.history.push("/address");     
-                     
+                // this.context.router.history.push("/address");
             }
         });
     }
@@ -75,11 +73,11 @@ export default class EditAddress extends React.Component {
         });
     };
 
-    onReceiverAddressDetailChange = (value) => {
-        this.setState({
-            detail: value,
-        });
-    };
+    // onReceiverAddressDetailChange = (value) => {
+    //     this.setState({
+    //         detail: value,
+    //     });
+    // };
 
 
     render(){

@@ -1,10 +1,8 @@
 import React from "react";
 import {Card, WhiteSpace, Flex, TextareaItem, Checkbox, ImagePicker, Toast ,ActivityIndicator} from "antd-mobile";
-// import { Link } from 'react-router-dom';
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
-import wxconfig from "../../../../../config.jsx";
 import PropTypes from "prop-types";
 import commentApi from "../../../../../api/my.jsx";
 import { createForm } from 'rc-form';

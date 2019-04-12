@@ -1,12 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Layout from "../../../common/layout/layout.jsx";
 import ReactDOM from "react-dom";
 import PropTypes from 'prop-types';
-import Bottom from "../../../components/bottom/index.jsx";
-import SearchNavBar from "../../../components/search/index.jsx";
-import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
-import { WhiteSpace, Flex, Tabs,SearchBar, ListView } from 'antd-mobile';
+import { WhiteSpace, Flex, Tabs, ListView } from 'antd-mobile';
+import Layout from "../../../common/layout/layout.jsx";
 import './index.less';
 // import search_data from "../../../static/mockdata/search_results.js";   //mock假数据
 import homeApi from "../../../api/home.jsx";
@@ -17,7 +14,6 @@ var hasMore = true;
 const NUM_SECTIONS = 1;
 const NUM_ROWS_PER_SECTION = 10;
 let pageIndex = 0;
-// let categoryId = null;
 
 let dataBlobs = {};
 let sectionIDs = [];
@@ -60,32 +56,14 @@ export default class Search extends React.Component {
     }
 
     componentDidMount() {
-        // this.requestData();
-
-        // you can scroll to the specified position
-        // setTimeout(() => this.lv.scrollTo(0, 120), 800);
-
-        //fixed id length bug
-        // sectionIDs = [];
-        // rowIDs = [];
-        // pageIndex = 0;
-        // dataBlobs = {};
-
         const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
         this.setState({
             height: hei,
         });
-        // simulate initial Ajax
+
         setTimeout(() => {
             this.genData();
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            //     height: hei,
-            // });
-        //console.log(dataBlobs)
         }, 500);
-        //console.log(dataBlobs)
     }
 
     requestSearchResults(value, page, rows, condition) {
@@ -109,18 +87,6 @@ export default class Search extends React.Component {
         });
     }
 
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //     	const data = search_data.data;   //mock假数据
-    //         this.setState({
-    //             data,
-    //             isLoading: false
-    //         });
-    //     }, 500);
-    // }
-
     onTabsChange(tab, index) {
         this.setState({
             isLoading: false,
@@ -133,9 +99,6 @@ export default class Search extends React.Component {
             rowIDs = [];
             this.genData();
         });
-
-        // const type = this.checkType(index);
-        // this.requestSearchResults(1, 10, type);
 
         // 模拟ajax异步获取数据
         setTimeout(() => {
@@ -172,14 +135,9 @@ export default class Search extends React.Component {
         if (!hasMore) {
             return;
         }
-        // console.log('reach end', event);
         this.setState({ isLoading: true });
         setTimeout(() => {
             this.genData(++pageIndex);
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            // });
         }, 500);
     };
 
@@ -189,9 +147,6 @@ export default class Search extends React.Component {
         this.requestSearchResults(this.state.searchValue, pIndex+1, 10, tt);
 
         setTimeout(() => {
-        // console.log('categoryData',this.state.categoryData)
-
-        // while(this.state.categoryData.length==0);
 
         let reData = this.state.data;
 
@@ -239,7 +194,6 @@ export default class Search extends React.Component {
                                 rowIDs = [];
                                 this.genData();
                             });
-                            // this.requestCategoryList(categoryId, 1, 10, 3);
                             console.log("升序")}}>
                             <img src={this.state.ascChoose ? "./images/icons/升序-选中.png" : "./images/icons/升序.png"} style={{width:'50%'}}/>
                         </div>
@@ -253,7 +207,6 @@ export default class Search extends React.Component {
                                 rowIDs = [];
                                 this.genData();
                             });
-                            // this.requestCategoryList(categoryId, 1, 10, 2);
                             console.log("降序")}}>
                             <img src={this.state.ascChoose ? "./images/icons/降序.png" : "./images/icons/降序-选中.png"} style={{width:'50%'}}/>
                         </div>
@@ -275,34 +228,7 @@ export default class Search extends React.Component {
                 }}
             />
         );
-        // const data = category_data;
         const data = this.state.data;
-
-        // console.log("this.state.categoryData", this.state.categoryData);
-        // console.log("category", category);
-
-        // if (!category || category.length === 0) {
-        //     return <Layout header={false} footer={true}>
-        //
-        //         <SearchNavBar/>
-        //         <WhiteSpace size="xs"/>
-        //
-        //         <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
-        //             <Flex>
-        //                 <Flex.Item style={{flex: '0 0 4%', marginRight:'0.4rem'}}>
-        //                     <img src='./images/category/菜篮子.png'
-        //                          style={{width:'90%', margin:'0.4rem'}}/>
-        //                 </Flex.Item>
-        //                 <Flex.Item>{this.props.location.category}</Flex.Item>
-        //             </Flex>
-        //         </div>
-        //
-        //
-        //         <div style={{textAlign: 'center'}}>
-        //             哎呀，这个分区没有数据
-        //         </div>
-        //     </Layout>
-        // }
 
 
         let index = data.length - 1;
@@ -313,7 +239,7 @@ export default class Search extends React.Component {
                 return null
             }
             const obj = rowdata;
-            console.log("obj", obj);
+
             if(obj){
                 return (
                     <div key={rowID} style={{ padding: '0 15px' }}>
@@ -332,7 +258,6 @@ export default class Search extends React.Component {
                 );
             }
             else{
-                // return(<div></div>);
                 return null;
             }
 

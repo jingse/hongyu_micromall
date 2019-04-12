@@ -9,7 +9,6 @@ import Bottom from "./bottom.jsx";
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 import cartApi from "../../../../../api/cart.jsx";
-import proApi from "../../../../../api/product.jsx";
 import './index.less';
 
 export default class SalesGroupDetail extends React.Component {
@@ -110,7 +109,6 @@ export default class SalesGroupDetail extends React.Component {
     }
 
     onChange = (val) => {
-        // console.log(val);
         this.setState({ val });
     };
 
@@ -253,24 +251,7 @@ export default class SalesGroupDetail extends React.Component {
         }
     }
 
-    showImages(item) {
-        const images = item.map((product, index) => {
-            const imgs = product && product.itemId.images.map((img, index2) => {
-                if (img.isLogo) {
-                    return <img src={"http://" + getServerIp() + img.mediumPath} key={index2}
-                                style={{width: '25%', margin:'0.4rem', height:'6rem', border:'1px solid #eee', marginLeft:'1rem'}}
-                        // onClick={()=>{this.linkTo(`/product/${item.ids[index]}`)}}
-                    />
-                }
-            });
-            return imgs;
-        });
-        return images
-    }
 
-    // linkTo(link) {
-    //     this.context.router.history.push(link);
-    // }
 
     render() {
 
@@ -278,37 +259,9 @@ export default class SalesGroupDetail extends React.Component {
         if (!this.state.salesGroupDetail || JSON.stringify(this.state.salesGroupDetail) == "[]" || !this.state.salesGroupData ) {
             return null
         }
-
-        const groupProducts = this.state.salesGroupDetail.hyGroupitemPromotions;
-        // const groupProductsNum = groupProducts.length;
-
-        // const content = groupProducts && groupProducts.map((item, index) => {
-        //     return <Link to={{pathname: `/home/sales_group/detail/products`, state: item.hyGroupitemPromotionDetails}} key={index}>
-        //         <div style={{backgroundColor:'white', borderBottom:'1px solid #eee', color:'#999'}}>
-        //             <WhiteSpace/>
-        //             <WingBlank>
-        //                 共 {item.hyGroupitemPromotionDetails.length} 件商品，优惠价格：{item.sellPrice}，市场价格：{item.marketPrice}
-        //             </WingBlank>
-        //             <WhiteSpace/>
-        //             {this.showWebusinessInfo(item)}
-        //             <WhiteSpace/>
-        //             <WingBlank>
-        //                 限购数量：{this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
-        //             </WingBlank>
-        //         </div>
-        //         <div style={{background:'#fff'}}>
-        //             <WhiteSpace/>
-        //             { this.showImages(item.hyGroupitemPromotionDetails) }
-        //             <WhiteSpace/>
-        //         </div>
-        //         <WhiteSpace />
-        //     </Link>
-        // });
         console.log('inbound',this.state.inbound)
 
-        // const salesContent = this.state.salesGroupDetail.sales_content && this.state.salesGroupDetail.sales_content.map((item, index) => {
-        //     return <span key={index} className='tag' style={{marginRight:'0.5rem'}}>{item}</span>
-        // });
+
         var bancontent;
         if(this.state.salesGroupDetail.hyGroupitemPromotions){
             var tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
@@ -456,7 +409,7 @@ export default class SalesGroupDetail extends React.Component {
                         </WingBlank>
             </Card> */}
 
-            <WhiteSpace></WhiteSpace>
+            <WhiteSpace/>
 
 
                 <WingBlank>
@@ -518,12 +471,12 @@ export default class SalesGroupDetail extends React.Component {
                         {/* /!*{this.state.servicePromise.prompt}*!/ */}
                        </div>
                     </WingBlank>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
-                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
+                    <WhiteSpace/>
         </Layout>
     }
 }

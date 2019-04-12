@@ -57,22 +57,6 @@ export default class Comment extends React.Component {
         });
     }
 
-    // componentDidMount() {
-    //     this.requestData();
-    // }
-    //
-    // requestData() {
-    //     // 通过API获取首页配置文件数据
-    //     // 模拟ajax异步获取数据
-    //     setTimeout(() => {
-    //         const data = comment.data;   //mock假数据
-    //         // const data = this.props.comment;
-    //         this.setState({
-    //             data,
-    //             // isLoading: false
-    //         });
-    //     }, 500);
-    // }
 
     generateStars(star_num) {
         let stars = [];

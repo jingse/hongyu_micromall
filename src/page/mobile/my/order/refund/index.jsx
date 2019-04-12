@@ -1,5 +1,4 @@
 import React from "react";
-// import {Link} from "react-router-dom";
 import { WhiteSpace, Flex, WingBlank, InputItem, ImagePicker, Checkbox, Stepper, Picker, List, Toast } from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
