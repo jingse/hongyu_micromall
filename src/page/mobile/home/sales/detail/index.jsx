@@ -397,14 +397,17 @@ export default class SalesDetail extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
                         <WhiteSpace/>
+                        <WhiteSpace></WhiteSpace>
                         <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.specialtyId.name}</div>
-                        <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div>
+                        <WhiteSpace></WhiteSpace>
+                        <WhiteSpace></WhiteSpace>
+                        {/* <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.specificationId.platformPrice}元</span></div> */}
                         <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.specificationId.specification}</span></div>
-                        <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
+                        {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(item.hyPromotion.promotionRule, item.hyPromotion.hyFullSubstracts, item.hyPromotion.hyFullDiscounts, item.hyPromotion.hyFullPresents)}
-                        </span></div>
-                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
-                        <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>
+                        </span></div> */}
+                        {/* {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.specificationId.dividMoney).toFixed(2)}</span></div>:<div></div>} */}
+                        {/* <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div> */}
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
@@ -463,17 +466,36 @@ export default class SalesDetail extends React.Component {
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
             </h3>
             <h4>
-                开始时间：{this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时":""}
+                <font color="red">优惠时间：</font>
+                {this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时 ~ "+end.substring(0,b+2)+"时":""}
             </h4>
             <h4>
-                结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
+                <font color="red">优惠类型：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.getSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                                         this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents):""}
             </h4>
+            <h4>
+                <font color="red">价格：</font>
+                {this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}
+            </h4>
+            <h4>
+                <font color="red">销量：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}
+            </h4>
+            <h4>
+                <font color="red">限购数量：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}
+            </h4>
+            <h4>
+                {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail.hySingleitemPromotions?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney).toFixed(2)}</div>:<div></div>}
+            </h4>
+            {/* <h4>
+                结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
+            </h4> */}
                     <hr/>
-                    <Card>
+                    {/* <Card>
                         <WingBlank>
                             <div className="my_product_info_div">
-
-                                {/* <WhiteSpace/> */}
 
                                 <Flex>
                                     <Flex.Item className="detail_info">类型：</Flex.Item>
@@ -485,13 +507,6 @@ export default class SalesDetail extends React.Component {
                                     <Flex.Item className="detail_info">运费：</Flex.Item>
                                     <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice:""}</Flex.Item>
                                 </Flex>
-
-                                {/* <Flex>
-                                    <Flex.Item className="detail_info">开始时间：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{this.state.salesDetail.hySingleitemPromotions?new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString():""}</Flex.Item>
-                                    <Flex.Item className="detail_info">价格：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}</Flex.Item>
-                                </Flex> */}
 
                                 <Flex>
                                     <Flex.Item className="detail_info">限购：</Flex.Item>
@@ -507,8 +522,7 @@ export default class SalesDetail extends React.Component {
                                 </Flex>
                             </div>
                         </WingBlank>
-                    </Card>
-                    <WhiteSpace/>
+                    </Card> */}
                     {content}
                     {this.checkPresents()}  
                     {this.state.data[0]?
@@ -518,10 +532,38 @@ export default class SalesDetail extends React.Component {
                         <div className="para_title">活动介绍</div>
                         <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}} />
                     </WingBlank>
-                    <WingBlank>
+                    {/* <WingBlank>
                         <div className="para_title">产品详情</div>
                         <div  className="para_html" dangerouslySetInnerHTML={{ __html: this.state.data[0].specialty.descriptions}} />
+                    </WingBlank> */}
+                                        <WingBlank>
+                       <div className="para_title" >服务承诺</div>
+                       <div className="paragraph">
+                           河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
+                       人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
+                       货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
+                       赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
+                       部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
+                       起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
+                       况下验货，则视为您所订购商品的包装无任何问题。
+                           {/* {this.state.servicePromise} */}
+                       </div>
                     </WingBlank>
+
+                    <WingBlank>
+                       <div className="para_title">温馨提示</div>
+                       <div className="paragraph">
+                           由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
+                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！
+                        {/* /!*{this.state.servicePromise.prompt}*!/ */}
+                       </div>
+                    </WingBlank>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
+                    <WhiteSpace></WhiteSpace>
                     </div>
                     </Card>:<div></div>}
 
