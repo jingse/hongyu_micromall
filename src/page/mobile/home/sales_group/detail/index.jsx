@@ -9,6 +9,7 @@ import Bottom from "./bottom.jsx";
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 import cartApi from "../../../../../api/cart.jsx";
+import proApi from "../../../../../api/product.jsx";
 import './index.less';
 
 export default class SalesGroupDetail extends React.Component {
@@ -357,15 +358,18 @@ export default class SalesGroupDetail extends React.Component {
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 80%', color:'black'}}>
                         <WhiteSpace/>
+                        <WhiteSpace/>
                         <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.itemId.name}</div>
-                        <div style={{marginBottom: 5}}>价格：<span style={{color:'red'}}>￥{item.itemSpecificationId.platformPrice}元</span></div>
+                        <WhiteSpace/>
+                        <div style={{marginBottom: 5}}>单买价格：<span style={{color:'red'}}>￥{item.temp}元</span></div>
+                        <WhiteSpace/>
                         <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.itemSpecificationId.specification}</span></div>
-                        <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
+                        {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
                         {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
                                          this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
-                        </span></div>
-                        {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.itemSpecificationId.dividMoney).toFixed(2)}</span></div>:<div></div>}
-                        <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.itemSpecificationId.hasSold}</span></div>
+                        </span></div> */}
+                        {/* {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.itemSpecificationId.dividMoney).toFixed(2)}</span></div>:<div></div>} */}
+                        {/* <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.itemSpecificationId.hasSold}</span></div> */}
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
@@ -396,17 +400,35 @@ export default class SalesGroupDetail extends React.Component {
                 {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName:""}
             </h3>
             <h4>
-                开始时间：{this.state.salesGroupDetail.hyGroupitemPromotions?start.substring(0,a+2)+"时":""}
+                <font color="red">优惠时间：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?start.substring(0,a+2)+"时 ~ "+end.substring(0,b+2)+"时":""}
             </h4>
             <h4>
-                结束时间：{this.state.salesGroupDetail.hyGroupitemPromotions?end.substring(0,b+2)+"时":""}
+                <div style={{marginBottom: 5}}><span style={{color:'red'}}>优惠类型：</span>
+                        {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                                         this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
+                        </div>
+            </h4>
+            <h4>
+                <font color="red">价格：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
+            </h4>
+            <h4>
+                <font color="red">销量：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
+            </h4>
+            <h4>
+                <font color="red">限购数量：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum:""}
+            </h4>
+            <h4>
+                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(this.state.salesGroupDetail.hyGroupitemPromotions[0].dividMoney).toFixed(2)}</span></div>:<div></div>}
             </h4>
             <hr/>
-            <Card>
+            {/* <Card>
                         <WingBlank>
                             <div className="my2_product_info_div">
 
-                                {/* <WhiteSpace/> */}
 
                                 <Flex>
                                     <Flex.Item className="detail_info">类型：</Flex.Item>
@@ -432,7 +454,7 @@ export default class SalesGroupDetail extends React.Component {
                                 </Flex>
                             </div>
                         </WingBlank>
-            </Card>
+            </Card> */}
 
             <WhiteSpace></WhiteSpace>
 
