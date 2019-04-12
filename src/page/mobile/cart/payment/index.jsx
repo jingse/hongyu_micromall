@@ -352,7 +352,7 @@ class Payment extends React.Component {
 
 
         var order = {
-            "orderPhone":null,//localStorage.getItem("bindPhone")
+            "orderPhone":localStorage.getItem("bindPhone"),
             "orderWechatId":wechatId,
             "webusinessId":webusinessId,
 
