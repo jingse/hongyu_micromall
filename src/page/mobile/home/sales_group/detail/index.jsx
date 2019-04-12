@@ -151,7 +151,8 @@ export default class SalesGroupDetail extends React.Component {
         var fullPresents = null;
         if (this.state.salesGroupDetail.fullPresents && JSON.stringify(this.state.salesGroupDetail.fullPresents) !== '[]') {
             fullPresents = this.state.salesGroupDetail.fullPresents && this.state.salesGroupDetail.fullPresents.map((item, index) => {
-                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false}} key={index}>
+                console.log("fsdgfds",item);
+                return <Link to={{pathname: `/product/${item.fullPresentProduct.id}`, isPromotion: false,isPresent:true,guige:item.fullPresentProductSpecification.specification}} key={index}>
                     <Flex style={{background:'#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
                             <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
@@ -319,11 +320,15 @@ export default class SalesGroupDetail extends React.Component {
             console.log("after",tempban);
             bancontent = tempban && tempban.map((item, index) => {
             if(item.isTag==false){
-                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
+                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http:" + getServerIp() + item.sourcePath}/>
             }
+            
         });
         }
-        
+        if(bancontent.length==1){
+            bancontent[1]=bancontent[0];
+        }
+        console.log("wgudsiuasjd",bancontent);
         var start,end,a,b;
         if(this.state.salesGroupDetail.hyGroupitemPromotions){
             start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
@@ -374,7 +379,7 @@ export default class SalesGroupDetail extends React.Component {
 
 
         return <Layout>
-            <Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/sales_group'/>
+            <Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>
             <Card>
                 <Carousel
                     style={{touchAction:'none'}}

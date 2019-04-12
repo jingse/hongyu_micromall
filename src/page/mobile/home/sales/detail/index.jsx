@@ -429,7 +429,7 @@ export default class SalesDetail extends React.Component {
                 return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
             }
         });
-
+        console.log("wgudsiuasjd",bancontent);
 
         }
 
