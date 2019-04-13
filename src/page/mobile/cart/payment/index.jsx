@@ -708,9 +708,9 @@ class Payment extends React.Component {
                         <WhiteSpace size="xs"/>
                         {this.checkPromotionMoney(this.state.priceResult.promotionMoney)}
                         {this.checkFinalBalance()}
-                        <div className="discount_select price_text">+￥{this.state.shipFee}</div>
-                        <div className="discount_title">运费</div>
-                        <WhiteSpace size="xs"/>
+                        {/*<div className="discount_select price_text">+￥{this.state.shipFee}</div>*/}
+                        {/*<div className="discount_title">运费</div>*/}
+                        {/*<WhiteSpace size="xs"/>*/}
                         <div className="discount_select price_text">-￥{this.state.couponSub}</div>
                         <div className="discount_title">电子券</div>
                         <WhiteSpace size="xs"/>
