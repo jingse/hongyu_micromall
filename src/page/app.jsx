@@ -15,7 +15,6 @@ import searchRedirect from "./mobile/search/searchRedirect.jsx";
 import Product from "./mobile/product/index.jsx";
 import Recommend from "./mobile/home/recommend/index.jsx";
 import Payment from "./mobile/cart/payment/index.jsx";
-import PayResult from "./mobile/cart/payment/result/index.jsx";
 import CouponChoose from "./mobile/cart/payment/coupon/index.jsx";
 import Order from "./mobile/my/order/index.jsx";
 import OrderDetail from "./mobile/my/order/detail/index.jsx";
@@ -55,7 +54,6 @@ import MyPoints from "./mobile/my/points/index.jsx";
 
 import RefundApply from "./mobile/my/order/refund/index.jsx";
 import RefundDetail from "./mobile/my/order/refund/detail/index.jsx";
-import Logistic from "./mobile/my/order/logistic/index.jsx";
 import CommentOn from "./mobile/my/order/comment/index.jsx";
 
 export default class App extends React.Component {
@@ -91,7 +89,6 @@ export default class App extends React.Component {
                         <Route component={redirect} path='/redirect'/>
 
                         <Route component={Payment} path='/cart/payment' exact/>
-                        <Route component={PayResult} path='/cart/payment/result' exact/>
                         <Route component={CouponChoose} path='/cart/payment/coupon' exact/>
                         <Route component={Address} path='/address' exact/>
                         <Route component={AddAddress} path='/address/add' exact/>
@@ -126,7 +123,6 @@ export default class App extends React.Component {
                         <Route component={RefundApply} path='/my/order/refund' exact/>
                         <Route component={RefundDetail} path='/my/order/refund/detail' exact/>
 
-                        <Route component={Logistic} path='/my/order/logistic' exact/>
                         <Route component={CommentOn} path='/my/order/comment' exact/>
                         <Redirect to="/home" />
                     </Switch>

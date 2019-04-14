@@ -467,14 +467,14 @@ class Product extends React.Component {
                                 <Flex>
                                     <Flex.Item className="detail_info">市场价格：</Flex.Item>
                                     <Flex.Item className="detail_val" style={{color:'darkorange', textDecoration:'line-through'}}>
-                                        {this.state.currentMarketPrice}
+                                        {this.props.location.isPromotion && this.props.location.mPrice ? this.props.location.mPrice : this.state.currentMarketPrice}
                                     </Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">优惠价格：</Flex.Item>
                                     <Flex.Item className="detail_val" style={{color:'darkorange', fontSize:'1.2rem', fontStyle:'bold'}}>
-                                        {this.state.currentPrePrice}
+                                        {this.props.location.isPromotion && this.props.location.pPrice ? this.props.location.pPrice : this.state.currentPrePrice}
                                     </Flex.Item>
                                 </Flex>
 

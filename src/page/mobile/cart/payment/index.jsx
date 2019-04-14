@@ -16,14 +16,14 @@ import paymentApi from "../../../../api/payment.jsx";
 import {getServerIp} from "../../../../config.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import myApi from "../../../../api/my.jsx";
+import settingApi from "../../../../api/setting.jsx";
 
 // 设置全局变量
 // var balance = 0;
-
 // var shipFee = 0;
 // var couponSub = 0.0;
-
 // var products = [];
+
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
@@ -47,6 +47,7 @@ class Payment extends React.Component {
             balance:0,//余额
             balanceInput:'',//使用余额
             balancenum:0,
+            balanceMaxRatio: 1,
             shipFee:0,
             couponSub:0,//电子券
             presents: [],
@@ -110,7 +111,8 @@ class Payment extends React.Component {
                 this.requestDefaultMerchantAddress(uid);
                 break;
         }
-        
+
+        this.requestMaxBalanceRatio();
 
 
         if (this.props.location.products && this.props.location.price && this.props.location.presents) {
@@ -237,6 +239,18 @@ class Payment extends React.Component {
             if (!rs.success || !rs.obj || JSON.stringify(rs.obj) === "[]") {
                 this.setState({
                     available: false,
+                });
+            }
+        });
+    }
+
+    requestMaxBalanceRatio() {
+        settingApi.getSystemSetting("余额最大支付比例", (rs) => {
+            if(rs && rs.success) {
+                const ratio = parse(rs.obj.settingValue);
+
+                this.setState({
+                    balanceMaxRatio: ratio,
                 });
             }
         });
@@ -499,17 +513,19 @@ class Payment extends React.Component {
         }
         else{
             let moneyMax=parseFloat(this.state.balance.toFixed(2));
-            let moneyp = parseFloat((this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney + this.state.shipFee - this.state.couponSub).toFixed(2));
+            let moneyp = parseFloat((this.state.priceResult.totalMoney - this.state.priceResult.promotionMoney +
+                                    this.state.shipFee - this.state.couponSub).toFixed(2));
+            let balanceLimitedMoney = parseFloat((moneyp * this.state.balanceMaxRatio).toFixed(2));
             // console.log('moneyp',moneyp)
             // console.log('moneyMax',moneyMax,parseFloat(v))
-            if(moneyMax < moneyp){ 
+            if(moneyMax < balanceLimitedMoney){
                 if(parseFloat(v) > moneyMax){
                     v = moneyMax.toFixed(2)
                 }
             }
-            if(moneyMax >= moneyp){
-                if(parseFloat(v) >= moneyp || moneyp-parseFloat(v)<0.01){      
-                    v = (moneyp-0.01).toFixed(2)
+            if(moneyMax >= balanceLimitedMoney){
+                if(parseFloat(v) >= balanceLimitedMoney || balanceLimitedMoney-parseFloat(v)<0.01){
+                    v = (balanceLimitedMoney-0.01).toFixed(2)
                 }
                
             }
