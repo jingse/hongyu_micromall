@@ -3,6 +3,7 @@ import {SegmentedControl, List, Card, WhiteSpace, Flex} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import couponApi from "../../../../api/coupon.jsx";
+import DateManager from "../../../../common/DateManager";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -74,7 +75,7 @@ export default class DisposableCoupon extends React.Component {
     getRecordsContent() {
         return this.state.couponRecords && this.state.couponRecords.map((item, index) => {
             return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{this.getDate(new Date(item.useTime))}</Flex.Item>
+                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
                 <Flex.Item>满￥{item.couponCondition}可用</Flex.Item>
                 <Flex.Item>￥{item.sum}</Flex.Item>
             </Flex>
@@ -95,8 +96,8 @@ export default class DisposableCoupon extends React.Component {
                 <span>
                     满{item.couponCondition}可用 {this.isSuperimposed(item.canOverlay)}
                 </span>
-                {/*<Brief>{this.getDate(new Date(item.issueTime))} - {this.getDate(new Date(item.expireTime))}</Brief>*/}
-                <Brief>{this.getDate(new Date(item.expireTime))}到期</Brief>
+                {/*<Brief>{DateManager.getDate(new Date(item.issueTime))} - {DateManager.getDate(new Date(item.expireTime))}</Brief>*/}
+                <Brief>{DateManager.getDate(new Date(item.expireTime))}到期</Brief>
             </Item>
         });
     }
@@ -110,19 +111,12 @@ export default class DisposableCoupon extends React.Component {
                 <span>
                     满{item.couponCondition}可用 {this.isSuperimposed(item.canOverlay)}
                 </span>
-                {/*<Brief>{this.getDate(new Date(item.issueTime))} - {this.getDate(new Date(item.expireTime))}</Brief>*/}
-                <Brief>{this.getDate(new Date(item.expireTime))}到期</Brief>
+                {/*<Brief>{DateManager.getDate(new Date(item.issueTime))} - {DateManager.getDate(new Date(item.expireTime))}</Brief>*/}
+                <Brief>{DateManager.getDate(new Date(item.expireTime))}到期</Brief>
             </Item>
         });
     }
 
-
-    getDate(date) {
-        var Y = date.getFullYear() + '.';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
-        var D = date.getDate() + ' ';
-        return Y+M+D
-    }
 
     getContent(type) {
         console.log("type", type);

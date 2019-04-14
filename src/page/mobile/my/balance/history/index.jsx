@@ -3,6 +3,7 @@ import {Flex, Card, WhiteSpace,Pagination,Toast} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
+import DateManager from "../../../../../common/DateManager.jsx";
 
 const wechatId = localStorage.getItem("wechatId");
 
@@ -86,18 +87,12 @@ export default class UseHistory extends React.Component {
         // }
     }
 
-    getDate(date) {
-        var Y = date.getFullYear() + '-';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-        var D = date.getDate() + ' ';
-        return Y+M+D
-    }
 
     render() {
 
         const content = this.state.records && this.state.records.map((item, index) => {
             return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{this.getDate(new Date(item.useTime))}</Flex.Item>
+                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
                 <Flex.Item>{}</Flex.Item>
                 <Flex.Item>{item.useAmount}</Flex.Item>
             </Flex>

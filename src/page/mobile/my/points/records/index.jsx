@@ -4,6 +4,7 @@ import Navigation from "../../../../../components/navigation/index.jsx";
 import {WhiteSpace, Flex, Card, Toast, Pagination} from 'antd-mobile';
 import pointsApi from "../../../../../api/points.jsx";
 import "./index.less";
+import DateManager from "../../../../../common/DateManager.jsx";
 
 const pageSize = 10;
 // var totalPages = 0;
@@ -59,12 +60,6 @@ export default class ExchangeRecords extends React.Component {
         }
     }
 
-    getDate(date) {
-        var Y = date.getFullYear() + '.';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
-        var D = date.getDate() + ' ';
-        return Y+M+D
-    }
 
     checkPagination(num) {
         if (num === 0 || num === 1) {
@@ -105,7 +100,7 @@ export default class ExchangeRecords extends React.Component {
 
         const recordContent = this.state.pointsRecords && this.state.pointsRecords.map((item, index) => {
             return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{this.getDate(new Date(item.createTime))}</Flex.Item>
+                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
                 <Flex.Item>{this.checkChangeValue(item.changevalue)}</Flex.Item>
                 <Flex.Item>{item.reason}</Flex.Item>
             </Flex>

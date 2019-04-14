@@ -525,7 +525,8 @@ class Payment extends React.Component {
             }
             if(moneyMax >= balanceLimitedMoney){
                 if(parseFloat(v) >= balanceLimitedMoney || balanceLimitedMoney-parseFloat(v)<0.01){
-                    v = (balanceLimitedMoney-0.01).toFixed(2)
+                    // v = (balanceLimitedMoney-0.01).toFixed(2)
+                    v = balanceLimitedMoney.toFixed(2)
                 }
                
             }

@@ -3,6 +3,7 @@ import {List, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
+import DateManager from "../../../../../common/DateManager.jsx";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -36,13 +37,6 @@ export default class BalancePurchase extends React.Component {
         });
     }
 
-    getDate(date) {
-        var Y = date.getFullYear() + '.';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
-        var D = date.getDate() + ' ';
-        return Y+M+D
-    }
-
 
     render() {
 
@@ -59,7 +53,7 @@ export default class BalancePurchase extends React.Component {
                 <span>
                     ￥{item.sum}
                 </span>
-                <Brief>{this.getDate(new Date(item.orderTime))}购买</Brief>
+                <Brief>{DateManager.getDate(new Date(item.orderTime))}购买</Brief>
             </Item>
         });
 
