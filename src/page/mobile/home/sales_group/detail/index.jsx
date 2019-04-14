@@ -39,7 +39,6 @@ export default class SalesGroupDetail extends React.Component {
             modalSelectorText: '未选择',
 
             isadd: 0,
-            modal: false,
 
             specialtyId: -1,
             mynum :-1,
