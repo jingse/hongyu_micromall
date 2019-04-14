@@ -332,13 +332,6 @@ class Product extends React.Component {
         return null
     }
 
-    // checkDest() {
-    //     if (!localStorage.getItem("dest")) {
-    //         return <SearchNavBar/>
-    //     } else {
-    //         return <SearchNavBar dest={localStorage.getItem("dest")}/>
-    //     }
-    // }
 
     // 如果是优惠产品页进来的，不显示购物车底栏
     checkCartDisplay() {
@@ -414,7 +407,6 @@ class Product extends React.Component {
         return <Layout>
 
             <a name="top"/>
-            {/*{this.checkDest()}*/}
 
             <Card className="general_container">
                 <Carousel
