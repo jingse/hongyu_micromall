@@ -2,7 +2,6 @@
 模拟分销
  */
 import queryString from 'query-string';
-import { Toast} from 'antd-mobile';
 import homeApi from "../api/home.jsx";
 var a;
 function getMyOpenId(){

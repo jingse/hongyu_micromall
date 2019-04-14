@@ -5,6 +5,7 @@ import Navigation from "../../../../../components/navigation/index.jsx";
 // import coupon_available from "../../../../../static/mockdata/payment_coupon_available.js";
 // import coupon_unavailable from "../../../../../static/mockdata/payment_coupon_unavailable.js";
 import couponApi from "../../../../../api/coupon.jsx";
+import DateManager from "../../../../../common/DateManager.jsx";
 
 const CheckboxItem = Checkbox.CheckboxItem;
 const wechatId = parseInt(localStorage.getItem("wechatId"));
@@ -58,12 +59,6 @@ export default class CouponChoose extends React.Component {
         return <WhiteSpace/>
     }
 
-    getDate(date) {
-        var Y = date.getFullYear() + '.';
-        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
-        var D = date.getDate() + ' ';
-        return Y+M+D
-    }
 
     render() {
 
@@ -86,7 +81,7 @@ export default class CouponChoose extends React.Component {
                             <WhiteSpace/>
                             {this.checkOverlay(item.canOverlay)}
                             <div style={{marginBottom: 10, color:'#ccc'}}>
-                                {this.getDate(new Date(item.issueTime)) + " - " + this.getDate(new Date(item.expireTime))}
+                                {DateManager.getDate(new Date(item.issueTime)) + " - " + DateManager.getDate(new Date(item.expireTime))}
                             </div>
                             <WhiteSpace/>
                         </Flex.Item>
