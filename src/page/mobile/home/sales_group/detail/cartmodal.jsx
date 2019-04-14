@@ -1,8 +1,7 @@
 import React from 'react';
-import { Flex, Modal, Toast } from 'antd-mobile';
+import { Modal, Toast } from 'antd-mobile';
 import "./index.less";
 import proApi from "../../../../../api/product.jsx";
-import {getServerIp} from "../../../../../config.jsx";
 
 export default class CartModal extends React.Component {
     constructor(props) {

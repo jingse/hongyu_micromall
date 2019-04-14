@@ -6,9 +6,9 @@ import "./index.less";
 // import sales_detail from "../../../../../static/mockdata/sales_detail.js"; // mock假数据
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
-import PutInCart from '../../../product/putincart.jsx';
+import PutInCart from '../../../../../components/cart/putincart.jsx';
+import CartModal from '../../../../../components/cart/cartmodal.jsx';
 import cartApi from "../../../../../api/cart.jsx";
-import CartModal from '../../../product/cartmodal.jsx';
 import proApi from "../../../../../api/product.jsx";
 import PropTypes from "prop-types";
 
@@ -120,6 +120,19 @@ export default class SalesDetail extends React.Component {
         });
     }
 
+    getCartCount() {
+        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
+            if (rs && rs.success) {
+                const count = rs.obj.length;
+                localStorage.setItem("cartCount", count);
+
+                this.setState({
+                    cartCount: count,
+                });
+            }
+        });
+    }
+
     buyImmediately() {
         if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
@@ -169,6 +182,32 @@ export default class SalesDetail extends React.Component {
             }
         });
 
+    }
+
+    showModal(val) {
+        this.setState({modal: true, isadd: val});
+    }
+
+    hideModal(status) {
+        this.setState({modal: false});
+        if (status === 'success')
+            Toast.success('选择成功～', 1, null, false);
+    }
+
+    changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
+        console.log('加购物车的数量',num);
+        this.setState({
+            currentPrePrice: pPrice,
+            currentMarketPrice: mPrice,
+            quantity: num,
+            specification: active.specification,
+            modalSelectorText: active.specification + '  ×' + num,
+            specificationId: specificationId,
+        },()=>{
+            console.log('this.state.isadd', this.state.isadd);
+            if(this.state.isadd === 1)
+                this.addToCart();
+        });
     }
 
 
@@ -300,16 +339,6 @@ export default class SalesDetail extends React.Component {
 
     }
 
-    showModal(val) {
-        this.setState({modal: true, isadd: val});
-    }
-
-    hideModal(status) {
-        this.setState({modal: false});
-        if (status === 'success')
-            Toast.success('选择成功～', 1, null, false);
-    }
-
     checkCartDisplay() {
         return <PutInCart style={{height:'3.125rem'}}
                           addToCart={this.addToCart.bind(this)}
@@ -318,31 +347,7 @@ export default class SalesDetail extends React.Component {
         />
     }
 
-    changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
-        console.log('加购物车的数量',num);
-        this.setState({
-            currentPrePrice: pPrice,
-            currentMarketPrice: mPrice,
-            quantity: num,
-            specification: active.specification,
-            modalSelectorText: active.specification + '  ×' + num,
-            specificationId: specificationId,
-        },()=>{
-            console.log('this.state.isadd', this.state.isadd);
-            if(this.state.isadd === 1)
-                this.addToCart();
-        });
-    }
 
-    showModal(val) {
-        this.setState({modal: true, isadd: val});
-    }
-
-    hideModal(status) {
-        this.setState({modal: false});
-        if (status === 'success')
-            Toast.success('选择成功～', 1, null, false);
-    }
 
     checkPresents() {
         var fullPresents = null;

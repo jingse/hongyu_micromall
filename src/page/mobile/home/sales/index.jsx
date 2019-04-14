@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, WhiteSpace,Toast } from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
-// import SearchNavBar from "../../../../components/search/index.jsx";
 // import Bottom from "../../../../components/bottom/index.jsx";
 import "./index.less";
 // import sales_data from "../../../../static/mockdata/sales.js"; //mock假数据
