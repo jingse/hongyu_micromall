@@ -347,6 +347,7 @@ export default class SalesDetail extends React.Component {
     checkPresents() {
         var fullPresents = null;
         var temp = this.state.salesDetail;
+        console.log("asfdsaf",temp);
         if (temp.hySingleitemPromotions && temp.hySingleitemPromotions[0].hyPromotion.promotionRule=="满赠") {
             fullPresents = temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents && temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents.map((item, index) => {
                 console.log("asfsgastgdrg",item.fullPresentProductSpecification.specification);
@@ -388,7 +389,7 @@ export default class SalesDetail extends React.Component {
 
             return <Link to={{pathname: `/product/${item.specialtyId.id}`, isPromotion: true, ruleType: item.hyPromotion.promotionRule,
                 discounts: item.hyPromotion.hyFullDiscounts, subtracts: item.hyPromotion.hyFullSubstracts, presents: item.hyPromotion.hyFullPresents,
-                promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification}} key={index}>
+                promoteNum: item.promoteNum, limitedNum: item.limitedNum, guige:item.specificationId.specification,pPrice:item.specificationId.platformPrice,mPrice:item.specificationId.marketPrice}} key={index}>
                 <Card>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
@@ -474,16 +475,20 @@ export default class SalesDetail extends React.Component {
                                          this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents):""}
             </h4>
             <h4>
-                <font color="red">价格：</font>
+                <font color="red">活动价格：</font>
                 {this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}
             </h4>
             <h4>
-                <font color="red">销量：</font>
+                <font color="red">已销数量：</font>
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}
             </h4>
             <h4>
                 <font color="red">限购数量：</font>
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}
+            </h4>
+            <h4>
+                <font color="red">活动库存：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].promoteNum:""}
             </h4>
             <h4>
                 {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail.hySingleitemPromotions?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney).toFixed(2)}</div>:<div></div>}

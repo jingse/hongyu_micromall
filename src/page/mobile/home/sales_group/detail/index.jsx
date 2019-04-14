@@ -448,7 +448,9 @@ export default class SalesGroupDetail extends React.Component {
                 subtracts: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts, 
                 presents: this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents,
                 promoteNum: this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum, limitedNum: this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum, 
-                guige:item.itemSpecificationId.specification}} key={index}>
+                guige:item.itemSpecificationId.specification,
+                pPrice:item.itemSpecificationId.platformPrice,
+                mPrice:item.itemSpecificationId.marketPrice}} key={index}>
                 <Card>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
@@ -508,11 +510,11 @@ export default class SalesGroupDetail extends React.Component {
                         </div>
             </h4>
             <h4>
-                <font color="red">价格：</font>
+                <font color="red">活动价格：</font>
                 {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
             </h4>
             <h4>
-                <font color="red">销量：</font>
+                <font color="red">已销数量：</font>
                 {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
             </h4>
             <h4>
@@ -520,80 +522,29 @@ export default class SalesGroupDetail extends React.Component {
                 {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum:""}
             </h4>
             <h4>
+                <font color="red">活动库存：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum:""}
+            </h4>
+            <h4>
                 {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(this.state.salesGroupDetail.hyGroupitemPromotions[0].dividMoney).toFixed(2)}</span></div>:<div></div>}
             </h4>
             <hr/>
-            {/* <Card>
-                        <WingBlank>
-                            <div className="my2_product_info_div">
-
-
-                                <Flex>
-                                    <Flex.Item className="detail_info">类型：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">
-                                    {this.state.salesGroupDetail.hyGroupitemPromotions?this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
-                                         this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents):""}
-                                    
-                                    </Flex.Item>
-                                    <Flex.Item className="detail_info">运费：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
-                                </Flex>
-                                <Flex>
-                                    <Flex.Item className="detail_info">限购：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum:""}</Flex.Item>
-                                    <Flex.Item className="detail_info">销量：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
-                                </Flex>
-                                <Flex>
-                                    <Flex.Item className="detail_info">市场价：</Flex.Item>
-                                    <Flex.Item className="detail_val_left">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].marketPrice:""}</Flex.Item>
-                                    <Flex.Item className="detail_info">平台价：</Flex.Item>
-                                    <Flex.Item className="detail_val_right">{this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}</Flex.Item>
-                                </Flex>
-                            </div>
-                        </WingBlank>
-            </Card> */}
 
             <WhiteSpace/>
 
 
-                <WingBlank>
-                <div className="para_title">活动介绍</div>
-                <div dangerouslySetInnerHTML={{ __html: this.state.salesGroupData.introduction}} />
-                </WingBlank>
+
 
             </WingBlank>
             </Card>
 
             <WhiteSpace/>
-            {/* <List.Item
-                wrap
-                extra={
-                    <div className="step2">  
-                        <div className="add_minus"onClick={() => {this.setState({val:(this.state.val-1)>1?this.state.val-1:1})}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                        </div>
-                        <div className="value">
-                        {this.state.val}
-                        </div>
-                        <div className="add_minus" onClick={() => {this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})}}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                        </div>
-                </div>
-                }
-            >
-                数量
-            </List.Item> */}
             {content}
             {this.checkPresents()}
-
-            {/* <Bottom style={{height:'3.125rem'}}
-                    addToCart={this.addToCart.bind(this)}
-                    buyImmediately={this.buyImmediately.bind(this)}
-                    cartNum={this.state.cartNum}
-                    limmit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
-                    myval={this.state.val}/> */}
-
+            <WingBlank>
+                <div className="para_title">活动介绍</div>
+                <div dangerouslySetInnerHTML={{ __html: this.state.salesGroupData.introduction}} />
+                </WingBlank>
                     <WingBlank>
                        <div className="para_title" >服务承诺</div>
                        <div className="paragraph">
