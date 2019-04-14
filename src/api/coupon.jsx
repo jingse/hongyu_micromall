@@ -77,6 +77,7 @@ var api = {
         });
     },
 
+    // 充值记录
     getBalanceRecords(wechatId, page, rows, callback) {
         let formdata = new FormData();
         formdata.append("wechat_id", wechatId);
@@ -91,6 +92,23 @@ var api = {
                 callback && callback(rs);
             }
         });
+    },
+
+    // TODO: 下单使用记录
+    getBalanceUseHistory(wechatId, page, rows, callback) {
+        // let formdata = new FormData();
+        // formdata.append("wechat_id", wechatId);
+        // formdata.append("page", page);
+        // formdata.append("rows", rows);
+        //
+        // http.ajax({
+        //     method: 'POST',
+        //     url: getServerHost() + '/coupon/balance_used_coupon/use_history',
+        //     data: formdata,
+        //     success: (rs) => {
+        //         callback && callback(rs);
+        //     }
+        // });
     },
 
     getBalancePurchase(wechatId, callback) {

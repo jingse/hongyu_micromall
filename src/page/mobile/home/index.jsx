@@ -163,6 +163,10 @@ class Home extends React.Component {
         // let uuuu = 27;
         // let leoname = 'Guihuan';
 
+        // let leoopid = 'oH0MfxEv2CNGMw0RGbY7LD1quUdc';
+        // let uuuu = 20;
+        // let leoname = 'DuEnBo';
+
 
         // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
         homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {

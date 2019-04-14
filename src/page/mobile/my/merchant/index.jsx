@@ -44,12 +44,12 @@ export default class ProfitShare extends React.Component {
                     headerValue: '￥' + this.props.location.money
                 });
                 break;
-            case 'remain':
-                this.setState({
-                    headerName: '待分成订单数量',
-                    headerValue: '0单'
-                });
-                break;
+            // case 'remain':
+            //     this.setState({
+            //         headerName: '待分成订单数量',
+            //         headerValue: '0单'
+            //     });
+            //     break;
             default:
                 break;
         }
