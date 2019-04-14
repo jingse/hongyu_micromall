@@ -247,7 +247,7 @@ class Payment extends React.Component {
     requestMaxBalanceRatio() {
         settingApi.getSystemSetting("余额最大支付比例", (rs) => {
             if(rs && rs.success) {
-                const ratio = parse(rs.obj.settingValue);
+                const ratio = parseFloat(rs.obj.settingValue);
 
                 this.setState({
                     balanceMaxRatio: ratio,
