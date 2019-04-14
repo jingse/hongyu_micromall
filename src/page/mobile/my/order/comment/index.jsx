@@ -143,14 +143,14 @@ class CommentOn extends React.Component {
                     console.log('files size',files.size)
                     formData.append("files", files);
                     console.log('formData',formData.get("files"))
-                    fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
-                    //fetch("http://admin.lvxingbox.cn/hyapi/resource/image/upload",{
+                    // fetch("http://admin.swczyc.com/hyapi/resource/image/upload",{
+                    fetch("http://admin.lvxingbox.cn/hyapi/resource/image/upload",{
                     method: 'POST',
                     headers: {
                     },body: formData,}).then((response) => response.json()).then((rs)=>{
                         console.log('sourcePath',rs)
-                        filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
-                        //filesURL[index].push({"sourcePath":"http://ymymmall.lvxingbox.cn" + rs.obj[0]});
+                        // filesURL[index].push({"sourcePath":"http://ymymmall.swczyc.com" + rs.obj[0]});
+                        filesURL[index].push({"sourcePath":"http://ymymmall.lvxingbox.cn" + rs.obj[0]});
                         sendPic=sendPic+1;
                         console.log("uppppppppppppp",sendPic,key,index)
 
