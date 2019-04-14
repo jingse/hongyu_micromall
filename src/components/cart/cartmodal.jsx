@@ -1,8 +1,8 @@
 import React from 'react';
 import { Flex, Modal, Toast } from 'antd-mobile';
-import "./index.less";
-import proApi from "../../../api/product.jsx";
-import {getServerIp} from "../../../config.jsx";
+import "./cartmodal.less";
+import proApi from "../../api/product.jsx";
+import {getServerIp} from "../../config.jsx";
 
 
 var temp = [];

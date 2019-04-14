@@ -9,10 +9,10 @@ import locManager from "../../../common/LockManager.jsx";
 import {getServerIp, wxconfig} from "../../../config.jsx";
 
 import Card from "../../../components/card/index.jsx";
+import CartModal from '../../../components/cart/cartmodal.jsx';
+import PutInCart from '../../../components/cart/putincart.jsx';
 import Comment from "./comment.jsx";
 import Recommend from "./recommend.jsx";
-import CartModal from './cartmodal.jsx';
-import PutInCart from './putincart.jsx';
 import './index.less';
 
 import wxApi from "../../../api/wechat.jsx";

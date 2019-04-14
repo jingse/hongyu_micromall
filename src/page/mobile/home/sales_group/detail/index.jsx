@@ -10,7 +10,7 @@ import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 import cartApi from "../../../../../api/cart.jsx";
 import './index.less';
-import PutInCart from '../../../product/putincart.jsx';
+import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from './cartmodal.jsx';
 import proApi from "../../../../../api/product.jsx";
 
@@ -25,9 +25,6 @@ export default class SalesGroupDetail extends React.Component {
             val: 1,
             inbound:0,
             modal: false,
-
-            cartNum: localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'',
-
 
             ruleType: '',
             presents: [],
@@ -275,7 +272,7 @@ export default class SalesGroupDetail extends React.Component {
                 const count = rs.obj.length;
                 localStorage.setItem("cartCount", count);
                 this.setState({
-                    cartNum: count,
+                    cartCount: count,
                 });
             }
         });
@@ -312,20 +309,6 @@ export default class SalesGroupDetail extends React.Component {
                 Toast.info("添加失败！", 1);
             }
         });
-    }
-    checkSpecificationDisplay() {
-        // if(this.state.specialtyId != -1 && this.state.featureData != -1){
-            // console.log("wawawawawa",this.state.salesDetail.hySingleitemPromotions[0].limitedNum);
-            return <CartModal
-            productData={this.state.data}
-            modalData={this.state.featureData}
-            modal={this.state.modal}
-            hideModal={this.hideModal.bind(this)}
-            selectorText={this.changeModalSelectorText.bind(this)}
-            limit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
-            />
-        // }
-
     }
 
     buyImmediately() {
@@ -376,6 +359,23 @@ export default class SalesGroupDetail extends React.Component {
         if (status === 'success')
             Toast.success('选择成功～', 1, null, false);
     }
+
+
+    checkSpecificationDisplay() {
+        // if(this.state.specialtyId != -1 && this.state.featureData != -1){
+        // console.log("wawawawawa",this.state.salesDetail.hySingleitemPromotions[0].limitedNum);
+        return <CartModal
+            productData={this.state.data}
+            modalData={this.state.featureData}
+            modal={this.state.modal}
+            hideModal={this.hideModal.bind(this)}
+            selectorText={this.changeModalSelectorText.bind(this)}
+            limit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+        />
+        // }
+
+    }
+
 
     checkCartDisplay() {
         return <PutInCart style={{height:'3.125rem'}}

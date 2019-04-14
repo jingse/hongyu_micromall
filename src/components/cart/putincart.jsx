@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {Button, TabBar, Modal} from 'antd-mobile';
+import "./putincart.less";
+
 
 const alert = Modal.alert;
 

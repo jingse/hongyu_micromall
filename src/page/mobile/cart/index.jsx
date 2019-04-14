@@ -77,6 +77,7 @@ class Cart extends React.Component {
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
     }
+
     requestCartList() {
         console.log("cart wechatid",localStorage.getItem("wechatId"));
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
@@ -152,11 +153,6 @@ class Cart extends React.Component {
                 localStorage.setItem("cartCount", count);
             }
         });
-    }
-
-    openNav(index) {
-        const style = { width : "70%", top: (55+ index * 105).toString() + 'px' };
-        this.setState({ style });
     }
 
     closeNav() {
