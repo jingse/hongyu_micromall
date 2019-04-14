@@ -22,7 +22,7 @@ const InfoCard = ({data, ...props}) => (
         </Flex>
         <Flex>
             <div style={{flex:'0 0 55%'}}>
-                <div className="iconH iconH_inline icon_coins" style={{marginRight:'10px'}}/>总价：￥{data.final_fee}
+                <div className="iconH iconH_inline icon_coins" style={{marginRight:'10px'}}/>总价：￥{data.total_fee}
             </div>
             <div style={{flex:'0 0 45%'}}>
                 <div className="iconH iconH_inline icon_sharemoney" style={{marginRight:'10px'}}/>分成：￥{data.share_fee}

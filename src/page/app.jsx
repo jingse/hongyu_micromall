@@ -38,6 +38,7 @@ import Balance from "./mobile/my/balance/index.jsx";
 import BalancePurchase from "./mobile/my/balance/purchase/index.jsx";
 import BalanceRecords from "./mobile/my/balance/records/index.jsx";
 import BalanceRecharge from "./mobile/my/balance/recharge/index.jsx";
+import BalanceUseHistory from "./mobile/my/balance/history/index.jsx";
 import DisposableCoupon from "./mobile/my/disposableCoupon/index.jsx";
 import ProfitShare from "./mobile/my/merchant/index.jsx";
 import Setting from "./mobile/my/setting/index.jsx";
@@ -104,6 +105,7 @@ export default class App extends React.Component {
                         <Route component={BalancePurchase} path='/my/balance/purchase' exact/>
                         <Route component={BalanceRecords} path='/my/balance/records' exact/>
                         <Route component={BalanceRecharge} path='/my/balance/recharge' exact/>
+                        <Route component={BalanceUseHistory} path='/my/balance/history' exact/>
 
                         <Route component={DisposableCoupon} path='/my/coupon/disposable' exact/>
                         <Route component={ProfitShare} path='/my/merchant' exact/>
