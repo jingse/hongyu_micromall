@@ -102,13 +102,6 @@ export default class Sales extends React.Component {
         return content
     }
 
-    // checkDest() {
-    //     if (this.props.location.dest) {
-    //         return <SearchNavBar dest={this.props.location.dest}/>
-    //     } else {
-    //         return <SearchNavBar/>
-    //     }
-    // }
 
     render() {
 
@@ -156,8 +149,6 @@ export default class Sales extends React.Component {
         });
 
         return <Layout header={false} footer={true}>
-
-            {/*{this.checkDest()}*/}
 
             <div style={{borderBottom: '1px solid green', backgroundColor:'white', color:'green', fontSize:'bold'}}>
                 <Flex>
