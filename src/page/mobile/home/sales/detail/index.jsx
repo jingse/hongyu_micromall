@@ -456,7 +456,7 @@ export default class SalesDetail extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={false}
+                    dots={true}
                 >
                 {bancontent}
             </Carousel>
