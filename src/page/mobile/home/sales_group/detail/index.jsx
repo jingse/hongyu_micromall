@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {Card, WingBlank, WhiteSpace, Toast, List, Flex,Carousel} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
+import Bottom from "./bottom.jsx";
 // import sales_group_detail from "../../../../../static/mockdata/sales_group_detail.js"; // mock假数据
 import homeApi from "../../../../../api/home.jsx";
 import {getServerIp} from "../../../../../config.jsx";
@@ -514,7 +515,7 @@ export default class SalesGroupDetail extends React.Component {
             </h4>
             <h4>
                 <font color="red">已销数量：</font>
-                {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted:""}
             </h4>
             <h4>
                 <font color="red">限购数量：</font>
