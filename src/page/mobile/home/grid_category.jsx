@@ -64,6 +64,25 @@ export default class GridCategory extends React.Component {
         
     }
 
+    getSalesContent(ruleType, substracts, discounts, presents) {
+        var content = null;
+
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "打" + item.discountOff*10 + "折"
+            });
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                // return "满" + item.fullPresentRequirenment + "赠" + item.fullPresentProduct.name +"*"+item.fullPresentProductNumber
+                return "满" + item.fullPresentRequirenment + "赠商品"  
+            });
+        }
+        return content
+    }
 
     render() {
 
@@ -89,6 +108,7 @@ export default class GridCategory extends React.Component {
         });
 
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
+            console.log("sfdsaf",item);
             for(let i = 0;i < item.pics.length; i++){
                 if(item.pics[i].isTag == 1){
                     this.state.mypic = item.pics[i].mediumPath;
@@ -104,7 +124,7 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="product_name">{item.name}</div> 
                     <WhiteSpace/>
-                    <div className="product_amount">{item.ruleType}</div>
+                    <div className="myzhekou_amount">{this.getSalesContent(item.ruleType,item.fullSubstracts,item.fullDiscounts,item.fullPresents)}</div>
                     <WhiteSpace/>
                     {/* <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/> */}
@@ -114,6 +134,7 @@ export default class GridCategory extends React.Component {
         });
 
         const content2 = topOfCoupon2 && topOfCoupon2.map((item, index) => {
+            console.log("sfdsaf2",item);
             for(var i=0;i<item.pics.length;i++){
                 if(item.pics[i].isTag == 1){
                     this.state.mypic = item.pics[i].mediumPath;
@@ -128,7 +149,7 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="product_name">{item.name}</div> 
                     <WhiteSpace/>
-                    <div className="product_amount">{item.ruleType}</div>
+                    <div className="myzhekou_amount">{this.getSalesContent(item.ruleType,item.fullSubstracts,item.fullDiscounts,item.fullPresents)}</div>
                     <WhiteSpace/>
                     {/* <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/> */}
