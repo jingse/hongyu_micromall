@@ -484,7 +484,7 @@ export default class SalesDetail extends React.Component {
                 {this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}
             </h4>
             <h4>
-                <font color="red">已销数量：</font>
+                <font color="red">已售数量：</font>
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].specificationId.hasSold:""}
             </h4>
             <h4>

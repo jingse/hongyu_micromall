@@ -151,6 +151,9 @@ export default class GridCategory extends React.Component {
                     <WhiteSpace/>
                     <div className="myzhekou_amount">{this.getSalesContent(item.ruleType,item.fullSubstracts,item.fullDiscounts,item.fullPresents)}</div>
                     <WhiteSpace/>
+                    <div className="myzhekou_amount">{item.groupItemPromotions[0].havePromoted}人付款</div>
+                    <WhiteSpace/>
+                    <div className="myzhekou_amount"><font color="red">￥{item.groupItemPromotions[0].sellPrice}起</font></div>
                     {/* <div className="product_price">￥{item.pPrice}元起</div>
                     <WhiteSpace size='xs'/> */}
                 </Link>

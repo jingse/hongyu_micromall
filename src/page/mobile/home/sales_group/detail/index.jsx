@@ -461,7 +461,7 @@ export default class SalesGroupDetail extends React.Component {
                         <WhiteSpace/>
                         <div style={{marginBottom: 5, fontWeight:'bold'}}>{item.itemId.name}</div>
                         <WhiteSpace/>
-                        <div style={{marginBottom: 5}}>单买价格：<span style={{color:'red'}}>￥{item.temp}元</span></div>
+                        <div style={{marginBottom: 5}}>单买价格：<span style={{color:'red'}}>￥{item.itemSpecificationId.platformPrice}元</span></div>
                         <WhiteSpace/>
                         <div style={{marginBottom: 5}}>优惠规格：<span style={{color:'red'}}>{item.itemSpecificationId.specification}</span></div>
                         {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
@@ -514,7 +514,7 @@ export default class SalesGroupDetail extends React.Component {
                 {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
             </h4>
             <h4>
-                <font color="red">已销数量：</font>
+                <font color="red">已售数量：</font>
                 {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted:""}
             </h4>
             <h4>
@@ -526,7 +526,7 @@ export default class SalesGroupDetail extends React.Component {
                 {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum:""}
             </h4>
             <h4>
-                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(this.state.salesGroupDetail.hyGroupitemPromotions[0].dividMoney).toFixed(2)}</span></div>:<div></div>}
+                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'black'}}>{parseFloat(this.state.salesGroupDetail.dividMoney).toFixed(2)}</span></div>:<div></div>}
             </h4>
             <hr/>
 
