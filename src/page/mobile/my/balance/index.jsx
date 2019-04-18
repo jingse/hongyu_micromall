@@ -80,13 +80,13 @@ export default class Balance extends React.Component {
                     充值记录
                 </List.Item>
 
-                {/*<List.Item*/}
-                {/*    thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"*/}
-                {/*    arrow="horizontal"*/}
-                {/*    onClick={() => {this.context.router.history.push('/my/balance/history')}}*/}
-                {/*>*/}
-                {/*    使用记录*/}
-                {/*</List.Item>*/}
+                <List.Item
+                    thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                    arrow="horizontal"
+                    onClick={() => {this.context.router.history.push('/my/balance/history')}}
+                >
+                    使用记录
+                </List.Item>
 
                 <List.Item
                     thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"

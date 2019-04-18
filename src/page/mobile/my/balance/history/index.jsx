@@ -42,7 +42,7 @@ export default class UseHistory extends React.Component {
             this.setState({
                 curPage: --this.state.curPage,
             },()=>{
-                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+                this.requestBalanceUseHistory(wechatId,this.state.curPage,10);
             });
 
         }
@@ -55,17 +55,15 @@ export default class UseHistory extends React.Component {
             this.setState({
                 curPage: ++this.state.curPage,
             },()=>{
-                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+                this.requestBalanceUseHistory(wechatId, this.state.curPage,10);
             });
 
         }
     }
 
     checkPagination(num) {
-        console.log(num)
-        // if (num === 0 || num === 1) {
-        //     return null
-        // } else {
+        console.log(num);
+
         return <div>
             <Pagination
                 total={this.state.totalPages}
@@ -84,17 +82,17 @@ export default class UseHistory extends React.Component {
                 style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
             />
         </div>
-        // }
     }
 
 
     render() {
 
-        const content = this.state.records && this.state.records.map((item, index) => {
+        const content = this.state.history && this.state.history.map((item, index) => {
             return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
-                <Flex.Item>{}</Flex.Item>
-                <Flex.Item>{item.useAmount}</Flex.Item>
+                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
+                <Flex.Item>{item.type === "use" ? "使用" : "退返"}</Flex.Item>
+                <Flex.Item>{item.amount}</Flex.Item>
+                <Flex.Item>{item.surplus}</Flex.Item>
             </Flex>
         });
 
@@ -105,8 +103,9 @@ export default class UseHistory extends React.Component {
             <Card>
                 <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
                     <Flex.Item style={{padding:'0.5rem'}}>时间</Flex.Item>
-                    <Flex.Item>购买的产品</Flex.Item>
-                    <Flex.Item>电子券金额</Flex.Item>
+                    <Flex.Item>类型</Flex.Item>
+                    <Flex.Item>使用金额</Flex.Item>
+                    <Flex.Item>当前剩余</Flex.Item>
                 </Flex>
                 <WhiteSpace/>
                 {content}
