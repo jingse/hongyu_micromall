@@ -94,21 +94,21 @@ var api = {
         });
     },
 
-    // TODO: 下单使用记录
+    // 下单使用记录
     getBalanceUseHistory(wechatId, page, rows, callback) {
-        // let formdata = new FormData();
-        // formdata.append("wechat_id", wechatId);
-        // formdata.append("page", page);
-        // formdata.append("rows", rows);
-        //
-        // http.ajax({
-        //     method: 'POST',
-        //     url: getServerHost() + '/coupon/balance_used_coupon/use_history',
-        //     data: formdata,
-        //     success: (rs) => {
-        //         callback && callback(rs);
-        //     }
-        // });
+        let formdata = new FormData();
+        formdata.append("wechatid", wechatId);
+        formdata.append("page", page);
+        formdata.append("rows", rows);
+
+        http.ajax({
+            method: 'POST',
+            url: getServerHost() + '/wechataccount/balance/list/view',
+            data: formdata,
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
     },
 
     getBalancePurchase(wechatId, callback) {

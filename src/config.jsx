@@ -8,8 +8,8 @@ function getServerHost() {
         params[theParams[0]] = decodeURI(theParams[1]);
     }
 
-    //  let onlineURL = "//ymymmall.swczyc.com"; // 线上地址
-    //  let devURL = "//admin.swczyc.com/hyapi/ymmall"; // 后台地址
+     // let onlineURL = "//ymymmall.swczyc.com"; // 线上地址
+     // let devURL = "//admin.swczyc.com/hyapi/ymmall"; // 后台地址
      let onlineURL = "//ymymmall.lvxingbox.cn"; // 线上地址
      let devURL = "//admin.lvxingbox.cn/hyapi/ymmall"; // 后台地址
 
