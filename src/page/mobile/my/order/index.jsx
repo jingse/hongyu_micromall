@@ -661,7 +661,7 @@ export default class Order extends React.Component {
             height: this.state.height,
             overflow: 'scroll',
         }}> 
-        <PullToRefresh
+        {/* <PullToRefresh
             style={{
                 height: this.state.height,
                 overflow: 'scroll',
@@ -682,15 +682,19 @@ export default class Order extends React.Component {
                     this.setState({ refreshing: false });
                 }, 1000);
             }}
-        >
+        > */}
         <div ref={el => this.lv = el} style={{
                 height: this.state.height,
             }}>
             {orderContent}
             <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
         </div>
         
-        </PullToRefresh>
+        {/* </PullToRefresh> */}
         </div>
     }
 
