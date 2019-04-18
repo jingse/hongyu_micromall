@@ -683,12 +683,16 @@ export default class Order extends React.Component {
                 }, 1000);
             }}
         >
-        <div ref={el => this.lv = el} style={{
+        {/* <div ref={el => this.lv = el} style={{
                 height: this.state.height,
-            }}>
+            }}> */}
             {orderContent}
             <div className='addMore' onClick={()=>this.addMore()}>加载更多</div>
-        </div>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
+            <WhiteSpace></WhiteSpace>
+        {/* </div> */}
         
         </PullToRefresh>
         </div>

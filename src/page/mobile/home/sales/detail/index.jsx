@@ -43,7 +43,7 @@ export default class SalesDetail extends React.Component {
 
             data: {},
             featureData: -1,
-
+            dots : true,
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
         };
     }
@@ -437,6 +437,10 @@ export default class SalesDetail extends React.Component {
                 return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
             }
         });
+        if(bancontent.length==1){
+            this.state.dots=false;
+            bancontent[1]=bancontent[0];
+        }
         console.log("wgudsiuasjd",bancontent);
 
         }
@@ -462,7 +466,7 @@ export default class SalesDetail extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={true}
+                    dots={this.state.dots}
                 >
                 {bancontent}
             </Carousel>

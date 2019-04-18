@@ -51,7 +51,7 @@ export default class SalesGroupDetail extends React.Component {
             featureData: -1,
 
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
-
+            dots : true
         };
     }
 
@@ -425,6 +425,7 @@ export default class SalesGroupDetail extends React.Component {
         });
         }
         if(bancontent.length==1){
+            this.state.dots=false;
             bancontent[1]=bancontent[0];
         }
         console.log("wgudsiuasjd",bancontent);
@@ -491,7 +492,7 @@ export default class SalesGroupDetail extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={true}
+                    dots={this.state.dots}
                 >
                     {bancontent}
                 </Carousel> 
