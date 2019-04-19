@@ -434,13 +434,17 @@ export default class SalesDetail extends React.Component {
             console.log("after",tempban);
             bancontent = tempban && tempban.map((item, index) => {
             if(item.isTag==false){
-                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}/>
+                return <img key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}} src={"http://" + getServerIp() + item.sourcePath}
+                onLoad={() => {
+                    // fire window resize event to change height
+                    window.dispatchEvent(new Event('resize'));
+                  }}/>
             }
         });
-        if(bancontent.length==1){
-            this.state.dots=false;
-            bancontent[1]=bancontent[0];
-        }
+        // if(bancontent.length==1){
+        //     this.state.dots=false;
+        //     bancontent[1]=bancontent[0];
+        // }
         console.log("wgudsiuasjd",bancontent);
 
         }
