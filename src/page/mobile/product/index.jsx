@@ -392,14 +392,17 @@ class Product extends React.Component {
             if(primaryImages[i].isLogo)
                 primaryImages.splice(i, 1);
         }
-        if(primaryImages.length === 1)
-            primaryImages[1] = primaryImages[0];
+        // if(primaryImages.length === 1)
+        //     primaryImages[1] = primaryImages[0];
 
 
         const images = primaryImages && primaryImages.map((img, index) => {
             return <img src={"http://" + getServerIp() + img.sourcePath}
                         key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}}
-                        alt=""/>
+                        alt=""  onLoad={() => {
+                            // fire window resize event to change height
+                            window.dispatchEvent(new Event('resize'));
+                          }}/>
         });
 
 
@@ -415,7 +418,7 @@ class Product extends React.Component {
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
-                    dots={false}
+                    dots={true}
                 >
                     {images}
                 </Carousel>
