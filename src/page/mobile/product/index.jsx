@@ -539,31 +539,31 @@ class Product extends React.Component {
 
                 <div>
 
-                    {/*<WingBlank>*/}
-                    {/*    <div className="para_title" >服务承诺</div>*/}
-                    {/*    <div className="paragraph">*/}
-                    {/*        /!*河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作*!/*/}
-                    {/*    /!*人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验*!/*/}
-                    {/*    /!*货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、*!/*/}
-                    {/*    /!*赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或*!/*/}
-                    {/*    /!*部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担*!/*/}
-                    {/*    /!*起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情*!/*/}
-                    {/*    /!*况下验货，则视为您所订购商品的包装无任何问题。*!/*/}
-                    {/*        {this.state.servicePromise}*/}
-                    {/*    </div>*/}
-                    {/*</WingBlank>*/}
+                <WingBlank>
+                       <div className="para_title" >服务承诺</div>
+                       <div className="paragraph">
+                           河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
+                       人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
+                       货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
+                       赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
+                       部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
+                       起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
+                       况下验货，则视为您所订购商品的包装无任何问题。
+                           {/* {this.state.servicePromise} */}
+                       </div>
+                    </WingBlank>
 
-                    {/*<WingBlank>*/}
-                    {/*    <div className="para_title">温馨提示</div>*/}
-                    {/*    <div className="paragraph">*/}
-                    {/*        由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时*/}
-                    {/*    我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！*/}
-                    {/*     /!*{this.state.servicePromise.prompt}*!/*/}
-                    {/*    </div>*/}
-                    {/*</WingBlank>*/}
+                    <WingBlank>
+                       <div className="para_title">温馨提示</div>
+                       <div className="paragraph">
+                           由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
+                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！
+                        {/* /!*{this.state.servicePromise.prompt}*!/ */}
+                       </div>
+                    </WingBlank>
 
 
-                    {/*<WingBlank>*/}
+                    {/* <WingBlank>*/}
                     {/*<video*/}
                         {/*id="my-player"*/}
                         {/*className="video-js vjs-default-skin vjs-fluid"*/}
@@ -573,7 +573,7 @@ class Product extends React.Component {
                         {/*width="100%"*/}
                         {/*controls="false" */}
                         {/*loop="true" //自动循环*/}
-                        {/*preload="metadata" //auto metadata none*/}
+                        {/*preload="metadata" //auto metadata none */}
                         {/*poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531238777253&di=ee388000b58e23ebda4df9ee02f224d6&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Faa64034f78f0f736fd98e0fe0655b319eac413ee.jpg"*/}
                         {/*data-setup='{}'>*/}
                     {/*<source src="http://ohjdda8lm.bkt.clouddn.com/course/sample1.mp4" type="video/mp4"></source>*/}
