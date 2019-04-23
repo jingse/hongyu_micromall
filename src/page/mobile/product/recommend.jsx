@@ -26,7 +26,7 @@ export default class Recommend extends React.Component{
 
     checkRecommendNull(content) {
         console.log("content:", content);
-        if (JSON.stringify(content) === "[]")
+        if (content.length==0)
             return null;
         return <Card className="general_container">
                 <WingBlank>
