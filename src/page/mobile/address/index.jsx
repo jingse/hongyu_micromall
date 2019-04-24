@@ -31,6 +31,7 @@ export default class Address extends React.Component {
 
     requestAddressList() {
         console.log("请求地址列表");
+        console.log("请求地址列表",this);
         addressApi.getAddressList(localStorage.getItem("wechatId"), (rs) => {
             if(rs && rs.success) {
                 const shipData = rs.obj;
@@ -141,7 +142,7 @@ export default class Address extends React.Component {
         return <div>
 
             {/*<Navigation title="选择收货地址" left={true} back={this.linkTo('/cart/payment')}/>*/}
-            <Navigation title="选择收货地址" left={true} />
+            <Navigation title="选择收货地址" left={false} />
             <WhiteSpace/>
 
             {content}
