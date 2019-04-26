@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import {WhiteSpace, List} from 'antd-mobile';
-import coupon_data from "../../../../static/mockdata/coupon.js";
+// import coupon_data from "../../../../static/mockdata/coupon.js";
 import './index.less';
 
 const Item = List.Item;
