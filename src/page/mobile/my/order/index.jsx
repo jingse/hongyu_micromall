@@ -594,7 +594,7 @@ export default class Order extends React.Component {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) =>{
                         return <div key={index} className="order_card">
                             <div className="order_card_group">
-                                <span>游买有卖</span>
+                                <span>下单时间：{item.orderItems.orderTime}</span>
                                 {/*<span style={{marginLeft:'1rem'}}>下单人id:{this.state.wechatId}</span>*/}
                                 <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
                             </div>
@@ -648,6 +648,7 @@ export default class Order extends React.Component {
                         <Flex justify="between">
                             {this.checkAll(orderStateStr, item.orderState, item.id)}
                             <div>共{item.orderItems.length}件商品 合计：￥{item.payMoney}</div>
+                            
                             {this.getOrderButton(this.state.tab, item)}
                         </Flex>
                         </div>
