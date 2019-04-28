@@ -18,16 +18,16 @@ const InfoCard = ({data, ...props}) => (
             <div style={{flex:'0 0 50%'}}>
                 <div className="iconH iconH_inline icon_product" style={{marginRight:'10px'}}/>{data.goods_name}
             </div>
-            
-        </Flex>
-        <Flex>
-            <div style={{flex:'0 0 55%'}}>
-                <div className="iconH iconH_inline icon_coins" style={{marginRight:'10px'}}/>利润：￥{data.total_fee}
-            </div>
             <div style={{flex:'0 0 45%'}}>
                 <div className="iconH iconH_inline icon_sharemoney" style={{marginRight:'10px'}}/>分成：￥{data.share_fee}
             </div>
+            
         </Flex>
+        {/*<Flex>*/}
+        {/*    <div style={{flex:'0 0 55%'}}>*/}
+        {/*        <div className="iconH iconH_inline icon_coins" style={{marginRight:'10px'}}/>利润：￥{data.total_fee}*/}
+        {/*    </div>*/}
+        {/*</Flex>*/}
     </Card>
 );
 
