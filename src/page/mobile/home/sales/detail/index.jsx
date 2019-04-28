@@ -149,6 +149,7 @@ export default class SalesDetail extends React.Component {
             "specialtyId": this.state.specialtyId,
             "specialtySpecificationId": this.state.specificationId,
             "specification": this.state.specification,
+            "promotionId": this.state.salesDetail.id,
         }];
         let price = {};
 
