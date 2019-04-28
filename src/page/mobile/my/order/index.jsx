@@ -400,9 +400,9 @@ export default class Order extends React.Component {
 
             case 2:
 
-                // if (item.orderState === 3) {
-                //     return null
-                // }
+                if (item.orderState === 3 || item.orderState === 2) {
+                    return null
+                }
 
                 return <div style={{background:'#fff', textAlign:'right'}}>
                 <WhiteSpace/>
