@@ -110,8 +110,15 @@ export default class GridCategory extends React.Component {
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
             console.log("sfdsaf",item);
             for(let i = 0;i < item.pics.length; i++){
-                if(item.pics[i].isTag == 1){
-                    this.state.mypic = item.pics[i].mediumPath;
+                if(item.hySingleitemPromotions[0].hyPromotion.syncTagpic==false){
+                    if(item.pics[i].isTag == true){
+                        this.state.mypic = item.pics[i].mediumPath;
+                    }
+                }
+                else{
+                    if(item.pics[i].isLogo == true){
+                        this.state.mypic = item.pics[i].mediumPath;
+                    }
                 }
             }
             return  (

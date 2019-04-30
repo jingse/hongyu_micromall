@@ -68,13 +68,20 @@ export default class Sales extends React.Component {
         this.requestOrdinaryPromotionList(this.state.nextPage);
     }
 
-    getSalesIconImg(salesImages) {
+    getSalesIconImg(item) {
         var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isTag) {
-                img = item.mediumPath
+        for(let i = 0;i < item.pics.length; i++){
+            if(item.hySingleitemPromotions[0].hyPromotion.syncTagpic==false){
+                if(item.pics[i].isTag == true){
+                    img = item.pics[i].mediumPath;
+                }
             }
-        });
+            else{
+                if(item.pics[i].isLogo == true){
+                    img = item.pics[i].mediumPath;
+                }
+            }
+        }
         return img
     }
 
@@ -105,6 +112,7 @@ export default class Sales extends React.Component {
     render() {
 
         const content = this.state.data && this.state.data.map((item, index) => {
+            {console.log("asdf",item)}
             var start,end,a,b;
                 start = new Date(item.startTime).toLocaleString()
                 end = new Date(item.endTime).toLocaleString()
@@ -117,7 +125,7 @@ export default class Sales extends React.Component {
                 presents: item.fullPresents, subtracts: item.fullSubstracts, discounts: item.fullDiscounts}} key={index}>
                 <Flex style={{background:'#fff'}}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
-                        <img src={"http://" + getServerIp() + this.getSalesIconImg(item.pics)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
+                        <img src={"http://" + getServerIp() + this.getSalesIconImg(item)} style={{width: '70%', height:'4rem', margin:'0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 60%', color:'black'}}>
                         <WhiteSpace/>
