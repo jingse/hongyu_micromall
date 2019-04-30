@@ -19,11 +19,6 @@ import wxApi from "../../../api/wechat.jsx";
 import proApi from "../../../api/product.jsx";
 import cartApi from "../../../api/cart.jsx";
 
-// import product_data from "../../../static/mockdata/product.js";   //mock假数据
-// import comment from "../../../static/mockdata/product_comment.js"; // mock假数据
-// import product_feature_data from "../../../static/mockdata/product_feature.js"; //mock假数据
-// import coupon_data from "../../../static/mockdata/product_coupon.js"; //mock假数据
-
 const host = wxconfig.hostURL;
 
 
