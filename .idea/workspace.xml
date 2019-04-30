@@ -1,127 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="删除无用代码">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="删除无用代码及注释 reformat code">
+      <change afterPath="$PROJECT_DIR$/src/common/list/list.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/address.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/address.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/coupon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/coupon.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/demo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/demo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/my.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/my.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/payment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/payment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/points.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/points.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/setting.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/setting.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/wechat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/wechat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/DateManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/DateManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/LockManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/LockManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/content/content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/content/content.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/content/content.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/content/content.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/footer/footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/footer/footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/footer/footer.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/footer/footer.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/header/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/header/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/header/header.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/header/header.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/http.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/http.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/layout/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/layout/layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/loading/loading-hoc.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/loading/loading-hoc.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/bottom/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bottom/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/bottom/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bottom/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/card/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cart/cartmodal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/cartmodal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cart/cartmodal.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/cartmodal.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cart/putincart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/putincart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/cart/putincart.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/putincart.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/submit/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submit/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/submit/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submit/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tmpl.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tmpl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/app.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/add/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/add/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/edit/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/edit/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/card.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/category/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/category/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/cartmodal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/cartmodal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/products/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/products/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/separator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/separator.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tagshow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/recharge/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/recharge/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/tel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/tel/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/vipAddress/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/vipAddress/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/redirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/redirect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/search/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/search/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/search/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/search/searchRedirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/search/searchRedirect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/pc/help.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/pc/help.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/navigation/cart.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/images/navigation/cart.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/navigation/home.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/images/navigation/home.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/navigation/my.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/static/images/navigation/my.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.prod.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.prod.config.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -134,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/common/header/header.jsx">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="629">
+              <caret line="175" column="5" lean-forward="true" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -146,11 +34,75 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1803">
+              <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/search/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2284">
+              <caret line="268" selection-start-line="268" selection-end-line="268" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/category/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-512">
+              <caret line="275" lean-forward="true" selection-start-line="275" selection-end-line="275" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4878">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/list/list.jsx">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toFixed</find>
       <find>hr</find>
       <find>console.log</find>
       <find>console</find>
@@ -180,6 +132,7 @@
       <find>向上-灰色</find>
       <find>user-o</find>
       <find>Help</find>
+      <find>orderCode</find>
     </findStrings>
     <dirStrings>
       <dir>E:\Codes\React\47hongyu</dir>
@@ -191,11 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" />
@@ -213,7 +161,6 @@
         <option value="$PROJECT_DIR$/src/page/mobile/product/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/product/recommend.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/product/redirect.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/search/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/search/searchRedirect.jsx" />
         <option value="$PROJECT_DIR$/src/page/pc/help.jsx" />
         <option value="$PROJECT_DIR$/src/page/app.jsx" />
@@ -242,6 +189,12 @@
         <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/cartmodal.jsx" />
         <option value="$PROJECT_DIR$/src/components/navigation/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/search/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" />
       </list>
     </option>
   </component>
@@ -275,12 +228,6 @@
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
               <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -288,76 +235,7 @@
               <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="footer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="header" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="loading" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="bottom" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="card" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="cart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="navigation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="submit" type="462c0819:PsiDirectoryNode" />
+              <item name="list" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
@@ -371,59 +249,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="address" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="address" type="462c0819:PsiDirectoryNode" />
-              <item name="add" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="address" type="462c0819:PsiDirectoryNode" />
-              <item name="edit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="cart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="cart" type="462c0819:PsiDirectoryNode" />
-              <item name="payment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="cart" type="462c0819:PsiDirectoryNode" />
-              <item name="payment" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
@@ -449,84 +274,7 @@
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="recharge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="recharge" type="462c0819:PsiDirectoryNode" />
-              <item name="payment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
               <item name="recommend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="sales" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="sales" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_group" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_group" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-              <item name="sales_group" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
-              <item name="products" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
@@ -543,259 +291,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="balance" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="balance" type="462c0819:PsiDirectoryNode" />
-              <item name="history" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="balance" type="462c0819:PsiDirectoryNode" />
-              <item name="purchase" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="balance" type="462c0819:PsiDirectoryNode" />
-              <item name="recharge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="balance" type="462c0819:PsiDirectoryNode" />
-              <item name="records" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="coupon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="disposableCoupon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="merchant" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="comment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="refund" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="refund" type="462c0819:PsiDirectoryNode" />
-              <item name="detail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="points" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="points" type="462c0819:PsiDirectoryNode" />
-              <item name="exchange" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="points" type="462c0819:PsiDirectoryNode" />
-              <item name="records" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-              <item name="help" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-              <item name="member" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-              <item name="points" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-              <item name="tel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="setting" type="462c0819:PsiDirectoryNode" />
-              <item name="vipAddress" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="tel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
               <item name="search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="pc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1057,14 +553,7 @@
       <workItem from="1556595500073" duration="31000" />
       <workItem from="1556597989641" duration="149000" />
       <workItem from="1556611853964" duration="5372000" />
-      <workItem from="1556619506688" duration="4154000" />
-    </task>
-    <task id="LOCAL-00062" summary="fix bug">
-      <created>1532592196821</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1532592196821</updated>
+      <workItem from="1556619506688" duration="6317000" />
     </task>
     <task id="LOCAL-00063" summary="fix bug">
       <created>1532593142378</created>
@@ -1402,11 +891,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556617051219</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="删除无用代码及注释 reformat code">
+      <created>1556623769749</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1556623769749</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1160768000" />
+    <option name="totallyTimeSpent" value="1162931000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1419,6 +915,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.88271606" visible="true" weight="0.16584334" />
       <window_info id="Structure" order="1" sideWeight="0.11728395" side_tool="true" weight="0.16584334" />
@@ -1434,7 +931,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.3275401" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.09759358" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" weight="0.13368984" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13368984" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.328877" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1486,7 +983,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="标签管理" />
     <MESSAGE value="修改标签管理bug" />
     <MESSAGE value="修改背景颜色以及产品详情页" />
     <MESSAGE value="修改产品详情页" />
@@ -1511,163 +1007,10 @@
     <MESSAGE value="小修改" />
     <MESSAGE value="购物车右下角立减加了间距 删除无用代码" />
     <MESSAGE value="删除无用代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除无用代码" />
+    <MESSAGE value="删除无用代码及注释 reformat code" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无用代码及注释 reformat code" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" column="19" lean-forward="true" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="116" column="57" lean-forward="true" selection-start-line="116" selection-start-column="57" selection-end-line="116" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/comment.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2006">
-          <caret line="118" column="36" lean-forward="true" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9451">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/recommend.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-733">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/redirect.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-19">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/search/searchRedirect.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/pc/help.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/app.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#1981#2031#0" expanded="true" />
-            <element signature="e#2637#2689#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/search/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="339" column="26" selection-start-line="339" selection-end-line="340" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/cart.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/coupon.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2398">
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/address.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1308">
-          <caret line="301" lean-forward="true" selection-start-line="301" selection-end-line="301" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/demo.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/my.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4540">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/payment.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -1693,15 +1036,6 @@
           <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/setting.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1749,26 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/layout/layout.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/loading/loading-hoc.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/LockManager.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1777,13 +1091,6 @@
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#12#51#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/http.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2027">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1925,8 +1232,196 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/header/header.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state relative-caret-position="442">
+          <caret line="26" column="24" lean-forward="true" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/demo.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/home.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/my.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3571">
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/setting.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="76" column="32" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2396">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2346">
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-934">
+          <caret line="96" column="11" lean-forward="true" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="175" column="5" lean-forward="true" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4878">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/layout/layout.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/loading/loading-hoc.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/http.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2127">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/list/list.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/category/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-512">
+          <caret line="275" lean-forward="true" selection-start-line="275" selection-end-line="275" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/search/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2284">
+          <caret line="268" selection-start-line="268" selection-end-line="268" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1803">
+          <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

@@ -118,20 +118,10 @@ export default class Search extends React.Component {
         }
     }
 
-    onCancel(value) {
-        this.setState({
-            searchValue: ''
-        });
-    }
-
     onChange(value) {
         this.setState({
             searchValue: value
         });
-    }
-
-    onSubmit(value) {
-        this.requestSearchResults(this.state.searchValue, 1, 10, 0);
     }
 
     onEndReached = (event) => {
@@ -148,7 +138,7 @@ export default class Search extends React.Component {
 
     genData(pIndex = 0) {
         let tt = this.checkType(this.state.tabIndex);
-        console.log('tttttttttt', tt)
+        // console.log('tttttttttt', tt)
         this.requestSearchResults(this.state.searchValue, pIndex + 1, 10, tt);
 
         setTimeout(() => {
@@ -276,7 +266,6 @@ export default class Search extends React.Component {
 
         return <Layout header={true} footer={true} isSearchAgain={true}>
 
-            {/* <SearchNavBar/> */}
             <WhiteSpace size="xs"/>
 
 

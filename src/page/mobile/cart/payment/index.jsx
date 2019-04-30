@@ -146,13 +146,6 @@ class Payment extends React.Component {
         //     shouldPay: this.state.shouldPay,
         // });
 
-        //设拿到可用优惠券的参数
-
-
-        // // create the order
-        // const items = this.getOrderItems();
-        // console.log("useCouponId", localStorage.getItem("useCouponId"));
-        // this.cartCreateOrder(wechatId, webusinessId, items);
 
         console.log("localStorage.getItem(\"uid\")", localStorage.getItem("uid"));
         console.log("webusinessId", webusinessId);
@@ -266,11 +259,9 @@ class Payment extends React.Component {
             },
             function (res) {
                 if (res.err_msg === "get_brand_wcpay_request:ok") {
-                    // paymentApi.successfulPaymentCallback(this.code, (rs) => {
-                    //
-                    // });
 
                     this.linkTo({pathname: '/my/order', state: 2});
+
                 } else if (res.err_msg === "get_brand_wcpay_request:cancel") {
                     Modal.alert('取消付款', '您确认要取消吗？', [
                         {
@@ -550,14 +541,12 @@ class Payment extends React.Component {
 
     checkFinalBalance() {
         if (this.state.balanceNum && this.state.balanceInput !== "") {
-            // return this.props.form.getFieldValue("balanceInput")
             return <div>
                 <div className="discount_select price_text">-￥{this.state.balanceInput}</div>
                 <div className="discount_title">余额</div>
                 <WhiteSpace size="xs"/>
             </div>
         }
-        // return balance
     }
 
     checkPromotionMoney(money) {

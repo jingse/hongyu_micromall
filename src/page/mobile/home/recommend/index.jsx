@@ -8,10 +8,6 @@ import {getServerIp} from "../../../../config.jsx";
 import PropTypes from "prop-types";
 import "./index.less";
 
-/**
- * @ListView 使用了一些react-native中ListView的API，可以查询 https://mobile.ant.design/components/list-view-cn/
- * @ListView.dataSource 同上，查询 https://reactnative.cn/docs/0.26/listviewdatasource.html
- */
 
 var hasMore = true;
 const NUM_SECTIONS = 1;
@@ -54,7 +50,6 @@ export default class RecommendProducts extends React.Component {
         dataBlobs = {};
         sectionIDs = [];
         rowIDs = [];
-        // this.requestRecommendData(1, 10, 0);
     }
 
     requestRecommendData(page, rows, condition) {
@@ -77,47 +72,27 @@ export default class RecommendProducts extends React.Component {
 
 
     componentDidMount() {
-        // you can scroll to the specified position
-        // setTimeout(() => this.lv.scrollTo(0, 120), 800);
-
-        //fixed id length bug
-        // sectionIDs = [];
-        // rowIDs = [];
-        // pageIndex = 0;
-        // dataBlobs = {};
-
         const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
         this.setState({
             height: hei,
         });
-        // simulate initial Ajax
+
         setTimeout(() => {
             this.genData();
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            //     height: hei,
-            // });
-            //console.log(dataBlobs)
         }, 500);
 
     }
 
     onEndReached = (event) => {
-        // load new data
-        // hasMore: from backend data, indicates whether it is the last page, here is false
+
         console.log('hasMore', this.state.isLoading, hasMore)//this.state.isLoading &&
+
         if (!hasMore) {
             return;
         }
-        // console.log('reach end', event);
         this.setState({isLoading: true});
         setTimeout(() => {
             this.genData(++pageIndex);
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            // });
         }, 500);
     };
 
@@ -134,8 +109,6 @@ export default class RecommendProducts extends React.Component {
             this.genData();
         });
 
-        // const type = this.checkType(index);
-        // this.requestRecommendData(1, 10, type);
         // 模拟ajax异步获取数据
         setTimeout(() => {
             this.setState({
@@ -175,7 +148,6 @@ export default class RecommendProducts extends React.Component {
                     const rowName = `S${ii}, R${jj}`;
                     rowIDs[ii].push(rowName);
                     dataBlobs[rowName] = reData[jj];
-                    // dataBlobs[rowName] = rowName;
                 }
             }
             sectionIDs = [...sectionIDs];
@@ -214,8 +186,6 @@ export default class RecommendProducts extends React.Component {
                                 this.genData();
                             });
 
-
-                            // this.requestRecommendData(1, 10, 3);
                             console.log("升序")
                         }}>
                             <img src={this.state.ascChoose ? "./images/icons/升序-选中.png" : "./images/icons/升序.png"}
@@ -231,7 +201,6 @@ export default class RecommendProducts extends React.Component {
                                 rowIDs = [];
                                 this.genData();
                             });
-                            // this.requestRecommendData(1, 10, 2);
                             console.log("降序")
                         }}>
                             <img src={this.state.ascChoose ? "./images/icons/降序.png" : "./images/icons/降序-选中.png"}
@@ -250,28 +219,22 @@ export default class RecommendProducts extends React.Component {
                 key={`${sectionID}-${rowID}`}
                 style={{
                     backgroundColor: '#F5F5F9',
-                    // height: 8,
                     borderTop: '1px dashed #ECECED',
                     borderBottom: '1px dashed #ECECED',
                 }}
             />
         );
-        // const data = category_data;
         const data = this.state.recommendData;
 
         let index = data.length - 1;
         const row = (rowdata, sectionID, rowID) => {
-            // console.log("rowdata**********", rowdata);
             if (index < 0) {
                 index = data.length - 1; //这是使它循环的原因
                 //hasMore = false;
                 return null
             }
             const obj = rowdata;
-            // const obj = data[index--];
-            // console.log("obj", obj);
 
-            // console.log(" sectionID rowID",sectionID,rowID);
 
             if (obj) {
                 return (
@@ -292,7 +255,6 @@ export default class RecommendProducts extends React.Component {
                     </div>
                 );
             } else {
-                // return(<div></div>);
                 return null;
             }
 

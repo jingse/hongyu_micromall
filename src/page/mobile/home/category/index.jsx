@@ -5,14 +5,9 @@ import {Link} from 'react-router-dom';
 import {Flex, ListView, Tabs, WhiteSpace} from 'antd-mobile';
 import Layout from "../../../../common/layout/layout.jsx";
 import homeApi from "../../../../api/home.jsx";
-import {getServerIp} from "../../../../config.jsx"; //mock假数据
+import {getServerIp} from "../../../../config.jsx";
 import "./index.less";
 
-
-/**
- * @ListView 使用了一些react-native中ListView的API，可以查询 https://mobile.ant.design/components/list-view-cn/
- * @ListView.dataSource 同上，查询 https://reactnative.cn/docs/0.26/listviewdatasource.html
- */
 
 var hasMore = true;
 const NUM_SECTIONS = 1;
@@ -69,7 +64,6 @@ export default class Category extends React.Component {
         dataBlobs = {};
         sectionIDs = [];
         rowIDs = [];
-        // console.log("this.props.location.categoryId", this.props.location.categoryId);
     }
 
     requestCategoryList(categoryId, page, rows, condition) {
@@ -94,46 +88,26 @@ export default class Category extends React.Component {
     }
 
     componentDidMount() {
-        // you can scroll to the specified position
-        // setTimeout(() => this.lv.scrollTo(0, 120), 800);
-
-        //fixed id length bug
-        // sectionIDs = [];
-        // rowIDs = [];
-        // pageIndex = 0;
-        // dataBlobs = {};
-
         const hei = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
         this.setState({
             height: hei,
         });
-        // simulate initial Ajax
+
         setTimeout(() => {
             this.genData();
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            //     height: hei,
-            // });
-            //console.log(dataBlobs)
+
         }, 500);
-        //console.log(dataBlobs)
     }
 
     onEndReached = (event) => {
-        // load new data
-        // hasMore: from backend data, indicates whether it is the last page, here is false
+
         if (!hasMore) {
             return;
         }
-        // console.log('reach end', event);
         this.setState({isLoading: true});
         setTimeout(() => {
             this.genData(++pageIndex);
-            // this.setState({
-            //     dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-            //     isLoading: false,
-            // });
+
         }, 500);
     };
 
@@ -149,9 +123,7 @@ export default class Category extends React.Component {
             rowIDs = [];
             this.genData();
         });
-        // const type = this.checkType(index);
-        // this.requestCategoryList(categoryId, 1, 10, type);
-        // 模拟ajax异步获取数据
+
         setTimeout(() => {
             this.setState({
                 isLoading: false
@@ -172,13 +144,11 @@ export default class Category extends React.Component {
 
     genData(pIndex = 0) {
         let tt = this.checkType(this.state.tabIndex);
-        console.log('tttttttttt', tt)
+        // console.log('tttttttttt', tt)
         this.requestCategoryList(categoryId, pIndex + 1, 10, tt);
 
         setTimeout(() => {
             console.log('categoryData', this.state.categoryData)
-
-            // while(this.state.categoryData.length==0);
 
             let reData = this.state.categoryData;
 
@@ -302,7 +272,6 @@ export default class Category extends React.Component {
 
         return <Layout header={true} footer={true}>
 
-            {/* <SearchNavBar/> */}
             <WhiteSpace size="xs"/>
 
 

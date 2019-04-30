@@ -7,10 +7,6 @@ import Layout from "../../../../common/layout/layout.jsx";
 import homeApi from "../../../../api/home.jsx";
 import {getServerIp} from "../../../../config.jsx";
 
-/**
- * @ListView 使用了一些react-native中ListView的API，可以查询 https://mobile.ant.design/components/list-view-cn/
- * @ListView.dataSource 同上，查询 https://reactnative.cn/docs/0.26/listviewdatasource.html
- */
 
 var hasMore = true;
 const NUM_SECTIONS = 1;
@@ -63,7 +59,6 @@ export default class Tag extends React.Component {
         dataBlobs = {};
         sectionIDs = [];
         rowIDs = [];
-        // console.log("this.props.location.categoryId", this.props.location.categoryId);
     }
 
     requestTagList(categoryId, page, rows, condition) {
@@ -266,7 +261,6 @@ export default class Tag extends React.Component {
                     </div>
                 );
             } else {
-                // return(<div></div>);
                 return null;
             }
 
@@ -274,7 +268,6 @@ export default class Tag extends React.Component {
 
         return <Layout header={true} footer={true}>
 
-            {/* <SearchNavBar/> */}
             <WhiteSpace size="xs"/>
 
 
