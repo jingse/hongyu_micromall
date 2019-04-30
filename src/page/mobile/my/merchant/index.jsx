@@ -5,7 +5,6 @@ import Navigation from "../../../../components/navigation/index.jsx";
 import Card from "../../../../components/card/index.jsx";
 import InfoCard from "./infocard.jsx";
 import './index.less';
-// import profit_data from "../../../../static/mockdata/profit_share.js"; // mock假数据
 import myApi from "../../../../api/my.jsx";
 
 
@@ -44,12 +43,6 @@ export default class ProfitShare extends React.Component {
                     headerValue: '￥' + this.props.location.money
                 });
                 break;
-            // case 'remain':
-            //     this.setState({
-            //         headerName: '待分成订单数量',
-            //         headerValue: '0单'
-            //     });
-            //     break;
             default:
                 break;
         }

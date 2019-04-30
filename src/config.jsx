@@ -28,8 +28,8 @@ function getServerHost() {
 
 
 function getServerIp() {
-    return "//admin.lvxingbox.cn";        // 123服务器
-    // return "//ymymmall.swczyc.com";    // 47服务器
+    return "//admin.lvxingbox.cn";        // 47服务器
+    // return "//ymymmall.swczyc.com";    // 123服务器
 }
 
 const wxconfig = {
