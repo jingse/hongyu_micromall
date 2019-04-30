@@ -541,7 +541,7 @@ export default class SalesGroupDetail extends React.Component {
                 {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum:""}
             </h4>
             <h4>
-                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'black'}}>{parseFloat(this.state.salesGroupDetail.dividMoney).toFixed(2)}</span></div>:<div></div>}
+                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'black'}}>{parseFloat(this.state.salesGroupDetail.divideMoney).toFixed(2)}</span></div>:<div></div>}
             </h4>
             <hr/>
 

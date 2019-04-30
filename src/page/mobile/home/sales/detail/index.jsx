@@ -516,7 +516,8 @@ export default class SalesDetail extends React.Component {
                 {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].promoteNum:""}
             </h4>
             <h4>
-                {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail.hySingleitemPromotions?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney).toFixed(2)}</div>:<div></div>}
+                {console.log("safasd",this.state.salesDetail)}
+                {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.divideMoney).toFixed(2)}</div>:<div></div>}
             </h4>
             {/* <h4>
                 结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
