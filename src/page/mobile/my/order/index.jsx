@@ -594,7 +594,7 @@ export default class Order extends React.Component {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) =>{
                         return <div key={index} className="order_card">
                             <div className="order_card_group">
-                                <span>下单时间：{item.orderItems.orderTime}</span>
+                                <span>下单时间：{new Date(item.orderTime).toLocaleString()}</span>
                                 {/*<span style={{marginLeft:'1rem'}}>下单人id:{this.state.wechatId}</span>*/}
                                 <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
                             </div>
