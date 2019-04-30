@@ -1,8 +1,7 @@
 import React from "react";
-import { List, WhiteSpace, NoticeBar } from "antd-mobile";
+import {List, NoticeBar, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
-// import home_coupon from "../../../../static/mockdata/home_coupon.js";//mock假数据
 import homeApi from "../../../../api/home.jsx";
 
 const Item = List.Item;
@@ -35,9 +34,9 @@ export default class HomeCoupon extends React.Component {
     }
 
     getSpecificCoupon(couponId, wechatId) {
-        homeApi.getCoupon(couponId, wechatId ,(rs)=>{
+        homeApi.getCoupon(couponId, wechatId, (rs) => {
             if (rs && rs.success) {
-                console.log(rs.msg);
+                // console.log(rs.msg);
                 this.requestCoupons(wechatId);
             }
         });
@@ -45,37 +44,22 @@ export default class HomeCoupon extends React.Component {
 
     checkCoupon(acquired, id) {
         if (acquired)
-            return
+            return;
 
         this.getSpecificCoupon(id, wechatId);
     }
 
-    isSuperimposed(isSuperimposed) {
-        if (isSuperimposed)
-            return <a style={{fontSize:'0.4rem', color:'darkorange'}}>叠</a>
-
-        return null
-    }
-
-    getColor(isReceived) {
-        if(isReceived)
-            return '#999';
-
-        return 'black'
-    }
-
-    checkDisabled(acquired) {
-        return !!acquired;
-    }
 
     render() {
 
         const content = this.state.couponData && this.state.couponData.map((item, index) => {
-            return  <Item key={index} multipleLine disabled={this.checkDisabled(item.hasAcquired)}
-                          onClick={() => {this.checkCoupon(item.hasAcquired, item.id)}}
-                          extra={new Date(item.endTime).toLocaleString() + "到期"}>
-                <span style={{color: this.getColor(item.hasAcquired)}}>
-                    ￥{item.money} {this.isSuperimposed(item.canOverlay)}
+            return <Item key={index} multipleLine disabled={!!item.hasAcquired}
+                         onClick={() => {
+                             this.checkCoupon(item.hasAcquired, item.id)
+                         }}
+                         extra={new Date(item.endTime).toLocaleString() + "到期"}>
+                <span style={{color: item.hasAcquired ? '#999' : 'black'}}>
+                    ￥{item.money} {item.canOverlay ? <a style={{fontSize: '0.4rem', color: 'darkorange'}}>叠</a> : null}
                 </span>
                 <Brief>{item.specialtyCategory}满{item.condition}可用</Brief>
             </Item>
@@ -86,7 +70,7 @@ export default class HomeCoupon extends React.Component {
 
             <Navigation title="领券中心" left={true}/>
 
-            <NoticeBar mode="closable" action={<span style={{ color: '#a1a1a1' }}>不再提示</span>}>
+            <NoticeBar mode="closable" action={<span style={{color: '#a1a1a1'}}>不再提示</span>}>
                 灰色代表已领取
             </NoticeBar>
 

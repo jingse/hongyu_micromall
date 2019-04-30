@@ -1,12 +1,12 @@
 <html>
 
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <meta name="screen-orientation" content="portrait">
-    <meta name="x5-orientation" content="portrait">
-    <meta name="keywords" content="土特产微商城, 电商平台">
-    <meta name="description" content="WF电商平台通用客户端，灵活组合可配置，我们不一样！">
+    <meta content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
+    <meta content="portrait" name="screen-orientation">
+    <meta content="portrait" name="x5-orientation">
+    <meta content="土特产微商城, 电商平台" name="keywords">
+    <meta content="WF电商平台通用客户端，灵活组合可配置，我们不一样！" name="description">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" ref="stylesheet">
 
@@ -15,29 +15,29 @@
     <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
 
     <script>
-      if ('addEventListener' in document) {
-        document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-        }, false);
-      }
-      if(!window.Promise) {
-        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
-      }
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function () {
+                FastClick.attach(document.body);
+            }, false);
+        }
+        if (!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+        }
     </script>
 
     <title>土特产微商城</title>
-  </head>
+</head>
 
-  <body>
-    <div id="root"></div>
-  </body>
+<body>
+<div id="root"></div>
+</body>
 
-  <script>
-    window.localStorage.setItem("openid",'{{openid}}');
-    window.localStorage.setItem("unionid",'{{unionid}}');
-    window.localStorage.setItem("nickname",'{{nickname}}');
-    window.localStorage.setItem("province",'{{province}}');
-    window.localStorage.setItem("headimgurl",'{{headimgurl}}');
-  </script>
+<script>
+    window.localStorage.setItem("openid", '{{openid}}');
+    window.localStorage.setItem("unionid", '{{unionid}}');
+    window.localStorage.setItem("nickname", '{{nickname}}');
+    window.localStorage.setItem("province", '{{province}}');
+    window.localStorage.setItem("headimgurl", '{{headimgurl}}');
+</script>
 
 </html>

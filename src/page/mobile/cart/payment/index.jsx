@@ -1,5 +1,5 @@
 import React from 'react';
-import {WhiteSpace, Flex, InputItem, List, Toast, Modal, Badge, NoticeBar} from 'antd-mobile';
+import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 'antd-mobile';
 import {Link} from 'react-router-dom';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
@@ -647,7 +647,6 @@ class Payment extends React.Component {
             this.context.router.history.push({pathname: `/product/${specialtyId}`});
         }
     }
-
 
 
     render() {

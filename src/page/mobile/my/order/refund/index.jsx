@@ -1,13 +1,13 @@
 import React from "react";
-import { WhiteSpace, Flex, WingBlank, InputItem, ImagePicker, Checkbox, Stepper, Picker, List, Toast } from "antd-mobile";
+import {Checkbox, Flex, ImagePicker, InputItem, List, Picker, Stepper, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Card from "../../../../../components/card/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
 import LoadingHoc from "../../../../../common/loading/loading-hoc.jsx";
-import { createForm } from 'rc-form';
+import {createForm} from 'rc-form';
 import {getServerIp} from "../../../../../config.jsx";
-import myApi from  "../../../../../api/my.jsx";
+import myApi from "../../../../../api/my.jsx";
 import PropTypes from "prop-types";
 import "./index.less";
 
@@ -16,21 +16,21 @@ const CheckboxItem = Checkbox.CheckboxItem;
 var editId = 0;
 
 const shipStateOption = [
-    { value: 0, checked: false, label: '未收货' },
-    { value: 1, checked: false, label: '已收货' },
+    {value: 0, checked: false, label: '未收货'},
+    {value: 1, checked: false, label: '已收货'},
 ];
 
 const refundReasonOption = [
-    { value: 0, checked: false, label: '拍错/多拍/不想要' },
-    { value: 1, checked: false, label: '商品有问题' },
-    { value: 2, checked: false, label: '未按时间发货' },
-    { value: 3, checked: false, label: '未按时间发货' },
-    { value: 4, checked: false, label: '其他' },
+    {value: 0, checked: false, label: '拍错/多拍/不想要'},
+    {value: 1, checked: false, label: '商品有问题'},
+    {value: 2, checked: false, label: '未按时间发货'},
+    {value: 3, checked: false, label: '未按时间发货'},
+    {value: 4, checked: false, label: '其他'},
 ];
 
 const refundType = [
-    { value: 0, label: "仅退款" },
-    { value: 1, label: "退货退款" },
+    {value: 0, label: "仅退款"},
+    {value: 1, label: "退货退款"},
 ];
 
 
@@ -42,13 +42,13 @@ class RefundApply extends React.Component {
             product: this.props.location.state,
             modal: false,
 
-            option:[],
+            option: [],
             files: [],
 
             // maxRefundMoney: 0,
             checkRefund: [],
             refundItems: [],
-            refundQuantity:[],
+            refundQuantity: [],
             refNum: 0,
 
             chooseShipState: [true, false],
@@ -58,7 +58,7 @@ class RefundApply extends React.Component {
             finalReason: 0,
             finalType: 0,
 
-            style: { width : 0 },
+            style: {width: 0},
 
             isLoading: false
         };
@@ -81,7 +81,7 @@ class RefundApply extends React.Component {
                 refundItems: this.state.refundItems,
             });
         }
-        for(let i = 0; i < proNum; i++) {
+        for (let i = 0; i < proNum; i++) {
             this.state.checkRefund[i] = false;
             this.setState({
                 checkRefund: this.state.checkRefund,
@@ -117,9 +117,9 @@ class RefundApply extends React.Component {
         const refundInfo = {
             "orderId": this.state.product.baseInfo.id,                                                              // 订单id	    int
             // "isDelivered": (refundType[this.props.form.getFieldsValue().type[0]].label === '退货退款'),           // 是否退货	    Boolean
-            "deliverType": this.state.product.baseInfo.isDivided ? 1: 0 ,                                           // 发货类型	    int
-            "refundReason": refundReasonOption[this.props.form.getFieldsValue().refundReason[0]].label,              // 退款理由	    string
-            // "refundReson": "不想要",                                                                             // 退款理由	    string
+            "deliverType": this.state.product.baseInfo.isDivided ? 1 : 0,                                           // 发货类型	    int
+            "refundReason": refundReasonOption[this.props.form.getFieldsValue().refundReason[0]].label,             // 退款理由	    string
+            // "refundReson": "不想要",                                                                              // 退款理由	    string
             "refundItems": this.state.refundItems,
             // "refundItems": [
             //     {
@@ -130,14 +130,17 @@ class RefundApply extends React.Component {
             // ],
         };
 
-        myApi.applyRefund(refundInfo, (rs)=>{
+        myApi.applyRefund(refundInfo, (rs) => {
             console.log("rs: ", rs);
             if (rs && rs.success) {
                 console.log("退款成功");
                 console.log("rs", rs);
                 Toast.info("申请成功！", 1);
-                history.replaceState(null,null,'/#/my/order')
-                this.context.router.history.push({pathname: "/my/order/refund/detail", orderId: this.state.product.baseInfo.id});
+                history.replaceState(null, null, '/#/my/order')
+                this.context.router.history.push({
+                    pathname: "/my/order/refund/detail",
+                    orderId: this.state.product.baseInfo.id
+                });
                 // this.context.router.history.push({pathname: "/my/order/refund/detail", orderId: this.state.product.baseInfo.id, refundProduct: this.state.refundItems, refundInfo: refundInfo});
             } else {
                 Toast.info("申请退款失败！", 1);
@@ -150,11 +153,11 @@ class RefundApply extends React.Component {
 
 
     checkEdit(id) {
-        return <Card className = "overlayEdit" style={this.state.style}>
+        return <Card className="overlayEdit" style={this.state.style}>
             <Flex>
-                <Flex.Item style={{flex:'0 0 70%'}}>
+                <Flex.Item style={{flex: '0 0 70%'}}>
 
-                    <Stepper style={{ width: '50%', minWidth: '100px', touchAction: 'none', marginLeft:"2rem" }}
+                    <Stepper style={{width: '50%', minWidth: '100px', touchAction: 'none', marginLeft: "2rem"}}
                              showNumber
                              max={this.state.product.orderItems[this.findIdIndex(id)].quantity}
                              min={1}
@@ -163,9 +166,11 @@ class RefundApply extends React.Component {
                     />
 
                 </Flex.Item>
-                <Flex.Item style={{flex:'0 0 30%', backgroundColor:'darkorange', color:'white',
-                    fontSize:'0.6rem', textAlign:'center'}}
-                           onClick = {()=>{
+                <Flex.Item style={{
+                    flex: '0 0 30%', backgroundColor: 'darkorange', color: 'white',
+                    fontSize: '0.6rem', textAlign: 'center'
+                }}
+                           onClick={() => {
                                // this.changeItemQuantity(id, this.state.refNum);
                                this.closeNav();
                            }}>
@@ -184,13 +189,13 @@ class RefundApply extends React.Component {
 
     openNav(index) {
         console.log(index);
-        const style = { width : "65%", top: (60 + index * 125).toString() + 'px' };
-        this.setState({ style });
+        const style = {width: "65%", top: (60 + index * 125).toString() + 'px'};
+        this.setState({style});
     }
 
     closeNav() {
-        const style = { width : 0 };
-        this.setState({ style });
+        const style = {width: 0};
+        this.setState({style});
     }
 
     setEditId(id) {
@@ -201,14 +206,7 @@ class RefundApply extends React.Component {
         editId = id;
     }
 
-     getDefaultNum(num) {
-         // this.setState({
-         //     num: num,
-         // });
-        this.state.refNum = num;
-     }
-
-     findIdIndex(id) {
+    findIdIndex(id) {
         var idIndex = 0;
         this.state.product.orderItems && this.state.product.orderItems.map((item, index) => {
             if (item.id === id) {
@@ -216,16 +214,6 @@ class RefundApply extends React.Component {
             }
         });
         return idIndex
-     }
-
-     //根据itemId找到item的数量
-    changeItemQuantity(id, quantity) {
-        //在product的orderItems里找id是id的商品，把它的商品数量改成quantity；
-        const idIndex = this.findIdIndex(id);
-        this.state.refundQuantity[idIndex] = quantity;
-        this.setState({
-            refundQuantity: this.state.refundQuantity,
-        });
     }
 
     onNumChange = (id, val) => {
@@ -291,35 +279,18 @@ class RefundApply extends React.Component {
     //如果选中了该退款商品，就显示该商品的编辑数量框
     checkEditable(item, index) {
         if (this.state.checkRefund[index]) {
-            return <Flex.Item style={{flex:'0 0 %20'}}>
+            return <Flex.Item style={{flex: '0 0 %20'}}>
                 <WhiteSpace/>
                 <img src='./images/icons/编辑.png'
-                     onClick={()=>{
+                     onClick={() => {
                          this.setEditId(item.id);
                          this.openNav(index);
                      }}/>
                 <WhiteSpace/>
-                <div style={{marginTop:'0.5rem', fontColor:"#ccc"}}>x {item.quantity}</div>
+                <div style={{marginTop: '0.5rem', fontColor: "#ccc"}}>x {item.quantity}</div>
             </Flex.Item>
         } else {
             return null
-        }
-    }
-
-
-    isWhich(option, index) {
-        if (option.length === refundType.length) {
-            return this.state.chooseShipState[index]
-        } else {
-            return this.state.chooseRefundReason[index]
-        }
-    }
-
-    checkStatus(option) {
-        if (option.length === refundType.length) {
-            return 'refundType'
-        } else {
-            return 'refundReason'
         }
     }
 
@@ -337,49 +308,52 @@ class RefundApply extends React.Component {
     };
 
 
-
     render() {
         console.log("this.state.product.orderItems", this.state.product.orderItems);
         console.log("this.state.refundItems", this.state.refundItems);
         console.log("this.state.refundQuantity", this.state.refundQuantity);
 
-        const { getFieldProps } = this.props.form;
-        const { files } = this.state;
+        const {getFieldProps} = this.props.form;
+        const {files} = this.state;
         const proNum = this.state.product.orderItems.length;
 
 
-        const productInfo = this.state.product.orderItems && this.state.product.orderItems.map((item, index)=>{
+        const productInfo = this.state.product.orderItems && this.state.product.orderItems.map((item, index) => {
 
             if (proNum === 1) {
 
                 return <Flex key={index}>
-                    <Flex.Item style={{flex:'0 0 30%'}}>
-                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width:'60%', margin:'1rem'}}/>
+                    <Flex.Item style={{flex: '0 0 30%'}}>
+                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
+                             style={{width: '60%', margin: '1rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 50%'}}>
-                        <div>{item.name} <span style={{marginLeft:'0.5rem', color: '#ccc'}}>￥{item.salePrice}</span></div>
+                    <Flex.Item style={{flex: '0 0 50%'}}>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#ccc'}}>￥{item.salePrice}</span>
+                        </div>
                         <div style={{color: "darkorange"}}>退款数量：{this.state.refundQuantity[index]}</div>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 %20'}}>
+                    <Flex.Item style={{flex: '0 0 %20'}}>
                         <img src='./images/icons/编辑.png'
-                             onClick={()=>{
+                             onClick={() => {
                                  this.setEditId(item.id);
                                  this.openNav(index);
                              }}/>
-                        <div style={{fontColor:"#ccc"}}>x {item.quantity}</div>
+                        <div style={{fontColor: "#ccc"}}>x {item.quantity}</div>
                     </Flex.Item>
                 </Flex>
             } else {
                 return <Flex key={index}>
-                    <Flex.Item style={{flex:'0 0 10%'}}>
+                    <Flex.Item style={{flex: '0 0 10%'}}>
                         <CheckboxItem key={index} onChange={() => this.onCheckChange(item, index)}>
                         </CheckboxItem>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 30%'}}>
-                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width:'60%', margin:'0.5rem'}}/>
+                    <Flex.Item style={{flex: '0 0 30%'}}>
+                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
+                             style={{width: '60%', margin: '0.5rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 40%'}}>
-                        <div>{item.name}  <span style={{marginLeft:'0.5rem', color: '#ccc'}}>￥{item.salePrice}</span></div>
+                    <Flex.Item style={{flex: '0 0 40%'}}>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#ccc'}}>￥{item.salePrice}</span>
+                        </div>
                         {this.showRefundQuantity(index)}
                     </Flex.Item>
                     {this.checkEditable(item, index)}
@@ -402,22 +376,22 @@ class RefundApply extends React.Component {
 
             <Card className="payment_card">
 
-                <List style={{ backgroundColor: 'white' }} className="picker-list">
+                <List style={{backgroundColor: 'white'}} className="picker-list">
                     <Picker data={shipStateOption} cols={1} {...getFieldProps('productState')} className="forss">
                         <List.Item arrow="horizontal">货物状态</List.Item>
                     </Picker>
                 </List>
 
-                <List style={{ backgroundColor: 'white' }} className="picker-list">
+                <List style={{backgroundColor: 'white'}} className="picker-list">
                     <Picker data={refundReasonOption} cols={1} {...getFieldProps('refundReason')} className="forss">
                         <List.Item arrow="horizontal">退款原因</List.Item>
                     </Picker>
                 </List>
 
                 {/*<List style={{ backgroundColor: 'white' }} className="picker-list">*/}
-                    {/*<Picker data={refundType} cols={1} {...getFieldProps('type')} className="forss">*/}
-                        {/*<List.Item arrow="horizontal">退款类型</List.Item>*/}
-                    {/*</Picker>*/}
+                {/*<Picker data={refundType} cols={1} {...getFieldProps('type')} className="forss">*/}
+                {/*<List.Item arrow="horizontal">退款类型</List.Item>*/}
+                {/*</Picker>*/}
                 {/*</List>*/}
 
             </Card>
@@ -427,16 +401,16 @@ class RefundApply extends React.Component {
             <Card>
                 {/*<WhiteSpace/>*/}
                 {/*<div className="card_group">*/}
-                    {/*<InputItem type='money' placeholder="" clear>退款金额：</InputItem>*/}
+                {/*<InputItem type='money' placeholder="" clear>退款金额：</InputItem>*/}
                 {/*</div>*/}
                 {/*<WhiteSpace/>*/}
                 {/*<div style={{backgroundColor:'#eee', lineHeight:'2rem', color:'#999'}}>*/}
-                    {/*<WingBlank> 最多￥100，含发货邮费0 </WingBlank>*/}
+                {/*<WingBlank> 最多￥100，含发货邮费0 </WingBlank>*/}
                 {/*</div>*/}
                 {/*<WhiteSpace/>*/}
 
                 <div className="discount">
-                <InputItem {...getFieldProps('reason')} placeholder="选填">退款说明：</InputItem>
+                    <InputItem {...getFieldProps('reason')} placeholder="选填">退款说明：</InputItem>
                 </div>
             </Card>
 
@@ -447,11 +421,11 @@ class RefundApply extends React.Component {
                 <WingBlank>上传凭证</WingBlank>
                 <WhiteSpace/>
                 {/*<div style={{border:'1px dashed #ccc', width:'30%', textAlign:'center', marginLeft:'2rem'}}>*/}
-                    {/*<WhiteSpace/>*/}
-                    {/*<img src="./images/icons/上传凭证.png"/>*/}
-                    {/*<div style={{color:'#999'}}>上传凭证</div>*/}
-                    {/*<div style={{color:'#999'}}>（最多3张）</div>*/}
-                    {/*<WhiteSpace/>*/}
+                {/*<WhiteSpace/>*/}
+                {/*<img src="./images/icons/上传凭证.png"/>*/}
+                {/*<div style={{color:'#999'}}>上传凭证</div>*/}
+                {/*<div style={{color:'#999'}}>（最多3张）</div>*/}
+                {/*<WhiteSpace/>*/}
                 {/*</div>*/}
 
                 <ImagePicker
@@ -463,8 +437,10 @@ class RefundApply extends React.Component {
                 <WhiteSpace/>
             </Card>
 
-            <Submit onClick={()=>{this.applyForRefund()}}>
-                <span >提交</span>
+            <Submit onClick={() => {
+                this.applyForRefund()
+            }}>
+                <span>提交</span>
             </Submit>
 
         </Layout>

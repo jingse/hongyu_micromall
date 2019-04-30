@@ -5,7 +5,7 @@ var api = {
     getVipRank(wechat_id, callback) {
         http.ajax({
             url: getServerHost() + '/vip/detail/view?id=' + wechat_id,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -15,7 +15,7 @@ var api = {
     getPointsChangeRecords(wechat_id, page, rows, callback) {
         http.ajax({
             url: getServerHost() + '/vip/pointrecord/page/view?id=' + wechat_id + "&page=" + page + "&rows=" + rows,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -25,7 +25,7 @@ var api = {
     exchangePoints(wechat_id, changeValue, callback) {
         http.ajax({
             url: getServerHost() + '/vip/point/change?id=' + wechat_id + "&changevalue=" + changeValue,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -36,7 +36,7 @@ var api = {
     getSystemSetting(name, callback) {
         http.ajax({
             url: getServerHost() + '/system_settings/detail/view?name=' + name,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }

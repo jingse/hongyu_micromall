@@ -1,4 +1,4 @@
-import { wxconfig } from '../config.jsx';
+import {wxconfig} from '../config.jsx';
 import http from '../common/http.jsx';
 
 var api = {
@@ -6,8 +6,8 @@ var api = {
         http.ajax({
             method: 'POST',
             //url: 'http://ymymmall.lvxingbox.cn/auth',
-            url: wxconfig.hostURL+'auth',
-            withCredentials:false,
+            url: wxconfig.hostURL + 'auth',
+            withCredentials: false,
             data: {
                 url: url
             },

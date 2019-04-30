@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Toast } from 'antd-mobile';
+import {Modal, Toast} from 'antd-mobile';
 import "./index.less";
 import proApi from "../../../../../api/product.jsx";
 
@@ -15,7 +15,7 @@ export default class CartModal extends React.Component {
 
         console.log('this.props.modalData', data)
         console.log('this.props.productData', this.props.productData)
-        console.log('isWebusiness',localStorage.getItem('isWebusiness'))
+        console.log('isWebusiness', localStorage.getItem('isWebusiness'))
 
 
         for (let i in data) {
@@ -24,17 +24,17 @@ export default class CartModal extends React.Component {
         return {
             active,
             val: 1,
-            isWebusiness : localStorage.getItem('isWebusiness'),
-            myoptions : "",
-            ischange :-1
+            isWebusiness: localStorage.getItem('isWebusiness'),
+            myoptions: "",
+            ischange: -1
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
     }
 
     onChange = (val) => {
-        this.setState({ val });
+        this.setState({val});
     };
 
 
@@ -56,7 +56,7 @@ export default class CartModal extends React.Component {
                 console.log('error');
                 return
             }
-            if(rs && rs.success) {
+            if (rs && rs.success) {
                 const salePrice = rs.obj[0].pPrice;
                 const mPrice = rs.obj[0].mPrice;
                 const inboud = rs.obj[0].inbound;
@@ -70,24 +70,22 @@ export default class CartModal extends React.Component {
                     myoptions: option.specification
                 });
             }
-            
+
         });
 
     }
-
 
 
     render() {
 
         const footer = [{
             text: '确定',
-            onPress: ()=>{
-                console.log("asdasd",this.state.val,this.props.limit,this.state.myoptions,this.props.guige);
+            onPress: () => {
+                console.log("asdasd", this.state.val, this.props.limit, this.state.myoptions, this.props.guige);
 
-                if(this.state.val>this.props.limit){
+                if (this.state.val > this.props.limit) {
                     Toast.info("超出限购数量！");
-                }
-                else {
+                } else {
                     this.props.hideModal && this.props.hideModal('success');
                     this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,
                         this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
@@ -101,30 +99,34 @@ export default class CartModal extends React.Component {
             popup
             animationType="slide-up"
             closable
-            onClose = {()=>{
+            onClose={() => {
                 this.props.hideModal && this.props.hideModal('close');
             }}
-            footer = {footer}
-            className = "popup_modal"
+            footer={footer}
+            className="popup_modal"
         >
             <div className="popup_modal_content">
-                <div style={{float:'left', marginLeft:'1rem'}}>数量</div>
-                <div className="step">  
-                        <div className="add_minus" onClick={() => {
-                            this.setState({val:(this.state.val-1)>1?this.state.val-1:1})
-                        }}
-                             style={{backgroundImage:'url(./images/icons/minus.png)', backgroundRepeat:'no-repeat',
-                                     backgroundPosition:'center'}}>
-                        </div>
-                        <div className="value">
+                <div style={{float: 'left', marginLeft: '1rem'}}>数量</div>
+                <div className="step">
+                    <div className="add_minus" onClick={() => {
+                        this.setState({val: (this.state.val - 1) > 1 ? this.state.val - 1 : 1})
+                    }}
+                         style={{
+                             backgroundImage: 'url(./images/icons/minus.png)', backgroundRepeat: 'no-repeat',
+                             backgroundPosition: 'center'
+                         }}>
+                    </div>
+                    <div className="value">
                         {this.state.val}
-                        </div>
-                        <div className="add_minus" onClick={() => {
-                            this.setState({val:(this.state.val+1 >this.state.inbound?this.state.val:this.state.val+1)})
-                        }}
-                            style={{backgroundImage:'url(./images/icons/add.png)',backgroundRepeat:'no-repeat',
-                                    backgroundPosition:'center'}}>
-                        </div>
+                    </div>
+                    <div className="add_minus" onClick={() => {
+                        this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)})
+                    }}
+                         style={{
+                             backgroundImage: 'url(./images/icons/add.png)', backgroundRepeat: 'no-repeat',
+                             backgroundPosition: 'center'
+                         }}>
+                    </div>
                 </div>
             </div>
         </Modal>

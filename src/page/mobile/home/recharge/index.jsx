@@ -1,13 +1,12 @@
 import React from "react";
-import { Flex, WhiteSpace, Card, Button, WingBlank, Stepper, InputItem, Modal, List, Toast } from "antd-mobile";
+import {Button, Card, Flex, InputItem, List, Modal, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import "./index.less";
-// import recharge_coupon from "../../../../static/mockdata/coupon_recharge.js";
 import homeApi from "../../../../api/home.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import PropTypes from "prop-types";
-import { createForm } from 'rc-form';
+import {createForm} from 'rc-form';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -15,6 +14,10 @@ const wechatId = localStorage.getItem("wechatId");
 
 
 class Recharge extends React.Component {
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -31,25 +34,22 @@ class Recharge extends React.Component {
 
             couponMoneyId: 0,
 
-            delay:false,
-            timer:60,
-            siv:null
+            delay: false,
+            timer: 60,
+            siv: null
         };
     }
-
-    static contextTypes = {
-        router: PropTypes.object.isRequired
-    };
 
     componentWillMount() {
         this.requestRechargeCoupon();
     }
-    componentWillUnmount(){
+
+    componentWillUnmount() {
         clearInterval(this.state.siv);
     }
 
     requestRechargeCoupon() {
-        homeApi.getSaleCouponList((rs)=>{
+        homeApi.getSaleCouponList((rs) => {
             if (rs && rs.success) {
                 const coupon = rs.obj;
 
@@ -63,12 +63,12 @@ class Recharge extends React.Component {
 
     addNum = (val) => {
         this.setState({
-            num: (val+1)<11?val+1:10,
+            num: (val + 1) < 11 ? val + 1 : 10,
         });
     };
     minusNum = (val) => {
         this.setState({
-            num: (val-1)>1?val-1:1,
+            num: (val - 1) > 1 ? val - 1 : 1,
         });
     };
 
@@ -76,7 +76,7 @@ class Recharge extends React.Component {
     onPhoneChange = (val) => {
         // console.log(val);
         this.setState({
-            phone: val.replace(/\s+/g,""),
+            phone: val.replace(/\s+/g, ""),
         });
     };
 
@@ -101,19 +101,18 @@ class Recharge extends React.Component {
         if (this.state.phone === "") {
             Toast.info("请先输入手机号！", 1);
         } else {
-            couponApi.getCouponCode(this.state.phone, (rs)=>{
+            couponApi.getCouponCode(this.state.phone, (rs) => {
                 if (rs && rs.success) {
                     Toast.info("发送成功，注意查收", 1);
                     let siv = setInterval(() => {
-                        this.setState({ timer: this.state.timer-1, delay: true,siv:siv }, () => {
+                        this.setState({timer: this.state.timer - 1, delay: true, siv: siv}, () => {
                             if (this.state.timer === 0) {
                                 clearInterval(siv);
-                                this.setState({ delay: false,timer:60 })
+                                this.setState({delay: false, timer: 60})
                             }
                         });
                     }, 1000);
-                }
-                else{
+                } else {
                     Toast.info(rs.msg);
                     console.log(rs);
                 }
@@ -121,15 +120,17 @@ class Recharge extends React.Component {
         }
     }
 
-    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount,info) {
-        console.log("create coupon order: " ,phone, confirmCode, couponTypeId, amount,info);
-        couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs)=>{
+    createCouponOrderOperation(phone, confirmCode, couponTypeId, amount, info) {
+        console.log("create coupon order: ", phone, confirmCode, couponTypeId, amount, info);
+        couponApi.submitCouponOrder(wechatId, phone, confirmCode, couponTypeId, amount, (rs) => {
             console.log("submitCouponOrder_rs", rs);
             if (rs && rs.success) {
-                this.context.router.history.push({pathname: '/home/recharge/payment', state: {rechargeInfo:info,orderId:rs.obj} });
-            }
-            else{
-                Toast.info("请输入正确的验证码",1)
+                this.context.router.history.push({
+                    pathname: '/home/recharge/payment',
+                    state: {rechargeInfo: info, orderId: rs.obj}
+                });
+            } else {
+                Toast.info("请输入正确的验证码", 1)
             }
         });
     }
@@ -141,14 +142,14 @@ class Recharge extends React.Component {
             "faceValue": this.state.faceValue,
             // "price": '0.01',
             "phone": this.state.phone,
-            "confirmCode":  this.props.form.getFieldsValue().confirmCode,
+            "confirmCode": this.props.form.getFieldsValue().confirmCode,
             "num": this.state.num,
             'couponMoneyId': this.state.couponMoneyId,
         };
         this.setState({
             rechargeInfo: info,
         });
-        this.createCouponOrderOperation(this.state.phone,this.props.form.getFieldsValue().confirmCode,this.state.couponMoneyId,this.state.num,info);
+        this.createCouponOrderOperation(this.state.phone, this.props.form.getFieldsValue().confirmCode, this.state.couponMoneyId, this.state.num, info);
     }
 
     checkParams() {
@@ -170,7 +171,7 @@ class Recharge extends React.Component {
 
     render() {
 
-        const { getFieldProps } = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         return <Layout header={false} footer={false}>
 
@@ -180,35 +181,50 @@ class Recharge extends React.Component {
 
             <Card>
                 <InputItem disabled editable={false} value={"余额"}>类型</InputItem>
-                <List.Item extra={this.state.choose? this.state.choose : "请选择"}
+                <List.Item extra={this.state.choose ? this.state.choose : "请选择"}
                            onClick={this.showModal('modal2')}>金额</List.Item>
-                <WingBlank style={{borderBottom:'1px solid #eee'}}>
+                <WingBlank style={{borderBottom: '1px solid #eee'}}>
                     <Flex>
-                        <Flex.Item style={{flex:'0 0 20%', fontSize:'1.1rem'}}>数量</Flex.Item>
-                        <Flex.Item style={{flex:'0 0 80%'}}>
-                        <div className="step1">              
-                            <div className="add_minus" onClick={() => {this.minusNum(this.state.num)}}
-                            style={{backgroundImage:'url(./images/icons/minus.png)',backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
+                        <Flex.Item style={{flex: '0 0 20%', fontSize: '1.1rem'}}>数量</Flex.Item>
+                        <Flex.Item style={{flex: '0 0 80%'}}>
+                            <div className="step1">
+                                <div className="add_minus" onClick={() => {
+                                    this.minusNum(this.state.num)
+                                }}
+                                     style={{
+                                         backgroundImage: 'url(./images/icons/minus.png)',
+                                         backgroundRepeat: 'no-repeat',
+                                         backgroundPosition: 'center'
+                                     }}>
+                                </div>
+                                <div className="value">
+                                    {this.state.num}
+                                </div>
+                                <div className="add_minus" onClick={() => {
+                                    this.addNum(this.state.num)
+                                }}
+                                     style={{
+                                         backgroundImage: 'url(./images/icons/add.png)',
+                                         backgroundRepeat: 'no-repeat',
+                                         backgroundPosition: 'center'
+                                     }}>
+                                </div>
                             </div>
-                            <div className="value">
-                            {this.state.num}
-                            </div>
-                            <div className="add_minus"onClick={() => {this.addNum(this.state.num)}}
-                            style={{backgroundImage:'url(./images/icons/add.png)', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
-                            </div>
-                        </div>
                         </Flex.Item>
                     </Flex>
                 </WingBlank>
                 <InputItem type="phone" onChange={this.onPhoneChange}>手机号</InputItem>
                 <Flex>
-                    <Flex.Item style={{flex:'0 0 65%'}}>
+                    <Flex.Item style={{flex: '0 0 65%'}}>
                         <InputItem type="number" {...getFieldProps('confirmCode')}>验证码</InputItem>
                     </Flex.Item>
                     <Flex.Item>
-                        <Button disabled={this.state.delay} type="primary" inline size="small" style={{ marginRight: '4px' }}
-                                onClick={() => {this.getCode()}}>
-                                {this.state.delay===false?'获取验证码':'重新发送('+this.state.timer+')'}
+                        <Button disabled={this.state.delay} type="primary" inline size="small"
+                                style={{marginRight: '4px'}}
+                                onClick={() => {
+                                    this.getCode()
+                                }}>
+                            {this.state.delay === false ? '获取验证码' : '重新发送(' + this.state.timer + ')'}
                         </Button>
                     </Flex.Item>
                 </Flex>
@@ -216,10 +232,12 @@ class Recharge extends React.Component {
             </Card>
 
             <div className="coupon_cart cart_summary">
-                <div className="secondary_btn" style={{width:'60%',fontSize:'0.8rem'}}>
+                <div className="secondary_btn" style={{width: '60%', fontSize: '0.8rem'}}>
                     合计：￥{this.state.price * this.state.num}
                 </div>
-                <div className="primary_btn" style={{width:'40%'}} onClick = {()=>{this.checkParams()}}>
+                <div className="primary_btn" style={{width: '40%'}} onClick={() => {
+                    this.checkParams()
+                }}>
                     结算
                 </div>
             </div>
@@ -233,10 +251,10 @@ class Recharge extends React.Component {
                 <List renderHeader={() => <div>金额选择</div>} className="popup-list">
                     {this.state.couponAvailable.map((item, index) => (
                         <Item key={index} multipleLine
-                              onClick = {
+                              onClick={
                                   this.onClose(item.couponMoneyId, item.discountPrice + " 代 " + item.price, item.discountPrice, item.price)
                               }
-                              extra={<span style={{textDecoration:'line-through'}}>￥{item.price}</span>}>
+                              extra={<span style={{textDecoration: 'line-through'}}>￥{item.price}</span>}>
                             <span>￥{item.discountPrice}</span>
                             <Brief>{new Date(item.endTime).toLocaleString()}到期</Brief>
                         </Item>

@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
-import {WhiteSpace, List} from 'antd-mobile';
-// import coupon_data from "../../../../static/mockdata/coupon.js";
+import {List, WhiteSpace} from 'antd-mobile';
 import './index.less';
 
 const Item = List.Item;
@@ -12,8 +11,8 @@ export default class Coupon extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            unusedCoupons:[],
-            usedCoupons:[],
+            unusedCoupons: [],
+            usedCoupons: [],
             overdueCoupons: [],
             isLoading: false,
             // tabIndex: 0,
@@ -43,20 +42,26 @@ export default class Coupon extends React.Component {
     render() {
 
         const unused_coupons = this.state.unusedCoupons && this.state.unusedCoupons.map((item, index) => {
-            return <Item key={index} multipleLine onClick={() => {}} extra={item.info}>
-                <div className="iconH iconH_inline icon_calendar" style={{margin:'0 5'}}/>{item.origin}
+            return <Item key={index} multipleLine onClick={() => {
+            }} extra={item.info}>
+                <div className="iconH iconH_inline icon_calendar" style={{margin: '0 5'}}/>
+                {item.origin}
             </Item>
         });
 
         const used_coupons = this.state.usedCoupons && this.state.usedCoupons.map((item, index) => {
-            return <Item key={index} multipleLine disabled onClick={() => {}} extra={item.info}>
-                <div className="iconH iconH_inline icon_calendar" style={{margin:'0 5'}}/>{item.origin}
+            return <Item key={index} multipleLine disabled onClick={() => {
+            }} extra={item.info}>
+                <div className="iconH iconH_inline icon_calendar" style={{margin: '0 5'}}/>
+                {item.origin}
             </Item>
         });
 
         const overdue_coupons = this.state.overdueCoupons && this.state.overdueCoupons.map((item, index) => {
-            return <Item key={index} multipleLine disabled onClick={() => {}} extra={item.info}>
-                <div className="iconH iconH_inline icon_calendar" style={{margin:'0 5'}}/>{item.origin}
+            return <Item key={index} multipleLine disabled onClick={() => {
+            }} extra={item.info}>
+                <div className="iconH iconH_inline icon_calendar" style={{margin: '0 5'}}/>
+                {item.origin}
             </Item>
         });
 
@@ -66,13 +71,19 @@ export default class Coupon extends React.Component {
 
             <WhiteSpace size='xs'/>
 
-            <List renderHeader={() => <div><div className="iconH iconH_inline icon_ticket" style={{margin:'0 5', height:'16px'}}/>未使用</div>}>
+            <List renderHeader={() => <div>
+                <div className="iconH iconH_inline icon_ticket" style={{margin: '0 5', height: '16px'}}/>
+                未使用</div>}>
                 {unused_coupons}
             </List>
-            <List renderHeader={() => <div><div className="iconH iconH_inline icon_ticket" style={{margin:'0 5', height:'16px'}}/>已使用</div>}>
+            <List renderHeader={() => <div>
+                <div className="iconH iconH_inline icon_ticket" style={{margin: '0 5', height: '16px'}}/>
+                已使用</div>}>
                 {used_coupons}
             </List>
-            <List renderHeader={() => <div><div className="iconH iconH_inline icon_ticket" style={{margin:'0 5', height:'16px'}}/>已过期</div>}>
+            <List renderHeader={() => <div>
+                <div className="iconH iconH_inline icon_ticket" style={{margin: '0 5', height: '16px'}}/>
+                已过期</div>}>
                 {overdue_coupons}
             </List>
 

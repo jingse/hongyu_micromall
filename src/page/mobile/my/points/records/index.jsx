@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
-import {WhiteSpace, Flex, Card, Toast, Pagination} from 'antd-mobile';
+import {Card, Flex, Pagination, Toast, WhiteSpace} from 'antd-mobile';
 import pointsApi from "../../../../../api/points.jsx";
 import "./index.less";
 import DateManager from "../../../../../common/DateManager.jsx";
@@ -13,7 +13,7 @@ export default class ExchangeRecords extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state={
+        this.state = {
             pointsRecords: [],
             totalPages: 0,
             curPage: 1,
@@ -35,7 +35,6 @@ export default class ExchangeRecords extends React.Component {
             }
         });
     }
-
 
 
     requestFormerPage() {
@@ -69,39 +68,37 @@ export default class ExchangeRecords extends React.Component {
 
             return <div>
                 <Pagination
-                            // total={totalPages}
-                            total={this.state.totalPages}
-                            className="custom-pagination"
-                            current={this.state.curPage}
-                            locale={{
-                                prevText: (<span className="arrow-align"
-                                                 onClick={() => {this.requestFormerPage()}}
-                                >
+                    // total={totalPages}
+                    total={this.state.totalPages}
+                    className="custom-pagination"
+                    current={this.state.curPage}
+                    locale={{
+                        prevText: (<span className="arrow-align"
+                                         onClick={() => {
+                                             this.requestFormerPage()
+                                         }}
+                        >
                                     上一页</span>),
-                                nextText: (<span className="arrow-align"
-                                                 onClick={() => {this.requestLatterPage()}}
-                                >
+                        nextText: (<span className="arrow-align"
+                                         onClick={() => {
+                                             this.requestLatterPage()
+                                         }}
+                        >
                                     下一页</span>),
-                            }}
-                            style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
+                    }}
+                    style={{width: '90%', marginLeft: '5%', marginRight: '5%', fontSize: '0.7rem'}}
                 />
             </div>
         }
-    }
-
-    checkChangeValue(value) {
-        if (value > 0)
-            return "+" + value;
-        return value
     }
 
 
     render() {
 
         const recordContent = this.state.pointsRecords && this.state.pointsRecords.map((item, index) => {
-            return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
-                <Flex.Item>{this.checkChangeValue(item.changevalue)}</Flex.Item>
+            return <Flex key={index} style={{textAlign: 'center'}}>
+                <Flex.Item style={{padding: '0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
+                <Flex.Item>{item.changevalue > 0 ? "+" + item.changevalue : item.changevalue}</Flex.Item>
                 <Flex.Item>{item.reason}</Flex.Item>
             </Flex>
         });
@@ -113,8 +110,8 @@ export default class ExchangeRecords extends React.Component {
             <WhiteSpace/>
 
             <Card>
-                <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
-                    <Flex.Item style={{padding:'0.5rem'}}>变化时间</Flex.Item>
+                <Flex style={{textAlign: 'center', background: '#F7F7F7'}}>
+                    <Flex.Item style={{padding: '0.5rem'}}>变化时间</Flex.Item>
                     <Flex.Item>变化值</Flex.Item>
                     <Flex.Item>变化原因</Flex.Item>
                 </Flex>

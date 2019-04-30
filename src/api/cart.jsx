@@ -8,9 +8,9 @@ var api = {
         http.ajax({
             method: "POST",
             url: getServerHost() + '/shopping_cart/add_items?wechat_id=' + id + "&specialtySpecificationId=" + specificationId
-            + "&specialtyId=" + specialtyId + "&isGroupPromotion=" + isGroupPromotion + "&quantity=" + quantity,
-            dataType:"json",
-            crossDomain:true,
+                + "&specialtyId=" + specialtyId + "&isGroupPromotion=" + isGroupPromotion + "&quantity=" + quantity,
+            dataType: "json",
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }

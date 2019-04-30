@@ -1,8 +1,8 @@
 import React from "react";
-import {Toast, InputItem, WhiteSpace, WingBlank} from "antd-mobile";
+import {InputItem, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
-import { createForm } from 'rc-form';
+import {createForm} from 'rc-form';
 import couponApi from "../../../../../api/coupon.jsx";
 import PropTypes from "prop-types";
 
@@ -40,7 +40,7 @@ class BalanceRecharge extends React.Component {
     onCodeChange = (val) => {
         // console.log(val);
         this.setState({
-            activationCode: val.replace(/\s+/g,""),
+            activationCode: val.replace(/\s+/g, ""),
         });
     };
 
@@ -63,12 +63,15 @@ class BalanceRecharge extends React.Component {
             <InputItem onChange={this.onCodeChange}>激活码</InputItem>
 
 
-
             <div className="coupon_cart cart_summary">
-                <div className="secondary_btn" style={{width:'50%'}} onClick={() => {history.go(-1)}}>
+                <div className="secondary_btn" style={{width: '50%'}} onClick={() => {
+                    history.go(-1)
+                }}>
                     返回
                 </div>
-                <div className="primary_btn" style={{width:'50%'}} onClick = {()=>{this.bindCouponRequest(wechatId, this.state.activationCode)}}>
+                <div className="primary_btn" style={{width: '50%'}} onClick={() => {
+                    this.bindCouponRequest(wechatId, this.state.activationCode)
+                }}>
                     确定
                 </div>
             </div>

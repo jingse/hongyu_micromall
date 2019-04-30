@@ -68,7 +68,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/banner/listad',
             // origin: myOrigin,
-            dataType:"json",
+            dataType: "json",
             // crossDomain:true,
             success: (rs) => {
                 callback && callback(rs);
@@ -79,7 +79,7 @@ var api = {
     getMerchantInfo(merchantId, callback) {
         http.ajax({
             url: getServerHost() + '/webusiness/detail/?id=' + merchantId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -89,7 +89,7 @@ var api = {
     getTags(callback) {
         http.ajax({
             url: getServerHost() + '/product/labels/list/view',
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -99,37 +99,37 @@ var api = {
     getCategories(callback) {
         http.ajax({
             url: getServerHost() + '/product/category/super_categories',
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
 
-    getTopNOFCoupon(size,callback){
+    getTopNOFCoupon(size, callback) {
         http.ajax({
             url: getServerHost() + '/promotion/normal/sub_list?size=' + size,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
 
-    getTopNOFGroupCoupon(size,callback){
+    getTopNOFGroupCoupon(size, callback) {
         http.ajax({
             url: getServerHost() + '/promotion/group/sub_list?size=' + size,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
 
-    getTopNOFRecommend(size,callback){
+    getTopNOFRecommend(size, callback) {
         http.ajax({
             url: getServerHost() + '/product/sub_list_for_recommend?size=' + size,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -138,8 +138,8 @@ var api = {
 
     getTopNOfTags(TagId, size, callback) {
         http.ajax({
-            url: getServerHost() + '/product/sub_list_by_label_id?id='+ TagId + '&size=' + size,
-            crossDomain:true,
+            url: getServerHost() + '/product/sub_list_by_label_id?id=' + TagId + '&size=' + size,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -148,8 +148,8 @@ var api = {
 
     getTopNOfCategory(categoryId, size, callback) {
         http.ajax({
-            url: getServerHost() + '/product/sub_list_by_category_id?category_id='+ categoryId + '&size=' + size,
-            crossDomain:true,
+            url: getServerHost() + '/product/sub_list_by_category_id?category_id=' + categoryId + '&size=' + size,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -163,7 +163,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/product/label_specialtys/page/view?id=' + id + "&page=" + page +
                 "&rows=" + rows + "&condition=" + condition,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -174,8 +174,8 @@ var api = {
     getCategoryList(categoryId, page, rows, condition, callback) {
         http.ajax({
             url: getServerHost() + '/product/pages_by_category_id?category_id=' + categoryId + "&page=" + page +
-                    "&rows=" + rows + "&condition=" + condition,
-            crossDomain:true,
+                "&rows=" + rows + "&condition=" + condition,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -185,8 +185,8 @@ var api = {
     getRecommendList(page, rows, condition, callback) {
         http.ajax({
             url: getServerHost() + '/product/recommend_product_pages?condition=' + condition + "&page=" + page +
-            "&rows=" + rows,
-            crossDomain:true,
+                "&rows=" + rows,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -198,57 +198,21 @@ var api = {
 
     getSpecialtyListSearching(type, input, page, rows, condition, callback) {
         http.ajax({
-            url: getServerHost() + '/product/search?' + type + "=" + input + "&page="+ page + "&rows=" + rows + "&condition=" + condition,
-            crossDomain:true,
+            url: getServerHost() + '/product/search?' + type + "=" + input + "&page=" + page + "&rows=" + rows + "&condition=" + condition,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
 
-    // getSpecialtyListSearchingBySpecialtyId(callback) {
-    //     http.ajax({
-    //         type:"GET",
-    //         url: getServerHost() + '/product/search',
-    //         dataType:"json",
-    //         crossDomain:true,
-    //         success: (rs) => {
-    //             callback && callback(rs);
-    //         }
-    //     });
-    // },
-    //
-    // getSpecialtyListSearchingBySpecificationId(callback) {
-    //     http.ajax({
-    //         type:"GET",
-    //         url: getServerHost() + '/product/search',
-    //         dataType:"json",
-    //         crossDomain:true,
-    //         success: (rs) => {
-    //             callback && callback(rs);
-    //         }
-    //     });
-    // },
-    //
-    // getSpecialtyListSearchingByCategoryId(callback) {
-    //     http.ajax({
-    //         type: "GET",
-    //         url: getServerHost() + '/product/search',
-    //         dataType:"json",
-    //         crossDomain:true,
-    //         success: (rs) => {
-    //             callback && callback(rs);
-    //         }
-    //     });
-    // },
-
 
     //----------------------------------ordinary preferential api-------------------------------------------
 
-    getOrdinaryPromotionList(page,rows,callback) {
+    getOrdinaryPromotionList(page, rows, callback) {
         http.ajax({
-            url: getServerHost() + '/promotion/normal/list?page='+page+'&rows='+rows,
-            crossDomain:true,
+            url: getServerHost() + '/promotion/normal/list?page=' + page + '&rows=' + rows,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -258,7 +222,7 @@ var api = {
     getOrdinaryPromotionDetail(promotionId, callback) {
         http.ajax({
             url: getServerHost() + '/promotion/normal/detail?id=' + promotionId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -268,10 +232,10 @@ var api = {
 
     //----------------------------------group preferential api-------------------------------------------
 
-    getGroupPromotionList(page,rows,callback) {
+    getGroupPromotionList(page, rows, callback) {
         http.ajax({
-            url: getServerHost() + '/promotion/group/list?page='+page+'&rows='+rows,
-            crossDomain:true,
+            url: getServerHost() + '/promotion/group/list?page=' + page + '&rows=' + rows,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -281,7 +245,7 @@ var api = {
     getGroupPromotionDetail(promotionId, callback) {
         http.ajax({
             url: getServerHost() + '/promotion/group/detail?id=' + promotionId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -295,7 +259,7 @@ var api = {
             // url: getServerHost() + '/business/coupon/once_used_coupon/receive_list?wechat_id=' + wechatId,
             url: getServerHost() + '/coupon/once_used_coupon/receive_list?wechat_id=' + wechatId,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -306,7 +270,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/coupon/once_used_coupon/create_coupon?wechat_id=' + wechatId + "&couponMoneyId=" + couponId,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -317,22 +281,18 @@ var api = {
     getSaleCouponList(callback) {
         http.ajax({
             url: getServerHost() + '/coupon/balance_used_coupon/sale_list',
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
 
-    paySaleCoupon(callback) {
-
-    },
-
-    getRedictUid(oid,cid,callback){
-        console.log("redirect!",getServerHost());
+    getRedictUid(oid, cid, callback) {
+        console.log("redirect!", getServerHost());
         http.ajax({
             url: getServerHost() + '/webusiness/get_id_by_oid?oid=' + oid + '&cid=' + cid,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }

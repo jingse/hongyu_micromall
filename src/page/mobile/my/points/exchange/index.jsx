@@ -2,21 +2,22 @@ import React from 'react';
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import Submit from "../../../../../components/submit/index.jsx";
-import {WhiteSpace, Card, InputItem, Toast,ActivityIndicator} from 'antd-mobile';
-import { createForm } from 'rc-form';
+import {ActivityIndicator, Card, InputItem, Toast, WhiteSpace} from 'antd-mobile';
+import {createForm} from 'rc-form';
 import pointsApi from "../../../../../api/points.jsx";
 
 class ExchangePoints extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state={
-            animating:false,
-            point:0
+        this.state = {
+            animating: false,
+            point: 0
         }
     }
-    componentWillMount(){
-        this.setState({point:this.props.location.points})
+
+    componentWillMount() {
+        this.setState({point: this.props.location.points})
     }
 
     exchangeAvailablePoints() {
@@ -44,17 +45,19 @@ class ExchangePoints extends React.Component {
             console.log("兑换结果：", rs);
             if (rs && rs.success) {
                 Toast.info(rs.msg);
-                this.setState({ point: this.state.point - this.props.form.getFieldValue('number'),animating: !this.state.animating });
-            }
-            else
-                this.setState({ animating: !this.state.animating });
+                this.setState({
+                    point: this.state.point - this.props.form.getFieldValue('number'),
+                    animating: !this.state.animating
+                });
+            } else
+                this.setState({animating: !this.state.animating});
         });
-        this.setState({ animating: !this.state.animating });
+        this.setState({animating: !this.state.animating});
     }
 
 
     render() {
-        const { getFieldProps } = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         return <Layout>
 
@@ -63,7 +66,8 @@ class ExchangePoints extends React.Component {
             <WhiteSpace/>
 
             <Card>
-                <InputItem editable={false} value={(!this.state.point || this.state.point === 0) ? '0' : this.state.point}>可用积分：</InputItem>
+                <InputItem editable={false}
+                           value={(!this.state.point || this.state.point === 0) ? '0' : this.state.point}>可用积分：</InputItem>
                 <InputItem editable={false} value="10积分 = 1元">兑换规则：</InputItem>
                 <InputItem
                     {...getFieldProps('number')}
@@ -72,14 +76,16 @@ class ExchangePoints extends React.Component {
                 >要兑换：</InputItem>
             </Card>
 
-            <Submit onClick={() => {this.exchangeAvailablePoints()}}>
+            <Submit onClick={() => {
+                this.exchangeAvailablePoints()
+            }}>
                 兑换
             </Submit>
             <ActivityIndicator
                 toast
                 text="加载中..."
                 animating={this.state.animating}
-              />
+            />
         </Layout>
     }
 

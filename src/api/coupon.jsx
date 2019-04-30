@@ -1,4 +1,4 @@
-import { getServerHost, wxconfig } from '../config.jsx';
+import {getServerHost, wxconfig} from '../config.jsx';
 import http from '../common/http.jsx';
 
 var api = {
@@ -8,7 +8,7 @@ var api = {
         http.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/sale/purchase?wechat_id=' + wechatId + "&couponMoneyId=" +
-            couponMoneyId + "&amount=" + amount + "&phone=" + phone + "&confirmCode=" + confirmCode,
+                couponMoneyId + "&amount=" + amount + "&phone=" + phone + "&confirmCode=" + confirmCode,
             // url: "//10.108.164.5:8080/hongyu/ymmall" + '/coupon/sale/purchase?wechat_id=' + wechatId + "&couponMoneyId=" + couponMoneyId + "&amount=" + amount,
             success: (rs) => {
                 callback && callback(rs);
@@ -18,7 +18,7 @@ var api = {
 
 
     confirmCouponPayment(orderId, fee, openId, callback) {
-        console.log('total_fee confirmCouponPayment',fee,orderId,openId)
+        console.log('total_fee confirmCouponPayment', fee, orderId, openId)
         http.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/mp/' + orderId,
@@ -29,7 +29,7 @@ var api = {
                 "total_fee": fee.toString(),
                 // "spbill_create_ip": '123.12.12.123',
                 // "notify_url": "http://admin.swczyc.com/hyapi/ymmall/order/pay/wechat/notify/" + orderId,
-                "notify_url": wxconfig.adminURLHttp+"hyapi/ymmall/order/pay/wechat/notify/" + orderId,
+                "notify_url": wxconfig.adminURLHttp + "hyapi/ymmall/order/pay/wechat/notify/" + orderId,
                 "openid": openId
             }),
             success: (rs) => {

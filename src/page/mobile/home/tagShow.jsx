@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Flex, WhiteSpace} from 'antd-mobile';
-import Separator from "./separator.jsx";
 import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
 
-export default class CategoryGrid extends React.Component {
+export default class TagShow extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -14,41 +13,32 @@ export default class CategoryGrid extends React.Component {
     }
 
     componentDidMount() {
-        this.requestTopNOfCategory(this.props.categoryId);
+        this.requestTopTag(this.props.tagId);
     }
 
 
-    requestTopNOfCategory(categoryId) {
-        // params: categoryId  size
-        console.log("categoryId", categoryId);
-        homeApi.getTopNOfCategory(categoryId, 6, (rs) => {
-            console.log("llfrs", rs, categoryId);
+    requestTopTag(tagId) {
+        homeApi.getTopNOfTags(tagId, 9, (rs) => {
+            console.log("每个标签内容rs", rs);
+            console.log("props内容", this.props.name);
             if (rs && rs.success) {
-                const grid = rs.obj;
+                const tag = rs.obj;
                 this.setState({
-                    data: grid
+                    data: tag
                 });
-                // console.log("gridCategory", gridCategory);
             }
         });
 
     }
 
-
     render() {
-
-        let categoryData = this.props.categoryData;
-        if (!categoryData || JSON.stringify(categoryData) === "{}") {
-            return null
-        }
-
         let topOfCategory = this.state.data;
         if (!topOfCategory || JSON.stringify(topOfCategory) === "{}") {
             return null;
         }
 
         const content = topOfCategory && topOfCategory.map((item, index) => {
-            return (//<div className="roll">
+            return (
                 <Flex.Item key={index} className="product_card"
                            style={{
                                backgroundColor: 'white',
@@ -57,7 +47,6 @@ export default class CategoryGrid extends React.Component {
                                marginLeft: '1.5%',
                                marginRight: '1.5%'
                            }}>
-                    {/*<Link to={{pathname:"/product", state: item.specialty.id }}>*/}
                     <Link to={`/product/${item.specialty.id}`}>
                         <div><img src={"http://" + getServerIp() + item.iconURL.mediumPath}
                                   style={{width: '6rem', height: '6rem'}}/></div>
@@ -70,18 +59,22 @@ export default class CategoryGrid extends React.Component {
                         <WhiteSpace size='xs'/>
                     </Link>
                 </Flex.Item>
-                //</div>
             )
         });
 
 
         return <div>
-            {content.length > 0 ? <Separator separatorData={categoryData} categoryData={this.props.categoryId}
-                                             picUrl={this.props.picUrl}/> : <div></div>}
+            {content.length > 0 ?
+                <Link to={{pathname: `/home/tag`, category: this.props.name, categoryId: this.props.tagId}}>
 
-            <Flex className="flex" style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
+                    <img src={"http://" + getServerIp() + this.props.picUrl} height='120' width='100%'/> </Link> :
+                <div/>}
+
+
+            <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                 {content}
             </Flex>
+
         </div>
     }
 }

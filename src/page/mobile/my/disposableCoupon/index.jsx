@@ -1,5 +1,5 @@
 import React from "react";
-import {SegmentedControl, List, Card, WhiteSpace, Flex} from "antd-mobile";
+import {Card, Flex, List, SegmentedControl, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import couponApi from "../../../../api/coupon.jsx";
@@ -28,7 +28,7 @@ export default class DisposableCoupon extends React.Component {
     }
 
     requestDisposableCoupons() {
-        couponApi.getDisposableCoupons(localStorage.getItem("wechatId"), (rs)=>{
+        couponApi.getDisposableCoupons(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 const coupons = rs.obj;
                 this.setState({
@@ -50,7 +50,7 @@ export default class DisposableCoupon extends React.Component {
                 this.setState({
                     couponUnused: this.state.couponUnused.concat(item)
                 });
-            } else if (item.state === 3){
+            } else if (item.state === 3) {
                 this.setState({
                     couponExpired: this.state.couponExpired.concat(item)
                 });
@@ -74,8 +74,8 @@ export default class DisposableCoupon extends React.Component {
 
     getRecordsContent() {
         return this.state.couponRecords && this.state.couponRecords.map((item, index) => {
-            return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
+            return <Flex key={index} style={{textAlign: 'center'}}>
+                <Flex.Item style={{padding: '0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
                 <Flex.Item>满￥{item.couponCondition}可用</Flex.Item>
                 <Flex.Item>￥{item.sum}</Flex.Item>
             </Flex>
@@ -84,15 +84,16 @@ export default class DisposableCoupon extends React.Component {
 
     isSuperimposed(isSuperimposed) {
         if (isSuperimposed)
-            return <a style={{fontSize:'0.4rem', color:'darkorange'}}>叠</a>
+            return <a style={{fontSize: '0.4rem', color: 'darkorange'}}>叠</a>
     }
 
     getUnusedContent() {
         return this.state.couponUnused && this.state.couponUnused.map((item, index) => {
             return <Item key={index} multipleLine
-                         onClick={() => {}}
+                         onClick={() => {
+                         }}
                          extra={"￥" + item.sum}
-                    >
+            >
                 <span>
                     满{item.couponCondition}可用 {this.isSuperimposed(item.canOverlay)}
                 </span>
@@ -105,7 +106,8 @@ export default class DisposableCoupon extends React.Component {
     getExpiredContent() {
         return this.state.couponExpired && this.state.couponExpired.map((item, index) => {
             return <Item key={index} multipleLine
-                         onClick={() => {}}
+                         onClick={() => {
+                         }}
                          extra={"￥" + item.sum}
             >
                 <span>
@@ -122,8 +124,8 @@ export default class DisposableCoupon extends React.Component {
         console.log("type", type);
         if (type === "使用记录") {
             return <Card>
-                <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
-                    <Flex.Item style={{padding:'0.5rem'}}>使用时间</Flex.Item>
+                <Flex style={{textAlign: 'center', background: '#F7F7F7'}}>
+                    <Flex.Item style={{padding: '0.5rem'}}>使用时间</Flex.Item>
                     <Flex.Item>使用条件</Flex.Item>
                     <Flex.Item>电子券</Flex.Item>
                 </Flex>
@@ -133,10 +135,14 @@ export default class DisposableCoupon extends React.Component {
             </Card>
         } else {
             return <div>
-                <List renderHeader={() => <div><div className="iconH iconH_inline icon_ticket" style={{margin:'0 5',height:'16'}}/>未使用</div>}>
+                <List renderHeader={() => <div>
+                    <div className="iconH iconH_inline icon_ticket" style={{margin: '0 5', height: '16'}}/>
+                    未使用</div>}>
                     {this.getUnusedContent()}
                 </List>
-                <List renderHeader={() => <div><div className="iconH iconH_inline icon_ticket" style={{margin:'0 5',height:'16'}}/>已过期</div>}>
+                <List renderHeader={() => <div>
+                    <div className="iconH iconH_inline icon_ticket" style={{margin: '0 5', height: '16'}}/>
+                    已过期</div>}>
                     {this.getExpiredContent()}
                 </List>
             </div>

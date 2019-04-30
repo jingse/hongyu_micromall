@@ -26,7 +26,7 @@ export default class BalancePurchase extends React.Component {
     requestBalancePurchase(wechatId) {
         console.log("requestBalancePurchase");
         couponApi.getBalancePurchase(wechatId, (rs) => {
-            console.log("我的购买",rs);
+            console.log("我的购买", rs);
             if (rs && rs.success) {
                 const purchase = rs.obj;
 
@@ -47,9 +47,10 @@ export default class BalancePurchase extends React.Component {
 
         const content = this.state.purchase && this.state.purchase.map((item, index) => {
             return <Item key={index} multipleLine
-                         onClick={() => {}}
+                         onClick={() => {
+                         }}
                          extra={item.orderAmount + "张"}
-                    >
+            >
                 <span>
                     ￥{item.sum}
                 </span>

@@ -1,35 +1,37 @@
 import React from 'react';
-import { ActivityIndicator} from "antd-mobile";
+import {ActivityIndicator} from "antd-mobile";
 import Layout from "../../../common/layout/layout.jsx";
 import Navigation from "../../../components/navigation/index.jsx";
 
 
-export default class searchRedirect extends React.Component{
+export default class searchRedirect extends React.Component {
 
-    constructor(props,context) {
-        super(props,context);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             animating: false
         };
     }
 
-    showToast(id){
-        this.setState({ animating: !this.state.animating });
+    showToast(id) {
+        this.setState({animating: !this.state.animating});
         this.closeTimer = setTimeout(() => {
-            this.setState({ animating: !this.state.animating });
+            this.setState({animating: !this.state.animating});
             this.linkTo(id)
 
         }, 1000);
     }
 
-    linkTo(id){
-        history.replaceState(null,null,'/#/home');
-        this.context.router.history.push({pathname:`/search`, value: this.props.location.state});
+    linkTo(id) {
+        history.replaceState(null, null, '/#/home');
+        this.context.router.history.push({pathname: `/search`, value: this.props.location.state});
     }
-    componentWillMount(){
-        console.log("this.props555",this.props.location.state);
+
+    componentWillMount() {
+        console.log("this.props555", this.props.location.state);
         this.showToast(this.props.location.state)
     }
+
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
     }
@@ -54,5 +56,5 @@ export default class searchRedirect extends React.Component{
 
 
 searchRedirect.contextTypes = {
-    router:React.PropTypes.object
+    router: React.PropTypes.object
 };

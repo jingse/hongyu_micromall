@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, WhiteSpace, WingBlank, Flex, Toast } from 'antd-mobile';
+import {Carousel, Flex, Toast, WhiteSpace, WingBlank} from 'antd-mobile';
 import PropTypes from "prop-types";
 
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
@@ -26,8 +26,8 @@ const host = wxconfig.hostURL;
 // this.props.location.state(即specialtyId)、this.props.location.isPromotion(判断是否是优惠商品)
 
 class Product extends React.Component {
-    constructor(props,context) {
-        super(props,context);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             isLoading: false,
 
@@ -45,7 +45,7 @@ class Product extends React.Component {
 
             currentPrePrice: 0,
             currentMarketPrice: 0,
-            
+
             isadd: 0,
 
             //加购物车相关参数
@@ -80,7 +80,7 @@ class Product extends React.Component {
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
                 signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
+                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
             });
         });
 
@@ -95,10 +95,10 @@ class Product extends React.Component {
             link: host + locManager.generateSaleLink()
         };
 
-        wx.ready(function(){
+        wx.ready(function () {
             wx.checkJsApi({
-                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"],
-                success: function(res) {
+                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"],
+                success: function (res) {
                     console.log(res)
                 }
             });
@@ -106,14 +106,14 @@ class Product extends React.Component {
             wx.onMenuShareTimeline(shareData);
         });
 
-        wx.error(function(res){
+        wx.error(function (res) {
             console.log('wx.error');
             console.log(res);
         });
     }
 
 
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
         this.setState({
             specialtyId
@@ -133,7 +133,7 @@ class Product extends React.Component {
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
                 signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
+                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
             });
         });
     }
@@ -148,7 +148,7 @@ class Product extends React.Component {
                 return
             }
 
-            if(rs && rs.success) {
+            if (rs && rs.success) {
                 const data = rs.obj;
 
                 if (!data || JSON.stringify(data) === "[]") {
@@ -182,7 +182,7 @@ class Product extends React.Component {
 
     requestServicePromise() {
         proApi.getServicePromise((rs) => {
-            if(rs && rs.success) {
+            if (rs && rs.success) {
                 const data = rs.obj;
                 this.setState({
                     servicePromise: data,
@@ -193,7 +193,7 @@ class Product extends React.Component {
 
     requestProductCommentData(id, page, rows) {
         proApi.getSpecialtyCommentDetail(id, page, rows, (rs) => {
-            if(rs && rs.success) {
+            if (rs && rs.success) {
                 const comment = rs.obj.rows;
                 const commentNum = rs.obj.total;
                 this.setState({
@@ -205,7 +205,7 @@ class Product extends React.Component {
     }
 
     addToCart() {
-        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
             this.showModal(1);
             return
@@ -214,15 +214,15 @@ class Product extends React.Component {
         cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId,
             this.state.specialtyId, this.state.isGroupPromotion, this.state.quantity, (rs) => {
 
-            if(rs && rs.success) {
-                Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
+                if (rs && rs.success) {
+                    Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
 
-                this.getCartCount();
-            } else {
-                Toast.info("添加失败！", 1);
-            }
+                    this.getCartCount();
+                } else {
+                    Toast.info("添加失败！", 1);
+                }
 
-        });
+            });
     }
 
     getCartCount() {
@@ -239,7 +239,7 @@ class Product extends React.Component {
     }
 
     buyImmediately() {
-        if(this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
+        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
             return
         }
@@ -278,11 +278,18 @@ class Product extends React.Component {
 
                 if (price !== {}) {
                     let temp = false;
-                    if(this.props.location.isPromotion)
+                    if (this.props.location.isPromotion)
                         temp = true;
 
-                    this.context.router.history.push({pathname:'/cart/payment', products: item, price: price,
-                        isPromotion: temp, origin: "product", presents: presents, shipFee:this.state.data[0].deliverPrice});
+                    this.context.router.history.push({
+                        pathname: '/cart/payment',
+                        products: item,
+                        price: price,
+                        isPromotion: temp,
+                        origin: "product",
+                        presents: presents,
+                        shipFee: this.state.data[0].deliverPrice
+                    });
                 }
             }
         });
@@ -298,8 +305,8 @@ class Product extends React.Component {
             specification: active.specification,
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
-        },()=>{
-            if(this.state.isadd === 1)
+        }, () => {
+            if (this.state.isadd === 1)
                 this.addToCart();
         });
     }
@@ -322,7 +329,7 @@ class Product extends React.Component {
         //         </Link>;
 
         if (this.props.location.isPresent)
-            return <span style={{color: 'darkorange', fontStyle:'normal'}}> (赠品)</span>;
+            return <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span>;
 
         return null
     }
@@ -330,14 +337,14 @@ class Product extends React.Component {
 
     // 如果是优惠产品页进来的，不显示购物车底栏
     checkCartDisplay() {
-        if (this.props.location.isPromotion|| this.props.location.isPresent)
+        if (this.props.location.isPromotion || this.props.location.isPresent)
             return null;
 
-        return <PutInCart style={{height:'3.125rem'}}
+        return <PutInCart style={{height: '3.125rem'}}
                           addToCart={this.addToCart.bind(this)}
                           buyImmediately={this.buyImmediately.bind(this)}
                           cartCount={this.state.cartCount}
-                />
+        />
     }
 
     // 如果是优惠产品页进来的，不显示规格选择
@@ -383,8 +390,8 @@ class Product extends React.Component {
         const proData = this.state.data[0];
         let primaryImages = this.state.data[0].specialty.images;
 
-        for(let i = 0; i < primaryImages.length; i++){
-            if(primaryImages[i].isLogo)
+        for (let i = 0; i < primaryImages.length; i++) {
+            if (primaryImages[i].isLogo)
                 primaryImages.splice(i, 1);
         }
         // if(primaryImages.length === 1)
@@ -393,13 +400,12 @@ class Product extends React.Component {
 
         const images = primaryImages && primaryImages.map((img, index) => {
             return <img src={"http://" + getServerIp() + img.sourcePath}
-                        key={index} style={{margin: '0 auto', height:'12rem', width:'100%'}}
-                        alt=""  onLoad={() => {
-                            // fire window resize event to change height
-                            window.dispatchEvent(new Event('resize'));
-                          }}/>
+                        key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
+                        alt="" onLoad={() => {
+                // fire window resize event to change height
+                window.dispatchEvent(new Event('resize'));
+            }}/>
         });
-
 
 
         return <Layout>
@@ -408,7 +414,7 @@ class Product extends React.Component {
 
             <Card className="general_container">
                 <Carousel
-                    style={{touchAction:'none'}}
+                    style={{touchAction: 'none'}}
                     autoplay={true}
                     infinite
                     selectedIndex={0}
@@ -441,7 +447,8 @@ class Product extends React.Component {
 
                                 <Flex>
                                     <Flex.Item className="detail_info">许可证：</Flex.Item>
-                                    <Flex.Item className="detail_val">{proData.specialty.productionLicenseNumber}</Flex.Item>
+                                    <Flex.Item
+                                        className="detail_val">{proData.specialty.productionLicenseNumber}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
@@ -451,19 +458,22 @@ class Product extends React.Component {
 
                                 <Flex>
                                     <Flex.Item className="detail_info">厂家电话：</Flex.Item>
-                                    <Flex.Item className="detail_val">{proData.specialty.provider.contactorMobile}</Flex.Item>
+                                    <Flex.Item
+                                        className="detail_val">{proData.specialty.provider.contactorMobile}</Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">市场价格：</Flex.Item>
-                                    <Flex.Item className="detail_val" style={{color:'darkorange', textDecoration:'line-through'}}>
+                                    <Flex.Item className="detail_val"
+                                               style={{color: 'darkorange', textDecoration: 'line-through'}}>
                                         {this.props.location.isPromotion && this.props.location.mPrice ? this.props.location.mPrice : this.state.currentMarketPrice}
                                     </Flex.Item>
                                 </Flex>
 
                                 <Flex>
                                     <Flex.Item className="detail_info">优惠价格：</Flex.Item>
-                                    <Flex.Item className="detail_val" style={{color:'darkorange', fontSize:'1.2rem', fontStyle:'bold'}}>
+                                    <Flex.Item className="detail_val"
+                                               style={{color: 'darkorange', fontSize: '1.2rem', fontStyle: 'bold'}}>
                                         {this.props.location.isPromotion && this.props.location.pPrice ? this.props.location.pPrice : this.state.currentPrePrice}
                                     </Flex.Item>
                                 </Flex>
@@ -506,7 +516,7 @@ class Product extends React.Component {
                 <div>
                     <WingBlank>
                         <div className="para_title">产品介绍</div>
-                        <div  className="para_html" dangerouslySetInnerHTML={{ __html: proData.specialty.descriptions}} />
+                        <div className="para_html" dangerouslySetInnerHTML={{__html: proData.specialty.descriptions}}/>
                     </WingBlank>
                 </div>
             </Card>
@@ -518,7 +528,8 @@ class Product extends React.Component {
             <Card className="general_container">
                 <WingBlank>
                     <WhiteSpace/>
-                    <Comment specialtyId={this.state.specialtyId} comment={this.state.comment} total={this.state.commentNum}/>
+                    <Comment specialtyId={this.state.specialtyId} comment={this.state.comment}
+                             total={this.state.commentNum}/>
                 </WingBlank>
             </Card>
 
@@ -534,43 +545,43 @@ class Product extends React.Component {
 
                 <div>
 
-                <WingBlank>
-                       <div className="para_title" >服务承诺</div>
-                       <div className="paragraph">
-                           {/* 河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
+                    <WingBlank>
+                        <div className="para_title">服务承诺</div>
+                        <div className="paragraph">
+                            {/* 河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
                        人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
                        货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
                        赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
                        部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
                        起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
                        况下验货，则视为您所订购商品的包装无任何问题。 */}
-                           {this.state.servicePromise.servicePromise}
-                       </div>
+                            {this.state.servicePromise.servicePromise}
+                        </div>
                     </WingBlank>
 
                     <WingBlank>
-                       <div className="para_title">温馨提示</div>
-                       <div className="paragraph">
-                           {/* 由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
+                        <div className="para_title">温馨提示</div>
+                        <div className="paragraph">
+                            {/* 由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
                        我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！ */}
-                        {this.state.servicePromise.prompt}
-                       </div>
+                            {this.state.servicePromise.prompt}
+                        </div>
                     </WingBlank>
 
 
                     {/* <WingBlank>*/}
                     {/*<video*/}
-                        {/*id="my-player"*/}
-                        {/*className="video-js vjs-default-skin vjs-fluid"*/}
-                        {/*// x5-video-player-type="h5"*/}
-                        {/*// x-webkit-airplay="true" */}
-                        {/*// playsinline webkit-playsinline="true"*/}
-                        {/*width="100%"*/}
-                        {/*controls="false" */}
-                        {/*loop="true" //自动循环*/}
-                        {/*preload="metadata" //auto metadata none */}
-                        {/*poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531238777253&di=ee388000b58e23ebda4df9ee02f224d6&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Faa64034f78f0f736fd98e0fe0655b319eac413ee.jpg"*/}
-                        {/*data-setup='{}'>*/}
+                    {/*id="my-player"*/}
+                    {/*className="video-js vjs-default-skin vjs-fluid"*/}
+                    {/*// x5-video-player-type="h5"*/}
+                    {/*// x-webkit-airplay="true" */}
+                    {/*// playsinline webkit-playsinline="true"*/}
+                    {/*width="100%"*/}
+                    {/*controls="false" */}
+                    {/*loop="true" //自动循环*/}
+                    {/*preload="metadata" //auto metadata none */}
+                    {/*poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531238777253&di=ee388000b58e23ebda4df9ee02f224d6&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Faa64034f78f0f736fd98e0fe0655b319eac413ee.jpg"*/}
+                    {/*data-setup='{}'>*/}
                     {/*<source src="http://ohjdda8lm.bkt.clouddn.com/course/sample1.mp4" type="video/mp4"></source>*/}
                     {/*/!* <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>*/}
                     {/*<source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source> *!/*/}
@@ -584,7 +595,7 @@ class Product extends React.Component {
             {this.checkCartDisplay()}
 
             {this.checkSpecificationDisplay()}
-            
+
         </Layout>
     }
 }

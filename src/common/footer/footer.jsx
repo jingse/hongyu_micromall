@@ -4,14 +4,14 @@ import {TabBar} from 'antd-mobile';
 import './footer.less';
 
 export default class MyFooter extends React.Component {
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    };
+
     constructor(props, context) {
         super(props, context);
         this.state = this.getInitialState();
     }
-
-    static contextTypes = {  
-        router: PropTypes.object.isRequired
-    };
 
     getInitialState() {
         let link = '/' + this.getLink() || '/home';
@@ -21,7 +21,7 @@ export default class MyFooter extends React.Component {
     }
 
 
-    getLink(){
+    getLink() {
         let links = window.location.hash.match(/(\w+)/g);
         if (!links)
             return null;
@@ -32,12 +32,12 @@ export default class MyFooter extends React.Component {
         if (link !== this.state.selectedTab) {
             this.context.router.history.push(link);
             this.setState({
-              selectedTab: link
+                selectedTab: link
             });
         }
     }
 
-    render(){
+    render() {
         return <div className="footer">
             <TabBar
                 unselectedTintColor="#949494"
@@ -50,15 +50,19 @@ export default class MyFooter extends React.Component {
                     icon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     selectedIcon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/home-fill2.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/home-fill2.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     selected={this.state.selectedTab === '/home'}
-                    onPress={() => { this.linkTo('/home'); }}
+                    onPress={() => {
+                        this.linkTo('/home');
+                    }}
                     data-seed="logId"
                 >
                 </TabBar.Item>
@@ -66,36 +70,44 @@ export default class MyFooter extends React.Component {
                     icon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/cart.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/cart.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     selectedIcon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     title="购物车"
                     key="购物车"
                     // badge={localStorage.getItem("cartCount")}
-                    badge={this.props.cartcount!=null ?this.props.cartcount:(localStorage.getItem("cartCount")!=0 ?localStorage.getItem("cartCount"):'')}
+                    badge={this.props.cartcount != null ? this.props.cartcount : (localStorage.getItem("cartCount") != 0 ? localStorage.getItem("cartCount") : '')}
                     selected={this.state.selectedTab === '/cart'}
-                    onPress={() => { this.linkTo('/cart'); }}
+                    onPress={() => {
+                        this.linkTo('/cart');
+                    }}
                 >
                 </TabBar.Item>
                 <TabBar.Item
                     icon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/user.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/user.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     selectedIcon={<div style={{
                         width: '22px',
                         height: '22px',
-                        background: 'url(./images/icons/user-fill2.png) center center /  24px 24px no-repeat' }}
+                        background: 'url(./images/icons/user-fill2.png) center center /  24px 24px no-repeat'
+                    }}
                     />}
                     title="我的"
                     key="我的"
                     selected={this.state.selectedTab === '/my'}
-                    onPress={() => { this.linkTo('/my'); }}
+                    onPress={() => {
+                        this.linkTo('/my');
+                    }}
                 >
                 </TabBar.Item>
             </TabBar>
