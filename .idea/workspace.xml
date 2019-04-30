@@ -1,175 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="隐藏余额使用记录">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="微商分成列表去掉利润">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/banner4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/乳胶.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/优惠券.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/优惠券图片.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/build/images/category/优惠券图片.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/促销.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/保健品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/充值.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/化妆品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/奢侈品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/推荐.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/日用品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/服饰类.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/水果.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/玩具.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/电器.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/电子券图片.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/build/images/category/电子券图片.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/箱包.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/组合选购.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/category/食品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/chs_banner1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/chs_banner2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/chs_banner3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/hdr2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/hdr4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/hdr5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/icons/微信支付.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/images/product/product_detail_9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/banner1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/banner2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/banner3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/banner4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/乳胶.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/优惠券.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/促销.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/保健品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/充值.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/化妆品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/奢侈品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/推荐.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/日用品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/服饰类.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/水果.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/玩具.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/电器.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/箱包.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/组合选购.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/category/食品.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/hdr2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/hdr4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/hdr5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/await.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/catagory-fill.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/catagory.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/comment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/deliver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/pay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/repair.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/shop.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/wait.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/向上-橘色.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/向上-灰色.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/向上.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/圆点.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/地址-物流.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/icons/微信支付.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/images/product/product_detail_9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/cart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/category.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/category_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/coupon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/coupon_recharge.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/home_coupon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_all.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_logistic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_refund.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_refund_result.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_to_be_delivered.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_to_be_evaluated.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/order_to_be_received.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/payment_coupon_available.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/payment_coupon_unavailable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product_comment.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product_coupon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product_detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product_feature.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/product_recommend.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/profit_share.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/sales.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/sales_detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/sales_group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/sales_group_detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/sales_group_products.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/search_result.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/search_results.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/search_results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/mockdata/user_ship_address.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/cart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/categories.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/categoryPageList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/category_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/groupSales.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/groupSalesDetail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/order.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/ordinarySales.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/ordinarySalesDetail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/static/realdata/refundDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -183,14 +17,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
+        <entry file="file://$PROJECT_DIR$/src/config.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#484#528#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="323">
+              <caret line="19" column="64" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -271,7 +101,6 @@
         <option value="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" />
         <option value="$PROJECT_DIR$/src/common/CartManager.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" />
@@ -284,21 +113,21 @@
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/cartmodal.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx" />
-        <option value="$PROJECT_DIR$/src/config.jsx" />
         <option value="$PROJECT_DIR$/src/api/coupon.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/index.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
+        <option value="$PROJECT_DIR$/src/config.jsx" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="850" />
-    <option name="y" value="5" />
-    <option name="width" value="980" />
-    <option name="height" value="1050" />
+    <option name="x" value="346" />
+    <option name="width" value="760" />
+    <option name="height" value="450" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -325,42 +154,19 @@
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
               <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
               <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="pc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -373,7 +179,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/360data/重要数据/桌面/HyProject-add" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="ts.external.directory.path" value="D:\Front\WebStorm 2018.3.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -614,13 +420,10 @@
       <workItem from="1555571578419" duration="647000" />
       <workItem from="1555572551554" duration="738000" />
       <workItem from="1556248720938" duration="3733000" />
-    </task>
-    <task id="LOCAL-00057" summary="解决7.25的问题1、2、3">
-      <created>1532511849540</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1532511849540</updated>
+      <workItem from="1556420854798" duration="151000" />
+      <workItem from="1556421031252" duration="638000" />
+      <workItem from="1556590976264" duration="1866000" />
+      <workItem from="1556593632130" duration="846000" />
     </task>
     <task id="LOCAL-00058" summary="解决7.25的问题7">
       <created>1532514768555</created>
@@ -958,11 +761,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555466329970</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="微商分成列表去掉利润">
+      <created>1556416350254</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1556416350254</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1146217000" />
+    <option name="totallyTimeSpent" value="1150846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -974,9 +784,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.71451354" visible="true" weight="0.17437252" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.71451354" visible="true" weight="0.16654904" />
       <window_info id="Structure" order="1" sideWeight="0.28548643" side_tool="true" weight="0.17437252" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -989,8 +800,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32775453" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.3275401" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.26396647" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.086592175" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.16176471" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13368984" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.328877" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1042,7 +853,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改微商提成的bug" />
     <MESSAGE value="修改微商openid的bug" />
     <MESSAGE value="不显示该微信已被注册成微商的信息" />
     <MESSAGE value="fix bug" />
@@ -1067,10 +877,10 @@
     <MESSAGE value="提出购物车组件 修改组合优惠加购物车购物车小红点数字不变的bug" />
     <MESSAGE value="修改微商分成“总价”为“利润”" />
     <MESSAGE value="隐藏余额使用记录" />
-    <option name="LAST_COMMIT_MESSAGE" value="隐藏余额使用记录" />
+    <MESSAGE value="微商分成列表去掉利润" />
+    <option name="LAST_COMMIT_MESSAGE" value="微商分成列表去掉利润" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/result/index.jsx" />
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/logistic/index.jsx" />
     <entry file="file://$PROJECT_DIR$/src/api/my.jsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -1288,26 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="45" lean-forward="true" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="42" lean-forward="true" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1377">
@@ -1315,16 +1105,6 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#460#510#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1360,13 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -1387,34 +1160,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/5.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/6.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/static/images/1.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/static/images/2.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/static/images/3.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/static/images/5.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/static/images/6.jpg" />
     <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="724" column="66" selection-start-line="724" selection-start-column="66" selection-end-line="724" selection-end-column="66" />
+        <state relative-caret-position="510">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#447#469#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/static/images/icons/地址-物流.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/static/images/icons/地址-物流.png" />
     <entry file="file://$PROJECT_DIR$/src/static/images/icons/星-空.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1462,14 +1224,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="217" selection-start-line="217" selection-end-line="217" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="105" column="53" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="357" column="34" lean-forward="true" selection-start-line="357" selection-start-column="34" selection-end-line="357" selection-end-column="34" />
+        <state relative-caret-position="323">
+          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#484#528#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="64" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
         </state>
       </provider>
     </entry>
