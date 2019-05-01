@@ -3,26 +3,30 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
-import Navigation from "../../../../../components/navigation/index.jsx";
-import homeApi from "../../../../../api/home.jsx";
-import {getServerIp} from "../../../../../config.jsx";
-import cartApi from "../../../../../api/cart.jsx";
-import './index.less';
+// import Navigation from "../../../../../components/navigation/index.jsx";
+
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from './cartmodal.jsx';
+import homeApi from "../../../../../api/home.jsx";
+import cartApi from "../../../../../api/cart.jsx";
 import proApi from "../../../../../api/product.jsx";
+import {getServerIp} from "../../../../../config.jsx";
+
+import "./index.less";
+
 
 export default class SalesGroupDetail extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             salesGroupDetail: [],
             salesGroupData: [],
             isLoading: false,
+
             val: 1,
             inbound: 0,
-            modal: false,
+
 
             ruleType: '',
             presents: [],
@@ -34,6 +38,7 @@ export default class SalesGroupDetail extends React.Component {
             modalSelectorText: '未选择',
 
             isadd: 0,
+            modal: false,
 
             specialtyId: -1,
             mynum: -1,
@@ -47,9 +52,8 @@ export default class SalesGroupDetail extends React.Component {
 
             data: {},
             featureData: -1,
-
+            dots: true,
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
-            dots: true
         };
     }
 
@@ -110,33 +114,6 @@ export default class SalesGroupDetail extends React.Component {
         localStorage.removeItem("inputBalance");
     }
 
-    requestServicePromise() {
-        proApi.getServicePromise((rs) => {
-            if (rs && rs.success) {
-                const data = rs.obj;
-                this.setState({
-                    servicePromise: data,
-                });
-            }
-        });
-    }
-
-    changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
-        console.log('加购物车的数量', num);
-        this.setState({
-            currentPrePrice: pPrice,
-            currentMarketPrice: mPrice,
-            val: num,
-            specification: active.specification,
-            modalSelectorText: active.specification + '  ×' + num,
-            specificationId: specificationId,
-        }, () => {
-            console.log('this.state.isadd', this.state.isadd);
-            if (this.state.isadd === 1)
-                this.addToCart();
-        });
-    }
-
     requestGroupPromotionDetail(groupPromotionId) {
         homeApi.getGroupPromotionDetail(groupPromotionId, (rs) => {
             if (rs && rs.success) {
@@ -156,81 +133,16 @@ export default class SalesGroupDetail extends React.Component {
         });
     }
 
-    onChange = (val) => {
-        this.setState({val});
-    };
-
-    getSalesDetailIcon(salesImages) {
-        var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isLogo) {
-                img = item.mediumPath
+    requestServicePromise() {
+        proApi.getServicePromise((rs) => {
+            if (rs && rs.success) {
+                const data = rs.obj;
+                this.setState({
+                    servicePromise: data,
+                });
             }
         });
-        console.log("img", img);
-        return img
     }
-
-    getSalesContent(ruleType, substracts, discounts, presents) {
-        var content = null;
-
-        if (ruleType === "满减") {
-            content = substracts && substracts.map((item, index) => {
-                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
-            });
-        } else if (ruleType === "满折") {
-            content = discounts && discounts.map((item, index) => {
-                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
-            });
-        } else if (ruleType === "满赠") {
-            content = presents && presents.map((item, index) => {
-                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProduct.name + "*" + item.fullPresentProductNumber
-            });
-        } else {
-
-        }
-
-        return content
-    }
-
-    checkPresents() {
-        var fullPresents = null;
-        if (this.state.salesGroupDetail.fullPresents && JSON.stringify(this.state.salesGroupDetail.fullPresents) !== '[]') {
-            fullPresents = this.state.salesGroupDetail.fullPresents && this.state.salesGroupDetail.fullPresents.map((item, index) => {
-                console.log("fsdgfds", item);
-                return <Link to={{
-                    pathname: `/product/${item.fullPresentProduct.id}`,
-                    isPromotion: false,
-                    isPresent: true,
-                    guige: item.fullPresentProductSpecification.specification
-                }} key={index}>
-                    <Flex style={{background: '#fff'}}>
-                        <Flex.Item style={{flex: '0 0 30%'}}>
-                            <img
-                                src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)}
-                                style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
-                        </Flex.Item>
-                        <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
-                            <WhiteSpace/>
-                            <div style={{marginBottom: 10, fontWeight: 'bold'}}>
-                                {item.fullPresentProduct.name}
-                                <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
-                            </div>
-                            <div style={{marginBottom: 10}}>赠品数量：<span
-                                style={{color: 'red'}}>{item.fullPresentProductNumber}</span></div>
-                            <div style={{marginBottom: 10}}>商品规格：<span
-                                style={{color: 'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
-                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
-                            <WhiteSpace/>
-                        </Flex.Item>
-                    </Flex>
-                    <WhiteSpace/>
-                </Link>
-            });
-        }
-        return fullPresents
-    }
-
 
     getCartCount() {
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
@@ -278,7 +190,8 @@ export default class SalesGroupDetail extends React.Component {
             "specification": "",
             "promotionId": this.state.salesGroupDetail.id,
         }];
-        var price = {};
+        let price = {};
+
         cartApi.getTotalPriceInCart(item, (rs) => {
             console.log("getTotalPriceInCart rs", rs);
             if (rs && rs.success) {
@@ -301,16 +214,6 @@ export default class SalesGroupDetail extends React.Component {
     }
 
 
-    getSalesIconImg(salesImages) {
-        var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isTag) {
-                img = item
-            }
-        });
-        return img
-    }
-
     showModal(val) {
         this.setState({modal: true, isadd: val});
     }
@@ -319,6 +222,66 @@ export default class SalesGroupDetail extends React.Component {
         this.setState({modal: false});
         if (status === 'success')
             Toast.success('选择成功～', 1, null, false);
+    }
+
+    changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
+        console.log('加购物车的数量', num);
+        this.setState({
+            currentPrePrice: pPrice,
+            currentMarketPrice: mPrice,
+            val: num,
+            specification: active.specification,
+            modalSelectorText: active.specification + '  ×' + num,
+            specificationId: specificationId,
+        }, () => {
+            console.log('this.state.isadd', this.state.isadd);
+            if (this.state.isadd === 1)
+                this.addToCart();
+        });
+    }
+
+
+    getSalesContent(ruleType, substracts, discounts, presents) {
+        var content = null;
+
+        if (ruleType === "满减") {
+            content = substracts && substracts.map((item, index) => {
+                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
+            });
+        } else if (ruleType === "满折") {
+            content = discounts && discounts.map((item, index) => {
+                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
+            });
+        } else if (ruleType === "满赠") {
+            content = presents && presents.map((item, index) => {
+                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProduct.name + "*" + item.fullPresentProductNumber
+            });
+        } else {
+
+        }
+
+        return content
+    }
+
+    getSalesDetailIcon(salesImages) {
+        var img = null;
+        salesImages && salesImages.map((item, index) => {
+            if (item.isLogo) {
+                img = item.mediumPath
+            }
+        });
+        console.log("img", img);
+        return img
+    }
+
+    getSalesIconImg(salesImages) {
+        var img = null;
+        salesImages && salesImages.map((item, index) => {
+            if (item.isTag) {
+                img = item
+            }
+        });
+        return img
     }
 
 
@@ -346,8 +309,42 @@ export default class SalesGroupDetail extends React.Component {
         />
     }
 
-    showToast() {
-        Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
+    checkPresents() {
+        var fullPresents = null;
+        if (this.state.salesGroupDetail.fullPresents && JSON.stringify(this.state.salesGroupDetail.fullPresents) !== '[]') {
+            fullPresents = this.state.salesGroupDetail.fullPresents && this.state.salesGroupDetail.fullPresents.map((item, index) => {
+                console.log("fsdgfds", item);
+                return <Link to={{
+                    pathname: `/product/${item.fullPresentProduct.id}`,
+                    isPromotion: false,
+                    isPresent: true,
+                    guige: item.fullPresentProductSpecification.specification
+                }} key={index}>
+                    <Flex style={{background: '#fff'}}>
+                        <Flex.Item style={{flex: '0 0 30%'}}>
+                            <img
+                                src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)}
+                                style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
+                        </Flex.Item>
+                        <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
+                            <WhiteSpace/>
+                            <div style={{marginBottom: 10, fontWeight: 'bold'}}>
+                                {item.fullPresentProduct.name}
+                                <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
+                            </div>
+                            <div style={{marginBottom: 10}}>赠品数量：<span
+                                style={{color: 'red'}}>{item.fullPresentProductNumber}</span></div>
+                            <div style={{marginBottom: 10}}>商品规格：<span
+                                style={{color: 'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
+                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
+                            <WhiteSpace/>
+                        </Flex.Item>
+                    </Flex>
+                    <WhiteSpace/>
+                </Link>
+            });
+        }
+        return fullPresents
     }
 
     showWebusinessInfo(item) {
@@ -357,6 +354,10 @@ export default class SalesGroupDetail extends React.Component {
         }
     }
 
+    onChange = (val) => {
+        this.setState({val});
+    };
+
 
     render() {
 
@@ -365,45 +366,6 @@ export default class SalesGroupDetail extends React.Component {
             return null
         }
         console.log('inbound', this.state.inbound)
-
-
-        var bancontent;
-        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
-            var tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
-            console.log("before", tempban);
-            for (var i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag == true) {
-                    tempban.splice(i, 1);
-                }
-            }
-            console.log("after", tempban);
-            bancontent = tempban && tempban.map((item, index) => {
-                if (item.isTag == false) {
-                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                                src={"http:" + getServerIp() + item.sourcePath}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                }}/>
-                }
-
-            });
-        }
-        // if(bancontent.length==1){
-        //     this.state.dots=false;
-        //     bancontent[1]=bancontent[0];
-        // }
-        console.log("wgudsiuasjd", bancontent);
-        var start, end, a, b;
-        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
-            start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
-            end = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime).toLocaleString();
-            a = start.indexOf("午");
-            b = end.indexOf("午");
-            console.log("safsfasfsa", a, b, start.substring(0, a + 2), end.substring(0, b + 2));
-            start.substring(0, a + 2);
-            end.substring(0, b + 2);
-        }
 
         const content = this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails && this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails.map((item, index) => {
 
@@ -452,9 +414,47 @@ export default class SalesGroupDetail extends React.Component {
             </Link>
         });
 
+        var bancontent;
+        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
+            var tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
+            console.log("before", tempban);
+            for (var i = 0; i < tempban.length; i++) {
+                if (tempban[i].isTag == true) {
+                    tempban.splice(i, 1);
+                }
+            }
+            console.log("after", tempban);
+            bancontent = tempban && tempban.map((item, index) => {
+                if (item.isTag == false) {
+                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
+                                src={"http:" + getServerIp() + item.sourcePath}
+                                onLoad={() => {
+                                    // fire window resize event to change height
+                                    window.dispatchEvent(new Event('resize'));
+                                }}/>
+                }
+
+            });
+        }
+        // if(bancontent.length==1){
+        //     this.state.dots=false;
+        //     bancontent[1]=bancontent[0];
+        // }
+        console.log("wgudsiuasjd", bancontent);
+        var start, end, a, b;
+        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
+            start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
+            end = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime).toLocaleString();
+            a = start.indexOf("午");
+            b = end.indexOf("午");
+            console.log("safsfasfsa", a, b, start.substring(0, a + 2), end.substring(0, b + 2));
+            start.substring(0, a + 2);
+            end.substring(0, b + 2);
+        }
+
 
         return <Layout>
-            <Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>
+            {/*<Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>*/}
             <Card>
                 <Carousel
                     style={{touchAction: 'none'}}
@@ -499,7 +499,7 @@ export default class SalesGroupDetail extends React.Component {
                     <h4>
                         {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
                             style={{color: 'black'}}>{parseFloat(this.state.salesGroupDetail.dividMoney).toFixed(2)}</span>
-                        </div> : <div></div>}
+                        </div> : <div/>}
                     </h4>
                     <hr/>
 
@@ -519,13 +519,6 @@ export default class SalesGroupDetail extends React.Component {
             <WingBlank>
                 <div className="para_title">服务承诺</div>
                 <div className="paragraph">
-                    {/* 河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
-                       人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
-                       货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
-                       赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
-                       部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
-                       起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
-                       况下验货，则视为您所订购商品的包装无任何问题。 */}
                     {this.state.servicePromise.servicePromise}
                 </div>
             </WingBlank>
@@ -533,8 +526,6 @@ export default class SalesGroupDetail extends React.Component {
             <WingBlank>
                 <div className="para_title">温馨提示</div>
                 <div className="paragraph">
-                    {/* 由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
-                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！ */}
                     {this.state.servicePromise.prompt}
                 </div>
             </WingBlank>
