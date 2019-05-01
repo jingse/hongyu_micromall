@@ -159,7 +159,7 @@ var api = {
 
     //-----------------------------------category list api--------------------------------------------
 
-    getTagList(id, page, rows, condition, callback) {
+    getTagList(unused1, id, page, rows, condition, callback) {
         http.ajax({
             url: getServerHost() + '/product/label_specialtys/page/view?id=' + id + "&page=" + page +
                 "&rows=" + rows + "&condition=" + condition,
@@ -171,7 +171,7 @@ var api = {
     },
 
 
-    getCategoryList(categoryId, page, rows, condition, callback) {
+    getCategoryList(unused1, categoryId, page, rows, condition, callback) {
         http.ajax({
             url: getServerHost() + '/product/pages_by_category_id?category_id=' + categoryId + "&page=" + page +
                 "&rows=" + rows + "&condition=" + condition,
@@ -182,7 +182,7 @@ var api = {
         });
     },
 
-    getRecommendList(page, rows, condition, callback) {
+    getRecommendList(unused1, unused2, page, rows, condition, callback) {
         http.ajax({
             url: getServerHost() + '/product/recommend_product_pages?condition=' + condition + "&page=" + page +
                 "&rows=" + rows,

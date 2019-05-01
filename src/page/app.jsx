@@ -10,8 +10,8 @@ import My from "./mobile/my/index.jsx";
 /*首页广告*/
 import AdDetail from "./mobile/home/adDetail.jsx";
 /*首页搜索*/
-import Search from "./mobile/search/index.jsx";
-import searchRedirect from "./mobile/search/searchRedirect.jsx";
+import Search from "./mobile/home/search/index.jsx";
+import searchRedirect from "./mobile/home/search/searchRedirect.jsx";
 /*首页电子券*/
 import Recharge from "./mobile/home/recharge/index.jsx";
 import CouponBalance from "./mobile/home/recharge/payment/index.jsx";

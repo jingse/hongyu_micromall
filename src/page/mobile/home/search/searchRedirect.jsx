@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator} from "antd-mobile";
-import Layout from "../../../common/layout/layout.jsx";
-import Navigation from "../../../components/navigation/index.jsx";
+import Layout from "../../../../common/layout/layout.jsx";
+import Navigation from "../../../../components/navigation/index.jsx";
 
 
 export default class searchRedirect extends React.Component {
