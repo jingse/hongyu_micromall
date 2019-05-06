@@ -1,5 +1,5 @@
 import React from "react";
-import {Flex, Card, WhiteSpace,Pagination,Toast} from "antd-mobile";
+import {Card, Flex, Pagination, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
@@ -43,10 +43,10 @@ export default class BalanceRecords extends React.Component {
         } else {
             this.setState({
                 curPage: --this.state.curPage,
-            },()=>{
-                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+            }, () => {
+                this.requestBalanceRecords(wechatId, this.state.curPage, 10);
             });
-            
+
         }
     }
 
@@ -56,10 +56,10 @@ export default class BalanceRecords extends React.Component {
         } else {
             this.setState({
                 curPage: ++this.state.curPage,
-            },()=>{
-                this.requestBalanceRecords(wechatId,this.state.curPage,10);
+            }, () => {
+                this.requestBalanceRecords(wechatId, this.state.curPage, 10);
             });
-            
+
         }
     }
 
@@ -68,36 +68,47 @@ export default class BalanceRecords extends React.Component {
         // if (num === 0 || num === 1) {
         //     return null
         // } else {
-            return <div>
-                <Pagination
-                            total={this.state.totalPages}
-                            className="custom-pagination"
-                            current={this.state.curPage}
-                            locale={{
-                                prevText: (<span className="arrow-align"
-                                                 onClick={() => {this.requestFormerPage()}}
-                                >
+        return <div>
+            <Pagination
+                total={this.state.totalPages}
+                className="custom-pagination"
+                current={this.state.curPage}
+                locale={{
+                    prevText: (<span className="arrow-align"
+                                     onClick={() => {
+                                         this.requestFormerPage()
+                                     }}
+                    >
                                     上一页</span>),
-                                nextText: (<span className="arrow-align"
-                                                 onClick={() => {this.requestLatterPage()}}
-                                >
+                    nextText: (<span className="arrow-align"
+                                     onClick={() => {
+                                         this.requestLatterPage()
+                                     }}
+                    >
                                     下一页</span>),
-                            }}
-                            style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
-                />
-            </div>
+                }}
+                style={{width: '90%', marginLeft: '5%', marginRight: '5%', fontSize: '0.7rem'}}
+            />
+        </div>
         // }
     }
 
     checkType(type) {
-        switch(type) {
-            case 1: return "线路赠送";
-            case 2: return "销售奖励";
-            case 3: return "商城销售";
-            case 4: return "大客户购买";
-            case 5: return "积分兑换";
-            case 6: return "首单奖励";
-            default: return "未知";
+        switch (type) {
+            case 1:
+                return "线路赠送";
+            case 2:
+                return "销售奖励";
+            case 3:
+                return "商城销售";
+            case 4:
+                return "大客户购买";
+            case 5:
+                return "积分兑换";
+            case 6:
+                return "首单奖励";
+            default:
+                return "未知";
         }
     }
 
@@ -105,11 +116,11 @@ export default class BalanceRecords extends React.Component {
     render() {
 
         const content = this.state.records && this.state.records.map((item, index) => {
-            return <Flex key={index} style={{textAlign:'center'}}>
-                        <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
-                        <Flex.Item>{this.checkType(item.type)}</Flex.Item>
-                        <Flex.Item>{item.useAmount}</Flex.Item>
-                    </Flex>
+            return <Flex key={index} style={{textAlign: 'center'}}>
+                <Flex.Item style={{padding: '0.5rem'}}>{DateManager.getDate(new Date(item.useTime))}</Flex.Item>
+                <Flex.Item>{this.checkType(item.type)}</Flex.Item>
+                <Flex.Item>{item.useAmount}</Flex.Item>
+            </Flex>
         });
 
         return <Layout>
@@ -117,14 +128,15 @@ export default class BalanceRecords extends React.Component {
             <Navigation title="充值记录" left={true}/>
 
             <Card>
-                <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
-                    <Flex.Item style={{padding:'0.5rem'}}>时间</Flex.Item>
+                <Flex style={{textAlign: 'center', background: '#F7F7F7'}}>
+                    <Flex.Item style={{padding: '0.5rem'}}>时间</Flex.Item>
                     <Flex.Item>电子券种类</Flex.Item>
                     <Flex.Item>电子券金额</Flex.Item>
                 </Flex>
                 <WhiteSpace/>
                 {content}
             </Card>
+
             {this.checkPagination(this.state.totalPages)}
 
         </Layout>

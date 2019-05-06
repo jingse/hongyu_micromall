@@ -1,5 +1,5 @@
 import React from "react";
-import {Flex, Card, WhiteSpace,Pagination,Toast} from "antd-mobile";
+import {Card, Flex, Pagination, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
@@ -41,8 +41,8 @@ export default class UseHistory extends React.Component {
         } else {
             this.setState({
                 curPage: --this.state.curPage,
-            },()=>{
-                this.requestBalanceUseHistory(wechatId,this.state.curPage,10);
+            }, () => {
+                this.requestBalanceUseHistory(wechatId, this.state.curPage, 10);
             });
 
         }
@@ -54,8 +54,8 @@ export default class UseHistory extends React.Component {
         } else {
             this.setState({
                 curPage: ++this.state.curPage,
-            },()=>{
-                this.requestBalanceUseHistory(wechatId, this.state.curPage,10);
+            }, () => {
+                this.requestBalanceUseHistory(wechatId, this.state.curPage, 10);
             });
 
         }
@@ -71,15 +71,19 @@ export default class UseHistory extends React.Component {
                 current={this.state.curPage}
                 locale={{
                     prevText: (<span className="arrow-align"
-                                     onClick={() => {this.requestFormerPage()}}
+                                     onClick={() => {
+                                         this.requestFormerPage()
+                                     }}
                     >
                                     上一页</span>),
                     nextText: (<span className="arrow-align"
-                                     onClick={() => {this.requestLatterPage()}}
+                                     onClick={() => {
+                                         this.requestLatterPage()
+                                     }}
                     >
                                     下一页</span>),
                 }}
-                style={{width:'90%', marginLeft:'5%', marginRight:'5%',fontSize: '0.7rem'}}
+                style={{width: '90%', marginLeft: '5%', marginRight: '5%', fontSize: '0.7rem'}}
             />
         </div>
     }
@@ -88,8 +92,8 @@ export default class UseHistory extends React.Component {
     render() {
 
         const content = this.state.history && this.state.history.map((item, index) => {
-            return <Flex key={index} style={{textAlign:'center'}}>
-                <Flex.Item style={{padding:'0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
+            return <Flex key={index} style={{textAlign: 'center'}}>
+                <Flex.Item style={{padding: '0.5rem'}}>{DateManager.getDate(new Date(item.createTime))}</Flex.Item>
                 <Flex.Item>{item.type === "use" ? "使用" : "退返"}</Flex.Item>
                 <Flex.Item>{item.amount}</Flex.Item>
                 <Flex.Item>{item.surplus}</Flex.Item>
@@ -101,8 +105,8 @@ export default class UseHistory extends React.Component {
             <Navigation title="使用记录" left={true}/>
 
             <Card>
-                <Flex style={{textAlign:'center', background:'#F7F7F7'}}>
-                    <Flex.Item style={{padding:'0.5rem'}}>时间</Flex.Item>
+                <Flex style={{textAlign: 'center', background: '#F7F7F7'}}>
+                    <Flex.Item style={{padding: '0.5rem'}}>时间</Flex.Item>
                     <Flex.Item>类型</Flex.Item>
                     <Flex.Item>使用金额</Flex.Item>
                     <Flex.Item>当前剩余</Flex.Item>

@@ -1,18 +1,17 @@
 import React from 'react';
-import { WhiteSpace, ActivityIndicator, Modal, Carousel} from "antd-mobile";
+import {ActivityIndicator, Carousel, Modal, WhiteSpace} from "antd-mobile";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
 import InfoCard from "./card.jsx";
 import GridCategory from "./grid_category.jsx"
 import Grid from "./grid_categoryList.jsx";
-// import home_data from "../../../static/mockdata/home.js";   //mock假数据
 import homeApi from "../../../api/home.jsx";
 import './index.less';
 import wxApi from "../../../api/wechat.jsx";
 import locManager from "../../../common/LockManager.jsx";
 import cartApi from "../../../api/cart.jsx";
-import { wxconfig ,getServerIp} from '../../../config.jsx';
+import {getServerIp, wxconfig} from '../../../config.jsx';
 import {Link} from 'react-router-dom';
 
 const host = wxconfig.hostURL;
@@ -21,20 +20,20 @@ class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            carousel: [{ },{ }],
+            carousel: [{}, {}],
             card: {},
             tags: [],
             gridCategory: [],
 
             isLoading: false,
-            animating:false,
-            modalBack:false,
+            animating: false,
+            modalBack: false,
         };
     }
 
     componentWillMount() {
-        
-        this.setState({ animating: !this.state.animating });
+
+        this.setState({animating: !this.state.animating});
         console.log("browser localStorage", localStorage.valueOf());
 
         // window.addEventListener("popstate", function(e) {
@@ -56,7 +55,7 @@ class Home extends React.Component {
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
                 signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
+                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
             });
         });
 
@@ -71,7 +70,7 @@ class Home extends React.Component {
         const mynickname = locManager.getMyNickname();
         var shareData = {   // 自定义分享数据
             title: '土特产微商城',
-            desc: '来自'+locManager.getMyNickname()+'的分享',
+            desc: '来自' + locManager.getMyNickname() + '的分享',
             link: host + locManager.generateSaleLink()
         };
 
@@ -85,30 +84,30 @@ class Home extends React.Component {
                 if (rs.msg && rs.msg !== "")
                     console.log(rs);
 
-                if(rs.obj !== null)
+                if (rs.obj !== null)
                     window.location.href = rs.obj;
 
             });
 
         } else {            // 分享后的链接，url不带uid字段，带from_user
             console.log("uid不存在");
-            homeApi.createAccount(mynickname, myopenid, (rs)=>{
+            homeApi.createAccount(mynickname, myopenid, (rs) => {
                 // localStorage.setItem("isWebusiness", 'false');
                 // alert(rs);
             });
         }
 
-        wx.ready(function(){
+        wx.ready(function () {
             wx.checkJsApi({
-                jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"],
-                success: function(res) {
+                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"],
+                success: function (res) {
                     console.log(res)
                 }
             });
             wx.onMenuShareAppMessage(shareData);
             wx.onMenuShareTimeline(shareData);
         });
-        wx.error(function(res){
+        wx.error(function (res) {
             console.log('wx.error');
             console.log(res);
         });
@@ -122,14 +121,14 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.closeTimer = setTimeout(() => {
-            this.setState({ animating: !this.state.animating });
-          }, 1000);
+            this.setState({animating: !this.state.animating});
+        }, 1000);
     }
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
     }
-    
+
     getCartCount() {
         cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
@@ -145,8 +144,8 @@ class Home extends React.Component {
         const myopenid = locManager.getMyOpenId();
         const wechatName = localStorage.getItem('nickname');
 
-        if(!uid)
-            uid=-1;
+        if (!uid)
+            uid = -1;
 
         console.log("login param openid", myopenid);
         console.log("login param wechatName", wechatName);
@@ -171,7 +170,7 @@ class Home extends React.Component {
         // homeApi.loginCheck(leoopid, uuuu, leoname, (rs) => {
         homeApi.loginCheck(myopenid, uid, wechatName, (rs) => {
             if (rs && rs.success) {
-                
+
                 console.log("loginCheck rs:", rs);
 
                 const wechatId = rs.obj.id;
@@ -181,18 +180,17 @@ class Home extends React.Component {
 
                 localStorage.setItem("wechatId", wechatId);
 
-                if(rs.obj.isWeBusiness){
+                if (rs.obj.isWeBusiness) {
                     localStorage.setItem("isWebusiness", '1');
-                }
-                else{
+                } else {
                     localStorage.setItem("isWebusiness", '0');
                 }
-                if(rs.obj.phone) {
+                if (rs.obj.phone) {
                     localStorage.setItem("bindPhone", rs.obj.phone);
                 }
                 localStorage.setItem("balance", balance);
                 localStorage.setItem("isVip", isVip);
-                
+
                 this.requestMerchantInfo(uid);
                 this.requestTags();
                 this.requestCategories();
@@ -220,10 +218,9 @@ class Home extends React.Component {
     }
 
 
-
     requestCarousel() {
         homeApi.getCarousel((rs) => {
-            if(rs && rs.success) {
+            if (rs && rs.success) {
                 const carousel = rs.obj;
 
                 this.setState({
@@ -235,23 +232,23 @@ class Home extends React.Component {
 
     requestMerchantInfo(merchantId) {
         homeApi.getMerchantInfo(merchantId, (rs) => {
-            if(rs.obj.weBusiness.isActive != true)
-                this.setState({ modalBack: true });
+            if (rs.obj.weBusiness.isActive != true)
+                this.setState({modalBack: true});
 
             if (rs && rs.success) {
                 const card = rs.obj;
                 this.setState({
                     card
-                }, ()=>{
+                }, () => {
 
-                    if (this.state.card.weBusiness.openid === localStorage.getItem("openid")){
+                    if (this.state.card.weBusiness.openid === localStorage.getItem("openid")) {
                         console.log("isWebusiness设为1");
                         localStorage.setItem("isWebusiness", 1);
                     }
-                    
+
                 });
             }
-            
+
         });
     }
 
@@ -279,12 +276,13 @@ class Home extends React.Component {
     }
 
     checkPromotion(isCheck) {
-        if (isCheck === 0) {
-            return "/home/sales"
-        } else if (isCheck === 1) {
-            return "/home/sales_group"
-        } else {
-            return null
+        switch (isCheck) {
+            case 0:
+                return "/home/sales";
+            case 1:
+                return "/home/sales_group";
+            default:
+                return null;
         }
     }
 
@@ -297,58 +295,71 @@ class Home extends React.Component {
         });
 
         var primaryImages = this.state.carousel;
-        if(primaryImages.length==1){
-            primaryImages[1]=primaryImages[0];
+        if (primaryImages.length == 1) {
+            primaryImages[1] = primaryImages[0];
             var content = primaryImages && primaryImages.map((data, index) => {
                 if (data.type === "广告") {
-                    return <Link to={{pathname:'/home/ad', state: data.link}} key={index}>
-                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
+                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
+                             onLoad={() => {
+                                 window.dispatchEvent(new Event('resize'));
+                             }}/>
                     </Link>
                 } else if (data.type === "活动") {
                     return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }}/>
                     </Link>
                 } else {
                     return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
+                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }}/>
+                    </Link>
+                }
+            });
+        } else {
+            var content = primaryImages && primaryImages.map((data, index) => {
+                if (data.type === "广告") {
+                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
+                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
+                             onLoad={() => {
+                                 window.dispatchEvent(new Event('resize'));
+                             }}/>
+                    </Link>
+                } else if (data.type === "活动") {
+                    return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
+                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }}/>
+                    </Link>
+                } else {
+                    return <Link to={`/product/${data.targetId}`} key={index}>
+                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }}/>
                     </Link>
                 }
             });
         }
-        else{
-            var content = primaryImages &&primaryImages.map((data, index) => {
-                if (data.type === "广告") {
-                    return <Link to={{pathname:'/home/ad', state: data.link}} key={index}>
-                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
-                    </Link>
-                } else if (data.type === "活动") {
-                    return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
-                    </Link>
-                } else {
-                    return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {window.dispatchEvent(new Event('resize'));}}/>
-                    </Link>
-                }
-            });
-        }       
 
         return <Layout header={true} footer={true}>
 
             <div className="carousel_view">
-            <Carousel
+                <Carousel
                     className="my-carousel"
-                    style={{touchAction:'none'}}
+                    style={{touchAction: 'none'}}
                     autoplay={true}
                     infinite
                     selectedIndex={0}
                     swipeSpeed={35}
                     dots={true}
                 >
-                {content}
-            </Carousel>
+                    {content}
+                </Carousel>
             </div>
-            
+
             <InfoCard cardData={this.state.card}/>
             <GridCategory gridData={this.state.gridCategory} tagData={this.state.tags}/>
 
@@ -356,23 +367,27 @@ class Home extends React.Component {
 
             <WhiteSpace/>
             <Bottom>已经到底啦</Bottom>
+
+
             <ActivityIndicator
                 toast
                 text="Loading..."
                 animating={this.state.animating}
-              />
-             <Modal
+            />
+            <Modal
                 visible={this.state.modalBack}
                 transparent
                 maskClosable={false}
                 title="提示"
-                footer={[{ text: '退出', onPress: () => {
-                    //WeixinJSBridge.call('closeWindow');
-                    wx.closeWindow();
-                }}]}
-                >
-          该微商已失效
-             </Modal>
+                footer={[{
+                    text: '退出', onPress: () => {
+                        //WeixinJSBridge.call('closeWindow');
+                        wx.closeWindow();
+                    }
+                }]}
+            >
+                该微商已失效
+            </Modal>
         </Layout>
     }
 }

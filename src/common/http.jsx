@@ -47,11 +47,11 @@ function ajax(params) {
     const method = params.method || 'GET';
     let isAbort = false;
     client.open(method, params.url);
-    if(params.type) {
+    if (params.type) {
         //client.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         client.setRequestHeader("Content-Type", params.type);
     }
-    if(params.withCredentials == false)
+    if (params.withCredentials == false)
         client.withCredentials = false;
     else
         client.withCredentials = true;
@@ -146,7 +146,7 @@ function jsonp(params) {
             params.complete && params.complete();
         }
         window[callbackID] = null;
-        script.parentElement.removeChild(script);     
+        script.parentElement.removeChild(script);
     };
 
     return {

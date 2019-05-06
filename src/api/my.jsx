@@ -8,7 +8,7 @@ var api = {
     getInfo(wechat_id, callback) {
         http.ajax({
             url: getServerHost() + '/usermanagement/info?wechat_id=' + wechat_id,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -22,7 +22,7 @@ var api = {
         http.ajax({
             method: "POST",
             url: getServerHost() + '/usermanagement/validate_phone',
-            crossDomain:true,
+            crossDomain: true,
             data: formdata,
             success: (rs) => {
                 callback && callback(rs);
@@ -40,7 +40,7 @@ var api = {
             method: "POST",
             // url: 'http://admin.swczyc.com/hyapi/business/usermanagement/bind_phone',
             url: getServerHost() + '/usermanagement/bind_phone',
-            crossDomain:true,
+            crossDomain: true,
             data: formdata,
             success: (rs) => {
                 callback && callback(rs);
@@ -52,37 +52,37 @@ var api = {
         http.ajax({
             url: getServerHost() + '/receiver/vipAddress/view?wechat_id=' + wechat_id,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
-    vipBirthdayAdd(wechat_id,birthday, callback) {
+    vipBirthdayAdd(wechat_id, birthday, callback) {
         http.ajax({
-            url: getServerHost() + '/receiver/birthday/add?wechat_id=' + wechat_id+'&birthday='+birthday,
+            url: getServerHost() + '/receiver/birthday/add?wechat_id=' + wechat_id + '&birthday=' + birthday,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
-    vipAddressAdd(wechat_id, receiverName,receiverMobile,receiverAddress, callback) {
+    vipAddressAdd(wechat_id, receiverName, receiverMobile, receiverAddress, callback) {
         http.ajax({
-            url: getServerHost() + '/receiver/vipAddress/add?wechat_id=' + wechat_id+'&receiverName='+receiverName+'&receiverMobile='+receiverMobile+'&receiverAddress='+receiverAddress,
+            url: getServerHost() + '/receiver/vipAddress/add?wechat_id=' + wechat_id + '&receiverName=' + receiverName + '&receiverMobile=' + receiverMobile + '&receiverAddress=' + receiverAddress,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
-    vipAddressEdit(wechat_id, id,receiverName,receiverMobile,receiverAddress, callback) {
+    vipAddressEdit(wechat_id, id, receiverName, receiverMobile, receiverAddress, callback) {
         http.ajax({
-            url: getServerHost() + '/receiver/vipAddress/edit?wechat_id=' + wechat_id+'&id='+id+'&receiverName='+receiverName+'&receiverMobile='+receiverMobile+'&receiverAddress='+receiverAddress,
+            url: getServerHost() + '/receiver/vipAddress/edit?wechat_id=' + wechat_id + '&id=' + id + '&receiverName=' + receiverName + '&receiverMobile=' + receiverMobile + '&receiverAddress=' + receiverAddress,
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -92,10 +92,10 @@ var api = {
     /**
      * [webusiness part]
      */
-    webusinessLogoEdit(weBusinessId,logoUrl,callback){
+    webusinessLogoEdit(weBusinessId, logoUrl, callback) {
         http.ajax({
             // url: '//10.108.164.11:8080/hongyu/ymmall'+'/webusiness/logo/edit?weBusinessId=' + weBusinessId + '&logoUrl='+logoUrl,
-            url: getServerHost()+'/webusiness/logo/edit?weBusinessId=' + weBusinessId + '&logoUrl='+logoUrl,
+            url: getServerHost() + '/webusiness/logo/edit?weBusinessId=' + weBusinessId + '&logoUrl=' + logoUrl,
             method: "POST",
             // crossDomain:true,
             success: (rs) => {
@@ -103,10 +103,10 @@ var api = {
             }
         });
     },
-    webusinessShopNameEdit(weBusinessId,shopName,callback){
+    webusinessShopNameEdit(weBusinessId, shopName, callback) {
         http.ajax({
             // url: '//10.108.164.11:8080/hongyu/ymmall'+'/webusiness/shopName/edit?weBusinessId=' + weBusinessId + '&shopName='+shopName,
-            url: getServerHost()+'/webusiness/shopName/edit?weBusinessId=' + weBusinessId + '&shopName='+shopName,
+            url: getServerHost() + '/webusiness/shopName/edit?weBusinessId=' + weBusinessId + '&shopName=' + shopName,
             method: "POST",
             // crossDomain:true,
             success: (rs) => {
@@ -114,14 +114,13 @@ var api = {
             }
         });
     },
-
 
 
     getTotalDivide(webusiness_id, callback) {
         http.ajax({
             url: getServerHost() + '/webusiness/total_divide?webusiness_id=' + webusiness_id + '&page=1&rows=10',
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -132,7 +131,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/webusiness/daily_divide?webusiness_id=' + webusiness_id + '&page=1&rows=10',
             // dataType:"json",
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -143,7 +142,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/webusiness/total_divide_list?webusiness_id=' + webusiness_id,
             // url: '//localhost/hyapi/ymmall' + '/webusiness/total_divide_list?webusiness_id='+webusiness_id,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -154,7 +153,7 @@ var api = {
         http.ajax({
             url: getServerHost() + '/webusiness/daily_divide_list?webusiness_id=' + webusiness_id,
             // url: '//localhost/hyapi/ymmall' + '/webusiness/total_divide_list?webusiness_id='+webusiness_id,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -164,13 +163,12 @@ var api = {
     getUnfilledOrders(webusiness_id, callback) {
         http.ajax({
             url: getServerHost() + '/webusiness/unfilled_orders?webusiness_id=' + webusiness_id,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
         });
     },
-
 
 
     /**
@@ -179,7 +177,7 @@ var api = {
     getAllOrderListByAccount(wechat_id, page, rows, callback) {
         http.ajax({
             url: getServerHost() + '/order/list_by_account?wechat_id=' + wechat_id + "&page=" + page + "&rows=" + rows,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -189,7 +187,7 @@ var api = {
     getOrderListByAccount(wechat_id, status, page, rows, callback) {
         http.ajax({
             url: getServerHost() + '/order/list_by_account?wechat_id=' + wechat_id + "&status=" + status + "&page=" + page + "&rows=" + rows,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -200,7 +198,7 @@ var api = {
     getOrderDetailById(orderid, callback) {
         http.ajax({
             url: getServerHost() + '/order/detail?orderid=' + orderid,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -210,7 +208,7 @@ var api = {
     getOrderDetailByCode(ordercode, callback) {
         http.ajax({
             url: getServerHost() + '/order/detail?ordercode=' + ordercode,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -220,7 +218,7 @@ var api = {
     getOrderRefund(orderid, callback) {
         http.ajax({
             url: getServerHost() + '/order/refund_detail?orderid=' + orderid,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -231,8 +229,8 @@ var api = {
         http.ajax({
             method: "POST",
             url: getServerHost() + '/order/apply_refund',
-            type:"application/json",
-            crossDomain:true,
+            type: "application/json",
+            crossDomain: true,
             data: JSON.stringify(refund_info),
             success: (rs) => {
                 callback && callback(rs);
@@ -246,7 +244,7 @@ var api = {
             // url: '//localhost/hyapi/ymmall' + '/order/appraise/create',
             url: getServerHost() + '/order/appraise/create',
             type: "application/json",
-            crossDomain:true,
+            crossDomain: true,
             data: JSON.stringify(appraise_info),
             success: (rs) => {
                 callback && callback(rs);
@@ -260,7 +258,7 @@ var api = {
             // url: '//localhost/hyapi/ymmall' + '/order/appraise/create',
             url: getServerHost() + '/order/appraises/create',
             type: "application/json",
-            crossDomain:true,
+            crossDomain: true,
             data: JSON.stringify(appraise_info),
             success: (rs) => {
                 callback && callback(rs);
@@ -271,7 +269,7 @@ var api = {
     cancelOrder(orderId, callback) {
         http.ajax({
             url: getServerHost() + '/order/cancel?order_id=' + orderId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -281,7 +279,7 @@ var api = {
     confirmReceive(orderId, callback) {
         http.ajax({
             url: getServerHost() + '/order/confirm_receive?order_id=' + orderId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }
@@ -291,7 +289,7 @@ var api = {
     deleteOrder(orderId, callback) {
         http.ajax({
             url: getServerHost() + '/order/delete?id=' + orderId,
-            crossDomain:true,
+            crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);
             }

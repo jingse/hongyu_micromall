@@ -1,5 +1,5 @@
 import React from "react";
-import {WingBlank, WhiteSpace, List} from "antd-mobile";
+import {List, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import PropTypes from "prop-types";
@@ -10,7 +10,7 @@ export default class MyPoints extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state={
+        this.state = {
             totalPoints: 0,
             availablePoints: 0,
         }
@@ -27,7 +27,7 @@ export default class MyPoints extends React.Component {
 
     // 请求个人信息
     requestInfo() {
-        myApi.getInfo(localStorage.getItem("wechatId"), (rs)=> {
+        myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 console.log("rs", rs);
                 this.setState({
@@ -44,7 +44,7 @@ export default class MyPoints extends React.Component {
 
             <Navigation title="积分" left={true}/>
 
-            <div style={{background: 'darkorange', color:'white', height:'8rem'}}>
+            <div style={{background: 'darkorange', color: 'white', height: '8rem'}}>
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WingBlank>总积分：
@@ -52,7 +52,7 @@ export default class MyPoints extends React.Component {
                 </WingBlank>
                 <WhiteSpace/>
                 <WingBlank>可用积分：</WingBlank>
-                <WingBlank style={{fontSize:'2rem', marginTop:'1rem'}}>
+                <WingBlank style={{fontSize: '2rem', marginTop: '1rem'}}>
                     {(this.state.availablePoints === 0 || !this.state.availablePoints) ? '0' : this.state.availablePoints}
                 </WingBlank>
             </div>
@@ -61,8 +61,11 @@ export default class MyPoints extends React.Component {
                 <List.Item
                     thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                     onClick={() => {
-                        this.context.router.history.push({pathname: '/my/points/exchange',
-                        points: this.state.availablePoints})}}
+                        this.context.router.history.push({
+                            pathname: '/my/points/exchange',
+                            points: this.state.availablePoints
+                        })
+                    }}
                     arrow="horizontal"
                 >
                     兑换
@@ -76,17 +79,19 @@ export default class MyPoints extends React.Component {
                 <List.Item
                     thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                     arrow="horizontal"
-                    onClick={() => {this.context.router.history.push('/my/points/records')}}
+                    onClick={() => {
+                        this.context.router.history.push('/my/points/records')
+                    }}
                 >
                     积分记录
                 </List.Item>
 
                 {/*<List.Item*/}
-                    {/*thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"*/}
-                    {/*onClick={() => {this.context.router.history.push('/my/balance/purchase')}}*/}
-                    {/*arrow="horizontal"*/}
+                {/*thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"*/}
+                {/*onClick={() => {this.context.router.history.push('/my/balance/purchase')}}*/}
+                {/*arrow="horizontal"*/}
                 {/*>*/}
-                    {/*我的购买*/}
+                {/*我的购买*/}
                 {/*</List.Item>*/}
             </List>
 

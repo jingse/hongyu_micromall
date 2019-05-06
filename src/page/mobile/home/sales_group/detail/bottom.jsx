@@ -28,7 +28,6 @@ export default class Bottom extends React.Component {
     }
 
 
-
     renderButton() {
 
         return <div className="putincart">
@@ -44,76 +43,101 @@ export default class Bottom extends React.Component {
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/home-fill2.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/home-fill2.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         selected={this.state.selectedTab === 'home'}
-                        onPress={() => { this.linkTo('/home'); }}
+                        onPress={() => {
+                            this.linkTo('/home');
+                        }}
                         data-seed="logId"
                     />
                     <TabBar.Item
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/cart.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/cart.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         key="购物车"
                         badge={this.props.cartNum}
                         selected={this.state.selectedTab === 'cart'}
-                        onPress={() => { this.linkTo('/cart'); }}
+                        onPress={() => {
+                            this.linkTo('/cart');
+                        }}
                     />
                     <TabBar.Item
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/phone.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/phone.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/phone.png) center center /  24px 24px no-repeat' }}
+                            background: 'url(./images/icons/phone.png) center center /  24px 24px no-repeat'
+                        }}
                         />}
                         key="联系卖家"
                         selected={this.state.selectedTab === 'phone'}
-                        onPress={()=>{window.location.href="tel:" + "13103361866"}}
+                        onPress={() => {
+                            window.location.href = "tel:" + "13103361866"
+                        }}
                     />
                 </TabBar>
             </span>
 
             <Button type="primary" inline
-                    style={{ marginLeft:'35%', marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'darkorange', fontSize:'1rem'}}
-                    onClick={()=>{
-                        console.log("mmm",this.props.myval,this.props.limmit)
-                        if(this.props.myval>this.props.limmit){
+                    style={{
+                        marginLeft: '35%',
+                        marginTop: '4px',
+                        marginBottom: '4px',
+                        marginRight: '4px',
+                        width: '30%',
+                        backgroundColor: 'darkorange',
+                        fontSize: '1rem'
+                    }}
+                    onClick={() => {
+                        console.log("mmm", this.props.myval, this.props.limmit)
+                        if (this.props.myval > this.props.limmit) {
                             Toast.info("超出限购数量！")
-                        }
-                        else{
+                        } else {
                             this.props.addToCart()
-                        }                     
-                        }}>
+                        }
+                    }}>
                 加购物车
             </Button>
 
             <Button type="primary" inline
-                    style={{ marginTop: '4px', marginBottom:'4px', marginRight:'4px', width:'30%', backgroundColor:'red', fontSize:'1rem'}}
-                    onClick={()=>{
-                        console.log("mmm",this.props.myval,this.props.limmit)
-                        if(this.props.myval>this.props.limmit){
+                    style={{
+                        marginTop: '4px',
+                        marginBottom: '4px',
+                        marginRight: '4px',
+                        width: '30%',
+                        backgroundColor: 'red',
+                        fontSize: '1rem'
+                    }}
+                    onClick={() => {
+                        console.log("mmm", this.props.myval, this.props.limmit)
+                        if (this.props.myval > this.props.limmit) {
                             Toast.info("超出限购数量！")
-                        }
-                        else{
+                        } else {
                             this.props.buyImmediately()
-                        } 
-                        }}>
+                        }
+                    }}>
                 立即购买
             </Button>
 

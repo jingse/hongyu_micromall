@@ -1,11 +1,10 @@
 import React from 'react';
-import "./index.less";
-import { Link } from 'react-router-dom';
-import { NavBar, Icon, Popover } from 'antd-mobile';
+import {Link} from 'react-router-dom';
+import {Icon, NavBar, Popover} from 'antd-mobile';
 import PropTypes from "prop-types";
 
 const Item = Popover.Item;
-const myImg = src => <img src={`./images/navigation/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
+const myImg = src => <img src={`./images/navigation/${src}.svg`} className="am-icon am-icon-xs" alt=""/>;
 
 
 export default class Navigation extends React.Component {
@@ -30,9 +29,9 @@ export default class Navigation extends React.Component {
 
     isSame(curPath, targetPath, title) {
         if (targetPath === curPath) {
-            return <div style={{color:'black'}}>{title}</div>
+            return <div style={{color: 'black'}}>{title}</div>
         }
-        return <Link to={targetPath} style={{color:'black'}}>{title}</Link>
+        return <Link to={targetPath} style={{color: 'black'}}>{title}</Link>
     }
 
     backOperation() {
@@ -50,7 +49,9 @@ export default class Navigation extends React.Component {
 
         const leftIcon = () => {
             if (this.props.left === true) {
-                return <Icon type="left" onClick={()=>{this.backOperation()}}/>
+                return <Icon type="left" onClick={() => {
+                    this.backOperation()
+                }}/>
             }
             return null
         };
@@ -61,26 +62,26 @@ export default class Navigation extends React.Component {
             // onLeftClick={() => history.go(-1)}
             rightContent={
                 <Popover overlayClassName="fortest"
-                         overlayStyle={{ color: 'currentColor' }}
+                         overlayStyle={{color: 'currentColor'}}
                          visible={this.state.visible}
                          overlay={[
                              (<Item key="4" value="home" icon={myImg('home')} data-seed="logId">
                                  {/*<Link to='/home' style={{color:'black'}}>首页</Link>*/}
                                  {this.isSame(this.props.curPath, '/home', '首页')}
                              </Item>),
-                             (<Item key="5" value="cart" icon={myImg('cart')} style={{ whiteSpace: 'nowrap' }}>
+                             (<Item key="5" value="cart" icon={myImg('cart')} style={{whiteSpace: 'nowrap'}}>
                                  {/*<Link to='/cart' style={{color:'black'}}>购物车</Link>*/}
                                  {this.isSame(this.props.curPath, '/cart', '购物车')}
                              </Item>),
                              (<Item key="6" value="mine" icon={myImg('my')}>
-                                 <span style={{ marginRight: 5 }}>
+                                 <span style={{marginRight: 5}}>
                                      {/*<Link to='/my' style={{color:'black'}}>我的</Link>*/}
                                      {this.isSame(this.props.curPath, '/my', '我的')}
                                  </span>
                              </Item>),
                          ]}
                          align={{
-                             overflow: { adjustY: 0, adjustX: 0 },
+                             overflow: {adjustY: 0, adjustX: 0},
                              offset: [-10, 0],
                          }}
                          onVisibleChange={this.handleVisibleChange}
@@ -94,7 +95,7 @@ export default class Navigation extends React.Component {
                         alignItems: 'center',
                     }}
                     >
-                        <Icon type="ellipsis" />
+                        <Icon type="ellipsis"/>
                     </div>
                 </Popover>
             }

@@ -3,24 +3,26 @@
  */
 import queryString from 'query-string';
 import homeApi from "../api/home.jsx";
+
 var a;
-function getMyOpenId(){
+
+function getMyOpenId() {
     return localStorage.getItem("openid");
 }
 
-function getMyNickname(){
+function getMyNickname() {
     return localStorage.getItem("nickname");
 }
 
 function getUId() {
-    if (window.location.href.indexOf("companyuid")>=0) {
+    if (window.location.href.indexOf("companyuid") >= 0) {
         const oldUid = queryString.parse(location.search).uid;
         const oldCompanyUid = queryString.parse(location.search).companyuid;
-        homeApi.getRedictUid(oldUid,oldCompanyUid,(rs) => {
-            a=rs.obj;
+        homeApi.getRedictUid(oldUid, oldCompanyUid, (rs) => {
+            a = rs.obj;
         });
         //Toast.info(`lcc: ${a}`,2)
-        console.log("returnlcc",a);
+        console.log("returnlcc", a);
         return a;
         // TODO：此处调用后台接口获取新的uid
     }
@@ -29,12 +31,12 @@ function getUId() {
     return queryString.parse(location.search).uid;
 }
 
-function getFromUser(){
+function getFromUser() {
     const parsed = queryString.parse(location.search);
     return parsed.from_user;
 }
 
-function generateSaleLink(){
+function generateSaleLink() {
     const parsed = queryString.parse(location.search);
     delete parsed.code;     // 先删除code和state参数，消除干扰
     delete parsed.state;
@@ -49,7 +51,7 @@ function generateSaleLink(){
     var ismine = false;
     newObj.from_user = parsed.from_user;
     delete parsed.from_user;     // 删除from_user参数，开始生成salelink
-    for(var i in parsed) {
+    for (var i in parsed) {
         if (parsed[i] === myopenid) {
             ismine = true;      // 存在分享环
             break;
@@ -59,15 +61,15 @@ function generateSaleLink(){
     }
 
     if (i && !ismine) {         // 若已有分销链salelink但无分享环，分享链+1
-        const index = parseInt(i)+1;
+        const index = parseInt(i) + 1;
         newObj[index] = myopenid;
-    } else if(i && ismine) {    // 若已有分销链salelink且有分享环，分享链切断
+    } else if (i && ismine) {    // 若已有分销链salelink且有分享环，分享链切断
         newObj[i] = myopenid;
     } else {                    // 若无分销链salelink
         newObj[1] = myopenid;
     }
     const stringified = queryString.stringify(newObj);
-    return '?'+stringified;
+    return '?' + stringified;
 }
 
 const locManager = {

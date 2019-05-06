@@ -15,7 +15,7 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
         bundle: path.resolve(__dirname, 'src/index.js'),
-        vendor: ['react','react-dom','react-router','react-router-dom','react-responsive']
+        vendor: ['react', 'react-dom', 'react-router', 'react-router-dom', 'react-responsive']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -26,28 +26,28 @@ module.exports = {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
-            },{
+            }, {
                 test: /(\.js?$)|(\.jsx?$)/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
-            },{
+            }, {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
-            },{
+            }, {
                 test: /\.less$/,
                 use: [
                     'style-loader',
                     'css-loader',
                     {loader: 'less-loader', options: {modifyVars: theme}},
                 ]
-            },{
-                test:/(\.jpg$)|(\.png$)|(\.gif$)/,
-                loader:'url-loader?limit=10000&name=images/[name]-[hash:6].[ext]'
-            },{
+            }, {
+                test: /(\.jpg$)|(\.png$)|(\.gif$)/,
+                loader: 'url-loader?limit=10000&name=images/[name]-[hash:6].[ext]'
+            }, {
                 test: /\.(svg)$/i,
                 loader: 'svg-sprite-loader',
                 include: svgDirs  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
-            },{
+            }, {
                 test: /\.(htm|html)$/i,
                 loader: 'html-withimg-loader'
             }

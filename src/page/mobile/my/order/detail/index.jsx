@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {WhiteSpace, Flex, Button, Modal} from "antd-mobile";
+import {Button, Flex, Modal, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import {getServerIp} from "../../../../../config.jsx";
-// import order_detail from "../../../../../static/mockdata/order_detail.js";
 import orderApi from "../../../../../api/my.jsx";
 import paymentApi from "../../../../../api/payment.jsx";
 import wxApi from "../../../../../api/wechat.jsx";
@@ -22,9 +21,9 @@ export default class OrderDetail extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            detail:[],
+            detail: [],
             orderId: (!this.props.location.orderId) ? localStorage.getItem("orderId") : this.props.location.orderId,
-            orderState: (!this.props.location.orderState && this.props.location.orderState!==0) ? parseInt(localStorage.getItem("orderState")) : this.props.location.orderState,
+            orderState: (!this.props.location.orderState && this.props.location.orderState !== 0) ? parseInt(localStorage.getItem("orderState")) : this.props.location.orderState,
         };
     }
 
@@ -47,7 +46,7 @@ export default class OrderDetail extends React.Component {
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
                 signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay","onMenuShareTimeline","onMenuShareAppMessage"]
+                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
             });
         });
     }
@@ -68,15 +67,15 @@ export default class OrderDetail extends React.Component {
     }
 
     componentDidMount() {
-        wx.ready(function(){
+        wx.ready(function () {
             wx.checkJsApi({
-                jsApiList: ['chooseWXPay',"onMenuShareTimeline","onMenuShareAppMessage"],
-                success: function(res) {
+                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
+                success: function (res) {
                     console.log(res)
                 }
             });
         });
-        wx.error(function(res){
+        wx.error(function (res) {
             console.log('wx.error');
             console.log(res);
         });
@@ -94,9 +93,9 @@ export default class OrderDetail extends React.Component {
                 "signType": this.signType,       //微信签名方式：
                 "paySign": this.paySign          //微信签名
             },
-            function(res){
-                if(res.err_msg === "get_brand_wcpay_request:ok") {
-                    this.linkTo({pathname: '/my/order', state:2});
+            function (res) {
+                if (res.err_msg === "get_brand_wcpay_request:ok") {
+                    this.linkTo({pathname: '/my/order', state: 2});
                 }
             }
         );
@@ -120,7 +119,7 @@ export default class OrderDetail extends React.Component {
 
             // 调起微信支付接口
             if (typeof WeixinJSBridge === "undefined") {
-                if ( document.addEventListener ) {
+                if (document.addEventListener) {
                     document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
                 } else if (document.attachEvent) {
                     document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
@@ -151,37 +150,50 @@ export default class OrderDetail extends React.Component {
     }
 
     linkTo(link) {
-        this.context.router.history.push({pathname : link, state: this.state.detail});
+        this.context.router.history.push({pathname: link, state: this.state.detail});
     }
 
     checkDetailState(orderState) {
         var stateStr = '';
         switch (orderState) {
-            case 0: stateStr = "待付款";
+            case 0:
+                stateStr = "待付款";
                 break;
-            case 1: stateStr = "待审核";
+            case 1:
+                stateStr = "待审核";
                 break;
-            case 2: stateStr = "待出库";
+            case 2:
+                stateStr = "待出库";
                 break;
-            case 3: stateStr = "待发货";
+            case 3:
+                stateStr = "待发货";
                 break;
-            case 4: stateStr = "待收货";
+            case 4:
+                stateStr = "待收货";
                 break;
-            case 5: stateStr = "已收货";
+            case 5:
+                stateStr = "已收货";
                 break;
-            case 6: stateStr = "已完成";
+            case 6:
+                stateStr = "已完成";
                 break;
-            case 7: stateStr = "已取消";///////
+            case 7:
+                stateStr = "已取消";///////
                 break;
-            case 8: stateStr = "待确认";
+            case 8:
+                stateStr = "待确认";
                 break;
-            case 9: stateStr = "待退货";
+            case 9:
+                stateStr = "待退货";
                 break;
-            case 10: stateStr = "待入库";
+            case 10:
+                stateStr = "待入库";
                 break;
-            case 11: stateStr = "待退款";
+            case 11:
+                stateStr = "待退款";
                 break;
-            case 12: stateStr = "已退款";
+            case 12:
+                stateStr = "已退款";
                 break;
         }
         return stateStr
@@ -190,20 +202,33 @@ export default class OrderDetail extends React.Component {
     getOrderButtonContent(orderState) {
         if (orderState === 0 || orderState === 1 || orderState === 2) {
             return <Button type="ghost" inline size="small"
-            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
-            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
+                           style={{
+                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
+                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
+                           }}
                            onClick={() => alert('取消订单', '您确定要取消吗？', [
-                               { text: '取消', onPress: () => {} },
-                               { text: '确认', onPress: () => {this.cancelOrderConfirm(this.state.orderId)} },
+                               {
+                                   text: '取消', onPress: () => {
+                                   }
+                               },
+                               {
+                                   text: '确认', onPress: () => {
+                                       this.cancelOrderConfirm(this.state.orderId)
+                                   }
+                               },
                            ])}>
-                            取消订单
-                    </Button>
+                取消订单
+            </Button>
         } else if (orderState === 5) {
             return <Button type="ghost" inline size="small"
-            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
-            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
-                           onClick={()=>{this.linkTo('/my/order/refund')}}>
-                    申请退款
+                           style={{
+                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
+                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
+                           }}
+                           onClick={() => {
+                               this.linkTo('/my/order/refund')
+                           }}>
+                申请退款
             </Button>
         } else {
             return null
@@ -215,24 +240,37 @@ export default class OrderDetail extends React.Component {
             orderCode = this.state.detail.baseInfo.orderCode;
             payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100); //TODO
             return <Button type="ghost" inline size="small"
-                           style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
-                               width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
+                           style={{
+                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
+                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
+                           }}
                            onClick={this.payCharge.bind(this)}>
                 去付款
             </Button>
-        }  else if (orderState === 4) {
+        } else if (orderState === 4) {
             return <Button type="ghost" inline size="small"
-                            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
-                            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
-                           onClick={()=>{this.orderConfirmReceive(this.state.orderId)}}>
+                           style={{
+                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
+                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
+                           }}
+                           onClick={() => {
+                               this.orderConfirmReceive(this.state.orderId)
+                           }}>
                 确认收货
             </Button>
         } else if (orderState === 5 || orderState === 6) {
             //return "评价";
             return <Button type="ghost" inline size="small"
-                            style={{  marginLeft:'65%',marginTop: '4px', marginBottom:'4px', marginRight:'10%',
-                            width:'25%', backgroundColor:'white', fontSize:'0.8rem'}}
-                           onClick={()=>{this.context.router.history.push({pathname : '/my/order/comment', order: this.state.detail})}}>
+                           style={{
+                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
+                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
+                           }}
+                           onClick={() => {
+                               this.context.router.history.push({
+                                   pathname: '/my/order/comment',
+                                   order: this.state.detail
+                               })
+                           }}>
                 去评价
             </Button>
         } else {
@@ -242,37 +280,39 @@ export default class OrderDetail extends React.Component {
 
     getLogisticInfo() {
         if (!this.state.detail.ships || JSON.stringify(this.state.detail.ships) === "[]") {
-            return <div style={{background: 'white',
+            return <div style={{
+                background: 'white',
                 padding: '1rem',
                 textAlign: 'center',
-                color:'black'}}>
+                color: 'black'
+            }}>
                 <Flex>
-                    <Flex.Item style={{flex:'0 0 10%'}}>
-                        <img src="./images/icons/货车.png" style={{width:'%100', marginLeft:'0.5rem'}}/>
+                    <Flex.Item style={{flex: '0 0 10%'}}>
+                        <img src="./images/icons/货车.png" style={{width: '%100', marginLeft: '0.5rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 70%', color:'green'}}>
+                    <Flex.Item style={{flex: '0 0 70%', color: 'green'}}>
                         暂无物流信息
                     </Flex.Item>
                 </Flex>
             </div>
         }
-        return <div style={{backgroundColor:'white', borderBottom:'1px solid #ccc'}}
-                    // onClick={()=>{this.linkTo('/my/order/logistic')}}
-                    >
+        return <div style={{backgroundColor: 'white', borderBottom: '1px solid #ccc'}}
+            // onClick={()=>{this.linkTo('/my/order/logistic')}}
+        >
             <WhiteSpace/>
             <Flex>
-                <Flex.Item style={{flex:'0 0 10%'}}>
-                    <img src="./images/icons/货车.png" style={{width:'%100', marginLeft:'1.2rem'}}/>
+                <Flex.Item style={{flex: '0 0 10%'}}>
+                    <img src="./images/icons/货车.png" style={{width: '%100', marginLeft: '1.2rem'}}/>
                 </Flex.Item>
-                <Flex.Item style={{flex:'0 0 70%', color:'green'}}>
+                <Flex.Item style={{flex: '0 0 70%', color: 'green'}}>
                     <div>{this.state.detail.ships[0].shipCompany}
-                        <span style={{float:'right'}}>{this.state.detail.ships[0].shipCode}</span>
+                        <span style={{float: 'right'}}>{this.state.detail.ships[0].shipCode}</span>
                     </div>
                     <WhiteSpace/>
                     <div>{new Date(this.state.detail.ships[0].recordTime).toLocaleString()}</div>
                 </Flex.Item>
-                <Flex.Item style={{flex:'0 0 15%'}}>
-                    <img src="./images/icons/向右.png" style={{width:'%10', float:'right'}}/>
+                <Flex.Item style={{flex: '0 0 15%'}}>
+                    <img src="./images/icons/向右.png" style={{width: '%10', float: 'right'}}/>
                 </Flex.Item>
             </Flex>
             <WhiteSpace/>
@@ -280,9 +320,8 @@ export default class OrderDetail extends React.Component {
     }
 
     checkPresent(isPresent) {
-        if (isPresent) {
-            return <span style={{color:'darkorange', fontWeight:'bold'}}> (赠)</span>
-        }
+        if (isPresent)
+            return <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
     }
 
 
@@ -300,25 +339,26 @@ export default class OrderDetail extends React.Component {
 
         const productDetail = this.state.detail.orderItems && this.state.detail.orderItems.map((item, index) => {
             return <Link key={index} to={`/product/${item.specialtyId}`}>
-                <Flex style={{background:'#fff'}}
-                      onClick={()=>{
+                <Flex style={{background: '#fff'}}
+                      onClick={() => {
                           localStorage.setItem("orderId", this.state.orderId);
                           localStorage.setItem("orderState", this.state.orderState);
                       }}>
                     <Flex.Item style={{flex: '0 0 25%'}}>
-                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{width: '60%', margin:'0.8rem'}}/>
+                        <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
+                             style={{width: '60%', margin: '0.8rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 40%', color:'black', fontSize:'0.8rem'}}>
+                    <Flex.Item style={{flex: '0 0 40%', color: 'black', fontSize: '0.8rem'}}>
                         <div style={{marginBottom: 10}}>
                             {item.name}
                             {this.checkPresent(item.isGift)}
                         </div>
-                        <div style={{marginBottom: 10, color:'#ccc'}}>{item.specification}</div>
+                        <div style={{marginBottom: 10, color: '#ccc'}}>{item.specification}</div>
                         <WhiteSpace/>
                     </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 25%', fontSize:'0.8rem'}}>
-                        <div style={{marginBottom: 10, color:'black', textAlign:'right'}}>{item.salePrice}</div>
-                        <div style={{marginBottom: 10, color:'#ccc', textAlign:'right'}}>x {item.quantity}</div>
+                    <Flex.Item style={{flex: '0 0 25%', fontSize: '0.8rem'}}>
+                        <div style={{marginBottom: 10, color: 'black', textAlign: 'right'}}>{item.salePrice}</div>
+                        <div style={{marginBottom: 10, color: '#ccc', textAlign: 'right'}}>x {item.quantity}</div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
@@ -329,11 +369,13 @@ export default class OrderDetail extends React.Component {
 
             <Navigation title="订单详情" left={true}/>
 
-            <div style={{background: 'darkorange',
+            <div style={{
+                background: 'darkorange',
                 padding: '1rem',
                 textAlign: 'center',
                 fontSize: '0.8rem',
-                color:'white'}}>
+                color: 'white'
+            }}>
                 {this.checkDetailState(this.state.orderState)}
             </div>
 
@@ -343,15 +385,15 @@ export default class OrderDetail extends React.Component {
 
             <WhiteSpace/>
 
-            <div style={{backgroundColor:'white'}}>
+            <div style={{backgroundColor: 'white'}}>
                 <WhiteSpace/>
                 <Flex>
-                    <Flex.Item style={{flex:'0 0 10%'}}>
-                        <img src="./images/icons/地址.png" style={{width:'%10', marginLeft:'0.8rem'}}/>
+                    <Flex.Item style={{flex: '0 0 10%'}}>
+                        <img src="./images/icons/地址.png" style={{width: '%10', marginLeft: '0.8rem'}}/>
                     </Flex.Item>
-                    <Flex.Item style={{flex:'0 0 70%'}}>
+                    <Flex.Item style={{flex: '0 0 70%'}}>
                         <div>收货人：{this.state.detail.baseInfo.receiverName}
-                            <span style={{float:'right'}}>{this.state.detail.baseInfo.receiverPhone}</span>
+                            <span style={{float: 'right'}}>{this.state.detail.baseInfo.receiverPhone}</span>
                         </div>
                         <WhiteSpace/>
                         <div>收货地址：{this.state.detail.baseInfo.receiverAddress}</div>
@@ -364,51 +406,63 @@ export default class OrderDetail extends React.Component {
 
             {productDetail}
 
-            <div style={{background:'#fff', textAlign:'right'}}>
+            <div style={{background: '#fff', textAlign: 'right'}}>
                 {orderButtonContent}
                 <WhiteSpace/>
             </div>
 
             <WhiteSpace/>
-            <div style={{backgroundColor:'white', fontSize:'0.7rem'}}>
+            <div style={{backgroundColor: 'white', fontSize: '0.7rem'}}>
                 <WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>商品总额
-                    <span style={{float:'right', marginRight:'2rem'}}>￥{this.state.detail.baseInfo.totalMoney}</span>
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>商品优惠
-                    <span style={{float:'right', marginRight:'2rem'}}>￥{(this.state.detail.baseInfo.totalMoney - this.state.detail.baseInfo.payMoney).toFixed(2)}</span>
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem', fontSize:'1rem'}}>实付款
-                    <span style={{float:'right', marginRight:'2rem', fontSize:'1rem', color:'darkorange'}}>
+                <div style={{marginLeft: '0.6rem'}}>商品总额
+                    <span style={{float: 'right', marginRight: '2rem'}}>￥{this.state.detail.baseInfo.totalMoney}</span>
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>商品优惠
+                    <span style={{
+                        float: 'right',
+                        marginRight: '2rem'
+                    }}>￥{(this.state.detail.baseInfo.totalMoney - this.state.detail.baseInfo.payMoney).toFixed(2)}</span>
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem', fontSize: '1rem'}}>实付款
+                    <span style={{float: 'right', marginRight: '2rem', fontSize: '1rem', color: 'darkorange'}}>
                         ￥{this.state.detail.baseInfo.payMoney}
                     </span>
-                </div><WhiteSpace/>
+                </div>
+                <WhiteSpace/>
                 <WhiteSpace/>
             </div>
             <WhiteSpace/>
 
-            <div style={{backgroundColor:'white', fontSize:'0.7rem', color:'#999'}}>
+            <div style={{backgroundColor: 'white', fontSize: '0.7rem', color: '#999'}}>
                 <WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>订单编号：{this.state.detail.baseInfo.orderCode}</div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>创建时间：
-                    {(!this.state.detail.baseInfo.orderTime)? "" : new Date(this.state.detail.baseInfo.orderTime).toLocaleString()}
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>付款时间：
-                    {(!this.state.detail.baseInfo.payTime)? "" : new Date(this.state.detail.baseInfo.payTime).toLocaleString()}
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>发货时间：
-                    {(!this.state.detail.baseInfo.deliveryTime)? "" : new Date(this.state.detail.baseInfo.deliveryTime).toLocaleString()}
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>成交时间：
+                <div style={{marginLeft: '0.6rem'}}>订单编号：{this.state.detail.baseInfo.orderCode}</div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>创建时间：
+                    {(!this.state.detail.baseInfo.orderTime) ? "" : new Date(this.state.detail.baseInfo.orderTime).toLocaleString()}
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>付款时间：
+                    {(!this.state.detail.baseInfo.payTime) ? "" : new Date(this.state.detail.baseInfo.payTime).toLocaleString()}
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>发货时间：
+                    {(!this.state.detail.baseInfo.deliveryTime) ? "" : new Date(this.state.detail.baseInfo.deliveryTime).toLocaleString()}
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>成交时间：
                     {(!this.state.detail.baseInfo.receiveTime) ? "" : new Date(this.state.detail.baseInfo.receiveTime).toLocaleString()}
-                </div><WhiteSpace/>
-                <div style={{marginLeft:'0.6rem'}}>买家备注：
+                </div>
+                <WhiteSpace/>
+                <div style={{marginLeft: '0.6rem'}}>买家备注：
                     {this.state.detail.baseInfo.receiverRemark}
-                </div><WhiteSpace/>
+                </div>
+                <WhiteSpace/>
                 <WhiteSpace/>
             </div>
 
-            <div style={{background:'#fff', textAlign:'right'}}>
+            <div style={{background: '#fff', textAlign: 'right'}}>
                 <span>
                     {buttonContent}
                 </span>

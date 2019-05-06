@@ -1,110 +1,116 @@
 @sectionHeight: 3.125rem;
 
 .general_container {
-    //margin-top: @sectionHeight;
-    line-height: initial;
-    font-size: 1rem;
+  //margin-top: @sectionHeight;
+  line-height: initial;
+  font-size: 1rem;
 }
 
 .selector_container {
-    font-size: 0.9rem;
-    background: #fff;
+  font-size: 0.9rem;
+  background: #fff;
+  height: 3rem;
+
+  .selector_sec {
     height: 3rem;
-    .selector_sec {
-         height: 3rem;
-         line-height: 3rem;
-        border-bottom: 1px solid #eee;
-        &:last-child {
-            border-bottom: none;
-        }
-        span {
-            &:first-child {
-                // color: #ccc;
-            }
-            &:nth-child(2) {
-                margin-left: 1rem;
-            }
-            &:last-child {
-                float: right;
-            }
-        }
+    line-height: 3rem;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
     }
+
+    span {
+      &:first-child {
+        // color: #ccc;
+      }
+
+      &:nth-child(2) {
+        margin-left: 1rem;
+      }
+
+      &:last-child {
+        float: right;
+      }
+    }
+  }
 }
 
-.product_info_div{
-    line-height:25px;
-    font-size: 0.8rem;
-    .comm_num{
-        //font-size: 0.7rem;
-        text-align: end;
-    }
+.product_info_div {
+  line-height: 25px;
+  font-size: 0.8rem;
 
-    .detail_info {
-        flex:0 0 25%;
-        text-align: right;
-    }
-    .detail_val {
-        flex:0 0 75%;
-    }
+  .comm_num {
+    //font-size: 0.7rem;
+    text-align: end;
+  }
+
+  .detail_info {
+    flex: 0 0 25%;
+    text-align: right;
+  }
+
+  .detail_val {
+    flex: 0 0 75%;
+  }
 }
 
 
-.para_title{
+.para_title {
   font-weight: bold;
   font-size: 1rem;
 }
-.para_html{
-    
+
+
+.para_html img {
+  width: 100%;
 }
-.para_html img{
-    width:100%;
-}
-.paragraph{
-  line-height:25px;
+
+.paragraph {
+  line-height: 25px;
   text-indent: 2em;
 }
 
 // properties of comment.jsx are as follows
-.comment{
-    //border-bottom: 1px solid #ccc;
+.comment {
+  //border-bottom: 1px solid #ccc;
 
-    .comment_title{
-        //color: darkorange;
-        border-bottom: 1px dashed darkorange;
-        font-weight: bold;
-    }
+  .comment_title {
+    //color: darkorange;
+    border-bottom: 1px dashed darkorange;
+    font-weight: bold;
+  }
 
-    .custom-pagination{
-        //font-size: 0.5rem;
-        
-        .arrow-align{
-            // height:'80%'
-            font-size: 0.8rem;
-            // height: 5px;
-        }
+  .custom-pagination {
+    //font-size: 0.5rem;
+
+    .arrow-align {
+      // height:'80%'
+      font-size: 0.8rem;
+      // height: 5px;
     }
+  }
 
 }
 
 
 // properties of recommend.jsx are as follows
-.recommend{
-    // border-top: 1px solid #eee;
-    // border-bottom: 1px solid #eee;
-    clear:both;
-    //visibility: hidden;
+.recommend {
+  // border-top: 1px solid #eee;
+  // border-bottom: 1px solid #eee;
+  clear: both;
+  //visibility: hidden;
 
-    .recommend_title{
-        color: darkorange;
-        background-color: white;
-        border-bottom: 1px dashed darkorange;
-    }
+  .recommend_title {
+    color: darkorange;
+    background-color: white;
+    border-bottom: 1px dashed darkorange;
+  }
 
-    //.recommend_product_card{
-    //    margin-left: 0.5rem;
-    //    margin-right: 0.5rem;
-    //}
-
+  //.recommend_product_card{
+  //    margin-left: 0.5rem;
+  //    margin-right: 0.5rem;
+  //}
 
 
 }
