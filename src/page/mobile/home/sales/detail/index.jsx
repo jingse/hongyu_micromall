@@ -515,44 +515,42 @@ export default class SalesDetail extends React.Component {
                     swipeSpeed={35}
                     dots={this.state.dots}
                 >
-                    {bancontent}
-                </Carousel>
-                <WingBlank>
-                    <h3>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
-                    </h3>
-                    <h4>
-                        <font color="red">优惠时间：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">优惠类型：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.getSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
-                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {(localStorage.getItem('isWebusiness') === '1') && this.state.salesDetail.hySingleitemPromotions ?
-                            <div
-                                style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.hySingleitemPromotions[0].specificationId.dividMoney).toFixed(2)}</div> :
-                            <div></div>}
-                    </h4>
-                    {/* <h4>
+                {bancontent}
+            </Carousel>
+            <WingBlank>
+            <h3>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
+            </h3>
+            <h4>
+                <font color="red">优惠时间：</font>
+                {this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时 ~ "+end.substring(0,b+2)+"时":""}
+            </h4>
+            <h4>
+                <font color="red">优惠类型：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.getSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                                         this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents):""}
+            </h4>
+            <h4>
+                <font color="red">活动价格：</font>
+                {this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}
+            </h4>
+            <h4>
+                <font color="red">已售数量：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].havePromoted:""}
+            </h4>
+            <h4>
+                <font color="red">限购数量：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}
+            </h4>
+            <h4>
+                <font color="red">活动库存：</font>
+                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].promoteNum:""}
+            </h4>
+            <h4>
+                {console.log("safasd",this.state.salesDetail)}
+                {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.divideMoney).toFixed(2)}</div>:<div></div>}
+            </h4>
+            {/* <h4>
                 结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
             </h4> */}
                     <hr/>

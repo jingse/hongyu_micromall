@@ -479,29 +479,30 @@ export default class SalesGroupDetail extends React.Component {
                             {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
                                 this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
                         </div>
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? "￥" + this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
-                            style={{color: 'black'}}>{parseFloat(this.state.salesGroupDetail.dividMoney).toFixed(2)}</span>
-                        </div> : <div/>}
-                    </h4>
-                    <hr/>
+            </h4>
+            <h4>
+                <font color="red">活动价格：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?"￥"+this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice:""}
+            </h4>
+            <h4>
+                <font color="red">已售数量：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted:""}
+            </h4>
+            <h4>
+                <font color="red">限购数量：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum:""}
+            </h4>
+            <h4>
+                <font color="red">活动库存：</font>
+                {this.state.salesGroupDetail.hyGroupitemPromotions?this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum:""}
+            </h4>
+            <h4>
+                {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'black'}}>{parseFloat(this.state.salesGroupDetail.divideMoney).toFixed(2)}</span></div>:<div></div>}
+            </h4>
+            <hr/>
+
+            <WhiteSpace/>
+
 
                     <WhiteSpace/>
 
