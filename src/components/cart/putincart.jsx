@@ -11,22 +11,9 @@ export default class PutInCart extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-        this.state = this.getInitialState();
-    }
-
-
-    getInitialState() {
-        let link = this.getLink() || 'product';
-        return {
-            selectedTab: link,
+        this.state = {
+            selectedTab: '',
         };
-    }
-
-    getLink() {
-        let links = window.location.hash.match(/(\w+)/g);
-        if (!links)
-            return null;
-        return links[0].toLowerCase();
     }
 
 
@@ -62,7 +49,7 @@ export default class PutInCart extends React.Component {
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/home.png) center center /  24px 24px no-repeat'
+                            background: 'url(./images/icons/home-fill2.png) center center /  24px 24px no-repeat'
                         }}
                         />}
                         selected={this.state.selectedTab === 'home'}
@@ -81,7 +68,7 @@ export default class PutInCart extends React.Component {
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(./images/icons/cart-fill.png) center center /  24px 24px no-repeat'
+                            background: 'url(./images/icons/cart-fill2.png) center center /  24px 24px no-repeat'
                         }}
                         />}
                         key="购物车"
