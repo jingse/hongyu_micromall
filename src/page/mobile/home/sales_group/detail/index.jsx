@@ -13,6 +13,7 @@ import proApi from "../../../../../api/product.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
+import SaleManager from "../../../../../common/SaleManager.jsx";
 
 
 export default class SalesGroupDetail extends React.Component {
@@ -241,39 +242,6 @@ export default class SalesGroupDetail extends React.Component {
     }
 
 
-    getSalesContent(ruleType, substracts, discounts, presents) {
-        var content = null;
-
-        if (ruleType === "满减") {
-            content = substracts && substracts.map((item, index) => {
-                return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
-            });
-        } else if (ruleType === "满折") {
-            content = discounts && discounts.map((item, index) => {
-                return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
-            });
-        } else if (ruleType === "满赠") {
-            content = presents && presents.map((item, index) => {
-                return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProduct.name + "*" + item.fullPresentProductNumber
-            });
-        } else {
-
-        }
-
-        return content
-    }
-
-    getSalesDetailIcon(salesImages) {
-        var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isLogo) {
-                img = item.mediumPath
-            }
-        });
-        console.log("img", img);
-        return img
-    }
-
     getSalesIconImg(salesImages) {
         var img = null;
         salesImages && salesImages.map((item, index) => {
@@ -323,7 +291,7 @@ export default class SalesGroupDetail extends React.Component {
                     <Flex style={{background: '#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
                             <img
-                                src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)}
+                                src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
                                 style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
@@ -354,10 +322,6 @@ export default class SalesGroupDetail extends React.Component {
         }
     }
 
-    onChange = (val) => {
-        this.setState({val});
-    };
-
 
     render() {
 
@@ -387,7 +351,7 @@ export default class SalesGroupDetail extends React.Component {
                 <Card>
                     <Flex style={{background: '#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
-                            <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.itemId.images)}
+                            <img src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.itemId.images)}
                                  style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 80%', color: 'black'}}>
@@ -401,7 +365,7 @@ export default class SalesGroupDetail extends React.Component {
                             <div style={{marginBottom: 5}}>优惠规格：<span
                                 style={{color: 'red'}}>{item.itemSpecificationId.specification}</span></div>
                             {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
-                        {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                        {SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
                                          this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
                         </span></div> */}
                             {/* {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.itemSpecificationId.dividMoney).toFixed(2)}</span></div>:<div></div>} */}
@@ -476,7 +440,7 @@ export default class SalesGroupDetail extends React.Component {
                     </h4>
                     <h4>
                         <div style={{marginBottom: 5}}><span style={{color: 'red'}}>优惠类型：</span>
-                            {this.getSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                            {SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
                                 this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
                         </div>
             </h4>

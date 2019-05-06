@@ -5,6 +5,7 @@ import Layout from "../../common/layout/layout.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
 import http from '../../common/http.jsx';  //不能删除
+import SaleManager from '../../common/SaleManager.jsx';
 import "./saleList.less";
 
 
@@ -70,24 +71,6 @@ export default class SalesList extends React.Component {
     }
 
 
-    getSalesContent(ruleType, substracts, discounts, presents) {
-        switch (ruleType) {
-            case "满减":
-                return substracts && substracts.map((item, index) => {
-                    return "满" + item.fullFreeRequirement + "元减" + item.fullFreeAmount + "元"
-                });
-            case "满折":
-                return discounts && discounts.map((item, index) => {
-                    return "满" + item.discountRequirenment + "元打" + item.discountOff + "折"
-                });
-            case "满赠":
-                return presents && presents.map((item, index) => {
-                    return "满" + item.fullPresentRequirenment + "元赠" + item.fullPresentProductNumber
-                });
-        }
-    }
-
-
     render() {
 
         const content = this.state.data && this.state.data.map((item, index) => {
@@ -120,7 +103,7 @@ export default class SalesList extends React.Component {
                             }}>
                                 {item.ruleType}
                             </span>
-                            {this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
+                            {SaleManager.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
                         </div>
                         <Flex style={{marginBottom: 10}}>
                             <Flex.Item style={{flex: '0 0 30%'}}>
