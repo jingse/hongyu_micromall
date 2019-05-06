@@ -4,6 +4,7 @@ import {Flex, WhiteSpace} from 'antd-mobile';
 import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
 import Tag from "./tagShow.jsx";
+import SaleManager from "../../../common/SaleManager.jsx";
 import './index.less';
 
 
@@ -64,25 +65,7 @@ export default class GridCategory extends React.Component {
 
     }
 
-    getSalesContent(ruleType, substracts, discounts, presents) {
-        var content = null;
 
-        if (ruleType === "满减") {
-            content = substracts && substracts.map((item, index) => {
-                return "满" + item.fullFreeRequirement + "减" + item.fullFreeAmount + "元"
-            });
-        } else if (ruleType === "满折") {
-            content = discounts && discounts.map((item, index) => {
-                return "满" + item.discountRequirenment + "打" + item.discountOff * 10 + "折"
-            });
-        } else if (ruleType === "满赠") {
-            content = presents && presents.map((item, index) => {
-                // return "满" + item.fullPresentRequirenment + "赠" + item.fullPresentProduct.name +"*"+item.fullPresentProductNumber
-                return "满" + item.fullPresentRequirenment + "赠商品"
-            });
-        }
-        return content
-    }
 
     render() {
 
@@ -138,7 +121,7 @@ export default class GridCategory extends React.Component {
                         <div className="product_name">{item.name}</div>
                         <WhiteSpace/>
                         <div
-                            className="myzhekou_amount">{this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
+                            className="myzhekou_amount">{SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
                         <WhiteSpace/>
                         <div className="myzhekou_amount">{item.hySingleitemPromotions[0].havePromoted}人付款</div>
                         <WhiteSpace/>
@@ -175,7 +158,7 @@ export default class GridCategory extends React.Component {
                         <div className="product_name">{item.name}</div>
                         <WhiteSpace/>
                         <div
-                            className="myzhekou_amount">{this.getSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
+                            className="myzhekou_amount">{SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
                         <WhiteSpace/>
                         <div className="myzhekou_amount">{item.groupItemPromotions[0].havePromoted}人付款</div>
                         <WhiteSpace/>
