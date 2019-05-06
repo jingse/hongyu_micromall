@@ -46,7 +46,7 @@ class Product extends React.Component {
             currentPrePrice: 0,
             currentMarketPrice: 0,
 
-            isadd: 0,
+            isAdd: 0,
 
             //加购物车相关参数
             specificationId: 0,
@@ -306,13 +306,13 @@ class Product extends React.Component {
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
         }, () => {
-            if (this.state.isadd === 1)
+            if (this.state.isAdd === 1)
                 this.addToCart();
         });
     }
 
     showModal(val) {
-        this.setState({modal: true, isadd: val});
+        this.setState({modal: true, isAdd: val});
     }
 
     hideModal(status) {

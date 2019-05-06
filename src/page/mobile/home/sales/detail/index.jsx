@@ -120,33 +120,20 @@ export default class SalesDetail extends React.Component {
                         isNull: true,
                     });
                 } else {
-                    // const specificationId = data[0].specification.id;
-                    // const mPrice = data[0].mPrice;
-                    // const pPrice = data[0].pPrice;
                     const temp = data[0].specialty.specifications;
                     const arrlength = temp.length;
                     var myspecifications;
                     for (var i = 0; i < arrlength; i++) {
                         if (temp[i].specification == this.state.specification) {
                             myspecifications = temp[i];
-                            // console.log("what happened", myspecifications,i,arrlength);
                         }
                     }
-                    // const recommends = data[0].recommends;
-                    // const specification = specifications && specifications.map((item, index) => {
 
-                    // return item.specification;
-                    // });
                     console.log("product specifications", myspecifications);
 
                     this.setState({
                         data: data,
-                        // specificationId: specificationId,
                         featureData: [myspecifications],
-                        // specification: specification,
-                        // recommends: recommends,
-                        // currentPrePrice: pPrice,
-                        // currentMarketPrice: mPrice,
                     });
                 }
 
@@ -279,7 +266,7 @@ export default class SalesDetail extends React.Component {
     }
 
     showModal(val) {
-        this.setState({modal: true, isadd: val});
+        this.setState({modal: true, isAdd: val});
     }
 
     hideModal(status) {
@@ -298,7 +285,7 @@ export default class SalesDetail extends React.Component {
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
         }, () => {
-            console.log('this.state.isadd', this.state.isadd);
+            console.log('this.state.isAdd', this.state.isadd);
             if (this.state.isadd === 1)
                 this.addToCart();
         });
