@@ -107,7 +107,7 @@ export default class PutInCart extends React.Component {
                         key="联系卖家"
                         selected={this.state.selectedTab === 'phone'}
                         // onPress={()=>{window.location.href="tel:" + "13103361866"}}
-                        onPress={() => alert('请选择联系电话', <div></div>, [
+                        onPress={() => alert('请选择联系电话', <div/>, [
                             {
                                 text: '手机', onPress: () => {
                                     window.location.href = "tel:" + "13103361866"

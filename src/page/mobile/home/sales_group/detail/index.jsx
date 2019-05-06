@@ -216,7 +216,7 @@ export default class SalesGroupDetail extends React.Component {
 
 
     showModal(val) {
-        this.setState({modal: true, isadd: val});
+        this.setState({modal: true, isAdd: val});
     }
 
     hideModal(status) {
@@ -235,7 +235,7 @@ export default class SalesGroupDetail extends React.Component {
             modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
         }, () => {
-            console.log('this.state.isadd', this.state.isadd);
+            console.log('this.state.isAdd', this.state.isadd);
             if (this.state.isadd === 1)
                 this.addToCart();
         });
