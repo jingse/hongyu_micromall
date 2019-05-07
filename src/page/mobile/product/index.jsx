@@ -28,6 +28,10 @@ import settingApi from "../../../api/setting.jsx";
 // this.props.location.limitedNum: 优惠产品的限购数量
 
 
+let cartProps = {};
+let buyProps = {};
+
+
 class Product extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -42,6 +46,7 @@ class Product extends React.Component {
 
             // cartModal的显示控制
             modal: false,
+            // isClickOk: false,
             // isAdd: 0,
 
             modalSelectorText: '未选择',
@@ -156,24 +161,27 @@ class Product extends React.Component {
             specification: active.specification,
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
+        }, ()=>{
+            // this.addToCart(cartProps);
         });
     }
+    // handleClickOk(val) {
+    //     this.setState({isClickOk: val});
+    // }
 
 
     // 如果是优惠产品页进来的，不显示购物车底栏
-    checkCartDisplay(cartProps, buyItem) {
+    checkCartDisplay(cartProps, buyProps) {
         if (this.props.location.isPromotion || this.props.location.isPresent)
             return null;
 
         return <PutInCart style={{height: '3.125rem'}}
                           modalSelectorText={this.state.modalSelectorText}
                           showModal={this.showModal.bind(this)}
+                          // isClickOk={this.state.isClickOk}
 
                           cartProps={cartProps}
-                          buyItem={buyItem}
-
-                          isPromotion={this.props.location.isPromotion}
-                          origin="product"
+                          buyProps={buyProps}
         />
     }
 
@@ -190,6 +198,7 @@ class Product extends React.Component {
             visible={this.state.modal}
             hideModal={this.hideModal.bind(this)}
             selectorText={this.changeModalSelectorText.bind(this)}
+            // onSubmit={this.handleClickOk.bind(this)}
 
             guige={this.props.location.guige}
             limit={this.props.location.limitedNum}
@@ -221,7 +230,7 @@ class Product extends React.Component {
             return null;
 
 
-        let cartProps = {
+        cartProps = {
             "wechatId": localStorage.getItem("wechatId"),
             "specificationId": this.state.specificationId,
             "specialtyId": this.state.specialtyId,
@@ -240,6 +249,12 @@ class Product extends React.Component {
             "specialtySpecificationId": this.state.specificationId,
             "specification": this.state.specification,
         }];
+
+        buyProps = {
+            "buyItem": buyItem,
+            "isPromotion": this.props.location.isPromotion,
+            "origin": "product",
+        };
 
         const proData = this.state.data[0];
         let primaryImages = proData.specialty.images;
@@ -451,7 +466,7 @@ class Product extends React.Component {
 
             </Card>
 
-            {this.checkCartDisplay(cartProps, buyItem)}
+            {this.checkCartDisplay(cartProps, buyProps)}
 
             {this.checkSpecificationDisplay()}
 

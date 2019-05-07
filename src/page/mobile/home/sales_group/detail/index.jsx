@@ -198,16 +198,13 @@ export default class SalesGroupDetail extends React.Component {
     }
 
 
-    checkCartDisplay(cartProps, buyItem) {
+    checkCartDisplay(cartProps, buyProps) {
         return <PutInCart style={{height: '3.125rem'}}
                           modalSelectorText={this.state.modalSelectorText}
                           showModal={this.showModal.bind(this)}
 
                           cartProps={cartProps}
-                          buyItem={buyItem}
-
-                          isPromotion={true}
-                          origin="sales_group"
+                          buyProps={buyProps}
         />
     }
 
@@ -373,6 +370,12 @@ export default class SalesGroupDetail extends React.Component {
             "promotionId": this.state.salesGroupDetail.id,
         }];
 
+        let buyProps = {
+            "buyItem": buyItem,
+            "isPromotion": true,
+            "origin": "sales_group",
+        };
+
 
         return <Layout>
             {/*<Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>*/}
@@ -462,7 +465,7 @@ export default class SalesGroupDetail extends React.Component {
             <WhiteSpace/>
             <WhiteSpace/>
 
-            {this.checkCartDisplay(cartProps, buyItem)}
+            {this.checkCartDisplay(cartProps, buyProps)}
 
             {this.checkSpecificationDisplay()}
         </Layout>

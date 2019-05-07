@@ -211,16 +211,13 @@ export default class SalesDetail extends React.Component {
 
     }
 
-    checkCartDisplay(cartProps, buyItem) {
+    checkCartDisplay(cartProps, buyProps) {
         return <PutInCart style={{height: '3.125rem'}}
                           modalSelectorText={this.state.modalSelectorText}
                           showModal={this.showModal.bind(this)}
 
                           cartProps={cartProps}
-                          buyItem={buyItem}
-
-                          isPromotion={true}
-                          origin="sales"
+                          buyProps={buyProps}
         />
     }
 
@@ -271,7 +268,7 @@ export default class SalesDetail extends React.Component {
     render() {
 
         let cartProps = {};
-        let buyItem = [];
+        let buyProps = {};
 
         // console.log("this.state.specialtyId ", this.state.specialtyId )
         // console.log("this.state.mynum ", this.state.mynum )
@@ -288,7 +285,7 @@ export default class SalesDetail extends React.Component {
                 "quantity": this.state.quantity,
             };
 
-            buyItem = [{
+            let buyItem = [{
                 "id": null,
                 "iconURL": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].iconURL,
                 "isGroupPromotion": this.state.isGroupPromotion,
@@ -301,6 +298,11 @@ export default class SalesDetail extends React.Component {
                 "promotionId": this.state.salesDetail.id,
             }];
 
+            buyProps = {
+                "buyItem": buyItem,
+                "isPromotion": true,
+                "origin": "sales",
+            };
         }
 
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
@@ -486,7 +488,7 @@ export default class SalesDetail extends React.Component {
             </Card>
 
 
-            {this.checkCartDisplay(cartProps, buyItem)}
+            {this.checkCartDisplay(cartProps, buyProps)}
 
             {this.checkSpecificationDisplay()}
 

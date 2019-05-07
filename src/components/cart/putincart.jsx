@@ -17,7 +17,7 @@ export default class PutInCart extends React.Component {
 
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
 
-            action: '',
+            // action: '',
         };
     }
 
@@ -44,21 +44,11 @@ export default class PutInCart extends React.Component {
     }
 
 
-    checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) {
+    checkSpecificationSelection(modalSelectorText, showModal) {
         if (modalSelectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
 
             showModal();
-
-            // console.log("this.props.isClickOk", this.props.isClickOk)
-            // if (this.props.isClickOk) {
-            //     console.log("进入this.props.isClickOk")
-            //
-            //     if (this.state.action === "addToCart")
-            //         this.addToCart(cartProps);
-            //     else
-            //         this.buyImmediately(buyItem, isPromotion, origin);
-            // }
 
             return false;
         }
@@ -81,14 +71,18 @@ export default class PutInCart extends React.Component {
     }
 
 
-    buyImmediately(item, isPromotion, origin) {
-        let price = {};
+    buyImmediately(buyProps) {
+        let buyItem = buyProps.buyItem;
+        let isPromotion = buyProps.isPromotion;
+        let origin = buyProps.origin;
 
-        cartApi.getTotalPriceInCart(item, (rs) => {
+        let price = {};
+        let presents = [];
+
+        cartApi.getTotalPriceInCart(buyItem, (rs) => {
             if (rs && rs.success) {
                 price = rs.obj;
 
-                let presents = [];
                 rs.obj.promotions && rs.obj.promotions.map((item, index) => {
                     if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
                         if (item.promotion.promotionRule === "满赠") {
@@ -111,7 +105,7 @@ export default class PutInCart extends React.Component {
 
                         isPromotion: isPromotion,
 
-                        products: item,
+                        products: buyItem,
                         price: price,
                         presents: presents,
                         // shipFee: this.state.data[0].deliverPrice
@@ -123,7 +117,7 @@ export default class PutInCart extends React.Component {
     }
 
 
-    renderButton(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) {
+    renderButton(modalSelectorText, showModal, cartProps, buyProps) {
 
         return <div className="putincart">
 
@@ -217,9 +211,10 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action: 'addToCart'});
-                        this.checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) &&
-                        this.addToCart(cartProps)
+                        this.setState({action: 'addToCart'}, ()=>{
+                            this.checkSpecificationSelection(modalSelectorText, showModal) &&
+                            this.addToCart(cartProps)
+                        });
                     }}>
                 加购物车
             </Button>
@@ -234,9 +229,10 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action: 'buyImmediately'});
-                        this.checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) &&
-                        this.buyImmediately(buyItem, isPromotion, origin)
+                        this.setState({action: 'buyImmediately'}, ()=>{
+                            this.checkSpecificationSelection(modalSelectorText, showModal) &&
+                            this.buyImmediately(buyProps)
+                        });
                     }}>
                 立即购买
             </Button>
@@ -245,10 +241,8 @@ export default class PutInCart extends React.Component {
     }
 
     render() {
-        console.log("this.props.isClickOk", this.props.isClickOk)
-
-        let {style, modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin} = this.props;
-        const button = this.renderButton(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin);
+        let {style, modalSelectorText, showModal, cartProps, buyProps} = this.props;
+        const button = this.renderButton(modalSelectorText, showModal, cartProps, buyProps);
 
         return <div style={{...style}}>
             {button}

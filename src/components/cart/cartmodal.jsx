@@ -202,6 +202,7 @@ export default class CartModal extends React.Component {
                     this.props.hideModal && this.props.hideModal('success');
                     this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,
                         this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
+                    // this.props.onSubmit(true);
                 }
             }
         }];
