@@ -3,7 +3,7 @@ import {Card, Flex, Pagination, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
-import DateManager from "../../../../../common/DateManager.jsx";
+import DateManager from "../../../../../manager/DateManager.jsx";
 
 const wechatId = localStorage.getItem("wechatId");
 

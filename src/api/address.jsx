@@ -1,10 +1,10 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 //llf
 var api = {
 
     getDefaultMerchantAddress(merchantId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/receiver/we_business_address?webusiness_id=" + merchantId,
             success: (rs) => {
                 callback && callback(rs);
@@ -14,7 +14,7 @@ var api = {
 
 
     getDefaultUserAddress(wechatId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/receiver/default?wechat_id=" + wechatId,
             success: (rs) => {
                 callback && callback(rs);
@@ -24,7 +24,7 @@ var api = {
 
 
     getAddressList(wechatId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/receiver/list?wechat_id=" + wechatId,
             success: (rs) => {
                 callback && callback(rs);
@@ -34,7 +34,7 @@ var api = {
 
 
     addAddress(address, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + "/receiver/add",
             type: 'application/json',
@@ -47,7 +47,7 @@ var api = {
 
 
     editAddress(address, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + "/receiver/edit",
             type: 'application/json',
@@ -59,7 +59,7 @@ var api = {
     },
 
     deleteAddress(addressId, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + "/receiver/delete?id=" + addressId,
             // type: 'application/json',

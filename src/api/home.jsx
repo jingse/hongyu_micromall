@@ -1,5 +1,5 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 
 // let myOrigin = "10.8.219.22";
@@ -13,7 +13,7 @@ var api = {
         formdata.append("wechatName", nickname);
         formdata.append("openId", openid);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/api/postOpenId',
             // data: {
@@ -33,7 +33,7 @@ var api = {
         formdata.append("wechatName", nickname);
         formdata.append("openId", openid);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/api/createAccount',
             // data: JSON.stringify({
@@ -52,7 +52,7 @@ var api = {
     },
 
     loginCheck(wechatId, webusinessId, wechatName, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/login/submit?wechat_openid=' + wechatId + "&webusiness_id=" + webusinessId + "&wechat_name=" + wechatName,
             success: (rs) => {
@@ -65,7 +65,7 @@ var api = {
     //----------------------------------homepage api-------------------------------------------
 
     getCarousel(callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/banner/listad',
             // origin: myOrigin,
             dataType: "json",
@@ -77,7 +77,7 @@ var api = {
     },
 
     getMerchantInfo(merchantId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/webusiness/detail/?id=' + merchantId,
             crossDomain: true,
             success: (rs) => {
@@ -87,7 +87,7 @@ var api = {
     },
 
     getTags(callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/labels/list/view',
             crossDomain: true,
             success: (rs) => {
@@ -97,7 +97,7 @@ var api = {
     },
 
     getCategories(callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/category/super_categories',
             crossDomain: true,
             success: (rs) => {
@@ -107,7 +107,7 @@ var api = {
     },
 
     getTopNOFCoupon(size, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/normal/sub_list?size=' + size,
             crossDomain: true,
             success: (rs) => {
@@ -117,7 +117,7 @@ var api = {
     },
 
     getTopNOFGroupCoupon(size, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/group/sub_list?size=' + size,
             crossDomain: true,
             success: (rs) => {
@@ -127,7 +127,7 @@ var api = {
     },
 
     getTopNOFRecommend(size, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/sub_list_for_recommend?size=' + size,
             crossDomain: true,
             success: (rs) => {
@@ -137,7 +137,7 @@ var api = {
     },
 
     getTopNOfTags(TagId, size, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/sub_list_by_label_id?id=' + TagId + '&size=' + size,
             crossDomain: true,
             success: (rs) => {
@@ -147,7 +147,7 @@ var api = {
     },
 
     getTopNOfCategory(categoryId, size, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/sub_list_by_category_id?category_id=' + categoryId + '&size=' + size,
             crossDomain: true,
             success: (rs) => {
@@ -160,7 +160,7 @@ var api = {
     //-----------------------------------category list api--------------------------------------------
 
     getTagList(unused1, id, page, rows, condition, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/label_specialtys/page/view?id=' + id + "&page=" + page +
                 "&rows=" + rows + "&condition=" + condition,
             crossDomain: true,
@@ -172,7 +172,7 @@ var api = {
 
 
     getCategoryList(unused1, categoryId, page, rows, condition, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/pages_by_category_id?category_id=' + categoryId + "&page=" + page +
                 "&rows=" + rows + "&condition=" + condition,
             crossDomain: true,
@@ -183,7 +183,7 @@ var api = {
     },
 
     getRecommendList(unused1, unused2, page, rows, condition, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/recommend_product_pages?condition=' + condition + "&page=" + page +
                 "&rows=" + rows,
             crossDomain: true,
@@ -197,7 +197,7 @@ var api = {
     //----------------------------------homepage search api-------------------------------------------
 
     getSpecialtyListSearching(type, input, page, rows, condition, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/search?' + type + "=" + input + "&page=" + page + "&rows=" + rows + "&condition=" + condition,
             crossDomain: true,
             success: (rs) => {
@@ -210,7 +210,7 @@ var api = {
     //----------------------------------ordinary preferential api-------------------------------------------
 
     getOrdinaryPromotionList(page, rows, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/normal/list?page=' + page + '&rows=' + rows,
             crossDomain: true,
             success: (rs) => {
@@ -220,7 +220,7 @@ var api = {
     },
 
     getOrdinaryPromotionDetail(promotionId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/normal/detail?id=' + promotionId,
             crossDomain: true,
             success: (rs) => {
@@ -233,7 +233,7 @@ var api = {
     //----------------------------------group preferential api-------------------------------------------
 
     getGroupPromotionList(page, rows, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/group/list?page=' + page + '&rows=' + rows,
             crossDomain: true,
             success: (rs) => {
@@ -243,7 +243,7 @@ var api = {
     },
 
     getGroupPromotionDetail(promotionId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/promotion/group/detail?id=' + promotionId,
             crossDomain: true,
             success: (rs) => {
@@ -255,7 +255,7 @@ var api = {
 
     //----------------------------------coupon list api-------------------------------------------
     getCouponList(wechatId, callback) {
-        http.ajax({
+        httpManager.ajax({
             // url: getServerHost() + '/business/coupon/once_used_coupon/receive_list?wechat_id=' + wechatId,
             url: getServerHost() + '/coupon/once_used_coupon/receive_list?wechat_id=' + wechatId,
             // dataType:"json",
@@ -267,7 +267,7 @@ var api = {
     },
 
     getCoupon(couponId, wechatId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/coupon/once_used_coupon/create_coupon?wechat_id=' + wechatId + "&couponMoneyId=" + couponId,
             // dataType:"json",
             crossDomain: true,
@@ -279,7 +279,7 @@ var api = {
 
     //----------------------------------coupon recharge api-------------------------------------------
     getSaleCouponList(callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/coupon/balance_used_coupon/sale_list',
             crossDomain: true,
             success: (rs) => {
@@ -290,7 +290,7 @@ var api = {
 
     getRedictUid(oid, cid, callback) {
         console.log("redirect!", getServerHost());
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/webusiness/get_id_by_oid?oid=' + oid + '&cid=' + cid,
             crossDomain: true,
             success: (rs) => {

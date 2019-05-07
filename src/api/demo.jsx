@@ -1,9 +1,9 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
     getPermissionList(type, callback) {
-        http.fetch({
+        httpManager.fetch({
             url: getServerHost() + '/api/permissionlist',
             data: {
                 type: type

@@ -4,8 +4,8 @@ import {Flex, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../common/layout/layout.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
-import http from '../../common/http.jsx';  //不能删除
-import SaleManager from '../../common/SaleManager.jsx';
+import httpManager from '../../manager/HttpManager.jsx';  //不能删除
+import SaleManager from '../../manager/SaleManager.jsx';
 import "./saleList.less";
 
 

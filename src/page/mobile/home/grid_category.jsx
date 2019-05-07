@@ -4,7 +4,7 @@ import {Flex, WhiteSpace} from 'antd-mobile';
 import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
 import Tag from "./tagShow.jsx";
-import SaleManager from "../../../common/SaleManager.jsx";
+import SaleManager from "../../../manager/SaleManager.jsx";
 import './index.less';
 
 

@@ -159,10 +159,10 @@ function jsonp(params) {
     };
 }
 
-const http = {
+const httpManager = {
     fetch,
     ajax,
     jsonp
 };
 
-export default http;
+export default httpManager;

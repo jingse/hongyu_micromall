@@ -4,7 +4,7 @@ import Navigation from "../../../../../components/navigation/index.jsx";
 import {Card, Flex, Pagination, Toast, WhiteSpace} from 'antd-mobile';
 import pointsApi from "../../../../../api/points.jsx";
 import "./index.less";
-import DateManager from "../../../../../common/DateManager.jsx";
+import DateManager from "../../../../../manager/DateManager.jsx";
 
 const pageSize = 10;
 // var totalPages = 0;

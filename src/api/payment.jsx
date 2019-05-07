@@ -1,9 +1,9 @@
 import {getServerHost, wxconfig} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
     postCharge(fee, openid, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: 'http://tobyli16.com:8080/pay/wechat/mp/' + Date.parse(new Date()),
             data: {
@@ -23,7 +23,7 @@ var api = {
     //----------------------------------confirm orders api-------------------------------------------
 
     createOrder(orderItem, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: "POST",
             url: getServerHost() + "/order/create",
             type: 'application/json',
@@ -36,7 +36,7 @@ var api = {
 
     confirmOrder(orderCode, fee, openid, callback) {
         console.log('total_fee', fee, orderCode, openid)
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             // url: '//admin.swczyc.com/hyapi' + '/pay/wechat/mp/' + orderCode,
             url: wxconfig.adminURL + '/pay/wechat/mp/' + orderCode,

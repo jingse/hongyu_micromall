@@ -1,11 +1,11 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
     //----------------------------------product detail api-------------------------------------------
 
     getSpecialtySpecificationDetailBySpecialtyID(id, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/specification_detail_by_specialty_id?id=' + id,
             crossDomain: true,
             success: (rs) => {
@@ -15,7 +15,7 @@ var api = {
     },
 
     getSpecialtySpecificationDetailBySpecificationID(id, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/specification_detail_by_specification_id?id=' + id,
             crossDomain: true,
             success: (rs) => {
@@ -25,19 +25,8 @@ var api = {
     },
 
     getSpecialtyCommentDetail(id, page, rows, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/product/appraisedetail?id=' + id + "&page=" + page + "&rows=" + rows,
-            crossDomain: true,
-            success: (rs) => {
-                callback && callback(rs);
-            }
-        });
-    },
-
-
-    getServicePromise(callback) {
-        http.ajax({
-            url: getServerHost() + '/system_settings/service_promise/detail/view',
             crossDomain: true,
             success: (rs) => {
                 callback && callback(rs);

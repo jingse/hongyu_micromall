@@ -5,7 +5,7 @@ import {Flex, ListView, Tabs, WhiteSpace} from 'antd-mobile';
 import Layout from "../../common/layout/layout.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
-import http from '../../common/http.jsx';  //不能删除
+import httpManager from '../../manager/HttpManager.jsx';  //不能删除
 
 var hasMore = true;
 const NUM_SECTIONS = 1;

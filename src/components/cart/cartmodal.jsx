@@ -116,9 +116,9 @@ export default class CartModal extends React.Component {
         const optionsData = this.props.modalData.map((option, key) => {
             let className = "select_item";
 
-            if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
+            if (JSON.stringify(this.state.active) === JSON.stringify(option))
                 className += " select_active";
-            }
+
             if (this.props.limit && this.state.ischange == -1) {
                 console.log("asdasdfaf");
                 this.clickSelector(option)
@@ -148,6 +148,7 @@ export default class CartModal extends React.Component {
 
     render() {
         // console.log("active", this.state.active);
+
         const title = <div className="popup_modal_header">
             <Flex justify="end">
 
@@ -194,7 +195,7 @@ export default class CartModal extends React.Component {
         const dataSet = this.generateDataSet();
 
         return <Modal
-            visible={this.props.modal}
+            visible={this.props.visible}
             popup
             animationType="slide-up"
             closable

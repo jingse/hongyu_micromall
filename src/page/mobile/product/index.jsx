@@ -5,25 +5,28 @@ import PropTypes from "prop-types";
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 
-import locManager from "../../../common/LockManager.jsx";
-import {getServerIp, wxconfig} from "../../../config.jsx";
+import WxManager from "../../../manager/WxManager.jsx";
+
+import {getServerIp} from "../../../config.jsx";
 
 import Card from "../../../components/card/index.jsx";
 import CartModal from '../../../components/cart/cartmodal.jsx';
 import PutInCart from '../../../components/cart/putincart.jsx';
+
 import Comment from "./comment.jsx";
 import Recommend from "./recommend.jsx";
 import './index.less';
 
-import wxApi from "../../../api/wechat.jsx";
 import proApi from "../../../api/product.jsx";
-import cartApi from "../../../api/cart.jsx";
-
-const host = wxconfig.hostURL;
+import settingApi from "../../../api/setting.jsx";
 
 
-//注意：其它页面跳转到产品页面时，需要传2个参数：
-// this.props.location.state(即specialtyId)、this.props.location.isPromotion(判断是否是优惠商品)
+// 注意：其它页面(sales和sales_group)跳转到产品页面时，需要传4个参数：
+// this.props.location.isPromotion: 判断是否是优惠商品
+// this.props.location.isPresent: 判断是否是赠品
+// this.props.location.guige: 优惠产品或赠品的规格
+// this.props.location.limitedNum: 优惠产品的限购数量
+
 
 class Product extends React.Component {
     constructor(props, context) {
@@ -34,119 +37,47 @@ class Product extends React.Component {
             data: {},
             featureData: [],
             comment: [],
+            recommends: [],
+            servicePromise: {},
 
-            selectorText: '未选择',
+            // cartModal的显示控制
+            modal: false,
+            // isAdd: 0,
+
             modalSelectorText: '未选择',
 
-            // chooseCoupon: '· · ·',
-
-            modal: false,
-            modal2: false,
+            isNull: false, // 控制页面显示
+            commentNum: 0,
 
             currentPrePrice: 0,
             currentMarketPrice: 0,
 
-            isAdd: 0,
-
             //加购物车相关参数
+            specialtyId: parseInt(window.location.href.split('#')[1].split('/product/')[1]),
             specificationId: 0,
             specification: "",
             isGroupPromotion: false,
             quantity: 1,
-            isNull: false,
-
-            cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
         }
     }
 
     componentWillMount() {
-        const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
-        this.setState({
-            specialtyId
-        });
-
-
-        this.requestProductDetailData(specialtyId);
-        this.requestProductCommentData(specialtyId, 1, 10);
+        this.requestProductDetailData(this.state.specialtyId);
+        this.requestProductCommentData(this.state.specialtyId, 1, 10);
         this.requestServicePromise();
 
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
 
         localStorage.removeItem("inputBalance");
     }
 
     componentDidMount() {
-
-        let shareData = {//自定义分享数据
-            title: '土特产微商城',
-            desc: '来自' + locManager.getMyNickname() + '的分享',
-            link: host + locManager.generateSaleLink()
-        };
-
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-            wx.onMenuShareAppMessage(shareData);
-            wx.onMenuShareTimeline(shareData);
-        });
-
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
     }
 
-
-    componentWillReceiveProps() {
-        const specialtyId = parseInt(window.location.href.split('#')[1].split('/product/')[1]);
-        this.setState({
-            specialtyId
-        });
-
-        this.requestProductDetailData(specialtyId);
-        this.requestProductCommentData(specialtyId, 1, 10);
-        this.requestServicePromise();
-
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
-    }
 
     requestProductDetailData(specialtyId) {
-        //传入了this.props.location.specialtyId
         proApi.getSpecialtySpecificationDetailBySpecialtyID(specialtyId, (rs) => {
-            if (!rs.success) {
-                this.setState({
-                    isNull: true,
-                });
-                return
-            }
 
             if (rs && rs.success) {
                 const data = rs.obj;
@@ -176,12 +107,16 @@ class Product extends React.Component {
                     });
                 }
 
+            } else {
+                this.setState({
+                    isNull: true,
+                });
             }
         });
     }
 
     requestServicePromise() {
-        proApi.getServicePromise((rs) => {
+        settingApi.getServicePromise((rs) => {
             if (rs && rs.success) {
                 const data = rs.obj;
                 this.setState({
@@ -198,152 +133,47 @@ class Product extends React.Component {
                 const commentNum = rs.obj.total;
                 this.setState({
                     comment: comment,
-                    commentNum,
+                    commentNum: commentNum,
                 });
             }
         });
     }
 
-    addToCart() {
-        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
-            Toast.info("您还未选择商品规格~", 1);
-            this.showModal(1);
-            return
-        }
 
-        cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId,
-            this.state.specialtyId, this.state.isGroupPromotion, this.state.quantity, (rs) => {
-
-                if (rs && rs.success) {
-                    Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
-
-                    this.getCartCount();
-                } else {
-                    Toast.info("添加失败！", 1);
-                }
-
-            });
+    showModal() {
+        this.setState({modal: true});
     }
-
-    getCartCount() {
-        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
-            if (rs && rs.success) {
-                const count = rs.obj.length;
-                localStorage.setItem("cartCount", count);
-
-                this.setState({
-                    cartCount: count,
-                });
-            }
-        });
+    hideModal(status) {
+        this.setState({modal: false});
+        if (status === 'success')
+            Toast.success('选择成功～', 1, null, false);
     }
-
-    buyImmediately() {
-        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
-            Toast.info("您还未选择商品规格~", 1);
-            return
-        }
-
-        const item = [{
-            "id": null,
-            "curPrice": this.state.currentPrePrice,
-            "iconURL": this.state.data[0].iconURL,
-            "isGroupPromotion": this.state.isGroupPromotion,
-            "name": this.state.data[0].specialty.name,
-            "quantity": this.state.quantity,
-            "specialtyId": this.state.specialtyId,
-            "specialtySpecificationId": this.state.specificationId,
-            "specification": this.state.specification,
-        }];
-        let price = {};
-
-        cartApi.getTotalPriceInCart(item, (rs) => {
-            if (rs && rs.success) {
-                price = rs.obj;
-
-                let presents = [];
-                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
-                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
-                        if (item.promotion.promotionRule === "满赠") {
-                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
-                                pre.promotionId = item.promotionId;
-                                presents.push(pre);
-                            });
-                        }
-                    }
-                });
-
-                console.log("赠品：", presents);
-                console.log("buyImmediately price", price);
-
-                if (price !== {}) {
-                    let temp = false;
-                    if (this.props.location.isPromotion)
-                        temp = true;
-
-                    this.context.router.history.push({
-                        pathname: '/cart/payment',
-                        products: item,
-                        price: price,
-                        isPromotion: temp,
-                        origin: "product",
-                        presents: presents,
-                        shipFee: this.state.data[0].deliverPrice
-                    });
-                }
-            }
-        });
-
-    }
-
-
     changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
         this.setState({
             currentPrePrice: pPrice,
             currentMarketPrice: mPrice,
             quantity: num,
             specification: active.specification,
-            modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
-        }, () => {
-            if (this.state.isAdd === 1)
-                this.addToCart();
+            modalSelectorText: active.specification + '  ×' + num,
         });
-    }
-
-    showModal(val) {
-        this.setState({modal: true, isAdd: val});
-    }
-
-    hideModal(status) {
-        this.setState({modal: false});
-        if (status === 'success')
-            Toast.success('选择成功～', 1, null, false);
-    }
-
-
-    checkPromotion() {
-        // if (this.props.location.isPromotion)
-        //     return <Link to={{pathname: "/home/sales", dest: '/home'}}>
-        //             <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
-        //         </Link>;
-
-        if (this.props.location.isPresent)
-            return <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span>;
-
-        return null
     }
 
 
     // 如果是优惠产品页进来的，不显示购物车底栏
-    checkCartDisplay() {
+    checkCartDisplay(cartProps, buyItem) {
         if (this.props.location.isPromotion || this.props.location.isPresent)
             return null;
 
         return <PutInCart style={{height: '3.125rem'}}
-                          addToCart={this.addToCart.bind(this)}
-                          buyImmediately={this.buyImmediately.bind(this)}
-                          cartCount={this.state.cartCount}
+                          modalSelectorText={this.state.modalSelectorText}
+                          showModal={this.showModal.bind(this)}
+
+                          cartProps={cartProps}
+                          buyItem={buyItem}
+
+                          isPromotion={this.props.location.isPromotion}
+                          origin="product"
         />
     }
 
@@ -355,40 +185,63 @@ class Product extends React.Component {
         return <CartModal
             productData={this.state.data}
             modalData={this.state.featureData}
-            modal={this.state.modal}
+
+            visible={this.state.modal}
             hideModal={this.hideModal.bind(this)}
             selectorText={this.changeModalSelectorText.bind(this)}
+
             guige={this.props.location.guige}
             limit={this.props.location.limitedNum}
         />
     }
 
-    // 如果是优惠产品页进来的，固定死该产品的规格，不让用户选择
-    checkChosenSpecification() {
-        if (this.props.location.isPromotion || this.props.location.isPresent)
-            return this.props.location.guige;
-
-        return this.state.modalSelectorText;
-    }
+    // checkPromotion() {
+    //     // if (this.props.location.isPromotion)
+    //     //     return <Link to={{pathname: "/home/sales", dest: '/home'}}>
+    //     //             <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
+    //     //         </Link>;
+    //
+    //     if (this.props.location.isPresent)
+    //         return <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span>;
+    //
+    // }
 
 
     render() {
 
-        if (this.state.isNull) {
+        if (this.state.isNull)
             return <Layout>
-                <div>
-                    该产品的数据为空
-                </div>
-            </Layout>
-        }
+                <div>该产品的数据为空</div>
+            </Layout>;
+
 
         if (!this.state.data || JSON.stringify(this.state.data) === "{}" ||
             !this.state.data[0].specialty || !this.state.data[0].specialty.images)
             return null;
 
 
+        let cartProps = {
+            "wechatId": localStorage.getItem("wechatId"),
+            "specificationId": this.state.specificationId,
+            "specialtyId": this.state.specialtyId,
+            "isGroupPromotion": this.state.isGroupPromotion,
+            "quantity": this.state.quantity,
+        };
+
+        let buyItem = [{
+            "id": null,
+            "curPrice": this.state.currentPrePrice,
+            "iconURL": this.state.data[0].iconURL,
+            "isGroupPromotion": this.state.isGroupPromotion,
+            "name": this.state.data[0].specialty.name,
+            "quantity": this.state.quantity,
+            "specialtyId": this.state.specialtyId,
+            "specialtySpecificationId": this.state.specificationId,
+            "specification": this.state.specification,
+        }];
+
         const proData = this.state.data[0];
-        let primaryImages = this.state.data[0].specialty.images;
+        let primaryImages = proData.specialty.images;
 
         for (let i = 0; i < primaryImages.length; i++) {
             if (primaryImages[i].isLogo)
@@ -428,7 +281,8 @@ class Product extends React.Component {
                 <WingBlank>
                     <h3>
                         {proData.specialty.name}
-                        {this.checkPromotion()}
+                        {this.props.location.isPresent ? <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span> : ""}
+                        {/*{this.checkPromotion()}*/}
                     </h3>
 
                     <Card>
@@ -496,7 +350,11 @@ class Product extends React.Component {
                     <div className="selector_sec" onClick={this.showModal.bind(this)}>
                         <WingBlank>
                             <span>已选规格</span>
-                            <span>{this.checkChosenSpecification()}</span>
+                            {/*如果是优惠产品页进来的，固定死该产品的规格，不让用户选择*/}
+                            <span>
+                                {(this.props.location.isPromotion || this.props.location.isPresent) ?
+                                    this.props.location.guige : this.state.modalSelectorText}
+                            </span>
                         </WingBlank>
                     </div>
                     {/*<div className="selector_sec">*/}
@@ -592,7 +450,7 @@ class Product extends React.Component {
 
             </Card>
 
-            {this.checkCartDisplay()}
+            {this.checkCartDisplay(cartProps, buyItem)}
 
             {this.checkSpecificationDisplay()}
 

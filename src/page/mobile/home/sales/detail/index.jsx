@@ -2,17 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from '../../../../../components/cart/cartmodal.jsx';
+
+import settingApi from "../../../../../api/setting.jsx";
 import homeApi from "../../../../../api/home.jsx";
-import cartApi from "../../../../../api/cart.jsx";
 import proApi from "../../../../../api/product.jsx";
+
+import SaleManager from "../../../../../manager/SaleManager.jsx";
 import {getServerIp} from "../../../../../config.jsx";
-import SaleManager from "../../../../../common/SaleManager.jsx";
 
 import "./index.less";
+
 
 
 export default class SalesDetail extends React.Component {
@@ -22,38 +26,38 @@ export default class SalesDetail extends React.Component {
         this.state = {
             salesDetail: [],
             isLoading: false,
+            servicePromise: {},
 
             ruleType: '',
             presents: [],
             subtracts: [],
             discounts: [],
 
-            selectorText: '未选择',
             modalSelectorText: '未选择',
 
-            isadd: 0,
+            // isAdd: 0,
             modal: false,
 
             specialtyId: -1,
             mynum: -1,
+
+            isNull: false,
 
             //加购物车相关参数
             specificationId: 0,
             specification: "",
             isGroupPromotion: false,
             quantity: 1,
-            isNull: false,
+
 
             data: {},
             featureData: -1,
             dots: true,
-            cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
         };
     }
 
     componentWillMount() {
         var promotionId = 0;
-        this.requestServicePromise();
         if (!this.props.location.state) {
             promotionId = localStorage.getItem("promotionId");
         } else {
@@ -62,7 +66,7 @@ export default class SalesDetail extends React.Component {
         }
 
         //判断是从上个优惠页面回来的，还是从产品页面回来的
-        var ruleType = '';
+        let ruleType = '';
         if (!this.props.location.ruleType) {
             ruleType = localStorage.getItem("ruleType");
         } else {
@@ -87,7 +91,7 @@ export default class SalesDetail extends React.Component {
             }
         }
 
-        var subtracts, discounts;
+        let subtracts, discounts;
         if (!this.props.location.subtracts) {
             subtracts = localStorage.getItem("subtracts");
             discounts = localStorage.getItem("discounts");
@@ -101,18 +105,11 @@ export default class SalesDetail extends React.Component {
         });
 
         this.requestOrdinaryPromotionDetail(promotionId);
+        this.requestServicePromise();
     }
 
     requestProductDetailData(specialtyId) {
-        //传入了this.props.location.specialtyId
         proApi.getSpecialtySpecificationDetailBySpecialtyID(specialtyId, (rs) => {
-            if (!rs.success) {
-                this.setState({
-                    isNull: true,
-                });
-                return
-            }
-
             if (rs && rs.success) {
                 const data = rs.obj;
                 if (!data || JSON.stringify(data) === "[]") {
@@ -137,6 +134,10 @@ export default class SalesDetail extends React.Component {
                     });
                 }
 
+            } else {
+                this.setState({
+                    isNull: true,
+                });
             }
         });
     }
@@ -161,7 +162,7 @@ export default class SalesDetail extends React.Component {
     }
 
     requestServicePromise() {
-        proApi.getServicePromise((rs) => {
+        settingApi.getServicePromise((rs) => {
             if (rs && rs.success) {
                 const data = rs.obj;
                 this.setState({
@@ -171,137 +172,25 @@ export default class SalesDetail extends React.Component {
         });
     }
 
-    getCartCount() {
-        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
-            if (rs && rs.success) {
-                const count = rs.obj.length;
-                localStorage.setItem("cartCount", count);
-
-                this.setState({
-                    cartCount: count,
-                });
-            }
-        });
+    showModal() {
+        this.setState({modal: true});
     }
-
-    addToCart() {
-        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
-            Toast.info("您还未选择商品规格~", 1);
-            this.showModal(1);
-            return
-        }
-        console.log("???", this.state.specialtyId)
-        cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
-            this.state.isGroupPromotion, this.state.quantity, (rs) => {
-                console.log("发给后台的购物车数量", this.state.quantity);
-                if (rs && rs.success) {
-                    Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
-                    console.log("rs.msg", rs.msg);
-                    this.getCartCount();
-                } else {
-                    Toast.info("添加失败！", 1);
-                }
-            });
-    }
-
-
-    buyImmediately() {
-        if (this.state.modalSelectorText === '未选择' && this.state.selectorText === '未选择') {
-            Toast.info("您还未选择商品规格~", 1);
-            return
-        }
-
-        const item = [{
-            "id": null,
-            "iconURL": this.state.data[0].iconURL,
-            "isGroupPromotion": this.state.isGroupPromotion,
-            "curPrice": this.state.currentPrePrice,
-            "name": this.state.data[0].specialty.name,
-            "quantity": this.state.quantity,
-            "specialtyId": this.state.specialtyId,
-            "specialtySpecificationId": this.state.specificationId,
-            "specification": this.state.specification,
-            "promotionId": this.state.salesDetail.id,
-        }];
-        let price = {};
-
-        cartApi.getTotalPriceInCart(item, (rs) => {
-            console.log("getTotalPriceInCart rsllff", rs);
-            if (rs && rs.success) {
-                price = rs.obj;
-
-                let presents = [];
-                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
-                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
-                        if (item.promotion.promotionRule === "满赠") {
-                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
-                                pre.promotionId = item.promotionId;
-                                presents.push(pre);
-                            });
-                        }
-                    }
-                });
-
-                console.log("赠品：", presents);
-                console.log("buyImmediately price", price);
-
-                if (price !== {}) {
-                    let temp = false;
-                    if (this.props.location.isPromotion)
-                        temp = true;
-
-                    this.context.router.history.push({
-                        pathname: '/cart/payment',
-                        products: item,
-                        price: price,
-                        origin: "product",
-                        presents: presents,
-                        isPromotion: true,
-                        shipFee: this.state.salesDetail.hySingleitemPromotions[0].specificationId.deliverPrice
-                    });
-                }
-            }
-        });
-
-    }
-
-    showModal(val) {
-        this.setState({modal: true, isAdd: val});
-    }
-
     hideModal(status) {
         this.setState({modal: false});
         if (status === 'success')
             Toast.success('选择成功～', 1, null, false);
     }
-
     changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
-        console.log('加购物车的数量', num);
         this.setState({
             currentPrePrice: pPrice,
             currentMarketPrice: mPrice,
             quantity: num,
             specification: active.specification,
-            modalSelectorText: active.specification + '  ×' + num,
             specificationId: specificationId,
-        }, () => {
-            console.log('this.state.isAdd', this.state.isadd);
-            if (this.state.isadd === 1)
-                this.addToCart();
+            modalSelectorText: active.specification + '  ×' + num,
         });
     }
 
-
-
-
-
-    // checkNoticeBar() {
-    //     if (this.state.ruleType === '满赠') {
-    //         return <NoticeBar marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }} mode="closable" action={<span style={{ color: '#a1a1a1' }}>不再提示</span>}>
-    //             您只需要点击优惠商品内购买即可，赠品会附带上
-    //         </NoticeBar>
-    //     }
-    // }
 
     checkSpecificationDisplay() {
         if (this.state.specialtyId != -1 && this.state.featureData != -1) {
@@ -309,9 +198,11 @@ export default class SalesDetail extends React.Component {
             return <CartModal
                 productData={this.state.data}
                 modalData={this.state.featureData}
-                modal={this.state.modal}
+
+                visible={this.state.modal}
                 hideModal={this.hideModal.bind(this)}
                 selectorText={this.changeModalSelectorText.bind(this)}
+
                 guige={this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification}
                 limit={this.state.salesDetail.hySingleitemPromotions[0].limitedNum}
             />
@@ -319,19 +210,26 @@ export default class SalesDetail extends React.Component {
 
     }
 
-    checkCartDisplay() {
+    checkCartDisplay(cartProps, buyItem) {
         return <PutInCart style={{height: '3.125rem'}}
-                          addToCart={this.addToCart.bind(this)}
-                          buyImmediately={this.buyImmediately.bind(this)}
-                          cartCount={this.state.cartCount}
+                          modalSelectorText={this.state.modalSelectorText}
+                          showModal={this.showModal.bind(this)}
+
+                          cartProps={cartProps}
+                          buyItem={buyItem}
+
+                          isPromotion={true}
+                          origin="sales"
         />
     }
 
 
     checkPresents() {
-        var fullPresents = null;
-        var temp = this.state.salesDetail;
+        let fullPresents = null;
+        let temp = this.state.salesDetail;
+
         console.log("asfdsaf", temp);
+
         if (temp.hySingleitemPromotions && temp.hySingleitemPromotions[0].hyPromotion.promotionRule == "满赠") {
             fullPresents = temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents && temp.hySingleitemPromotions[0].hyPromotion.hyFullPresents.map((item, index) => {
                 console.log("asfsgastgdrg", item.fullPresentProductSpecification.specification);
@@ -375,6 +273,7 @@ export default class SalesDetail extends React.Component {
             this.requestProductDetailData(this.state.specialtyId);
             this.state.mynum = 0;
         }
+
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
 
             console.log('itemitemitemitem', item)
@@ -396,8 +295,9 @@ export default class SalesDetail extends React.Component {
                 <Card>
                     <Flex style={{background: '#fff'}}>
                         <Flex.Item style={{flex: '0 0 30%'}}>
-                            <img src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.specialtyId.images)}
-                                 style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
+                            <img
+                                src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.specialtyId.images)}
+                                style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 80%', color: 'black'}}>
                             <WhiteSpace/>
@@ -461,6 +361,32 @@ export default class SalesDetail extends React.Component {
             end.substring(0, b + 2);
         }
 
+        if (JSON.stringify(this.state.data) === "{}")
+            return null;
+
+        //     cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
+        //         this.state.isGroupPromotion, this.state.quantity, (rs) => {
+        let cartProps = {
+            "wechatId": localStorage.getItem("wechatId"),
+            "specificationId": this.state.specificationId,
+            "specialtyId": this.state.specialtyId,
+            "isGroupPromotion": this.state.isGroupPromotion,
+            "quantity": this.state.quantity,
+        };
+
+        let buyItem = [{
+            "id": null,
+            "iconURL": this.state.data[0].iconURL,
+            "isGroupPromotion": this.state.isGroupPromotion,
+            "curPrice": this.state.currentPrePrice,
+            "name": this.state.data[0].specialty.name,
+            "quantity": this.state.quantity,
+            "specialtyId": this.state.specialtyId,
+            "specialtySpecificationId": this.state.specificationId,
+            "specification": this.state.specification,
+            "promotionId": this.state.salesDetail.id,
+        }];
+
 
         return <Layout>
             <Card>
@@ -472,54 +398,59 @@ export default class SalesDetail extends React.Component {
                     swipeSpeed={35}
                     dots={this.state.dots}
                 >
-                {bancontent}
-            </Carousel>
-            <WingBlank>
-            <h3>
-                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName:""}
-            </h3>
-            <h4>
-                <font color="red">优惠时间：</font>
-                {this.state.salesDetail.hySingleitemPromotions?start.substring(0,a+2)+"时 ~ "+end.substring(0,b+2)+"时":""}
-            </h4>
-            <h4>
-                <font color="red">优惠类型：</font>
-                {this.state.salesDetail.hySingleitemPromotions?SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
-                                         this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents):""}
-            </h4>
-            <h4>
-                <font color="red">活动价格：</font>
-                {this.state.salesDetail.hySingleitemPromotions?"￥"+this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice:""}
-            </h4>
-            <h4>
-                <font color="red">已售数量：</font>
-                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].havePromoted:""}
-            </h4>
-            <h4>
-                <font color="red">限购数量：</font>
-                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].limitedNum:""}
-            </h4>
-            <h4>
-                <font color="red">活动库存：</font>
-                {this.state.salesDetail.hySingleitemPromotions?this.state.salesDetail.hySingleitemPromotions[0].promoteNum:""}
-            </h4>
-            <h4>
-                {console.log("safasd",this.state.salesDetail)}
-                {(localStorage.getItem('isWebusiness') === '1')&&this.state.salesDetail?<div style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.divideMoney).toFixed(2)}</div>:<div></div>}
-            </h4>
-            {/* <h4>
+                    {bancontent}
+                </Carousel>
+
+                <WingBlank>
+                    <h3>
+                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
+                    </h3>
+                    <h4>
+                        <font color="red">优惠时间：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
+                    </h4>
+                    <h4>
+                        <font color="red">优惠类型：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
+                    </h4>
+                    <h4>
+                        <font color="red">活动价格：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
+                    </h4>
+                    <h4>
+                        <font color="red">已售数量：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
+                    </h4>
+                    <h4>
+                        <font color="red">限购数量：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
+                    </h4>
+                    <h4>
+                        <font color="red">活动库存：</font>
+                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
+                    </h4>
+                    <h4>
+                        {console.log("safasd", this.state.salesDetail)}
+                        {(localStorage.getItem('isWebusiness') === '1') && this.state.salesDetail ? <div
+                                style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.divideMoney).toFixed(2)}</div> :
+                            <div/>}
+                    </h4>
+                    {/* <h4>
                 结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
             </h4> */}
                     <hr/>
 
                     {content}
                     {this.checkPresents()}
+
                     {this.state.data[0] ?
                         <Card className="general_container">
                             <div>
                                 <WingBlank>
                                     <div className="para_title">活动介绍</div>
-                                    <div dangerouslySetInnerHTML={{__html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}}/>
+                                    <div
+                                        dangerouslySetInnerHTML={{__html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}}/>
                                 </WingBlank>
 
                                 <WingBlank>
@@ -535,6 +466,7 @@ export default class SalesDetail extends React.Component {
                                         {this.state.servicePromise.prompt}
                                     </div>
                                 </WingBlank>
+
                                 <WhiteSpace/>
                                 <WhiteSpace/>
                                 <WhiteSpace/>
@@ -548,7 +480,7 @@ export default class SalesDetail extends React.Component {
             </Card>
 
 
-            {this.checkCartDisplay()}
+            {this.checkCartDisplay(cartProps, buyItem)}
 
             {this.checkSpecificationDisplay()}
 

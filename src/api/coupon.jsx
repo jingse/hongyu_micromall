@@ -1,11 +1,11 @@
 import {getServerHost, wxconfig} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
 
     //--------------------------coupon Buy  ->home page----------------------------
     submitCouponOrder(wechatId, phone, confirmCode, couponMoneyId, amount, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/sale/purchase?wechat_id=' + wechatId + "&couponMoneyId=" +
                 couponMoneyId + "&amount=" + amount + "&phone=" + phone + "&confirmCode=" + confirmCode,
@@ -19,7 +19,7 @@ var api = {
 
     confirmCouponPayment(orderId, fee, openId, callback) {
         console.log('total_fee confirmCouponPayment', fee, orderId, openId)
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/mp/' + orderId,
             // url: "//10.108.164.5:8080/hongyu/ymmall" + '/coupon/mp/' + orderId,
@@ -43,7 +43,7 @@ var api = {
         let formdata = new FormData();
         formdata.append("receiverPhone", phone);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/sale/confirmcode',
             // url: "//10.108.164.5:8080/hongyu/ymmall" + '/coupon/mp/' + orderId,
@@ -55,7 +55,7 @@ var api = {
     },
 
     successfulCouponPayment(orderId, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/couponSale/notify/' + orderId,
             success: (rs) => {
@@ -68,7 +68,7 @@ var api = {
     //--------------------------balance  ->my page----------------------------
 
     getBalance(wechatId, phone, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/balance_used_coupon/total?wechat_id=' + wechatId,
             success: (rs) => {
@@ -84,7 +84,7 @@ var api = {
         formdata.append("page", page);
         formdata.append("rows", rows);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/balance_used_coupon/use_history',
             data: formdata,
@@ -101,7 +101,7 @@ var api = {
         formdata.append("page", page);
         formdata.append("rows", rows);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/wechataccount/balance/list/view',
             data: formdata,
@@ -115,7 +115,7 @@ var api = {
         let formdata = new FormData();
         formdata.append("wechat_id", wechatId);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/orderlist',
             data: formdata,
@@ -129,7 +129,7 @@ var api = {
     //--------------------------disposable coupon  ->my page----------------------------
 
     getDisposableCoupons(wechatId, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/coupon/once_used_coupon/list?wechat_id=' + wechatId,
             success: (rs) => {
                 callback && callback(rs);
@@ -144,7 +144,7 @@ var api = {
         formdata.append("wechat_id", wechatId);
         formdata.append("activation_code", activationCode);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/balance_used_coupon/bind',
             data: formdata,
@@ -161,7 +161,7 @@ var api = {
         formdata.append("wechat_id", wechatId);
         formdata.append("price", price);
 
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + '/coupon/availableCoupon',
             data: formdata,

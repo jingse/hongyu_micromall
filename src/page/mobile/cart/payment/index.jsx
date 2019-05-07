@@ -1,21 +1,28 @@
 import React from 'react';
-import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import {createForm} from 'rc-form';
+import PropTypes from "prop-types";
+
+import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 'antd-mobile';
+
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
 import Card from "../../../../components/card/index.jsx";
 import './index.less';
-import {createForm} from 'rc-form';
-import PropTypes from "prop-types";
-import wxApi from "../../../../api/wechat.jsx";
+
+
 import productApi from "../../../../api/product.jsx";
 import addressApi from "../../../../api/address.jsx";
 import cartApi from "../../../../api/cart.jsx";
 import paymentApi from "../../../../api/payment.jsx";
-import {getServerIp} from "../../../../config.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import myApi from "../../../../api/my.jsx";
+
+import WxManager from "../../../../manager/WxManager.jsx";
+import {getServerIp} from "../../../../config.jsx";
 import settingApi from "../../../../api/setting.jsx";
+
+
 
 // 设置全局变量
 // var balance = 0;
@@ -84,6 +91,7 @@ class Payment extends React.Component {
             });
         });
 
+        this.requestMaxBalanceRatio();
 
         switch (shipType) {
             case 0:
@@ -109,8 +117,6 @@ class Payment extends React.Component {
                 this.requestDefaultMerchantAddress(uid);
                 break;
         }
-
-        this.requestMaxBalanceRatio();
 
 
         if (this.props.location.products && this.props.location.price && this.props.location.presents) {
@@ -150,19 +156,8 @@ class Payment extends React.Component {
         console.log("localStorage.getItem(\"uid\")", localStorage.getItem("uid"));
         console.log("webusinessId", webusinessId);
 
-        //微信相关
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
+
         myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 console.log('rs余额', rs);
@@ -183,18 +178,7 @@ class Payment extends React.Component {
     }
 
     componentDidMount() {
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
     }
 
 
@@ -245,6 +229,8 @@ class Payment extends React.Component {
             }
         });
     }
+
+
 
     // 微信支付接口
     onBridgeReady() {
@@ -463,7 +449,8 @@ class Payment extends React.Component {
 
     checkAvailableCoupon() {
         if (this.state.available || localStorage.getItem("choose")) {
-            return <List.Item style={{borderBottom: '1px solid #ccc'}} arrow="horizontal"
+            return <List.Item style={{borderBottom: '1px solid #ccc'}}
+                              arrow="horizontal"
                               extra={localStorage.getItem("choose")}
                               onClick={() => {
                                   this.linkTo('/cart/payment/coupon')
@@ -625,15 +612,23 @@ class Payment extends React.Component {
     }
 
     backTo(specialtyId) {
-        if (localStorage.getItem("origin") === "cart") {
-            localStorage.removeItem("origin");
-            this.context.router.history.push({pathname: '/cart'});
-        } else if (localStorage.getItem("origin") === "sales_group") {
-            localStorage.removeItem("origin");
-            this.context.router.history.push({pathname: '/home/sales_group/detail'});
-        } else {
-            localStorage.setItem("dest", "/home");
-            this.context.router.history.push({pathname: `/product/${specialtyId}`});
+        const origin = localStorage.getItem("origin");
+        localStorage.removeItem("origin");
+
+        switch (origin) {
+            case "cart" :
+                this.context.router.history.push({pathname: '/cart'});
+                break;
+            case "sales" :
+                this.context.router.history.push({pathname: '/home/sales/detail'});
+                break;
+            case "sales_group":
+                this.context.router.history.push({pathname: '/home/sales_group/detail'});
+                break;
+            default: // 默认是从product页面进入此页面，将product页面的返回路径设为home首页
+                localStorage.setItem("dest", "/home");
+                this.context.router.history.push({pathname: `/product/${specialtyId}`});
+                break;
         }
     }
 
