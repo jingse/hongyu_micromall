@@ -167,7 +167,7 @@ class Home extends React.Component {
 
 
         this.requestCarousel();
-        this.requestMerchantInfo(uid);
+        uid !== -1 && this.requestMerchantInfo(uid);
         this.requestTags();
         this.requestCategories();
 

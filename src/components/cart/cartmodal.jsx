@@ -26,15 +26,28 @@ export default class CartModal extends React.Component {
         for (let i in data) {
             Object.assign(active, data[0]);
         }
+
+        if (this.props.hasSpecification)
+            return {
+                active,
+                val: 1,
+
+                salePrice: this.props.productData[0].pPrice,
+                mPrice: this.props.productData[0].mPrice,
+                inbound: this.props.productData[0].inbound,
+                specificationId: this.props.modalData[0].id,
+                //divideRatio: this.props.productData[0].divideRatio,
+                divideMoney: this.props.productData[0].divideMoney,
+
+                isWebusiness: localStorage.getItem('isWebusiness'),
+                myoptions: "",
+                ischange: -1
+            };
+
+        // 无规格数据时，如sales_group页面
         return {
             active,
             val: 1,
-            salePrice: this.props.productData[0].pPrice,
-            mPrice: this.props.productData[0].mPrice,
-            inbound: this.props.productData[0].inbound,
-            specificationId: this.props.modalData[0].id,
-            //divideRatio: this.props.productData[0].divideRatio,
-            divideMoney: this.props.productData[0].divideMoney,
             isWebusiness: localStorage.getItem('isWebusiness'),
             myoptions: "",
             ischange: -1
@@ -43,29 +56,30 @@ export default class CartModal extends React.Component {
 
     componentWillMount() {
 
-        this.props.modalData.map((option, key) => {
-            let tempID = option.id;
+        if (this.props.hasSpecification)
+            this.props.modalData.map((option, key) => {
+                let tempID = option.id;
 
-            proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
-                console.log("test", key, rs);
-                if (rs.obj.length === 0) {
-                    temp[key] = false;
-                    console.log("temp", key, temp[key]);
-                    return
-                }
-                if (!rs.success) {
-                    temp[key] = false;
-                    console.log("temp", key, temp[key]);
-                    return
-                }
-                if (rs && rs.success) {
-                    temp[key] = true;
-                    console.log("temp", key, temp[key]);
-                }
+                proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
+                    console.log("test", key, rs);
+                    if (rs.obj.length === 0) {
+                        temp[key] = false;
+                        console.log("temp", key, temp[key]);
+                        return
+                    }
+                    if (!rs.success) {
+                        temp[key] = false;
+                        console.log("temp", key, temp[key]);
+                        return
+                    }
+                    if (rs && rs.success) {
+                        temp[key] = true;
+                        console.log("temp", key, temp[key]);
+                    }
 
+                });
+                // temp[key]=option.show
             });
-            // temp[key]=option.show
-        });
         console.log("temp", temp);
     }
 
@@ -149,7 +163,7 @@ export default class CartModal extends React.Component {
     render() {
         // console.log("active", this.state.active);
 
-        const title = <div className="popup_modal_header">
+        const title = this.props.hasSpecification && <div className="popup_modal_header">
             <Flex justify="end">
 
                 <Flex.Item style={{flex: '0 0 30%'}}>
@@ -192,7 +206,7 @@ export default class CartModal extends React.Component {
             }
         }];
 
-        const dataSet = this.generateDataSet();
+        const dataSet = this.props.hasSpecification && this.generateDataSet();
 
         return <Modal
             visible={this.props.visible}
@@ -207,7 +221,8 @@ export default class CartModal extends React.Component {
             className="popup_modal"
         >
             <div className="popup_modal_content">
-                <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div>
+                {this.props.hasSpecification ?
+                    <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div> : ""}
                 {dataSet}
                 <div style={{float: 'left', marginLeft: '1rem'}}>数量</div>
                 <div className="step">

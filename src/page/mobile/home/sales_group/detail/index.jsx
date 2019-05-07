@@ -6,7 +6,7 @@ import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
-import CartModal from './cartmodal.jsx';
+import CartModal from "../../../../../components/cart/cartmodal.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
@@ -185,6 +185,7 @@ export default class SalesGroupDetail extends React.Component {
         return <CartModal
             productData={this.state.data}
             modalData={this.state.featureData}
+            hasSpecification={false}
 
             visible={this.state.modal}
             hideModal={this.hideModal.bind(this)}

@@ -57,7 +57,7 @@ export default class SalesDetail extends React.Component {
     }
 
     componentWillMount() {
-        var promotionId = 0;
+        let promotionId = 0;
         if (!this.props.location.state) {
             promotionId = localStorage.getItem("promotionId");
         } else {
@@ -120,10 +120,10 @@ export default class SalesDetail extends React.Component {
                     const temp = data[0].specialty.specifications;
                     const arrlength = temp.length;
                     var myspecifications;
+
                     for (var i = 0; i < arrlength; i++) {
-                        if (temp[i].specification == this.state.specification) {
+                        if (temp[i].specification == this.state.specification)
                             myspecifications = temp[i];
-                        }
                     }
 
                     console.log("product specifications", myspecifications);
@@ -198,6 +198,7 @@ export default class SalesDetail extends React.Component {
             return <CartModal
                 productData={this.state.data}
                 modalData={this.state.featureData}
+                hasSpecification={false}
 
                 visible={this.state.modal}
                 hideModal={this.hideModal.bind(this)}
@@ -269,9 +270,37 @@ export default class SalesDetail extends React.Component {
 
     render() {
 
+        let cartProps = {};
+        let buyItem = [];
+
+        // console.log("this.state.specialtyId ", this.state.specialtyId )
+        // console.log("this.state.mynum ", this.state.mynum )
+
         if (this.state.specialtyId != -1 && this.state.mynum == -1) {
             this.requestProductDetailData(this.state.specialtyId);
             this.state.mynum = 0;
+
+            cartProps = {
+                "wechatId": localStorage.getItem("wechatId"),
+                "specificationId": this.state.specificationId,
+                "specialtyId": this.state.specialtyId,
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "quantity": this.state.quantity,
+            };
+
+            buyItem = [{
+                "id": null,
+                "iconURL": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].iconURL,
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "curPrice": this.state.currentPrePrice,
+                "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
+                "quantity": this.state.quantity,
+                "specialtyId": this.state.specialtyId,
+                "specialtySpecificationId": this.state.specificationId,
+                "specification": this.state.specification,
+                "promotionId": this.state.salesDetail.id,
+            }];
+
         }
 
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
@@ -361,31 +390,8 @@ export default class SalesDetail extends React.Component {
             end.substring(0, b + 2);
         }
 
-        if (JSON.stringify(this.state.data) === "{}")
-            return null;
-
         //     cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
         //         this.state.isGroupPromotion, this.state.quantity, (rs) => {
-        let cartProps = {
-            "wechatId": localStorage.getItem("wechatId"),
-            "specificationId": this.state.specificationId,
-            "specialtyId": this.state.specialtyId,
-            "isGroupPromotion": this.state.isGroupPromotion,
-            "quantity": this.state.quantity,
-        };
-
-        let buyItem = [{
-            "id": null,
-            "iconURL": this.state.data[0].iconURL,
-            "isGroupPromotion": this.state.isGroupPromotion,
-            "curPrice": this.state.currentPrePrice,
-            "name": this.state.data[0].specialty.name,
-            "quantity": this.state.quantity,
-            "specialtyId": this.state.specialtyId,
-            "specialtySpecificationId": this.state.specificationId,
-            "specification": this.state.specification,
-            "promotionId": this.state.salesDetail.id,
-        }];
 
 
         return <Layout>

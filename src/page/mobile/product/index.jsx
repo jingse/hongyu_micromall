@@ -185,6 +185,7 @@ class Product extends React.Component {
         return <CartModal
             productData={this.state.data}
             modalData={this.state.featureData}
+            hasSpecification={true}
 
             visible={this.state.modal}
             hideModal={this.hideModal.bind(this)}

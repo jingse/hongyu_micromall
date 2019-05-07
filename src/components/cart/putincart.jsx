@@ -44,7 +44,6 @@ export default class PutInCart extends React.Component {
     }
 
 
-
     checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) {
         if (modalSelectorText === '未选择') {
             Toast.info("您还未选择商品规格~", 1);
@@ -68,7 +67,7 @@ export default class PutInCart extends React.Component {
 
     addToCart(cartProps) {
         cartApi.addSingleItemToCart(cartProps.wechatId, cartProps.specificationId, cartProps.specialtyId,
-                                    cartProps.isGroupPromotion, cartProps.quantity, (rs) => {
+            cartProps.isGroupPromotion, cartProps.quantity, (rs) => {
 
                 if (rs && rs.success) {
                     Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
@@ -218,7 +217,7 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action:'addToCart'});
+                        this.setState({action: 'addToCart'});
                         this.checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) &&
                         this.addToCart(cartProps)
                     }}>
@@ -235,7 +234,7 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action:'buyImmediately'});
+                        this.setState({action: 'buyImmediately'});
                         this.checkSpecificationSelection(modalSelectorText, showModal, cartProps, buyItem, isPromotion, origin) &&
                         this.buyImmediately(buyItem, isPromotion, origin)
                     }}>
