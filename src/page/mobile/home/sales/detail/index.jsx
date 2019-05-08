@@ -18,6 +18,9 @@ import {getServerIp} from "../../../../../config.jsx";
 import "./index.less";
 
 
+let cartProps = {};
+let buyProps = {};
+
 export default class SalesDetail extends React.Component {
 
     constructor(props, context) {
@@ -32,10 +35,12 @@ export default class SalesDetail extends React.Component {
             subtracts: [],
             discounts: [],
 
+
+            modal: false,
             modalSelectorText: '未选择',
 
-            // isAdd: 0,
-            modal: false,
+            // putInCart的参数
+            action: '',  //点击的是“加入购物车”还是“立即购买”
 
             specialtyId: -1,
             mynum: -1,
@@ -54,6 +59,7 @@ export default class SalesDetail extends React.Component {
             dots: true,
         };
 
+        this.handleAction = this.handleAction.bind(this);
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
@@ -175,6 +181,16 @@ export default class SalesDetail extends React.Component {
         });
     }
 
+    // 父组件调用子组件的方法
+    onRef = (ref) => {
+        this.child = ref
+    };
+
+    handleAction(e) {
+        console.log("handleAction", e);
+        this.setState({action: e});
+    }
+
     showModal() {
         this.setState({modal: true});
     }
@@ -193,6 +209,11 @@ export default class SalesDetail extends React.Component {
             specification: active.specification,
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
+        }, ()=>{
+            if (this.state.action === "addToCart")
+                this.child.addToCart(cartProps);
+            else if (this.state.action === "buyImmediately")
+                this.child.buyImmediately(buyProps);
         });
     }
 
@@ -241,9 +262,6 @@ export default class SalesDetail extends React.Component {
 
 
     render() {
-
-        let cartProps = {};
-        let buyProps = {};
 
         // console.log("this.state.specialtyId ", this.state.specialtyId )
         // console.log("this.state.mynum ", this.state.mynum )
@@ -332,28 +350,25 @@ export default class SalesDetail extends React.Component {
         if (this.state.salesDetail.hySingleitemPromotions) {
             let tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
             console.log("before", tempban);
-            for (var i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag == true) {
+            for (let i = 0; i < tempban.length; i++) {
+                if (tempban[i].isTag)
                     tempban.splice(i, 1);
-                }
             }
             console.log("after", tempban);
             bancontent = tempban && tempban.map((item, index) => {
-                if (item.isTag == false) {
+                if (!item.isTag)
                     return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
                                 src={"http://" + getServerIp() + item.sourcePath}
                                 onLoad={() => {
                                     // fire window resize event to change height
                                     window.dispatchEvent(new Event('resize'));
                                 }}/>
-                }
             });
             // if(bancontent.length==1){
             //     this.state.dots=false;
             //     bancontent[1]=bancontent[0];
             // }
             console.log("wgudsiuasjd", bancontent);
-
         }
 
         let start, end, a, b;
@@ -464,6 +479,9 @@ export default class SalesDetail extends React.Component {
 
 
             <PutInCart style={{height: '3.125rem'}}
+                       onRef={this.onRef}
+                       handleAction={this.handleAction}
+
                        modalSelectorText={this.state.modalSelectorText}
                        showModal={this.showModal}
 

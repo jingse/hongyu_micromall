@@ -16,9 +16,11 @@ export default class PutInCart extends React.Component {
             selectedTab: '',
 
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
-
-            action: '',
         };
+    }
+
+    componentDidMount(){
+        this.props.onRef(this);
     }
 
     linkTo(link) {
@@ -111,6 +113,8 @@ export default class PutInCart extends React.Component {
                         // shipFee: this.state.data[0].deliverPrice
                     });
                 }
+            } else {
+                Toast.info("购买失败！", 1);
             }
         });
 
@@ -211,10 +215,8 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action: 'addToCart'}, ()=>{
-                            this.checkSpecificationSelection(modalSelectorText, showModal) &&
-                            this.addToCart(cartProps)
-                        });
+                        this.props.handleAction('addToCart');
+                        this.checkSpecificationSelection(modalSelectorText, showModal) && this.addToCart(cartProps)
                     }}>
                 加购物车
             </Button>
@@ -229,10 +231,8 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.setState({action: 'buyImmediately'}, ()=>{
-                            this.checkSpecificationSelection(modalSelectorText, showModal) &&
-                            this.buyImmediately(buyProps)
-                        });
+                        this.props.handleAction('buyImmediately');
+                        this.checkSpecificationSelection(modalSelectorText, showModal) && this.buyImmediately(buyProps)
                     }}>
                 立即购买
             </Button>

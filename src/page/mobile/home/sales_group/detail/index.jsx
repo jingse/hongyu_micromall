@@ -16,7 +16,8 @@ import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
 
-
+let cartProps;
+let buyProps;
 
 
 export default class SalesGroupDetail extends React.Component {
@@ -41,6 +42,9 @@ export default class SalesGroupDetail extends React.Component {
             modal: false,
             modalSelectorText: '未选择',
 
+            // putInCart的参数
+            action: '',  //点击的是“加入购物车”还是“立即购买”
+
             specialtyId: -1,
             mynum: -1,
 
@@ -57,6 +61,7 @@ export default class SalesGroupDetail extends React.Component {
             dots: true,
         };
 
+        this.handleAction = this.handleAction.bind(this);
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
@@ -148,6 +153,14 @@ export default class SalesGroupDetail extends React.Component {
         });
     }
 
+    // 父组件调用子组件的方法
+    onRef = (ref) => {
+        this.child = ref
+    };
+
+    handleAction(e) {
+        this.setState({action: e});
+    }
 
     showModal() {
         this.setState({modal: true});
@@ -165,6 +178,11 @@ export default class SalesGroupDetail extends React.Component {
             specification: active.specification,
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
+        }, () => {
+            if (this.state.action === "addToCart")
+                this.child.addToCart(cartProps);
+            else if (this.state.action === "buyImmediately")
+                this.child.buyImmediately(buyProps);
         });
     }
 
@@ -276,9 +294,8 @@ export default class SalesGroupDetail extends React.Component {
             let tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
             console.log("before", tempban);
             for (let i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag == true) {
+                if (tempban[i].isTag == true)
                     tempban.splice(i, 1);
-                }
             }
             console.log("after", tempban);
             bancontent = tempban && tempban.map((item, index) => {
@@ -298,6 +315,7 @@ export default class SalesGroupDetail extends React.Component {
         //     bancontent[1]=bancontent[0];
         // }
         console.log("wgudsiuasjd", bancontent);
+
         let start, end, a, b;
         if (this.state.salesGroupDetail.hyGroupitemPromotions) {
             start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
@@ -309,9 +327,8 @@ export default class SalesGroupDetail extends React.Component {
             end.substring(0, b + 2);
         }
 
-        //     cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), "", this.state.salesGroupDetail.hyGroupitemPromotions[0].id,
-        //         true, this.state.quantity, (rs) => {
-        let cartProps = {
+
+        cartProps = {
             "wechatId": localStorage.getItem("wechatId"),
             "specificationId": "",
             "specialtyId": this.state.salesGroupDetail.hyGroupitemPromotions[0].id,
@@ -332,7 +349,7 @@ export default class SalesGroupDetail extends React.Component {
             "promotionId": this.state.salesGroupDetail.id,
         }];
 
-        let buyProps = {
+        buyProps = {
             "buyItem": buyItem,
             "isPromotion": true,
             "origin": "sales_group",
@@ -428,6 +445,9 @@ export default class SalesGroupDetail extends React.Component {
             <WhiteSpace/>
 
             <PutInCart style={{height: '3.125rem'}}
+                       onRef={this.onRef}
+                       handleAction={this.handleAction}
+
                        modalSelectorText={this.state.modalSelectorText}
                        showModal={this.showModal}
 

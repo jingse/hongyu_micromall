@@ -20,6 +20,7 @@ import myApi from "../../../../api/my.jsx";
 import settingApi from "../../../../api/setting.jsx";
 
 import WxManager from "../../../../manager/WxManager.jsx";
+import PayManager from "../../../../manager/payManager.jsx";
 import SaleManager from "../../../../manager/SaleManager.jsx";
 import {getServerIp} from "../../../../config.jsx";
 
@@ -225,50 +226,37 @@ class Payment extends React.Component {
         });
     }
 
+    cartPaySuccessCallback() {
+        this.linkTo({pathname: '/my/order', state: 2});
+    }
 
-    // 微信支付接口
-    onBridgeReady() {
-        WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-                "appId": this.appId,             //公众号名称，由商户传入
-                "timeStamp": this.timestamp,     //时间戳，自1970年以来的秒数
-                "nonceStr": this.nonceStr,       //随机串
-                "package": this.package,
-                "signType": this.signType,       //微信签名方式：
-                "paySign": this.paySign          //微信签名
+    cartPayCancelCallback() {
+        Modal.alert('取消付款', '您确认要取消吗？', [
+            {
+                text: '再想想', onPress: () => {
+                }
             },
-            function (res) {
-                if (res.err_msg === "get_brand_wcpay_request:ok") {
-
-                    this.linkTo({pathname: '/my/order', state: 2});
-
-                } else if (res.err_msg === "get_brand_wcpay_request:cancel") {
-                    Modal.alert('取消付款', '您确认要取消吗？', [
-                        {
-                            text: '再想想', onPress: () => {
-                            }
-                        },
-                        {
-                            text: '确认', onPress: () => {
-                                Toast.info("已取消，您可在个人中心的待付款订单查看", 1);
-                                this.linkTo({pathname: '/my/order', state: 1});
-                            }
-                        },
-                    ])
-                } else {
-                    Toast.info("支付失败", 1);
+            {
+                text: '确认', onPress: () => {
+                    Toast.info("已取消，您可在个人中心的待付款订单查看", 1);
+                    this.linkTo({pathname: '/my/order', state: 1});
                 }
+            },
+        ])
+    }
 
-                //删除购物车相关商品
-                if (localStorage.getItem("origin") === "cart") {
-                    this.state.ids && this.state.ids.map((item, index) => {
-                        cartApi.deleteItemsInCart(item, (rs) => {
-                        });
-                    });
-                }
+    cartPayFailCallback() {
+        Toast.info("支付失败", 1);
+    }
 
-            }.bind(this)
-        );
+    cartPayCallback() {
+        //删除购物车相关商品
+        if (localStorage.getItem("origin") === "cart") {
+            this.state.ids && this.state.ids.map((item, index) => {
+                cartApi.deleteItemsInCart(item, (rs) => {
+                });
+            });
+        }
     }
 
     payCharge() {
@@ -411,28 +399,19 @@ class Payment extends React.Component {
         paymentApi.confirmOrder(this.state.orderCode, fee, openid, (rs) => {
             console.log("confirm rs: ", rs);
 
-            // this.appId = 'wx6d6fd71af24c22c3';
-            this.appId = rs.result.appId;
-            this.nonceStr = rs.result.nonceStr;
-            this.package = rs.result.package;
-            this.paySign = rs.result.paySign;
-            this.signType = rs.result.signType;
-            this.timestamp = rs.result.timestamp;
+            let payConfig = {
+                "appId": rs.result.appId,   // this.appId = 'wx6d6fd71af24c22c3';
+                "nonceStr": rs.result.nonceStr,
+                "package": rs.result.package,
+                "paySign": rs.result.paySign,
+                "signType": rs.result.signType,
+                "timestamp": rs.result.timestamp,
+            };
 
             this.code = this.state.orderCode;
             console.log("this.code", this.code);
 
-            // 调起微信支付接口
-            if (typeof WeixinJSBridge === "undefined") {
-                if (document.addEventListener) {
-                    document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                } else if (document.attachEvent) {
-                    document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                    document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
-                }
-            } else {
-                this.onBridgeReady();
-            }
+            PayManager.doPay(payConfig, this.cartPaySuccessCallback, this.cartPayCancelCallback, this.cartPayFailCallback, this.cartPayCallback);
         });
     }
 
@@ -532,7 +511,7 @@ class Payment extends React.Component {
 
     checkPromotionMoney(money) {
         if (money > 0) {
-            if (this.props.location.isPromotion == true) {
+            if (this.props.location.isPromotion) {
                 return <div>
                     <div className="discount_select price_text">-￥{money}</div>
                     <div className="discount_title">立减</div>
@@ -589,8 +568,7 @@ class Payment extends React.Component {
     }
 
     backTo(specialtyId) {
-        const origin = localStorage.getItem("origin");
-        localStorage.removeItem("origin");
+        const origin = this.props.location.origin;
 
         switch (origin) {
             case "cart" :
@@ -613,15 +591,15 @@ class Payment extends React.Component {
     render() {
         const {getFieldProps} = this.props.form;
 
-        if (!this.state.products || JSON.stringify(this.state.products) === "[]") {
-            return null
-        }
+        if (!this.state.products || JSON.stringify(this.state.products) === "[]")
+            return null;
+
 
         const orderProducts = this.state.products && this.state.products.map((item, index) => {
             console.log('item11111111111111111111111111111', item)
             return <List.Item key={index}>
                 <div className="payment_card_img">
-                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath}/>
+                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath} alt=""/>
                 </div>
                 <div className="payment_card_text">
                     <div className="title_text">{item.name}</div>
@@ -632,10 +610,13 @@ class Payment extends React.Component {
             </List.Item>
         });
 
+
         return <Layout header={false} footer={false}>
 
             <Navigation title="支付" left={true}/>
+
             <WhiteSpace/>
+
             <div style={{display: this.state.isNewOrder ? 'inline' : 'none'}}>
                 <NoticeBar marqueeProps={{loop: true, style: {padding: '0 7.5px'}}}>
                     首单奖励：全现金购买，奖励订单金额的20%余额（最多不超过50元）
@@ -646,7 +627,7 @@ class Payment extends React.Component {
                 <Link to={{pathname: "/address", state: {fromSet: 'cart'}}}>
                     <Flex>
                         <Flex.Item style={{flex: '0 0 10%'}}>
-                            <img src="./images/icons/地址.png" style={{width: '%10'}}/>
+                            <img src="./images/icons/地址.png" style={{width: '%10'}} alt=""/>
                             {this.state.address.isDefaultReceiverAddress ?
                                 <Badge text="默认" style={{
                                     marginLeft: 2,
@@ -682,7 +663,6 @@ class Payment extends React.Component {
             <Card className="payment_card">
                 <div>
                     {this.checkBalance()}
-
 
                     {this.checkAvailableCoupon()}
 

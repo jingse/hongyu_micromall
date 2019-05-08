@@ -27,7 +27,8 @@ import settingApi from "../../../api/setting.jsx";
 // this.props.location.guige: 优惠产品或赠品的规格
 // this.props.location.limitedNum: 优惠产品的限购数量
 
-
+let cartProps;
+let buyProps;
 
 class Product extends React.Component {
     constructor(props, context) {
@@ -46,6 +47,9 @@ class Product extends React.Component {
             modal: false,
             modalSelectorText: '未选择',
 
+            // putInCart的参数
+            action: '',  //点击的是“加入购物车”还是“立即购买”
+
             // 页面显示
             isNull: false, // 控制页面显示
             commentNum: 0,
@@ -60,6 +64,7 @@ class Product extends React.Component {
             quantity: 1,
         };
 
+        this.handleAction = this.handleAction.bind(this);
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
@@ -139,6 +144,14 @@ class Product extends React.Component {
         });
     }
 
+    // 父组件调用子组件的方法
+    onRef = (ref) => {
+        this.child = ref
+    };
+
+    handleAction(e) {
+        this.setState({action: e});
+    }
 
     showModal() {
         this.setState({modal: true});
@@ -159,7 +172,10 @@ class Product extends React.Component {
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
         }, () => {
-            // this.addToCart(cartProps);
+            if (this.state.action === "addToCart")
+                this.child.addToCart(cartProps);
+            else if (this.state.action === "buyImmediately")
+                this.child.buyImmediately(buyProps);
         });
     }
 
@@ -177,7 +193,7 @@ class Product extends React.Component {
             return null;
 
 
-        let cartProps = {
+        cartProps = {
             "wechatId": localStorage.getItem("wechatId"),
             "specificationId": this.state.specificationId,
             "specialtyId": this.state.specialtyId,
@@ -197,7 +213,7 @@ class Product extends React.Component {
             "specification": this.state.specification,
         }];
 
-        let buyProps = {
+        buyProps = {
             "buyItem": buyItem,
             "isPromotion": this.props.location.isPromotion,
             "origin": "product",
@@ -410,6 +426,9 @@ class Product extends React.Component {
             {/*如果是优惠产品页进来的，不显示规格选择*/}
             {(this.props.location.isPromotion || this.props.location.isPresent) ? "" :
                 <PutInCart style={{height: '3.125rem'}}
+                           onRef={this.onRef}
+                           handleAction={this.handleAction}
+
                            modalSelectorText={this.state.modalSelectorText}
                            showModal={this.showModal}
 

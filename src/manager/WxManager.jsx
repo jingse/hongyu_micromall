@@ -14,7 +14,7 @@ function share() {
 
     wx.ready(function () {
         wx.checkJsApi({
-            jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"],
+            jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"],
             success: function (res) {
                 console.log(res)
             }
@@ -41,7 +41,7 @@ function auth() {
             timestamp: data.timestamp, // 必填，生成签名的时间戳
             nonceStr: data.nonceStr, // 必填，生成签名的随机串
             signature: data.signature, // 必填，签名，见附录1
-            jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+            jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
         });
     });
 }

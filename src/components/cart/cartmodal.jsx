@@ -5,7 +5,7 @@ import proApi from "../../api/product.jsx";
 import {getServerIp} from "../../config.jsx";
 
 
-var temp = [];
+let temp = [];
 
 
 export default class CartModal extends React.Component {
@@ -23,9 +23,9 @@ export default class CartModal extends React.Component {
         console.log('isWebusiness', localStorage.getItem('isWebusiness'))
 
 
-        for (let i in data) {
+        for (let i in data)
             Object.assign(active, data[0]);
-        }
+
 
         if (this.props.hasSpecification)
             return {
@@ -196,13 +196,18 @@ export default class CartModal extends React.Component {
             onPress: () => {
                 console.log("asdasd", this.state.val, this.props.limit, this.state.myoptions, this.props.guige);
 
-                if (this.state.val > this.props.limit && this.state.myoptions === this.props.guige) {
-                    Toast.info("超出限购数量！");
+                if (this.state.val > this.props.limit) {
+                    if (this.props.hasSpecification) {
+                        if (this.state.myoptions === this.props.guige)
+                            Toast.info("超出限购数量！");
+                    } else
+                        Toast.info("超出限购数量！");
                 } else {
                     this.props.hideModal && this.props.hideModal('success');
                     this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,
                         this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
                 }
+
             }
         }];
 

@@ -137,7 +137,7 @@ class Recharge extends React.Component {
 
 
     rechargePay() {
-        var info = {
+        let info = {
             "price": this.state.price,
             "faceValue": this.state.faceValue,
             // "price": '0.01',
