@@ -32,17 +32,14 @@ export default class SalesGroupDetail extends React.Component {
 
             inbound: 0,
 
-
+            // 优惠规则相关
             ruleType: '',
             presents: [],
             subtracts: [],
             discounts: [],
 
-
-            modalSelectorText: '未选择',
-
-            // isAdd: 0,
             modal: false,
+            modalSelectorText: '未选择',
 
             specialtyId: -1,
             mynum: -1,
@@ -59,6 +56,10 @@ export default class SalesGroupDetail extends React.Component {
             featureData: -1,
             dots: true,
         };
+
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
     }
 
     componentWillMount() {
@@ -168,46 +169,6 @@ export default class SalesGroupDetail extends React.Component {
     }
 
 
-    getSalesIconImg(salesImages) {
-        let img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isTag) {
-                img = item
-            }
-        });
-        return img
-    }
-
-
-    checkSpecificationDisplay() {
-        // if(this.state.specialtyId != -1 && this.state.featureData != -1){
-        // console.log("wawawawawa",this.state.salesDetail.hySingleitemPromotions[0].limitedNum);
-        return <CartModal
-            productData={this.state.data}
-            modalData={this.state.featureData}
-            hasSpecification={false}
-
-            visible={this.state.modal}
-            hideModal={this.hideModal.bind(this)}
-            selectorText={this.changeModalSelectorText.bind(this)}
-
-            limit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
-        />
-        // }
-
-    }
-
-
-    checkCartDisplay(cartProps, buyProps) {
-        return <PutInCart style={{height: '3.125rem'}}
-                          modalSelectorText={this.state.modalSelectorText}
-                          showModal={this.showModal.bind(this)}
-
-                          cartProps={cartProps}
-                          buyProps={buyProps}
-        />
-    }
-
     checkPresents() {
         let fullPresents = null;
         if (this.state.salesGroupDetail.fullPresents && JSON.stringify(this.state.salesGroupDetail.fullPresents) !== '[]') {
@@ -246,26 +207,27 @@ export default class SalesGroupDetail extends React.Component {
         return fullPresents
     }
 
-    showWebusinessInfo(item) {
-        console.log("??", localStorage.getItem("isWebusiness"));
-        if (localStorage.getItem("isWebusiness") == 1) {
-            return <WingBlank>提成比例：{item.businessPersonDivide.proportion}</WingBlank>
-        }
-    }
+    // showWebusinessInfo(item) {
+    //     console.log("??", localStorage.getItem("isWebusiness"));
+    //     if (localStorage.getItem("isWebusiness") == 1) {
+    //         return <WingBlank>提成比例：{item.businessPersonDivide.proportion}</WingBlank>
+    //     }
+    // }
 
 
     render() {
 
         console.log("this.state.salesGroupDetail", this.state.salesGroupDetail);
-        if (!this.state.salesGroupDetail || JSON.stringify(this.state.salesGroupDetail) == "[]" || !this.state.salesGroupData) {
-            return null
-        }
+        if (!this.state.salesGroupDetail || JSON.stringify(this.state.salesGroupDetail) === "[]" || !this.state.salesGroupData)
+            return null;
+
         console.log('inbound', this.state.inbound)
 
         const content = this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails && this.state.salesGroupDetail.hyGroupitemPromotions[0].hyGroupitemPromotionDetails.map((item, index) => {
 
             console.log('itemitemitemitem', item)
             console.log("mytest", this.state)
+
             return <Link to={{
                 pathname: `/product/${item.itemId.id}`,
                 isPromotion: true,
@@ -309,11 +271,11 @@ export default class SalesGroupDetail extends React.Component {
             </Link>
         });
 
-        var bancontent;
+        let bancontent;
         if (this.state.salesGroupDetail.hyGroupitemPromotions) {
-            var tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
+            let tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
             console.log("before", tempban);
-            for (var i = 0; i < tempban.length; i++) {
+            for (let i = 0; i < tempban.length; i++) {
                 if (tempban[i].isTag == true) {
                     tempban.splice(i, 1);
                 }
@@ -336,7 +298,7 @@ export default class SalesGroupDetail extends React.Component {
         //     bancontent[1]=bancontent[0];
         // }
         console.log("wgudsiuasjd", bancontent);
-        var start, end, a, b;
+        let start, end, a, b;
         if (this.state.salesGroupDetail.hyGroupitemPromotions) {
             start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
             end = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime).toLocaleString();
@@ -359,7 +321,7 @@ export default class SalesGroupDetail extends React.Component {
 
         let buyItem = [{
             "id": null,
-            "iconURL": this.getSalesIconImg(this.state.salesGroupDetail.pics),
+            "iconURL": SaleManager.getSalesIconImg(this.state.salesGroupDetail.pics),
             "isGroupPromotion": true,
             "curPrice": this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice,
             "name": this.state.salesGroupDetail.name,
@@ -465,9 +427,25 @@ export default class SalesGroupDetail extends React.Component {
             <WhiteSpace/>
             <WhiteSpace/>
 
-            {this.checkCartDisplay(cartProps, buyProps)}
+            <PutInCart style={{height: '3.125rem'}}
+                       modalSelectorText={this.state.modalSelectorText}
+                       showModal={this.showModal}
 
-            {this.checkSpecificationDisplay()}
+                       cartProps={cartProps}
+                       buyProps={buyProps}
+            />
+
+            <CartModal
+                productData={this.state.data}
+                modalData={this.state.featureData}
+                hasSpecification={false}
+
+                visible={this.state.modal}
+                hideModal={this.hideModal}
+                selectorText={this.changeModalSelectorText}
+
+                limit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+            />
         </Layout>
     }
 }

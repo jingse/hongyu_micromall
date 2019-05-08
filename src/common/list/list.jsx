@@ -7,7 +7,7 @@ import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
 import httpManager from '../../manager/HttpManager.jsx';  //不能删除
 
-var hasMore = true;
+let hasMore = true;
 const NUM_SECTIONS = 1;
 const NUM_ROWS_PER_SECTION = 10;
 let pageIndex = 0;
@@ -42,6 +42,7 @@ export default class List extends React.Component {
             tabIndex: 0,
             height: document.documentElement.clientHeight * 3 / 4,
         };
+        this.onTabsChange = this.onTabsChange.bind(this);
     }
 
 
@@ -284,7 +285,7 @@ export default class List extends React.Component {
 
             <div className="search_container">
                 <Tabs tabs={tabs}
-                      onChange={this.onTabsChange.bind(this)}
+                      onChange={this.onTabsChange}
                       initialPage={this.state.tabIndex}
                       useOnPan={false}
                 >

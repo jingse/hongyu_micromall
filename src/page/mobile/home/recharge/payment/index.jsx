@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Card, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
-import wxApi from "../../../../../api/wechat.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
-import PropTypes from "prop-types";
+import WxManager from "../../../../../manager/WxManager.jsx";
 
 
 export default class CouponBalance extends React.Component {
@@ -14,6 +14,7 @@ export default class CouponBalance extends React.Component {
             payInfo: {},
             orderId: '',
         };
+        this.payCharge = this.payCharge.bind(this);
     }
 
     componentWillMount() {
@@ -26,35 +27,11 @@ export default class CouponBalance extends React.Component {
             orderId: orderId,
         });
 
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
-
-        // this.createCouponOrderOperation(this.state.payInfo.phone, this.state.payInfo.confirmCode, this.state.payInfo.couponMoneyId, this.state.payInfo.num);
+        WxManager.auth();
     }
 
     componentDidMount() {
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
     }
 
 
@@ -145,7 +122,7 @@ export default class CouponBalance extends React.Component {
                 <div className="secondary_btn" style={{width: '60%', fontSize: '0.8rem'}}>
                     合计：￥{this.state.payInfo.price * this.state.payInfo.num}
                 </div>
-                <span className="primary_btn" style={{width: '40%'}} onClick={this.payCharge.bind(this)}>支付</span>
+                <span className="primary_btn" style={{width: '40%'}} onClick={this.payCharge}>支付</span>
             </div>
 
         </Layout>

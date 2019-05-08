@@ -18,7 +18,6 @@ import {getServerIp} from "../../../../../config.jsx";
 import "./index.less";
 
 
-
 export default class SalesDetail extends React.Component {
 
     constructor(props, context) {
@@ -54,6 +53,10 @@ export default class SalesDetail extends React.Component {
             featureData: -1,
             dots: true,
         };
+
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
     }
 
     componentWillMount() {
@@ -175,11 +178,13 @@ export default class SalesDetail extends React.Component {
     showModal() {
         this.setState({modal: true});
     }
+
     hideModal(status) {
         this.setState({modal: false});
         if (status === 'success')
             Toast.success('选择成功～', 1, null, false);
     }
+
     changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
         this.setState({
             currentPrePrice: pPrice,
@@ -189,36 +194,6 @@ export default class SalesDetail extends React.Component {
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
         });
-    }
-
-
-    checkSpecificationDisplay() {
-        if (this.state.specialtyId != -1 && this.state.featureData != -1) {
-            // console.log("wawawawawa",this.state.salesDetail.hySingleitemPromotions[0].limitedNum);
-            return <CartModal
-                productData={this.state.data}
-                modalData={this.state.featureData}
-                hasSpecification={false}
-
-                visible={this.state.modal}
-                hideModal={this.hideModal.bind(this)}
-                selectorText={this.changeModalSelectorText.bind(this)}
-
-                guige={this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification}
-                limit={this.state.salesDetail.hySingleitemPromotions[0].limitedNum}
-            />
-        }
-
-    }
-
-    checkCartDisplay(cartProps, buyProps) {
-        return <PutInCart style={{height: '3.125rem'}}
-                          modalSelectorText={this.state.modalSelectorText}
-                          showModal={this.showModal.bind(this)}
-
-                          cartProps={cartProps}
-                          buyProps={buyProps}
-        />
     }
 
 
@@ -353,9 +328,9 @@ export default class SalesDetail extends React.Component {
         });
         console.log("lalalalal", this.state.salesDetail.hySingleitemPromotions);
 
-        var bancontent;
+        let bancontent;
         if (this.state.salesDetail.hySingleitemPromotions) {
-            var tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
+            let tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
             console.log("before", tempban);
             for (var i = 0; i < tempban.length; i++) {
                 if (tempban[i].isTag == true) {
@@ -381,7 +356,7 @@ export default class SalesDetail extends React.Component {
 
         }
 
-        var start, end, a, b;
+        let start, end, a, b;
         if (this.state.salesDetail.hySingleitemPromotions) {
             start = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString();
             end = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime).toLocaleString();
@@ -488,9 +463,28 @@ export default class SalesDetail extends React.Component {
             </Card>
 
 
-            {this.checkCartDisplay(cartProps, buyProps)}
+            <PutInCart style={{height: '3.125rem'}}
+                       modalSelectorText={this.state.modalSelectorText}
+                       showModal={this.showModal}
 
-            {this.checkSpecificationDisplay()}
+                       cartProps={cartProps}
+                       buyProps={buyProps}
+            />
+
+
+            {(this.state.specialtyId != -1 && this.state.featureData != -1) ?
+                <CartModal
+                    productData={this.state.data}
+                    modalData={this.state.featureData}
+                    hasSpecification={false}
+
+                    visible={this.state.modal}
+                    hideModal={this.hideModal}
+                    selectorText={this.changeModalSelectorText}
+
+                    guige={this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification}
+                    limit={this.state.salesDetail.hySingleitemPromotions[0].limitedNum}
+                /> : ""}
 
         </Layout>
     }

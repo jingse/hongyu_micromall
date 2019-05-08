@@ -25,6 +25,8 @@ export default class Comment extends React.Component {
             ],
             showViewer: false
         };
+
+        this.close = this.close.bind(this);
     }
 
     show(images) {
@@ -181,7 +183,7 @@ export default class Comment extends React.Component {
 
             <div>
                 {
-                    this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close.bind(this)}/>
+                    this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close}/>
                 }
             </div>
 

@@ -58,14 +58,21 @@ function getHomeSalesContent(ruleType, substracts, discounts, presents) {
 function getSalesDetailIcon(salesImages) {
     let img = null;
     salesImages && salesImages.map((item, index) => {
-        if (item.isLogo) {
+        if (item.isLogo)
             img = item.mediumPath
-        }
     });
-    console.log("img", img);
     return img
 }
 
+//sales_group的detail页面多用到的一个函数
+function getSalesIconImg(salesImages) {
+    let img = null;
+    salesImages && salesImages.map((item, index) => {
+        if (item.isTag)
+            img = item
+    });
+    return img
+}
 
 
 const SaleManager = {
@@ -73,6 +80,7 @@ const SaleManager = {
     getDetailSalesContent,
     getHomeSalesContent,
 
+    getSalesIconImg,
     getSalesDetailIcon
 };
 

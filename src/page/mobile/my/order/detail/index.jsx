@@ -25,6 +25,7 @@ export default class OrderDetail extends React.Component {
             orderId: (!this.props.location.orderId) ? localStorage.getItem("orderId") : this.props.location.orderId,
             orderState: (!this.props.location.orderState && this.props.location.orderState !== 0) ? parseInt(localStorage.getItem("orderState")) : this.props.location.orderState,
         };
+        this.payCharge = this.payCharge.bind(this);
     }
 
     componentWillMount() {
@@ -244,7 +245,7 @@ export default class OrderDetail extends React.Component {
                                marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
                                width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
                            }}
-                           onClick={this.payCharge.bind(this)}>
+                           onClick={this.payCharge}>
                 去付款
             </Button>
         } else if (orderState === 4) {

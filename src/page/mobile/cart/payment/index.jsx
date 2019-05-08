@@ -17,18 +17,12 @@ import cartApi from "../../../../api/cart.jsx";
 import paymentApi from "../../../../api/payment.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import myApi from "../../../../api/my.jsx";
-
-import WxManager from "../../../../manager/WxManager.jsx";
-import {getServerIp} from "../../../../config.jsx";
 import settingApi from "../../../../api/setting.jsx";
 
+import WxManager from "../../../../manager/WxManager.jsx";
+import SaleManager from "../../../../manager/SaleManager.jsx";
+import {getServerIp} from "../../../../config.jsx";
 
-
-// 设置全局变量
-// var balance = 0;
-// var shipFee = 0;
-// var couponSub = 0.0;
-// var products = [];
 
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
@@ -53,11 +47,12 @@ class Payment extends React.Component {
             balance: 0,//余额
             balanceInput: '',//使用余额
             balanceNum: 0,
-            balanceMaxRatio: 1,
+            balanceMaxRatio: 1, //余额最大支付比例
             shipFee: 0,
             couponSub: 0,//电子券
             presents: [],
         };
+        this.payCharge = this.payCharge.bind(this);
     }
 
     componentWillMount() {
@@ -231,7 +226,6 @@ class Payment extends React.Component {
     }
 
 
-
     // 微信支付接口
     onBridgeReady() {
         WeixinJSBridge.invoke(
@@ -323,7 +317,7 @@ class Payment extends React.Component {
     cartCreateOrder(wechatId, webusinessId, items) {
         console.log("this.state.address", this.state.address);
 
-        var presents = [];
+        let presents = [];
         this.state.presents && this.state.presents.map((item, index) => {
             const present = {
                 "id": null,
@@ -343,7 +337,7 @@ class Payment extends React.Component {
         });
 
 
-        var order = {
+        let order = {
             "orderPhone": localStorage.getItem("bindPhone"),
             "orderWechatId": wechatId,
             "webusinessId": webusinessId,
@@ -552,7 +546,7 @@ class Payment extends React.Component {
     }
 
     checkFullPresents() {
-        var fullPresents = null;
+        let fullPresents = null;
 
         console.log("this.state.presents: ", this.state.presents);
 
@@ -562,8 +556,9 @@ class Payment extends React.Component {
                 console.log("item:", item);
                 return <Flex style={{background: '#fff'}} key={index}>
                     <Flex.Item style={{flex: '0 0 30%'}}>
-                        <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)}
-                             style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
+                        <img
+                            src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
+                            style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
                         <WhiteSpace/>
@@ -591,24 +586,6 @@ class Payment extends React.Component {
         }
 
         return fullPresents
-    }
-
-    checkDefault() {
-        if (this.state.address.isDefaultReceiverAddress) {
-            return <Badge text="默认"
-                          style={{marginLeft: 2, padding: '0 3px', backgroundColor: '#21b68a', borderRadius: 2}}/>
-        }
-    }
-
-    getSalesDetailIcon(salesImages) {
-        var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isLogo) {
-                img = item.mediumPath
-            }
-        });
-        console.log("img", img);
-        return img
     }
 
     backTo(specialtyId) {
@@ -670,7 +647,13 @@ class Payment extends React.Component {
                     <Flex>
                         <Flex.Item style={{flex: '0 0 10%'}}>
                             <img src="./images/icons/地址.png" style={{width: '%10'}}/>
-                            {this.checkDefault()}
+                            {this.state.address.isDefaultReceiverAddress ?
+                                <Badge text="默认" style={{
+                                    marginLeft: 2,
+                                    padding: '0 3px',
+                                    backgroundColor: '#21b68a',
+                                    borderRadius: 2
+                                }}/> : ""}
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 70%'}}>
                             <div>收货人：{this.state.address.receiverName}
@@ -735,7 +718,7 @@ class Payment extends React.Component {
                 <WhiteSpace/>
                 <WhiteSpace/>
 
-                <div className="bigbutton" onClick={this.payCharge.bind(this)}>确认支付</div>
+                <div className="bigbutton" onClick={this.payCharge}>确认支付</div>
                 <div className="bigbutton cancel" onClick={() => {
                     this.backTo(this.state.products[0].specialtyId)
                 }}>取消付款

@@ -28,9 +28,6 @@ import settingApi from "../../../api/setting.jsx";
 // this.props.location.limitedNum: 优惠产品的限购数量
 
 
-let cartProps = {};
-let buyProps = {};
-
 
 class Product extends React.Component {
     constructor(props, context) {
@@ -38,6 +35,7 @@ class Product extends React.Component {
         this.state = {
             isLoading: false,
 
+            // 页面数据
             data: {},
             featureData: [],
             comment: [],
@@ -46,14 +44,11 @@ class Product extends React.Component {
 
             // cartModal的显示控制
             modal: false,
-            // isClickOk: false,
-            // isAdd: 0,
-
             modalSelectorText: '未选择',
 
+            // 页面显示
             isNull: false, // 控制页面显示
             commentNum: 0,
-
             currentPrePrice: 0,
             currentMarketPrice: 0,
 
@@ -63,7 +58,11 @@ class Product extends React.Component {
             specification: "",
             isGroupPromotion: false,
             quantity: 1,
-        }
+        };
+
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.changeModalSelectorText = this.changeModalSelectorText.bind(this);
     }
 
     componentWillMount() {
@@ -88,9 +87,7 @@ class Product extends React.Component {
                 const data = rs.obj;
 
                 if (!data || JSON.stringify(data) === "[]") {
-                    this.setState({
-                        isNull: true,
-                    });
+                    this.setState({isNull: true});
                 } else {
                     const specificationId = data[0].specification.id;
                     const mPrice = data[0].mPrice;
@@ -113,9 +110,7 @@ class Product extends React.Component {
                 }
 
             } else {
-                this.setState({
-                    isNull: true,
-                });
+                this.setState({isNull: true});
             }
         });
     }
@@ -148,11 +143,13 @@ class Product extends React.Component {
     showModal() {
         this.setState({modal: true});
     }
+
     hideModal(status) {
         this.setState({modal: false});
         if (status === 'success')
             Toast.success('选择成功～', 1, null, false);
     }
+
     changeModalSelectorText(active, num, specificationId, mPrice, pPrice, success) {
         this.setState({
             currentPrePrice: pPrice,
@@ -161,60 +158,10 @@ class Product extends React.Component {
             specification: active.specification,
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
-        }, ()=>{
+        }, () => {
             // this.addToCart(cartProps);
         });
     }
-    // handleClickOk(val) {
-    //     this.setState({isClickOk: val});
-    // }
-
-
-    // 如果是优惠产品页进来的，不显示购物车底栏
-    checkCartDisplay(cartProps, buyProps) {
-        if (this.props.location.isPromotion || this.props.location.isPresent)
-            return null;
-
-        return <PutInCart style={{height: '3.125rem'}}
-                          modalSelectorText={this.state.modalSelectorText}
-                          showModal={this.showModal.bind(this)}
-                          // isClickOk={this.state.isClickOk}
-
-                          cartProps={cartProps}
-                          buyProps={buyProps}
-        />
-    }
-
-    // 如果是优惠产品页进来的，不显示规格选择
-    checkSpecificationDisplay() {
-        if (this.props.location.isPromotion || this.props.location.isPresent)
-            return null;
-
-        return <CartModal
-            productData={this.state.data}
-            modalData={this.state.featureData}
-            hasSpecification={true}
-
-            visible={this.state.modal}
-            hideModal={this.hideModal.bind(this)}
-            selectorText={this.changeModalSelectorText.bind(this)}
-            // onSubmit={this.handleClickOk.bind(this)}
-
-            guige={this.props.location.guige}
-            limit={this.props.location.limitedNum}
-        />
-    }
-
-    // checkPromotion() {
-    //     // if (this.props.location.isPromotion)
-    //     //     return <Link to={{pathname: "/home/sales", dest: '/home'}}>
-    //     //             <span style={{color: 'darkorange', fontStyle:'normal'}}> (点击查看更多优惠)</span>
-    //     //         </Link>;
-    //
-    //     if (this.props.location.isPresent)
-    //         return <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span>;
-    //
-    // }
 
 
     render() {
@@ -230,7 +177,7 @@ class Product extends React.Component {
             return null;
 
 
-        cartProps = {
+        let cartProps = {
             "wechatId": localStorage.getItem("wechatId"),
             "specificationId": this.state.specificationId,
             "specialtyId": this.state.specialtyId,
@@ -250,7 +197,7 @@ class Product extends React.Component {
             "specification": this.state.specification,
         }];
 
-        buyProps = {
+        let buyProps = {
             "buyItem": buyItem,
             "isPromotion": this.props.location.isPromotion,
             "origin": "product",
@@ -263,6 +210,7 @@ class Product extends React.Component {
             if (primaryImages[i].isLogo)
                 primaryImages.splice(i, 1);
         }
+
         // if(primaryImages.length === 1)
         //     primaryImages[1] = primaryImages[0];
 
@@ -271,8 +219,7 @@ class Product extends React.Component {
             return <img src={"http://" + getServerIp() + img.sourcePath}
                         key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
                         alt="" onLoad={() => {
-                // fire window resize event to change height
-                window.dispatchEvent(new Event('resize'));
+                window.dispatchEvent(new Event('resize')); // fire window resize event to change height
             }}/>
         });
 
@@ -297,8 +244,11 @@ class Product extends React.Component {
                 <WingBlank>
                     <h3>
                         {proData.specialty.name}
-                        {this.props.location.isPresent ? <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span> : ""}
-                        {/*{this.checkPromotion()}*/}
+                        {this.props.location.isPresent ?
+                            <span style={{color: 'darkorange', fontStyle: 'normal'}}> (赠品)</span> : ""}
+                        {/*{this.props.location.isPromotion ? <Link to={{pathname: "/home/sales", dest: '/home'}}>*/}
+                        {/*    <span style={{color: 'darkorange', fontStyle: 'normal'}}> (点击查看更多优惠)</span>*/}
+                        {/*</Link> : ""}*/}
                     </h3>
 
                     <Card>
@@ -363,7 +313,7 @@ class Product extends React.Component {
 
             <Card className="general_container">
                 <div className="selector_container">
-                    <div className="selector_sec" onClick={this.showModal.bind(this)}>
+                    <div className="selector_sec" onClick={this.showModal}>
                         <WingBlank>
                             <span>已选规格</span>
                             {/*如果是优惠产品页进来的，固定死该产品的规格，不让用户选择*/}
@@ -422,13 +372,6 @@ class Product extends React.Component {
                     <WingBlank>
                         <div className="para_title">服务承诺</div>
                         <div className="paragraph">
-                            {/* 河北游购进出口贸易有限公司（游买有卖 特产商城）所售商品均为源产地正品，如有任何问题可与我们门店工作
-                       人员直接沟通，我们会在当场进行处理。我们将争取以更具竞争力的价格、更优质的服务来满足您最大的需求。开箱验
-                       货：签收同时当场进行开箱验货，并与门店人员当面核对：商品及配件、应付金额、商品数量及发货清单、发票（如有）、
-                       赠品（如有）等；如存在包装破损、商品错误、商品短缺、商品存在质量问题等印象签收的因素，请您可以拒收全部或
-                       部分商品，相关的赠品，配件或捆绑商品应一起当场拒收（如与综上所述原因不同产生退换货问题，本公司有权不承担
-                       起责任）；为了保护您的权益，建议您尽量不要委托他人代为签收；如由他人代为签收商品而没有在门店人员在场的情
-                       况下验货，则视为您所订购商品的包装无任何问题。 */}
                             {this.state.servicePromise.servicePromise}
                         </div>
                     </WingBlank>
@@ -436,8 +379,6 @@ class Product extends React.Component {
                     <WingBlank>
                         <div className="para_title">温馨提示</div>
                         <div className="paragraph">
-                            {/* 由于部分商品包装更换较为频繁，因此您收到的货品有可能与图片不完全一致，请您以收到的商品实物为准，同时
-                       我们会尽量做到及时更新，由此给您带来不便多多谅解，谢谢！ */}
                             {this.state.servicePromise.prompt}
                         </div>
                     </WingBlank>
@@ -466,9 +407,31 @@ class Product extends React.Component {
 
             </Card>
 
-            {this.checkCartDisplay(cartProps, buyProps)}
+            {/*如果是优惠产品页进来的，不显示规格选择*/}
+            {(this.props.location.isPromotion || this.props.location.isPresent) ? "" :
+                <PutInCart style={{height: '3.125rem'}}
+                           modalSelectorText={this.state.modalSelectorText}
+                           showModal={this.showModal}
 
-            {this.checkSpecificationDisplay()}
+                           cartProps={cartProps}
+                           buyProps={buyProps}
+                />}
+
+
+            {/*如果是优惠产品页进来的，不显示规格选择*/}
+            {(this.props.location.isPromotion || this.props.location.isPresent) ? "" :
+                <CartModal
+                    productData={this.state.data}
+                    modalData={this.state.featureData}
+                    hasSpecification={true}
+
+                    visible={this.state.modal}
+                    hideModal={this.hideModal}
+                    selectorText={this.changeModalSelectorText}
+
+                    guige={this.props.location.guige}
+                    limit={this.props.location.limitedNum}
+                />}
 
         </Layout>
     }

@@ -17,7 +17,7 @@ export default class PutInCart extends React.Component {
 
             cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
 
-            // action: '',
+            action: '',
         };
     }
 
@@ -101,11 +101,11 @@ export default class PutInCart extends React.Component {
 
                     this.context.router.history.push({
                         pathname: '/cart/payment',
+
                         origin: origin,
-
                         isPromotion: isPromotion,
-
                         products: buyItem,
+
                         price: price,
                         presents: presents,
                         // shipFee: this.state.data[0].deliverPrice
