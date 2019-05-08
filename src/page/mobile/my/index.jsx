@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 const Item = List.Item;
 const pageSize = 10;
-var wechatIdmy = localStorage.getItem("wechatId");
+let wechatIdmy = localStorage.getItem("wechatId");
 
 export default class My extends React.Component {
 
@@ -41,7 +41,7 @@ export default class My extends React.Component {
 
     componentWillMount() {
         wechatIdmy = localStorage.getItem("wechatId");
-        var str = localStorage.getItem("nickname");
+        let str = localStorage.getItem("nickname");
         let s = str;
         if (str.length > 10)
             s = str.substring(0, 10) + "...";
@@ -114,7 +114,7 @@ export default class My extends React.Component {
                     localStorage.setItem("isVip", true);
                 console.log("rs", rs);
                 this.setState({
-                    vipRank: rs.obj.levelname,
+                    vipRank: rs.obj ? rs.obj.levelname : "",
                 })
             }
         });
@@ -293,21 +293,22 @@ export default class My extends React.Component {
         // console.log("my bindPhone", localStorage.getItem("bindPhone"));
         console.log("bindPhone", this.state.userData.phone);
         localStorage.setItem("bindPhone", this.state.userData.phone);
+
         //if (this.state.userData.phone || localStorage.getItem("bindPhone")) {      
-        if (this.state.userData.phone) {
+        if (this.state.userData.phone)
             return <div className="my_header_text">
                 <img src="./images/icons/手机.png" style={{width: '5%'}}/>
                 {(!this.state.userData.phone) ? localStorage.getItem("bindPhone") : this.state.userData.phone}
-            </div>
-        } else {
+            </div>;
+         else
             return <Link to={{pathname: '/my/tel'}}>
                 <div className="my_header_text">
                     <img src="./images/icons/手机.png" style={{width: '5%'}}/>
                     {/*{userData.phone ? userData.phone : '未绑定'}*/}
                     未绑定
                 </div>
-            </Link>
-        }
+            </Link>;
+
     }
 
     // checkVip() {

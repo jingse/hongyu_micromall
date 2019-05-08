@@ -40,9 +40,9 @@ export default class BalancePurchase extends React.Component {
 
     render() {
 
-        // if(JSON.stringify(this.state.purchase) === "[]") {
-        //     return null
-        // }
+        // if(JSON.stringify(this.state.purchase) === "[]")
+        //     return null;
+
         console.log("this.state.purchase", this.state.purchase);
 
         const content = this.state.purchase && this.state.purchase.map((item, index) => {

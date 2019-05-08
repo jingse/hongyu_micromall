@@ -1,13 +1,11 @@
 import React from 'react';
-import Layout from "../../../../../common/layout/layout.jsx";
-import Navigation from "../../../../../components/navigation/index.jsx";
-import {Card, Flex, Pagination, Toast, WhiteSpace} from 'antd-mobile';
-import pointsApi from "../../../../../api/points.jsx";
-import "./index.less";
-import DateManager from "../../../../../manager/DateManager.jsx";
+import {Flex} from 'antd-mobile';
+import PaginationList from "../../../../../common/pagination_list/paginationList.jsx";
 
-const pageSize = 10;
-// var totalPages = 0;
+import pointsApi from "../../../../../api/points.jsx";
+import DateManager from "../../../../../manager/DateManager.jsx";
+import "./index.less";
+
 
 export default class ExchangeRecords extends React.Component {
 
@@ -15,17 +13,13 @@ export default class ExchangeRecords extends React.Component {
         super(props, context);
         this.state = {
             pointsRecords: [],
-            totalPages: 0,
-            curPage: 1,
-        }
-    }
-
-    componentWillMount() {
-        this.requestExchangeRecords(1);
+            totalPages: 1,
+        };
+        this.requestExchangeRecords = this.requestExchangeRecords.bind(this);
     }
 
     requestExchangeRecords(pageNo) {
-        pointsApi.getPointsChangeRecords(localStorage.getItem("wechatId"), pageNo, pageSize, (rs) => {
+        pointsApi.getPointsChangeRecords(localStorage.getItem("wechatId"), pageNo, 10, (rs) => {
             console.log("兑换记录：", rs);
             if (rs && rs.success) {
                 this.setState({
@@ -37,63 +31,8 @@ export default class ExchangeRecords extends React.Component {
     }
 
 
-    requestFormerPage() {
-        if ((this.state.curPage - 1) < 1) {
-            Toast.info("已经是第一页啦", 1);
-        } else {
-            this.setState({
-                curPage: --this.state.curPage,
-            });
-            this.requestExchangeRecords(this.state.curPage);
-        }
-    }
-
-    requestLatterPage() {
-        if ((this.state.curPage + 1) > this.state.totalPages) {
-            Toast.info("已经是最后一页啦", 1);
-        } else {
-            this.setState({
-                curPage: ++this.state.curPage,
-            });
-            this.requestExchangeRecords(this.state.curPage);
-        }
-    }
-
-
-    checkPagination(num) {
-        if (num === 0 || num === 1) {
-            return null
-        } else {
-            // totalPages = Math.floor((this.props.total + pageSize - 1) / pageSize);
-
-            return <div>
-                <Pagination
-                    // total={totalPages}
-                    total={this.state.totalPages}
-                    className="custom-pagination"
-                    current={this.state.curPage}
-                    locale={{
-                        prevText: (<span className="arrow-align"
-                                         onClick={() => {
-                                             this.requestFormerPage()
-                                         }}
-                        >
-                                    上一页</span>),
-                        nextText: (<span className="arrow-align"
-                                         onClick={() => {
-                                             this.requestLatterPage()
-                                         }}
-                        >
-                                    下一页</span>),
-                    }}
-                    style={{width: '90%', marginLeft: '5%', marginRight: '5%', fontSize: '0.7rem'}}
-                />
-            </div>
-        }
-    }
-
-
     render() {
+        const columns = ["变化时间", "变化值", "变化原因"];
 
         const recordContent = this.state.pointsRecords && this.state.pointsRecords.map((item, index) => {
             return <Flex key={index} style={{textAlign: 'center'}}>
@@ -103,26 +42,9 @@ export default class ExchangeRecords extends React.Component {
             </Flex>
         });
 
-        return <Layout>
-
-            <Navigation title="积分记录" left={true}/>
-
-            <WhiteSpace/>
-
-            <Card>
-                <Flex style={{textAlign: 'center', background: '#F7F7F7'}}>
-                    <Flex.Item style={{padding: '0.5rem'}}>变化时间</Flex.Item>
-                    <Flex.Item>变化值</Flex.Item>
-                    <Flex.Item>变化原因</Flex.Item>
-                </Flex>
-                <WhiteSpace/>
-
-                {recordContent}
-            </Card>
-
-            {this.checkPagination(this.state.totalPages)}
-
-        </Layout>
+        return <PaginationList title="积分记录" columns={columns} content={recordContent}
+                               totalPages={this.state.totalPages}
+                               reqDataFunc={this.requestExchangeRecords}
+        />
     }
-
 }
