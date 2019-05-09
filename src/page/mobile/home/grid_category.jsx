@@ -79,9 +79,8 @@ export default class GridCategory extends React.PureComponent {
             return null;
 
 
-        const hometag = this.state.tags;
+        let hometag = this.state.tags;
         const hometags = hometag && hometag.map((item, index) => {
-            console.log("名字", item);
             return <Tag key={index} tagId={item.id} name={item.productName} picUrl={item.iconUrl}/>
         });
 

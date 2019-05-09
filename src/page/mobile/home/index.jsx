@@ -263,7 +263,7 @@ class Home extends React.PureComponent {
         let content;
         const category = this.state.gridCategory;
         const categories = category && category.map((item, index) => {
-            return <Grid key={index} categoryId={item.id} categoryData={item.name} picUrl={item.iconUrl} type="fruits"/>
+            return <Grid key={index} categoryId={item.id} categoryPropData={item.name} picUrl={item.iconUrl} type="fruits"/>
         });
 
         const primaryImages = this.state.carousel;

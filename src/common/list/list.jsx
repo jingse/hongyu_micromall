@@ -225,16 +225,6 @@ export default class List extends React.PureComponent {
             {title: '按销量排序', sub: 'comments'},
         ];
 
-        const separator = (sectionID, rowID) => (
-            <div
-                key={`${sectionID}-${rowID}`}
-                style={{
-                    backgroundColor: '#F5F5F9',
-                    borderTop: '1px dashed #ECECED',
-                    borderBottom: '1px dashed #ECECED',
-                }}
-            />
-        );
         const data = this.state.data;
 
         let index = data.length - 1;
@@ -246,7 +236,7 @@ export default class List extends React.PureComponent {
             const obj = rowdata;
             if (obj) {
                 return (
-                    <div key={rowID} style={{padding: '0 15px'}}>
+                    <div key={rowID} style={{padding: '0 15px', borderBottom:'1px solid #eee'}}>
                         <Link to={{pathname: `/product/${obj.specialty.id}`}}>
                             <div style={{display: 'flex', padding: '15px 0'}}>
                                 <img style={{height: '4rem', width: '25%', marginRight: '2rem'}}
@@ -300,7 +290,6 @@ export default class List extends React.PureComponent {
                 </div>)}
                 renderBodyComponent={() => <MyBody/>}
                 renderRow={row}
-                renderSeparator={separator}
                 style={{
                     height: this.state.height,
                     overflow: 'auto',

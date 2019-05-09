@@ -17,7 +17,6 @@ export default class TagShow extends React.PureComponent {
         this.requestTopTag(this.props.tagId);
     }
 
-
     requestTopTag(tagId) {
         homeApi.getTopNOfTags(tagId, 9, (rs) => {
             if (rs && rs.success) {
@@ -28,6 +27,7 @@ export default class TagShow extends React.PureComponent {
             }
         });
     }
+
 
     render() {
         let topOfCategory = this.state.data;
