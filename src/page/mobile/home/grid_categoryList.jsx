@@ -1,6 +1,6 @@
 import React from 'react';
 import {Flex} from 'antd-mobile';
-import Separator from "./separator.jsx";
+import {Separator} from "./separator.jsx";
 import homeApi from "../../../api/home.jsx";
 import {ProductCard} from "../../../components/product_card/proCard.jsx";
 

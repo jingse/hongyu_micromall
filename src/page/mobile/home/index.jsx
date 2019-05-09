@@ -6,7 +6,7 @@ import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
 
-import InfoCard from "./card.jsx";
+import {InfoCard} from "./card.jsx";
 import GridCategory from "./grid_category.jsx"
 import Grid from "./grid_categoryList.jsx";
 
