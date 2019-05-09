@@ -260,15 +260,16 @@ class Home extends React.Component {
 
     render() {
 
+        let content;
         const category = this.state.gridCategory;
         const categories = category && category.map((item, index) => {
             return <Grid key={index} categoryId={item.id} categoryData={item.name} picUrl={item.iconUrl} type="fruits"/>
         });
 
-        var primaryImages = this.state.carousel;
+        const primaryImages = this.state.carousel;
         if (primaryImages.length == 1) {
             primaryImages[1] = primaryImages[0];
-            var content = primaryImages && primaryImages.map((data, index) => {
+            content = primaryImages && primaryImages.map((data, index) => {
                 if (data.type === "广告") {
                     return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
                         <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
@@ -291,7 +292,7 @@ class Home extends React.Component {
                 }
             });
         } else {
-            var content = primaryImages && primaryImages.map((data, index) => {
+            content = primaryImages && primaryImages.map((data, index) => {
                 if (data.type === "广告") {
                     return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
                         <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
@@ -300,7 +301,9 @@ class Home extends React.Component {
                              }}/>
                     </Link>
                 } else if (data.type === "活动") {
-                    return <Link to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}} key={index}>
+                    return <Link
+                        to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}}
+                        key={index}>
                         <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
                             window.dispatchEvent(new Event('resize'));
                         }}/>

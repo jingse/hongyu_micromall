@@ -30,16 +30,17 @@ class CommentOn extends React.Component {
         super(props);
 
         const length = this.props.location.order.orderItems.length;
-        var isLighted = new Array(length);
-        var files = new Array(length);
-        var anonymous = new Array(length);
-        for (var i = 0; i < length; i++) {
+        let isLighted = new Array(length);
+        let files = new Array(length);
+        let anonymous = new Array(length);
+
+        for (let i = 0; i < length; i++) {
             isLighted[i] = new Array(5);
             files[i] = new Array();
             anonymous[i] = false;
-            for (var j = 0; j < 5; j++) {
+
+            for (let j = 0; j < 5; j++)
                 isLighted[i][j] = true;
-            }
         }
 
         this.state = {
@@ -53,17 +54,15 @@ class CommentOn extends React.Component {
 
     componentWillMount() {
         let length = this.props.location.order.orderItems.length;
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++)
             filesURL[i] = new Array();
-        }
     }
 
     getStarCount(index) {
         let starCount = 0;
         for (let i = 0; i < this.state.isLighted[index].length; i++) {
-            if (this.state.isLighted[index][i]) {
+            if (this.state.isLighted[index][i])
                 starCount++;
-            }
         }
         return starCount;
     }
@@ -74,30 +73,24 @@ class CommentOn extends React.Component {
         //如果点击的那颗星是空的，那么把它和它之前的星都点亮
         //否则，把它和它后面的星都置空
         if (this.state.isLighted[pos][index]) {
-            for (let i = 0; i < index; i++) {
+            for (let i = 0; i < index; i++)
                 this.state.isLighted[pos][i] = true;
-            }
         } else {
-            for (let i = 4; i > index; i--) {
+            for (let i = 4; i > index; i--)
                 this.state.isLighted[pos][i] = false;
-            }
         }
         this.setState({isLighted: this.state.isLighted});
     }
 
     getStarDescription(i) {
-        if (this.getStarCount(i) === 1) {
-            return "很差";
-        } else if (this.getStarCount(i) === 2) {
-            return "较差";
-        } else if (this.getStarCount(i) === 3) {
-            return "一般";
-        } else if (this.getStarCount(i) === 4) {
-            return "较好";
-        } else if (this.getStarCount(i) === 5) {
-            return "非常好";
-        } else {
+        const startCount = this.getStarCount(i);
 
+        switch(startCount) {
+            case 1: return "很差";
+            case 2: return "较差";
+            case 3: return "一般";
+            case 4: return "较好";
+            case 5: return "非常好";
         }
     }
 
@@ -187,18 +180,18 @@ class CommentOn extends React.Component {
                     },
             }
         });
-        var appraisesInformation = {
+        const appraisesInformation = {
             "wechat_id": localStorage.getItem("wechatId"),
             "wrapAppraises": appraises,
         };
         console.log("appraisesInformation", appraisesInformation);
         commentApi.applyAppraises(appraisesInformation, (rs) => {
             console.log("rs: ", rs);
-            if (rs && rs.success) {
+            if (rs && rs.success)
                 Toast.info('评价成功！', 1);
-            } else {
+            else
                 Toast.info('哎呀，出错了！', 1);
-            }
+
             this.setState({animating: !this.state.animating});
             history.go(-1)
         });
@@ -226,7 +219,7 @@ class CommentOn extends React.Component {
     }
 
     getStarOfIndex(i) {
-        const content = this.state.isLighted[i] && this.state.isLighted[i].map((item, index) => {
+        return this.state.isLighted[i] && this.state.isLighted[i].map((item, index) => {
 
             return <img key={index} src={item ? "./images/icons/星.png" : "./images/icons/星-空.png"}
                         style={{marginLeft: '0.8rem'}}
@@ -237,8 +230,7 @@ class CommentOn extends React.Component {
                             // this.setState({isLighted: this.state.isLighted});
                         }}/>
 
-        });
-        return content
+        })
     }
 
     render() {

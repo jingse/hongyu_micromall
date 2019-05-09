@@ -64,8 +64,40 @@ function getSalesDetailIcon(salesImages) {
     return img
 }
 
+function getSalesIconImg(item) {
+    let img = null;
+    for (let i = 0; i < item.pics.length; i++) {
+        if (!item.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
+            if (item.pics[i].isTag)
+                img = item.pics[i].mediumPath;
+        } else {
+            if (item.pics[i].isLogo)
+                img = item.pics[i].mediumPath;
+        }
+    }
+    return img
+}
+
 //sales_group的detail页面多用到的一个函数
-function getSalesIconImg(salesImages) {
+function getSalesGroupIconImg(salesImages) {
+    let img = null;
+    salesImages && salesImages.map((item, index) => {
+        if (item.isTag)
+            img = item.mediumPath
+    });
+    return img
+}
+
+function gerSalesGroupIconByItem(item) {
+    let img = null;
+    item.pics && item.pics.map((image, index) => {
+        if (image.isTag)
+            img = image.mediumPath
+    });
+    return img
+}
+
+function getSalesGroupIconImgArray(salesImages) {
     let img = null;
     salesImages && salesImages.map((item, index) => {
         if (item.isTag)
@@ -74,14 +106,16 @@ function getSalesIconImg(salesImages) {
     return img
 }
 
-
 const SaleManager = {
     getSalesContent,
     getDetailSalesContent,
     getHomeSalesContent,
 
     getSalesIconImg,
-    getSalesDetailIcon
+    getSalesGroupIconImg,
+    gerSalesGroupIconByItem,
+    getSalesGroupIconImgArray,
+    getSalesDetailIcon,
 };
 
 export default SaleManager;

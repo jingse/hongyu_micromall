@@ -1,9 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Flex, WhiteSpace} from 'antd-mobile';
+import {Flex} from 'antd-mobile';
 import Separator from "./separator.jsx";
-import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
+import {ProductCard} from "../../../components/product_card/proCard.jsx";
 
 export default class CategoryGrid extends React.Component {
     constructor(props, context) {
@@ -29,7 +28,6 @@ export default class CategoryGrid extends React.Component {
                 });
             }
         });
-
     }
 
 
@@ -46,30 +44,12 @@ export default class CategoryGrid extends React.Component {
 
 
         const content = topOfCategory && topOfCategory.map((item, index) => {
-            return (//<div className="roll">
-                <Flex.Item key={index} className="product_card"
-                           style={{
-                               backgroundColor: 'white',
-                               marginBottom: '0.1rem',
-                               flex: '0 0 30%',
-                               marginLeft: '1.5%',
-                               marginRight: '1.5%'
-                           }}>
-                    {/*<Link to={{pathname:"/product", state: item.specialty.id }}>*/}
-                    <Link to={`/product/${item.specialty.id}`}>
-                        <div><img src={"http://" + getServerIp() + item.iconURL.mediumPath}
-                                  style={{width: '6rem', height: '6rem'}}/></div>
-                        <WhiteSpace/>
-                        <div className="product_name">{item.specialty.name}</div>
-                        <WhiteSpace/>
-                        <div className="product_amount">{item.hasSold}人付款</div>
-                        <WhiteSpace/>
-                        <div className="product_price">￥{item.pPrice}元起</div>
-                        <WhiteSpace size='xs'/>
-                    </Link>
-                </Flex.Item>
-                //</div>
-            )
+            return <ProductCard key={index}
+                                targetLink={`/product/${item.specialty.id}`}
+                                cardProductImgUrl={item.iconURL.mediumPath}
+                                cardProductName={item.specialty.name}
+                                cardProductHasSold={item.hasSold}
+                                cardProductPlatformPrice={item.pPrice}/>;
         });
 
 

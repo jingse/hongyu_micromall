@@ -6,10 +6,13 @@ import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import myApi from "../../../../api/my.jsx";
 import orderApi from "../../../../api/my.jsx";
+import paymentApi from "../../../../api/payment.jsx";
+import WxManager from "../../../../manager/WxManager.jsx";
+import PayManager from "../../../../manager/payManager.jsx";
+import OrderManager from "../../../../manager/OrderManager.jsx";
 import {getServerIp} from "../../../../config.jsx";
 import './index.less';
-import paymentApi from "../../../../api/payment.jsx";
-import wxApi from "../../../../api/wechat.jsx";
+
 
 const alert = Modal.alert;
 const pageSize = 10;
@@ -81,36 +84,15 @@ export default class Order extends React.Component {
         }
 
 
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
     }
 
     componentDidMount() {
         console.log('hei', this.refs.lv)
         const hei = this.state.height - this.refs.lv;
         console.log('hei', hei)
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+
+        WxManager.share();
     }
 
     requestTabData(tab, page, rows) {
@@ -142,7 +124,7 @@ export default class Order extends React.Component {
         myApi.getAllOrderListByAccount(wechatId, page, rows, (rs) => {
             const allOrder = rs.obj.rows;
             console.log("allOrder", rs);
-            let alltemp = (page == 1) ? allOrder : this.state.all.concat(allOrder);
+            let alltemp = (page === 1) ? allOrder : this.state.all.concat(allOrder);
             this.setState({
                 all: alltemp,
                 allPage: rs.obj.totalPages,
@@ -162,7 +144,7 @@ export default class Order extends React.Component {
         myApi.getOrderListByAccount(wechatId, 0, page, rows, (rs) => {
             const payOrder = rs.obj.rows;
             console.log("请求待付款订单", rs);
-            let paytemp = (page == 1) ? payOrder : this.state.pay.concat(payOrder);
+            let paytemp = (page === 1) ? payOrder : this.state.pay.concat(payOrder);
             this.setState({
                 pay: paytemp,
                 payPage: rs.obj.totalPages,
@@ -178,7 +160,7 @@ export default class Order extends React.Component {
 
     requestDeliverOrder(wechatId, page, rows) {
         console.log("请求待发货订单");
-        let delivertemp = (page == 1) ? [] : this.state.deliver;
+        let delivertemp = (page === 1) ? [] : this.state.deliver;
         //待发货订单
         myApi.getOrderListByAccount(wechatId, 1, page, rows, (rs) => {
             let order1 = rs.obj.rows;
@@ -206,7 +188,7 @@ export default class Order extends React.Component {
 
     requestReceiveOrder(wechatId, page, rows) {
         console.log("请求待收货订单");
-        let receivetemp = (page == 1) ? [] : this.state.receive;
+        let receivetemp = (page === 1) ? [] : this.state.receive;
         //待收货订单
         myApi.getOrderListByAccount(wechatId, 4, page, rows, (rs) => {
             const order = rs.obj.rows;
@@ -227,12 +209,12 @@ export default class Order extends React.Component {
     requestEvaluateOrder(wechatId, page, rows) {
         console.log("请求待评价订单");
         console.log("requestEvaluateOrder page", page);
-        let evaluateetemp = (page == 1) ? [] : this.state.evaluate;
+        let evaluateetemp = (page === 1) ? [] : this.state.evaluate;
         //待评价订单
         let order = [];
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs) => {
             let order1 = rs.obj.rows;
-            var valid1 = [];
+            let valid1 = [];
             order1 && order1.map((item, index) => {
                 if (!item.isAppraised) {
                     valid1.push(item);
@@ -241,7 +223,7 @@ export default class Order extends React.Component {
             order = order.concat(valid1);
             myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs) => {
                 const order2 = rs.obj.rows;
-                var valid2 = [];
+                let valid2 = [];
                 order2 && order2.map((item, index) => {
                     if (!item.isAppraised) {
                         valid2.push(item);
@@ -266,7 +248,7 @@ export default class Order extends React.Component {
 
     requestRefundOrder(wechatId, page, rows) {
         console.log("请求退款订单");
-        let refundtemp = (page == 1) ? [] : this.state.refund;
+        let refundtemp = (page === 1) ? [] : this.state.refund;
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs) => {
             let order1 = rs.obj.rows;
@@ -307,91 +289,11 @@ export default class Order extends React.Component {
         });
     }
 
-    // checkState(orderState) {
-    //     if (orderState === 0) {
-    //         return "待付款"
-    //     } else if (orderState === 1 || orderState ===2 || orderState ===3) {
-    //         return "待发货"
-    //     } else if (orderState === 4 || orderState === 7) {
-    //         return "待收货"
-    //     } else if (orderState === 5 || orderState === 6) {
-    //         return "待评价"
-    //     } else if (orderState === 8 || orderState === 9 || orderState === 10 || orderState === 11) {
-    //         return "退款"
-    //     } else {
-    //         return null
-    //     }
-    // }
-
-    checkDetailState(orderState) {
-        var stateStr = '';
-        switch (orderState) {
-            case 0:
-                stateStr = "待付款";
-                break;
-            case 1:
-                stateStr = "待审核";
-                break;
-            case 2:
-                stateStr = "待出库";
-                break;
-            case 3:
-                stateStr = "待发货";
-                break;
-            case 4:
-                stateStr = "待收货";
-                break;
-            case 5:
-                stateStr = "已收货";
-                break;
-            case 6:
-                stateStr = "已完成";
-                break;
-            case 7:
-                stateStr = "已取消";//////
-                break;
-            case 8:
-                stateStr = "待确认";
-                break;
-            case 9:
-                stateStr = "待退货";
-                break;
-            case 10:
-                stateStr = "待入库";
-                break;
-            case 11:
-                stateStr = "待退款";
-                break;
-            case 12:
-                stateStr = "已退款";
-                break;
-        }
-        return stateStr
-    }
-
-    checkOrder(tab) {
-        switch (tab) {
-            case 0:
-                return "";
-            case 1:
-                return "待付款";
-            case 2:
-                return "待发货";
-            case 3:
-                return "待收货";
-            case 4:
-                return "待评价";
-            case 5:
-                return "退款";
-        }
-    }
-
-    isRefundOrder(state) {
-        if (state === 8 || state === 9 || state === 10 || state === 11) {
-            return '/my/order/refund/detail'
-        } else {
-            return '/my/order/detail'
-        }
+    static isRefundOrder(state) {
+        if (state === 8 || state === 9 || state === 10 || state === 11)
+            return '/my/order/refund/detail';
+        else
+            return '/my/order/detail';
     }
 
     getOrderButton(tab, item) {
@@ -426,9 +328,9 @@ export default class Order extends React.Component {
 
             case 2:
 
-                if (item.orderState === 3 || item.orderState === 2) {
-                    return null
-                }
+                if (item.orderState === 3 || item.orderState === 2)
+                    return null;
+
 
                 return <div style={{background: '#fff', textAlign: 'right'}}>
                     <WhiteSpace/>
@@ -551,31 +453,18 @@ export default class Order extends React.Component {
 
     }
 
-    // 微信支付接口
-    onBridgeReady() {
-        WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-                "appId": this.appId,             //公众号名称，由商户传入
-                "timeStamp": this.timestamp,     //时间戳，自1970年以来的秒数
-                "nonceStr": this.nonceStr,       //随机串
-                "package": this.package,
-                "signType": this.signType,       //微信签名方式：
-                "paySign": this.paySign          //微信签名
-            },
-            function (res) {
-                console.log("res", res);
-                if (res.err_msg === "get_brand_wcpay_request:ok") {
-                    this.requestTabData(1, 1, pageSize);
-                    // this.linkTo({pathname: '/my/order', state:2});
-                } else if (res.err_msg === "get_brand_wcpay_request:fail") {
-                    Toast.info("支付失败");
-                }
-            }
-        );
+    orderPaySuccessCallback() {
+        this.requestTabData(1, 1, pageSize);
+    }
 
+    orderPayFailCallback() {
+        Toast.info("支付失败");
+    }
+    orderPayCallback() {
         console.log('待付款刷新1')
         this.requestTabData(1, 1, pageSize);
     }
+
 
     payCharge(item, payMoney, event) {
         const openid = localStorage.getItem("openid");
@@ -590,25 +479,17 @@ export default class Order extends React.Component {
 
             paymentApi.confirmOrder(orderCode, shouldPayMoney, openid, (rs) => {
                 console.log("confirmOrder rs", rs);
-                this.appId = rs.result.appId;
-                this.nonceStr = rs.result.nonceStr;
-                this.package = rs.result.package;
-                this.paySign = rs.result.paySign;
-                this.signType = rs.result.signType;
-                this.timestamp = rs.result.timestamp;
-                this.code = orderCode;
 
-                // 调起微信支付接口
-                if (typeof WeixinJSBridge === "undefined") {
-                    if (document.addEventListener) {
-                        document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                    } else if (document.attachEvent) {
-                        document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                        document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
-                    }
-                } else {
-                    this.onBridgeReady();
-                }
+                let payConfig = {
+                    "appId": rs.result.appId,
+                    "nonceStr": rs.result.nonceStr,
+                    "package": rs.result.package,
+                    "paySign": rs.result.paySign,
+                    "signType": rs.result.signType,
+                    "timestamp": rs.result.timestamp,
+                };
+
+                PayManager.doPay(payConfig, this.orderPaySuccessCallback, null, this.orderPayFailCallback, this.orderPayCallback);
 
                 console.log('待付款刷新2')
                 this.requestTabData(1, 1, pageSize);
@@ -637,11 +518,11 @@ export default class Order extends React.Component {
     }
 
     getOrderContent(order, orderStateStr) {
-        var orderContent;
+        let orderContent;
 
         if (!order || order.length === 0) {
             return <div className="tip">
-                <div>您还没有{this.checkOrder(this.state.tab)}订单哦！</div>
+                <div>您还没有{OrderManager.checkOrder(this.state.tab)}订单哦！</div>
                 <WhiteSpace/>
                 <Button type="ghost" inline size="small" onClick={() => {
                     this.linkTo('/home')
@@ -656,11 +537,11 @@ export default class Order extends React.Component {
                             <div className="order_card_group">
                                 <span>下单时间：{new Date(item.orderTime).toLocaleString()}</span>
                                 {/*<span style={{marginLeft:'1rem'}}>下单人id:{this.state.wechatId}</span>*/}
-                                <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
+                                <span className="order_card_status">{OrderManager.checkDetailState(item.orderState)}</span>
                             </div>
                             {/*<Link to='/my/order/detail'>*/}
                             <Link to={{
-                                pathname: this.isRefundOrder(item.orderState),
+                                pathname: Order.isRefundOrder(item.orderState),
                                 orderId: item.id,
                                 orderState: item.orderState
                             }}>
@@ -711,10 +592,10 @@ export default class Order extends React.Component {
                     return <div key={index} className="order_card">
                         <div className="order_card_group">
                             <span>游买有卖</span>
-                            <span className="order_card_status">{this.checkDetailState(item.orderState)}</span>
+                            <span className="order_card_status">{OrderManager.checkDetailState(item.orderState)}</span>
                         </div>
                         <Link to={{
-                            pathname: this.isRefundOrder(item.orderState),
+                            pathname: Order.isRefundOrder(item.orderState),
                             orderId: item.id,
                             orderState: item.orderState
                         }}>

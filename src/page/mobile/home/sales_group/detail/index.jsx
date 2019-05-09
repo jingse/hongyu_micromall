@@ -338,7 +338,7 @@ export default class SalesGroupDetail extends React.Component {
 
         let buyItem = [{
             "id": null,
-            "iconURL": SaleManager.getSalesIconImg(this.state.salesGroupDetail.pics),
+            "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesGroupDetail.pics),
             "isGroupPromotion": true,
             "curPrice": this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice,
             "name": this.state.salesGroupDetail.name,
