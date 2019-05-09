@@ -9,7 +9,7 @@ import SaleManager from '../../manager/SaleManager.jsx';
 import "./saleList.less";
 
 
-export default class SalesList extends React.Component {
+export default class SalesList extends React.PureComponent {
 
     constructor(props) {
         super(props);

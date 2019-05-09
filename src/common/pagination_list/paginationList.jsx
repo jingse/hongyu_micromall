@@ -6,7 +6,7 @@ import Navigation from "../../components/navigation/index.jsx";
 
 const wechatId = localStorage.getItem("wechatId");
 
-export default class PaginationList extends React.Component {
+export default class PaginationList extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

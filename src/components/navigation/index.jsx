@@ -7,7 +7,7 @@ const Item = Popover.Item;
 const myImg = src => <img src={`./images/navigation/${src}.svg`} className="am-icon am-icon-xs" alt=""/>;
 
 
-export default class Navigation extends React.Component {
+export default class Navigation extends React.PureComponent {
 
     state = {
         visible: false,

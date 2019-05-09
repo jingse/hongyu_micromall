@@ -8,7 +8,7 @@ import cartApi from "../../api/cart.jsx";
 const alert = Modal.alert;
 
 
-export default class PutInCart extends React.Component {
+export default class PutInCart extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

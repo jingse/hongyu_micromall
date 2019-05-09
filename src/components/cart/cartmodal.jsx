@@ -8,7 +8,7 @@ import {getServerIp} from "../../config.jsx";
 let temp = [];
 
 
-export default class CartModal extends React.Component {
+export default class CartModal extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();
