@@ -184,7 +184,7 @@ class Product extends React.Component {
 
         if (this.state.isNull)
             return <Layout>
-                <div>该产品的数据为空</div>
+                <div className="null_product">该产品的数据为空</div>
             </Layout>;
 
 

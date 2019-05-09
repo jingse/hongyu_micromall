@@ -189,12 +189,10 @@ class Cart extends React.Component {
     }
 
     checkPayCount() {
-        if (this.getPayCount() === 0) {
+        if (this.getPayCount() === 0)
             Toast.info('您还没有选择宝贝哦！', 1);
-        } else {
-            localStorage.setItem("origin", "cart");
+        else
             this.linkTo('/cart/payment');
-        }
     }
 
     falseShowEdit(index) {
@@ -270,7 +268,8 @@ class Cart extends React.Component {
             pathname: link,
             products: items,
             price: this.state.priceResult,
-            presents: this.state.presents
+            presents: this.state.presents,
+            origin:'cart',
         });
     }
 
