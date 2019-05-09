@@ -97,6 +97,9 @@ export default class Address extends React.PureComponent {
     }
 
     chooseAddress(item) {
+        if (!this.props.location.state)
+            this.linkTo("/cart/payment");
+
         if (this.props.location.state.fromSet === 'set')
             return;
         console.log("item", item);
