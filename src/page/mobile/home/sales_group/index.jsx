@@ -3,7 +3,7 @@ import SaleList from "../../../../common/sale_list/saleList.jsx";
 import SaleManager from "../../../../manager/SaleManager.jsx";
 
 
-export default class SalesGroup extends React.Component {
+export default class SalesGroup extends React.PureComponent {
 
     constructor(props) {
         super(props);

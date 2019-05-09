@@ -4,9 +4,10 @@ import Layout from "../../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../../components/navigation/index.jsx";
 import myApi from "../../../../../../api/my.jsx";
 import {getServerIp} from "../../../../../../config.jsx";
+import OrderManager from "../../../../../../manager/OrderManager.jsx";
 
 
-export default class RefundDetail extends React.Component {
+export default class RefundDetail extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -31,20 +32,6 @@ export default class RefundDetail extends React.Component {
         console.log("this.state.result", this.state.result);
     }
 
-    displayState(state) {
-        switch (state) {
-            case 8:
-                return "申请退货待确认";
-            case 9:
-                return "待退货";
-            case 10:
-                return "待入库";
-            case 11:
-                return "待退款";
-            case 12:
-                return "已退款";
-        }
-    }
 
     render() {
         console.log(this.state.result);
@@ -77,7 +64,7 @@ export default class RefundDetail extends React.Component {
                 background: 'darkorange', padding: '1rem', textAlign: 'center',
                 fontSize: '0.8rem', color: 'white'
             }}>
-                {this.displayState(this.state.result.order.orderState)}
+                {OrderManager.checkRefundState(this.state.result.order.orderState)}
                 <WhiteSpace/>
                 <div style={{fontSize: '0.4rem'}}>
                     {/*{this.state.result.refund_state_latest_time}*/}

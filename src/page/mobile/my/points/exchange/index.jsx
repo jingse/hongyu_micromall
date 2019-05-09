@@ -6,7 +6,7 @@ import {ActivityIndicator, Card, InputItem, Toast, WhiteSpace} from 'antd-mobile
 import {createForm} from 'rc-form';
 import pointsApi from "../../../../../api/points.jsx";
 
-class ExchangePoints extends React.Component {
+class ExchangePoints extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

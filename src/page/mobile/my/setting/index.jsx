@@ -12,14 +12,14 @@ const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
 const wechatId = localStorage.getItem("wechatId");
 
-export default class Setting extends React.Component {
+export default class Setting extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
-            isVip: (localStorage.getItem("isVip") == "true") ? true : false,
-            isWebusiness: (localStorage.getItem("isWebusiness") == "1") ? true : false,
-            hadBindPhone: (localStorage.getItem("bindPhone") != 'null') ? true : false,
+            isVip: (localStorage.getItem("isVip") === "true"),
+            isWebusiness: (localStorage.getItem("isWebusiness") === "1"),
+            hadBindPhone: (localStorage.getItem("bindPhone") !== 'null'),
             dateNow: now, //当前时间
             dateSet: null, //会员设置时间
             vipAddress: null,
@@ -48,7 +48,7 @@ export default class Setting extends React.Component {
         })
     }
 
-    formatDate(date) {
+    static formatDate(date) {
         const pad = n => n < 10 ? `0${n}` : n;
         const dateStr = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
         // const timeStr = `${pad(date.getHours())}:${pad(date.getMinutes())}`;${timeStr}
@@ -99,11 +99,11 @@ export default class Setting extends React.Component {
                                 {text: '取消', onPress: () => console.log('取消设置')},
                                 {
                                     text: '确认', onPress: () => {
-                                        console.log('date', this.formatDate(date))
+                                        console.log('date', Setting.formatDate(date))
                                         if (this.state.dateSet === null) {
                                             console.log('date', date)
                                             this.setState({dateSet: date});
-                                            myApi.vipBirthdayAdd(wechatId, this.formatDate(date), (rs) => {
+                                            myApi.vipBirthdayAdd(wechatId, Setting.formatDate(date), (rs) => {
                                                 console.log('set vip birthday rs', rs)
                                             })
                                         } else

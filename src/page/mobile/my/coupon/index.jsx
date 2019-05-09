@@ -6,7 +6,7 @@ import './index.less';
 
 const Item = List.Item;
 
-export default class Coupon extends React.Component {
+export default class Coupon extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

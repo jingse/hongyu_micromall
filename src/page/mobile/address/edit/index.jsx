@@ -7,7 +7,7 @@ import addressApi from "../../../../api/address.jsx";
 import PropTypes from "prop-types";
 
 
-export default class EditAddress extends React.Component {
+export default class EditAddress extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {

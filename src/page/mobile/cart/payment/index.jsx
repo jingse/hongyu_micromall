@@ -29,7 +29,7 @@ import {getServerIp} from "../../../../config.jsx";
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
-class Payment extends React.Component {
+class Payment extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -567,9 +567,12 @@ class Payment extends React.Component {
             case "sales_group":
                 this.context.router.history.push({pathname: '/home/sales_group/detail'});
                 break;
-            default: // 默认是从product页面进入此页面，将product页面的返回路径设为home首页
+            case "product": // 从product页面进入此页面，将product页面的返回路径设为home首页
                 localStorage.setItem("dest", "/home");
                 this.context.router.history.push({pathname: `/product/${specialtyId}`});
+                break;
+            default: //默认从地址页面返回
+                this.context.router.history.push({pathname: '/cart'});
                 break;
         }
     }

@@ -8,7 +8,7 @@ import './index.less';
 import myApi from "../../../../api/my.jsx";
 
 
-export default class ProfitShare extends React.Component {
+export default class ProfitShare extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

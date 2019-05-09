@@ -9,7 +9,7 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-export default class DisposableCoupon extends React.Component {
+export default class DisposableCoupon extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

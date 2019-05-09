@@ -31,6 +31,21 @@ function checkDetailState(orderState) {
     }
 }
 
+function checkRefundState(state) {
+    switch (state) {
+        case 8:
+            return "申请退货待确认";
+        case 9:
+            return "待退货";
+        case 10:
+            return "待入库";
+        case 11:
+            return "待退款";
+        case 12:
+            return "已退款";
+    }
+}
+
 function checkOrder(tab) {
     switch (tab) {
         case 0:
@@ -66,6 +81,7 @@ function checkOrder(tab) {
 
 const OrderManager = {
     checkDetailState,
+    checkRefundState,
     checkOrder,
 };
 

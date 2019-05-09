@@ -2,7 +2,7 @@ import React from 'react';
 import List from '../../../../common/list/list.jsx';
 
 
-export default class Tag extends React.Component {
+export default class Tag extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
 

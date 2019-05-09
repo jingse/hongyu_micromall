@@ -30,7 +30,7 @@ import settingApi from "../../../api/setting.jsx";
 let cartProps;
 let buyProps;
 
-class Product extends React.Component {
+class Product extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

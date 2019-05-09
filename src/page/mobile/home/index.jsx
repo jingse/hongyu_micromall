@@ -21,7 +21,7 @@ import './index.less';
 
 
 
-class Home extends React.Component {
+class Home extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

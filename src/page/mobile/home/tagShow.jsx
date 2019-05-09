@@ -5,7 +5,7 @@ import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
 import {ProductCard} from "../../../components/product_card/proCard.jsx";
 
-export default class TagShow extends React.Component {
+export default class TagShow extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

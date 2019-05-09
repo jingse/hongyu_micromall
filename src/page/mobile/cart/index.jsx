@@ -13,7 +13,7 @@ import {getServerIp} from "../../../config.jsx";
 let items = [];  //为了传递给下个界面
 let stock = 0;
 
-class Cart extends React.Component {
+class Cart extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {

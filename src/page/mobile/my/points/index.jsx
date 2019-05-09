@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import myApi from "../../../../api/my.jsx";
 
 
-export default class MyPoints extends React.Component {
+export default class MyPoints extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

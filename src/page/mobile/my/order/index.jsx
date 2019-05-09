@@ -18,7 +18,7 @@ const alert = Modal.alert;
 const pageSize = 10;
 
 
-export default class Order extends React.Component {
+export default class Order extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
 

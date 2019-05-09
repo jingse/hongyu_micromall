@@ -13,7 +13,7 @@ const Item = List.Item;
 const pageSize = 10;
 let wechatIdmy = localStorage.getItem("wechatId");
 
-export default class My extends React.Component {
+export default class My extends React.PureComponent {
 
     constructor(props) {
         super(props);

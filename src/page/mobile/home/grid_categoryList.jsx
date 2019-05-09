@@ -4,7 +4,7 @@ import {Separator} from "./separator.jsx";
 import homeApi from "../../../api/home.jsx";
 import {ProductCard} from "../../../components/product_card/proCard.jsx";
 
-export default class CategoryGrid extends React.Component {
+export default class CategoryGrid extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

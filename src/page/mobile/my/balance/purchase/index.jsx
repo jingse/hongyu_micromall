@@ -9,7 +9,7 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-export default class BalancePurchase extends React.Component {
+export default class BalancePurchase extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

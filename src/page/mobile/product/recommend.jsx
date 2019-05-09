@@ -4,7 +4,7 @@ import {Flex, WhiteSpace, WingBlank} from "antd-mobile";
 import {getServerIp} from "../../../config.jsx";
 import Card from "../../../components/card/index.jsx";
 
-export default class Recommend extends React.Component {
+export default class Recommend extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
@@ -25,7 +25,7 @@ export default class Recommend extends React.Component {
 
     checkRecommendNull(content) {
         console.log("content:", content);
-        if (content.length == 0)
+        if (content.length === 0)
             return null;
         return <Card className="general_container">
             <WingBlank>
@@ -45,8 +45,6 @@ export default class Recommend extends React.Component {
 
             </WingBlank>
         </Card>
-
-
     }
 
 

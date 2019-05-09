@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 const wechatId = localStorage.getItem("wechatId");
 
-export default class AddAddress extends React.Component {
+export default class AddAddress extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {

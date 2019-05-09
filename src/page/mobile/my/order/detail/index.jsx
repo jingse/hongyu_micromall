@@ -19,7 +19,7 @@ const alert = Modal.alert;
 let orderCode = "";
 let payMoney = 0;
 
-export default class OrderDetail extends React.Component {
+export default class OrderDetail extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {

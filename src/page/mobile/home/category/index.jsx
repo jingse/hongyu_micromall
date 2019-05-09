@@ -3,7 +3,7 @@ import List from '../../../../common/list/list.jsx';
 import "./index.less";
 
 
-export default class Category extends React.Component {
+export default class Category extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
 

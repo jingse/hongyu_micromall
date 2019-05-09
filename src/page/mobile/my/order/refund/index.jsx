@@ -13,7 +13,7 @@ import "./index.less";
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-var editId = 0;
+let editId = 0;
 
 const shipStateOption = [
     {value: 0, checked: false, label: '未收货'},
@@ -34,7 +34,7 @@ const refundType = [
 ];
 
 
-class RefundApply extends React.Component {
+class RefundApply extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -207,7 +207,7 @@ class RefundApply extends React.Component {
     }
 
     findIdIndex(id) {
-        var idIndex = 0;
+        let idIndex = 0;
         this.state.product.orderItems && this.state.product.orderItems.map((item, index) => {
             if (item.id === id) {
                 idIndex = index;

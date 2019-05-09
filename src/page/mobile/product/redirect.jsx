@@ -4,7 +4,7 @@ import Layout from "../../../common/layout/layout.jsx";
 import Navigation from "../../../components/navigation/index.jsx";
 
 
-export default class redirect extends React.Component {
+export default class redirect extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

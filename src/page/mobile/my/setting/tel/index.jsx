@@ -6,7 +6,7 @@ import Navigation from "../../../../../components/navigation/index.jsx";
 import myApi from "../../../../../api/my.jsx";
 
 
-export default class TelManage extends React.Component {
+export default class TelManage extends React.PureComponent {
 
     constructor(props) {
         super(props);
