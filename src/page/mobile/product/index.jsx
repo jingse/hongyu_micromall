@@ -14,7 +14,7 @@ import CartModal from '../../../components/cart/cartmodal.jsx';
 import PutInCart from '../../../components/cart/putincart.jsx';
 
 import Comment from "./comment.jsx";
-import Recommend from "./recommend.jsx";
+import {Recommend} from "./recommend.jsx";
 import './index.less';
 
 import proApi from "../../../api/product.jsx";
