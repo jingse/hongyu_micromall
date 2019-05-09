@@ -546,8 +546,6 @@ class Payment extends React.Component {
 
             return <Card className="payment_card clearfix">
                 <List renderHeader={() => '赠品'}>
-                    {/*<List>*/}
-                    {/*<div>赠品</div>*/}
                     {fullPresents}
                 </List>
             </Card>

@@ -10,7 +10,7 @@ import proApi from "../../../api/product.jsx";
 import './index.less';
 import {getServerIp} from "../../../config.jsx";
 
-var items = [];  //为了传递给下个界面
+let items = [];  //为了传递给下个界面
 let stock = 0;
 
 class Cart extends React.Component {
@@ -49,7 +49,6 @@ class Cart extends React.Component {
         // window.onpopstate = function(event) {this.console.log("event",event)}
         // console.log("window.history",window.onpopstate)
         // history.back();
-        // const wechatId = (!localStorage.getItem("wechatId")) ? 8 : localStorage.getItem("wechatId");
 
         this.requestCartList();
         this.closeNav();
@@ -98,7 +97,7 @@ class Cart extends React.Component {
             if (rs && rs.success) {
                 const price = rs.obj.totalMoney;
 
-                var presents = [];
+                let presents = [];
                 rs.obj.promotions && rs.obj.promotions.map((item, index) => {
                     if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
                         if (item.promotion.promotionRule === "满赠") {
@@ -218,9 +217,8 @@ class Cart extends React.Component {
 
     isChooseAll() {
         for (let i = 0; i < this.state.cartListCount; i++) {
-            if (!this.state.checkbox[i]) {
+            if (!this.state.checkbox[i])
                 return false;
-            }
         }
         return true;
     }
@@ -415,6 +413,7 @@ class Cart extends React.Component {
             <WhiteSpace/>
 
             {content}
+
             <WhiteSpace size="lg"/>
             <WhiteSpace size="lg"/>
 

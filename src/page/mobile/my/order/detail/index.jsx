@@ -38,8 +38,6 @@ export default class OrderDetail extends React.Component {
 
         this.requestOrderDetail();
 
-        // console.log("window.location.href.split('#')[0]", window.location.href.split('#')[0]);
-
         WxManager.auth();
     }
 
