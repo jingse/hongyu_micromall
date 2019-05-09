@@ -267,56 +267,31 @@ class Home extends React.PureComponent {
         });
 
         const primaryImages = this.state.carousel;
-        if (primaryImages.length == 1) {
+        if (primaryImages.length === 1)
             primaryImages[1] = primaryImages[0];
-            content = primaryImages && primaryImages.map((data, index) => {
-                if (data.type === "广告") {
-                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
-                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
-                             onLoad={() => {
-                                 window.dispatchEvent(new Event('resize'));
-                             }}/>
-                    </Link>
-                } else if (data.type === "活动") {
-                    return <Link to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                } else {
-                    return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                }
-            });
-        } else {
-            content = primaryImages && primaryImages.map((data, index) => {
-                if (data.type === "广告") {
-                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
-                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
-                             onLoad={() => {
-                                 window.dispatchEvent(new Event('resize'));
-                             }}/>
-                    </Link>
-                } else if (data.type === "活动") {
-                    return <Link
-                        to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}}
-                        key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                } else {
-                    return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                }
-            });
-        }
+
+        content = primaryImages && primaryImages.map((data, index) => {
+            if (data.type === "广告") {
+                return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
+                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => {
+                             window.dispatchEvent(new Event('resize'));
+                         }}/>
+                </Link>
+            } else if (data.type === "活动") {
+                return <Link to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}} key={index}>
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }}/>
+                </Link>
+            } else {
+                return <Link to={`/product/${data.targetId}`} key={index}>
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }}/>
+                </Link>
+            }
+        });
 
         return <Layout header={true} footer={true}>
 
