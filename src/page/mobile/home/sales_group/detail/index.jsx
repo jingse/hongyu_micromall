@@ -7,6 +7,7 @@ import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from "../../../../../components/cart/cartmodal.jsx";
+import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
@@ -15,6 +16,7 @@ import settingApi from "../../../../../api/setting.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
+
 
 let cartProps;
 let buyProps;
@@ -198,26 +200,15 @@ export default class SalesGroupDetail extends React.Component {
                     isPresent: true,
                     guige: item.fullPresentProductSpecification.specification
                 }} key={index}>
-                    <Flex style={{background: '#fff'}}>
-                        <Flex.Item style={{flex: '0 0 30%'}}>
-                            <img
-                                src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
-                                style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
-                        </Flex.Item>
-                        <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
-                            <WhiteSpace/>
-                            <div style={{marginBottom: 10, fontWeight: 'bold'}}>
-                                {item.fullPresentProduct.name}
-                                <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
-                            </div>
-                            <div style={{marginBottom: 10}}>赠品数量：<span
-                                style={{color: 'red'}}>{item.fullPresentProductNumber}</span></div>
-                            <div style={{marginBottom: 10}}>商品规格：<span
-                                style={{color: 'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
-                            {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
-                            <WhiteSpace/>
-                        </Flex.Item>
-                    </Flex>
+
+                    <PresentCard isPresent={true}
+                                 column1="赠品数量："
+                                 column2="商品规格："
+                                 presentImgUrl={SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
+                                 presentName={item.fullPresentProduct.name}
+                                 presentNum={item.fullPresentProductNumber}
+                                 presentSpecification={item.fullPresentProductSpecification.specification}/>
+
                     <WhiteSpace/>
                 </Link>
             });
@@ -260,30 +251,15 @@ export default class SalesGroupDetail extends React.Component {
                 mPrice: item.itemSpecificationId.marketPrice
             }} key={index}>
                 <Card>
-                    <Flex style={{background: '#fff'}}>
-                        <Flex.Item style={{flex: '0 0 30%'}}>
-                            <img src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.itemId.images)}
-                                 style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
-                        </Flex.Item>
-                        <Flex.Item style={{flex: '0 0 80%', color: 'black'}}>
-                            <WhiteSpace/>
-                            <WhiteSpace/>
-                            <div style={{marginBottom: 5, fontWeight: 'bold'}}>{item.itemId.name}</div>
-                            <WhiteSpace/>
-                            <div style={{marginBottom: 5}}>单买价格：<span
-                                style={{color: 'red'}}>￥{item.itemSpecificationId.platformPrice}元</span></div>
-                            <WhiteSpace/>
-                            <div style={{marginBottom: 5}}>优惠规格：<span
-                                style={{color: 'red'}}>{item.itemSpecificationId.specification}</span></div>
-                            {/* <div style={{marginBottom: 5}}>优惠政策：<span style={{color:'red'}}>
-                        {SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
-                                         this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
-                        </span></div> */}
-                            {/* {(localStorage.getItem('isWebusiness') === '1')?<div style={{marginBottom: 10}}>提成金额：<span style={{color:'red'}}>{parseFloat(item.itemSpecificationId.dividMoney).toFixed(2)}</span></div>:<div></div>} */}
-                            {/* <div style={{marginBottom: 5}}>销量：<span style={{color:'red'}}>{item.itemSpecificationId.hasSold}</span></div> */}
-                            <WhiteSpace/>
-                        </Flex.Item>
-                    </Flex>
+
+                    <PresentCard isPresent={false}
+                                 column1="单买价格："
+                                 column2="优惠规格："
+                                 presentImgUrl={SaleManager.getSalesDetailIcon(item.itemId.images)}
+                                 presentName={item.itemId.name}
+                                 presentNum={item.itemSpecificationId.platformPrice}
+                                 presentSpecification={item.itemSpecificationId.specification}/>
+
                 </Card>
                 <WhiteSpace/>
             </Link>
@@ -294,12 +270,12 @@ export default class SalesGroupDetail extends React.Component {
             let tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
             console.log("before", tempban);
             for (let i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag == true)
+                if (tempban[i].isTag)
                     tempban.splice(i, 1);
             }
             console.log("after", tempban);
             bancontent = tempban && tempban.map((item, index) => {
-                if (item.isTag == false) {
+                if (!item.isTag) {
                     return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
                                 src={"http:" + getServerIp() + item.sourcePath}
                                 onLoad={() => {

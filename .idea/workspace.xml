@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="fix">
-      <change afterPath="$PROJECT_DIR$/src/components/product_card/proCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/manager/OrderManager.jsx" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="性能优化&#10;抽出首页的card">
+      <change afterPath="$PROJECT_DIR$/src/components/present_card/presentCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/present_card/presentCard.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product_card/proCard.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/SaleManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/SaleManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product_card/proCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product_card/proCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,22 +24,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx">
+        <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/manager/SaleManager.jsx">
+        <entry file="file://$PROJECT_DIR$/src/components/present_card/presentCard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
+            <state relative-caret-position="360">
+              <caret line="24" column="97" lean-forward="true" selection-start-line="24" selection-start-column="97" selection-end-line="24" selection-end-column="97" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#10#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,13 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>quantity</find>
-      <find>val</find>
-      <find>CartModal</find>
-      <find>modal</find>
-      <find>选择</find>
-      <find>showModal</find>
-      <find>length</find>
       <find>dots</find>
       <find>icon</find>
       <find>getSalesIconImg</find>
@@ -80,9 +69,16 @@
       <find>origin</find>
       <find>StorageM</find>
       <find>PayManag</find>
-      <find>props</find>
       <find>mypic</find>
       <find>getIconF</find>
+      <find>@paddingWidth</find>
+      <find>@cardPaddingWidth</find>
+      <find>@infoCardPaddingWidth</find>
+      <find>props</find>
+      <find>赠</find>
+      <find>价格</find>
+      <find>赠品</find>
+      <find>PresentCard</find>
     </findStrings>
     <dirStrings>
       <dir>E:\Codes\React\47hongyu</dir>
@@ -94,11 +90,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" />
-        <option value="$PROJECT_DIR$/src/common/SaleManager.jsx" />
-        <option value="$PROJECT_DIR$/src/common/put_in_cart/PutInCart.jsx" />
-        <option value="$PROJECT_DIR$/src/common/purchase/Purchase.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/bottom.jsx" />
         <option value="$PROJECT_DIR$/src/common/WxManager.jsx" />
         <option value="$PROJECT_DIR$/src/common/CartManager.jsx" />
         <option value="$PROJECT_DIR$/src/manager/ConstantManager.jsx" />
@@ -128,9 +119,7 @@
         <option value="$PROJECT_DIR$/src/page/mobile/my/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/merchant/infocard.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/index.jsx" />
         <option value="$PROJECT_DIR$/src/manager/OrderManager.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" />
@@ -140,11 +129,18 @@
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" />
-        <option value="$PROJECT_DIR$/src/components/product_card/proCard.jsx" />
-        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" />
         <option value="$PROJECT_DIR$/src/manager/SaleManager.jsx" />
         <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/product_card/index.less" />
+        <option value="$PROJECT_DIR$/src/components/product_card/proCard.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/index.less" />
+        <option value="$PROJECT_DIR$/src/components/product_card/proCard.less" />
+        <option value="$PROJECT_DIR$/src/components/present_card/presentCard.less" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/present_card/presentCard.jsx" />
+        <option value="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" />
       </list>
     </option>
   </component>
@@ -161,6 +157,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,7 +180,15 @@
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
               <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="present_card" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="product_card" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
@@ -230,6 +235,25 @@
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="sales" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="sales" type="462c0819:PsiDirectoryNode" />
+              <item name="detail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
               <item name="sales_group" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -238,42 +262,22 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="comment" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="sales_group" type="462c0819:PsiDirectoryNode" />
               <item name="detail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SpecialtyShoppingMall" type="b2602c69:ProjectViewProjectNode" />
+              <item name="47hongyu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="product" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -536,13 +540,7 @@
       <workItem from="1556628848655" duration="12000" />
       <workItem from="1556629060055" duration="30465000" />
       <workItem from="1557115532437" duration="6119000" />
-    </task>
-    <task id="LOCAL-00071" summary="修改积分的一些bug">
-      <created>1533047061857</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1533047061857</updated>
+      <workItem from="1557395049207" duration="639000" />
     </task>
     <task id="LOCAL-00072" summary="增加满赠的产品显示，以及产品详情页面的优惠相关，修改优惠的bug">
       <created>1533116808429</created>
@@ -880,11 +878,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557372725726</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="性能优化&#10;抽出首页的card">
+      <created>1557382411237</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1557382411239</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1289135000" />
+    <option name="totallyTimeSpent" value="1294692000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -909,11 +914,11 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32775453" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3275401" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.3275401" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.14839572" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.14438502" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.13903743" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.328877" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -965,7 +970,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="下单的orderPhone" />
     <MESSAGE value="修改微商分成总价不显示的bug" />
     <MESSAGE value="优惠页面到产品详情页的价格显示 下单支付页的最大余额支付比例 去除无用的支付结果页和物流页面" />
     <MESSAGE value="下单支付页的最大余额支付比例bug修改" />
@@ -990,58 +994,10 @@
     <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作" />
     <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作&#10;支付功能待测试" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="性能优化&#10;抽出首页的card" />
+    <option name="LAST_COMMIT_MESSAGE" value="性能优化&#10;抽出首页的card" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/bottom/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/card/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/navigation/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/submit/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/manager/LockManager.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#12#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/manager/HttpManager.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -1202,16 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/points.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1269,25 +1215,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/manager/StorageManager.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" column="17" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manager/StorageManager.jsx" />
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4020">
@@ -1328,26 +1256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6225">
-          <caret line="415" column="5" lean-forward="true" selection-start-line="415" selection-start-column="5" selection-end-line="415" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1430">
-          <caret line="240" column="8" lean-forward="true" selection-start-line="240" selection-start-column="8" selection-end-line="240" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1230">
@@ -1375,9 +1283,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/promotion_card/promotionCard.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/promotion_card/promotionCard.jsx" />
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1398,6 +1304,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/manager/SaleManager.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/sale_list/saleList.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="90" column="91" lean-forward="true" selection-start-line="90" selection-start-column="91" selection-end-line="90" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/separator.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -1408,30 +1354,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3540">
-          <caret line="236" column="61" lean-forward="true" selection-start-line="236" selection-start-column="61" selection-end-line="236" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/product_card/proCard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="20" lean-forward="true" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-          <folding>
-            <element signature="e#20#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="340" column="61" selection-start-line="340" selection-start-column="61" selection-end-line="340" selection-end-column="61" />
+        <state>
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1440,7 +1365,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1696">
+        <state relative-caret-position="2370">
           <caret line="158" column="9" selection-start-line="158" selection-start-column="9" selection-end-line="158" selection-end-column="9" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -1448,27 +1373,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/sale_list/saleList.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/product_card/proCard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="90" column="91" lean-forward="true" selection-start-line="90" selection-start-column="91" selection-end-line="90" selection-end-column="91" />
+        <state relative-caret-position="75">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding>
+            <element signature="e#20#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/manager/SaleManager.jsx">
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        <state relative-caret-position="498">
+          <caret line="272" column="23" selection-start-line="272" selection-start-column="23" selection-end-line="272" selection-end-column="23" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/product_card/proCard.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/present_card/presentCard.less">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4305">
+          <caret line="287" column="9" lean-forward="true" selection-start-line="287" selection-start-column="9" selection-end-line="287" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="535" column="43" selection-start-line="535" selection-start-column="43" selection-end-line="535" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/present_card/presentCard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="97" lean-forward="true" selection-start-line="24" selection-start-column="97" selection-end-line="24" selection-end-column="97" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#10#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>

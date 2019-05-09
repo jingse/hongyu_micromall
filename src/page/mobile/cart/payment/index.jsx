@@ -8,6 +8,7 @@ import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
 import Card from "../../../../components/card/index.jsx";
+import {PresentCard} from "../../../../components/present_card/presentCard.jsx";
 import './index.less';
 
 
@@ -533,26 +534,14 @@ class Payment extends React.Component {
 
             fullPresents = this.state.presents && this.state.presents.map((item, index) => {
                 console.log("item:", item);
-                return <Flex style={{background: '#fff'}} key={index}>
-                    <Flex.Item style={{flex: '0 0 30%'}}>
-                        <img
-                            src={"http://" + getServerIp() + SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
-                            style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
-                    </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
-                        <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight: 'bold'}}>
-                            {item.fullPresentProduct.name}
-                            <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
-                        </div>
-                        <div style={{marginBottom: 10}}>赠品数量：<span
-                            style={{color: 'red'}}>{item.fullPresentProductNumber}</span></div>
-                        <div style={{marginBottom: 10}}>商品规格：<span
-                            style={{color: 'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
-                        {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
-                        <WhiteSpace/>
-                    </Flex.Item>
-                </Flex>
+                return <PresentCard key={index}
+                                    isPresent={true}
+                                    column1="赠品数量："
+                                    column2="商品规格："
+                                    presentImgUrl={SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
+                                    presentName={item.fullPresentProduct.name}
+                                    presentNum={item.fullPresentProductNumber}
+                                    presentSpecification={item.fullPresentProductSpecification.specification}/>;
             });
 
             return <Card className="payment_card clearfix">

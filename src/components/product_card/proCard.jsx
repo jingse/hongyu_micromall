@@ -3,7 +3,7 @@ import React from "react";
 import {Flex, WhiteSpace} from "antd-mobile";
 import {Link} from "react-router-dom";
 import {getServerIp} from "../../config.jsx";
-
+import "./proCard.less";
 
 const flexStyle = {
     backgroundColor: 'white',
