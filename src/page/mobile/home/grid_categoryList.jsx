@@ -19,7 +19,6 @@ export default class CategoryGrid extends React.Component {
 
 
     requestTopNOfCategory(categoryId) {
-        // params: categoryId  size
         console.log("categoryId", categoryId);
         homeApi.getTopNOfCategory(categoryId, 6, (rs) => {
             console.log("llfrs", rs, categoryId);
@@ -28,7 +27,6 @@ export default class CategoryGrid extends React.Component {
                 this.setState({
                     data: grid
                 });
-                // console.log("gridCategory", gridCategory);
             }
         });
 
@@ -36,16 +34,16 @@ export default class CategoryGrid extends React.Component {
 
 
     render() {
+        const {categoryPropData, categoryId, picUrl} = this.props;
 
-        let categoryData = this.props.categoryData;
-        if (!categoryData || JSON.stringify(categoryData) === "{}") {
-            return null
-        }
+        let categoryData = categoryPropData;
+        if (!categoryData || JSON.stringify(categoryData) === "{}")
+            return null;
 
         let topOfCategory = this.state.data;
-        if (!topOfCategory || JSON.stringify(topOfCategory) === "{}") {
+        if (!topOfCategory || JSON.stringify(topOfCategory) === "{}")
             return null;
-        }
+
 
         const content = topOfCategory && topOfCategory.map((item, index) => {
             return (//<div className="roll">
@@ -76,8 +74,7 @@ export default class CategoryGrid extends React.Component {
 
 
         return <div>
-            {content.length > 0 ? <Separator separatorData={categoryData} categoryData={this.props.categoryId}
-                                             picUrl={this.props.picUrl}/> : <div></div>}
+            {content.length > 0 ? <Separator separatorData={categoryData} categoryData={categoryId} picUrl={picUrl}/> : <div/>}
 
             <Flex className="flex" style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                 {content}

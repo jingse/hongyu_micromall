@@ -169,7 +169,7 @@ class Cart extends React.Component {
 
 
     findItemIndex(cartItem) {
-        var cartItemIndex = -1;
+        let cartItemIndex = -1;
         this.state.cartItems && this.state.cartItems.map((item, index) => {
             if (item.id === cartItem.id) {
                 cartItemIndex = index;

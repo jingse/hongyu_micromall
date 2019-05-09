@@ -128,9 +128,9 @@ export default class SalesDetail extends React.Component {
                 } else {
                     const temp = data[0].specialty.specifications;
                     const arrlength = temp.length;
-                    var myspecifications;
+                    let myspecifications;
 
-                    for (var i = 0; i < arrlength; i++) {
+                    for (let i = 0; i < arrlength; i++) {
                         if (temp[i].specification == this.state.specification)
                             myspecifications = temp[i];
                     }
@@ -381,9 +381,6 @@ export default class SalesDetail extends React.Component {
             start.substring(0, a + 2);
             end.substring(0, b + 2);
         }
-
-        //     cartApi.addSingleItemToCart(localStorage.getItem("wechatId"), this.state.specificationId, this.state.specialtyId,
-        //         this.state.isGroupPromotion, this.state.quantity, (rs) => {
 
 
         return <Layout>

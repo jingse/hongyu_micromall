@@ -66,23 +66,20 @@ export default class GridCategory extends React.Component {
     }
 
 
-
     render() {
 
         let topOfCoupon1 = this.state.data1;
-        if (!topOfCoupon1 || JSON.stringify(topOfCoupon1) === "{}") {
+        if (!topOfCoupon1 || JSON.stringify(topOfCoupon1) === "{}")
             return null;
-        }
 
         let topOfCoupon2 = this.state.data2;
-        if (!topOfCoupon2 || JSON.stringify(topOfCoupon2) === "{}") {
+        if (!topOfCoupon2 || JSON.stringify(topOfCoupon2) === "{}")
             return null;
-        }
 
         let topOfCoupon3 = this.state.data3;
-        if (!topOfCoupon3 || JSON.stringify(topOfCoupon3) === "{}") {
+        if (!topOfCoupon3 || JSON.stringify(topOfCoupon3) === "{}")
             return null;
-        }
+
 
         const hometag = this.state.tags;
         const hometags = hometag && hometag.map((item, index) => {
@@ -93,14 +90,12 @@ export default class GridCategory extends React.Component {
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
             console.log("sfdsaf", item);
             for (let i = 0; i < item.pics.length; i++) {
-                if (item.hySingleitemPromotions[0].hyPromotion.syncTagpic == false) {
-                    if (item.pics[i].isTag == true) {
+                if (!item.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
+                    if (item.pics[i].isTag)
                         this.state.mypic = item.pics[i].mediumPath;
-                    }
                 } else {
-                    if (item.pics[i].isLogo == true) {
+                    if (item.pics[i].isLogo)
                         this.state.mypic = item.pics[i].mediumPath;
-                    }
                 }
             }
             return (
@@ -136,7 +131,7 @@ export default class GridCategory extends React.Component {
 
         const content2 = topOfCoupon2 && topOfCoupon2.map((item, index) => {
             console.log("sfdsaf2", item);
-            for (var i = 0; i < item.pics.length; i++) {
+            for (let i = 0; i < item.pics.length; i++) {
                 if (item.pics[i].isTag == 1) {
                     this.state.mypic = item.pics[i].mediumPath;
                 }

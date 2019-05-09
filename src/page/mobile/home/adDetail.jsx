@@ -13,7 +13,7 @@ export default class AdDetail extends React.Component {
             <img src={"http://" + getServerIp() + this.props.location.state} style={{width: '100%', height: 'auto'}}
                  onLoad={() => {
                      window.dispatchEvent(new Event('resize'));
-                 }}/>
+                 }} alt=""/>
         </Layout>
     }
 }

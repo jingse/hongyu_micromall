@@ -19,8 +19,6 @@ export default class TagShow extends React.Component {
 
     requestTopTag(tagId) {
         homeApi.getTopNOfTags(tagId, 9, (rs) => {
-            // console.log("每个标签内容rs", rs);
-            // console.log("props内容", this.props.name);
             if (rs && rs.success) {
                 const tag = rs.obj;
                 this.setState({
@@ -33,9 +31,10 @@ export default class TagShow extends React.Component {
 
     render() {
         let topOfCategory = this.state.data;
-        if (!topOfCategory || JSON.stringify(topOfCategory) === "{}") {
+        if (!topOfCategory || JSON.stringify(topOfCategory) === "{}")
             return null;
-        }
+
+        const {name, tagId, picUrl} = this.props;
 
         const content = topOfCategory && topOfCategory.map((item, index) => {
             return (
@@ -66,8 +65,8 @@ export default class TagShow extends React.Component {
         return <div>
             {
                 content.length > 0 ?
-                    <Link to={{pathname: `/home/tag`, category: this.props.name, categoryId: this.props.tagId}}>
-                        <img src={"http://" + getServerIp() + this.props.picUrl} height='120' width='100%'/>
+                    <Link to={{pathname: `/home/tag`, category: name, categoryId: tagId}}>
+                        <img src={"http://" + getServerIp() + picUrl} height='120' width='100%'/>
                     </Link>
                     :
                     <div/>

@@ -7,15 +7,15 @@ import {getServerIp} from "../../../config.jsx";
 export default class Separator extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {};
     }
 
 
     render() {
+        const {separatorData, categoryData, picUrl} = this.props;
+
         // let separator = this.props.separatorData && this.props.separatorData.data;
-        // if (!separator) {
+        // if (!separator)
         //     return null;
-        // }
 
         return <div>
             <WhiteSpace/>
@@ -26,11 +26,11 @@ export default class Separator extends React.Component {
 
                             <Link to={{
                                 pathname: '/home/category',
-                                category: this.props.separatorData,
-                                categoryId: this.props.categoryData
+                                category: separatorData,
+                                categoryId: categoryData
                             }}
                                   style={{color: 'darkorange'}}>
-                                <img src={"http://" + getServerIp() + this.props.picUrl} height='105' width='100%'/>
+                                <img src={"http://" + getServerIp() + picUrl} height='105' width='100%'/>
                             </Link>
 
                         </Flex.Item>

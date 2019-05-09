@@ -251,7 +251,7 @@ class Payment extends React.Component {
 
     cartPayCallback() {
         //删除购物车相关商品
-        if (localStorage.getItem("origin") === "cart") {
+        if (this.props.location.origin === "cart") {
             this.state.ids && this.state.ids.map((item, index) => {
                 cartApi.deleteItemsInCart(item, (rs) => {
                 });
@@ -281,7 +281,7 @@ class Payment extends React.Component {
     getOrderItems() {
         console.log("this.props.location.products:", this.props.location.products);
         const items = this.state.products && this.state.products.map((item, index) => {
-            if (localStorage.getItem("origin") === "cart") {
+            if (this.props.location.origin === "cart") {
                 this.state.ids.push(item.id);
                 this.setState({ids: this.state.ids});
             }
