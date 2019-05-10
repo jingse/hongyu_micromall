@@ -27,7 +27,7 @@ export const CancelOrderButton = (props) => {
     return <Button type="ghost" inline size="small" style={style}
                    onClick={() => alert('取消订单', '您确定要取消吗？', [
                        { text: '取消', onPress: () => {} },
-                       { text: '确认', onPress: () => props.cancelOrderAction },
+                       { text: '确认', onPress: () => {props.cancelOrderAction()} },
                    ])}>
         取消订单
     </Button>
@@ -39,7 +39,7 @@ export const ConfirmReceiveButton = (props) => {
     return <Button type="ghost" inline size="small" style={style}
                    onClick={() => alert('确认收货', '您确认要收货吗？', [
                        { text: '取消', onPress: () => {} },
-                       { text: '确认', onPress: () => props.confirmReceiveAction },
+                       { text: '确认', onPress: () => {props.confirmReceiveAction()} },
                    ])}>
         确认收货
     </Button>
