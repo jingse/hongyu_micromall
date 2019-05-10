@@ -4,6 +4,7 @@ import {Button, Flex, Modal, PullToRefresh, Tabs, Toast, WhiteSpace} from 'antd-
 import {Link} from 'react-router-dom';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
+import {PayButton, CancelOrderButton, ConfirmReceiveButton, EvaluateOrderButton, ViewOrderDetailButton} from "../../../../components/order_button/orderButton.jsx";
 import myApi from "../../../../api/my.jsx";
 import orderApi from "../../../../api/my.jsx";
 import paymentApi from "../../../../api/payment.jsx";
@@ -51,6 +52,9 @@ export default class Order extends React.PureComponent {
 
             curOrderPage: 2,
         };
+        this.orderPaySuccessCallback = this.orderPaySuccessCallback.bind(this);
+        this.orderPayFailCallback = this.orderPayFailCallback.bind(this);
+        this.orderPayCallback = this.orderPayCallback.bind(this);
     }
 
     componentWillMount() {
@@ -296,103 +300,46 @@ export default class Order extends React.PureComponent {
             return '/my/order/detail';
     }
 
+
     getOrderButton(tab, item) {
         switch (tab) {
             case 0:
                 return null;
 
             case 1:
-
                 return <Flex justify="between" style={{width: '50%'}}>
-
-                    <Button type="ghost" inline size="small" style={{marginRight: '4%', fontSize: '0.7rem'}}
-                            onClick={this.payCharge.bind(this, item, Math.round(item.payMoney * 100))}>
-                        去付款
-                    </Button>
-                    <Button type="ghost" inline size="small" style={{marginRight: '4%', fontSize: '0.7rem'}}
-                            onClick={() => alert('取消订单', '您确定要取消吗？', [
-                                {
-                                    text: '取消', onPress: () => {
-                                    }
-                                },
-                                {
-                                    text: '确认', onPress: () => {
-                                        this.cancelOrderPay(item.id)
-                                    }
-                                },
-                            ])}>
-                        取消订单
-                    </Button>
-
+                    <PayButton payAction={this.payCharge.bind(this, item)}/>
+                    <CancelOrderButton cancelOrderAction={this.cancelOrderConfirm.bind(this, item.id)}/>
                 </Flex>;
 
             case 2:
-
                 if (item.orderState === 3 || item.orderState === 2)
                     return null;
 
-
                 return <div style={{background: '#fff', textAlign: 'right'}}>
                     <WhiteSpace/>
-                    <Button type="ghost" inline size="small" style={{marginRight: '4%', fontSize: '0.7rem'}}
-                            onClick={() => alert('取消订单', '您确定要取消吗？', [
-                                {
-                                    text: '取消', onPress: () => {
-                                    }
-                                },
-                                {
-                                    text: '确认', onPress: () => {
-                                        this.cancelOrderConfirm(item.id)
-                                    }
-                                },
-                            ])}>
-                        取消订单
-                    </Button>
+                    <CancelOrderButton cancelOrderAction={this.cancelOrderConfirm.bind(this, item.id)}/>
                     <WhiteSpace/>
                 </div>;
 
             case 3:
                 return <div style={{background: '#fff', textAlign: 'right'}}>
                     <WhiteSpace/>
-                    <Button type="ghost" inline size="small" style={{marginRight: '4%', fontSize: '0.7rem'}}
-                            onClick={() => alert('确认收货', '您确认要收货吗？', [
-                                {
-                                    text: '取消', onPress: () => {
-                                    }
-                                },
-                                {
-                                    text: '确认', onPress: () => {
-                                        this.orderConfirmReceive(item.id)
-                                    }
-                                },
-                            ])}>
-                        确认收货
-                    </Button>
+                    <ConfirmReceiveButton confirmReceiveAction={this.orderConfirmReceive.bind(this, item.id)}/>
                     <WhiteSpace/>
                 </div>;
 
             case 4:
                 return <div style={{background: '#fff', textAlign: 'right'}}>
                     <WhiteSpace/>
-                    <Button type="ghost" inline size="small"
-                            style={{marginRight: '4%', fontSize: '0.7rem', width: '5rem'}}
-                            onClick={() => {
-                                this.context.router.history.push({pathname: '/my/order/comment', order: item})
-                            }}>
-                        评价
-                    </Button>
+                    <EvaluateOrderButton evaluateOrderAction={this.evaluateOrderAction.bind(this, item)}/>
                     <WhiteSpace/>
                 </div>;
 
             case 5:
                 return <div style={{background: '#fff', textAlign: 'right'}}>
                     <WhiteSpace/>
-                    <Button type="ghost" inline size="small" style={{marginRight: '4%', fontSize: '0.7rem'}}
-                            onClick={() => {
-                                this.linkTo({pathname: '/my/order/refund/detail', orderId: item.id})
-                            }}>
-                        查看详情
-                    </Button>
+                    <ViewOrderDetailButton viewOrderDetailAction={this.viewOrderAction.bind(this, item)}/>
                     <WhiteSpace/>
                 </div>;
         }
@@ -427,7 +374,6 @@ export default class Order extends React.PureComponent {
                 this.requestTabData(2, 1, pageSize);
             }
         });
-
     }
 
     cancelOrderPay(orderId) {
@@ -450,7 +396,14 @@ export default class Order extends React.PureComponent {
                 this.requestTabData(0, 1, pageSize);
             }
         });
+    }
 
+    evaluateOrderAction(item) {
+        this.context.router.history.push({pathname: '/my/order/comment', order: item});
+    }
+
+    viewOrderAction(item) {
+        this.linkTo({pathname: '/my/order/refund/detail', orderId: item.id});
     }
 
     orderPaySuccessCallback() {
@@ -465,8 +418,7 @@ export default class Order extends React.PureComponent {
         this.requestTabData(1, 1, pageSize);
     }
 
-
-    payCharge(item, payMoney, event) {
+    payCharge(item) {
         const openid = localStorage.getItem("openid");
         console.log("item", item);
         orderApi.getOrderDetailById(item.id, (rs) => {
@@ -503,8 +455,7 @@ export default class Order extends React.PureComponent {
             if (orderStateDetail === 6 || orderStateDetail === 7 || orderStateDetail === 12) {
                 return <img src="./images/icons/删除.png" style={{width: '5%'}} onClick={() => alert('删除订单', '您确定要删除吗？', [
                     {
-                        text: '取消', onPress: () => {
-                        }
+                        text: '取消', onPress: () => {}
                     },
                     {
                         text: '确认', onPress: () => {

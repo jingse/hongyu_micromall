@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Button, Flex, Modal, WhiteSpace} from "antd-mobile";
+import {Flex, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import {getServerIp} from "../../../../../config.jsx";
@@ -10,10 +10,11 @@ import paymentApi from "../../../../../api/payment.jsx";
 import WxManager from "../../../../../manager/WxManager.jsx";
 import PayManager from "../../../../../manager/payManager.jsx";
 import OrderManager from "../../../../../manager/OrderManager.jsx";
+import {CancelOrderButton, ApplyForRefundButton} from "../../../../../components/order_button/orderButton.jsx";
+import {ConfirmReceiveButton, EvaluateOrderButton, PayButton} from "../../../../../components/order_button/orderButton.jsx";
+
 
 //传到这个页面的参数：this.props.location.orderId
-
-const alert = Modal.alert;
 
 //去付款需要的参数
 let orderCode = "";
@@ -28,6 +29,7 @@ export default class OrderDetail extends React.PureComponent {
             orderState: (!this.props.location.orderState && this.props.location.orderState !== 0) ? parseInt(localStorage.getItem("orderState")) : this.props.location.orderState,
         };
         this.payCharge = this.payCharge.bind(this);
+        this.orderDetailPaySuccessCallback = this.orderDetailPaySuccessCallback.bind(this);
     }
 
     componentWillMount() {
@@ -102,87 +104,39 @@ export default class OrderDetail extends React.PureComponent {
         });
     }
 
+    applyForRefundAction() {
+        this.linkTo('/my/order/refund');
+    }
+
+    evaluateOrderAction() {
+        this.context.router.history.push({pathname: '/my/order/comment', order: this.state.detail});
+    }
+
     linkTo(link) {
         this.context.router.history.push({pathname: link, state: this.state.detail});
     }
 
     getOrderButtonContent(orderState) {
-        if (orderState === 0 || orderState === 1 || orderState === 2) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => alert('取消订单', '您确定要取消吗？', [
-                               {
-                                   text: '取消', onPress: () => {
-                                   }
-                               },
-                               {
-                                   text: '确认', onPress: () => {
-                                       this.cancelOrderConfirm(this.state.orderId)
-                                   }
-                               },
-                           ])}>
-                取消订单
-            </Button>
-        } else if (orderState === 5) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.linkTo('/my/order/refund')
-                           }}>
-                申请退款
-            </Button>
-        } else {
+        if (orderState === 0 || orderState === 1 || orderState === 2)
+            return <CancelOrderButton cancelOrderAction={this.cancelOrderConfirm.bind(this, this.state.orderId)} isDetail={true}/>;
+        else if (orderState === 5)
+            return <ApplyForRefundButton applyForRefundAction={this.applyForRefundAction.bind(this)} isDetail={true}/>;
+        else
             return null
-        }
     }
 
     getButtonContent(orderState) {
         if (orderState === 0) {
             orderCode = this.state.detail.baseInfo.orderCode;
             payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100);
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={this.payCharge}>
-                去付款
-            </Button>
-        } else if (orderState === 4) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.orderConfirmReceive(this.state.orderId)
-                           }}>
-                确认收货
-            </Button>
-        } else if (orderState === 5 || orderState === 6) {
-            //return "评价";
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.context.router.history.push({
-                                   pathname: '/my/order/comment',
-                                   order: this.state.detail
-                               })
-                           }}>
-                去评价
-            </Button>
-        } else {
+
+            return <PayButton payAction={this.payCharge} isDetail={true}/>
+        } else if (orderState === 4)
+            return <ConfirmReceiveButton confirmReceiveAction={this.orderConfirmReceive.bind(this, this.state.orderId)} isDetail={true}/>;
+        else if (orderState === 5 || orderState === 6)
+            return <EvaluateOrderButton evaluateOrderAction={this.evaluateOrderAction.bind(this)} isDetail={true}/>;
+         else
             return null
-        }
     }
 
     getLogisticInfo() {
@@ -218,9 +172,9 @@ export default class OrderDetail extends React.PureComponent {
                     <WhiteSpace/>
                     <div>{new Date(this.state.detail.ships[0].recordTime).toLocaleString()}</div>
                 </Flex.Item>
-                <Flex.Item style={{flex: '0 0 15%'}}>
-                    <img src="./images/icons/向右.png" style={{width: '%10', float: 'right'}}/>
-                </Flex.Item>
+                {/*<Flex.Item style={{flex: '0 0 15%'}}>*/}
+                {/*    <img src="./images/icons/向右.png" style={{width: '%10', float: 'right'}}/>*/}
+                {/*</Flex.Item>*/}
             </Flex>
             <WhiteSpace/>
         </div>

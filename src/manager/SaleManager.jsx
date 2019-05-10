@@ -64,17 +64,22 @@ function getSalesDetailIcon(salesImages) {
     return img
 }
 
-function getSalesIconImg(item) {
+function getSalesIconImg(salesImages) {
     let img = null;
-    for (let i = 0; i < item.pics.length; i++) {
-        if (!item.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
-            if (item.pics[i].isTag)
-                img = item.pics[i].mediumPath;
+    salesImages.pics && salesImages.pics.map((item, index) => {
+
+        // 产品下架了，优惠却没下架的情况
+        // if (JSON.stringify(salesImages.hySingleitemPromotions) === "[]")
+        //     return item.mediumPath;
+
+        if (!salesImages.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
+            if (item.isTag)
+                img = item.mediumPath;
         } else {
-            if (item.pics[i].isLogo)
-                img = item.pics[i].mediumPath;
+            if (item.isLogo)
+                img = item.mediumPath;
         }
-    }
+    });
     return img
 }
 

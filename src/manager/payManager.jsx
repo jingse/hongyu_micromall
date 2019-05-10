@@ -1,10 +1,10 @@
 /*管理微信支付*/
 
 
-let paySuccessCallback; //成功支付的回调函数
-let payCancelCallback;  //取消支付的回调函数
-let payFailCallback;    //支付失败的回调函数
-let payCallback;        //支付（无论成功失败）后的回调函数
+let paySuccessCallback = null; //成功支付的回调函数
+let payCancelCallback = null;  //取消支付的回调函数
+let payFailCallback = null;    //支付失败的回调函数
+let payCallback = null;        //支付（无论成功失败）后的回调函数
 
 
 /**
@@ -16,6 +16,7 @@ let payCallback;        //支付（无论成功失败）后的回调函数
  * @param Callback 回调 true or false
  */
 function doPay(payConfig, successCallback, CancelCallback, FailCallback, Callback) {
+
     if (typeof successCallback === "function")
         paySuccessCallback = successCallback;
     if (typeof CancelCallback === "function")

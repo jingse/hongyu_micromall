@@ -12,14 +12,25 @@ const flexStyle = {
     marginLeft: '1.5%',
     marginRight: '1.5%'
 };
-
 const imgStyle = {width: '6rem', height: '6rem'};
 
+const recommendStyle = {
+    marginBottom:'0.4rem',
+    marginTop:'0.4rem',
+    flex:'0 0 47%',
+    marginLeft:'1.5%',
+    marginRight:'1.5%'
+};
+const recommendImgStyle = {width:'100%'};
+
+
 export const ProductCard = (props) => {
+    const style = props.isRecommend ? recommendStyle : flexStyle;
+    const picStyle = props.isRecommend ? recommendImgStyle : imgStyle;
     return (
-        <Flex.Item className="product_card" style={flexStyle}>
+        <Flex.Item className="product_card" style={style}>
             <Link to={props.targetLink}>
-                <div><img src={"http://" + getServerIp() + props.cardProductImgUrl} style={imgStyle} alt=""/></div>
+                <div><img src={"http://" + getServerIp() + props.cardProductImgUrl} style={picStyle} alt=""/></div>
                 <WhiteSpace/>
                 <div className="product_name">{props.cardProductName}</div>
                 <WhiteSpace/>

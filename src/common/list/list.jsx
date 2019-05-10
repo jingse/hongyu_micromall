@@ -5,7 +5,6 @@ import {Flex, ListView, Tabs, WhiteSpace} from 'antd-mobile';
 import Layout from "../../common/layout/layout.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
-import httpManager from '../../manager/HttpManager.jsx';  //不能删除
 
 let hasMore = true;
 const NUM_SECTIONS = 1;
@@ -75,20 +74,21 @@ export default class List extends React.PureComponent {
     requestListData(unUsed1, unUsed2, page, rows, condition) {
         const name = this.props.funcName;
 
-        eval( "(" + homeApi[name] + ')' + "(unUsed1, unUsed2, page, rows, condition, (rs) => {\n" +
-            "            if (rs && rs.success) {\n" +
-            "                const proList = rs.obj.rows;\n" +
-            "                let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;\n" +
-            "\n" +
-            "                if (numlist === rs.obj.total)\n" +
-            "                    hasMore = false;\n" +
-            "                \n" +
-            "                this.setState({\n" +
-            "                    data: proList,\n" +
-            "                    isLoading: false\n" +
-            "                });\n" +
-            "            }\n" +
-            "        })");
+        homeApi[name](unUsed1, unUsed2, page, rows, condition, (rs) => {
+            if (rs && rs.success) {
+                const data = rs.obj.rows;
+
+                let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;
+
+                if (numlist === rs.obj.total)
+                    hasMore = false;
+
+                this.setState({
+                    data: data,
+                    isLoading: false
+                });
+            }
+        });
     }
 
     onEndReached = (event) => {
@@ -266,8 +266,7 @@ export default class List extends React.PureComponent {
             <div style={{borderBottom: '1px solid green', backgroundColor: 'white', color: 'green', fontSize: 'bold'}}>
                 <Flex>
                     <Flex.Item style={{flex: '0 0 4%', marginRight: '0.4rem'}}>
-                        <img src='./images/category/菜篮子.png'
-                             style={{width: '90%', margin: '0.4rem'}}/>
+                        <img src='./images/category/菜篮子.png' style={{width: '90%', margin: '0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item>{this.props.name}</Flex.Item>
                 </Flex>

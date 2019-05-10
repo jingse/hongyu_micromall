@@ -36,9 +36,9 @@ export default class RefundDetail extends React.PureComponent {
     render() {
         console.log(this.state.result);
 
-        if (!this.state.result || JSON.stringify(this.state.result) === '[]') {
-            return null
-        }
+        if (!this.state.result || JSON.stringify(this.state.result) === '[]')
+            return null;
+
 
         const refundProduct = this.state.result.refundItems && this.state.result.refundItems.map((item, index) => {
             return <Flex style={{backgroundColor: '#F7F7F7'}} key={index}>

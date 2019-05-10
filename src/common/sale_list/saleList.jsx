@@ -4,7 +4,6 @@ import {Flex, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../common/layout/layout.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
-import httpManager from '../../manager/HttpManager.jsx';  //不能删除
 import SaleManager from '../../manager/SaleManager.jsx';
 import "./saleList.less";
 
@@ -29,41 +28,38 @@ export default class SalesList extends React.PureComponent {
     requestPromotionList(page) {
         const name = this.props.funcName;
 
-        eval("(" + homeApi[name] + ')' + "(page, 10, (rs) => {\n" +
-            "            if(rs && rs.success) {\n" +
-            "                console.log('rs', rs);\n" +
-            "                let numlist = (rs.obj.pageNumber-1)*10 + rs.obj.rows.length;\n" +
-            "                let isEnd1 = false;\n" +
-            "                if(numlist === rs.obj.total){\n" +
-            "                    isEnd1 = true;\n" +
-            "                }\n" +
-            "\n" +
-            "                const proList = rs.obj.rows;\n" +
-            "                if(page === 1){\n" +
-            "                    console.log('getPromotionList',rs.obj.total);\n" +
-            "                    this.setState({\n" +
-            "                        data: proList,\n" +
-            "                        isLoading: false,\n" +
-            "                        isEnd:isEnd1\n" +
-            "                    });\n" +
-            "                }\n" +
-            "                else{\n" +
-            "                    if(this.state.isEnd) {\n" +
-            "                        Toast.info(\"没有更多信息\",1);\n" +
-            "                        return;\n" +
-            "                    }\n" +
-            "\n" +
-            "                    console.log('getPromotionList2', rs, page, proList.length, numlist);\n" +
-            "                    this.setState({\n" +
-            "                        data: this.state.data.concat(proList),\n" +
-            "                        isLoading: false,\n" +
-            "                        nextPage:page+1,\n" +
-            "                        isEnd:isEnd1\n" +
-            "                    });\n" +
-            "                }\n" +
-            "\n" +
-            "            }\n" +
-            "        });");
+        homeApi[name](page, 10, (rs) => {
+            if(rs && rs.success) {
+                let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;
+                let isEnd1 = false;
+                if(numlist === rs.obj.total)
+                    isEnd1 = true;
+
+                const proList = rs.obj.rows;
+                if(page === 1){
+                    console.log('getGroupPromotionList',rs);
+                    this.setState({
+                        data: proList,
+                        isLoading: false,
+                        isEnd:isEnd1
+                    });
+                }
+                else{
+                    if(this.state.isEnd) {
+                        Toast.info("没有更多信息",1);
+                        return;
+                    }
+
+                    console.log('getOrdinaryPromotionList2',rs,page,proList.length,numlist);
+                    this.setState({
+                        data: this.state.data.concat(proList),
+                        isLoading: false,
+                        nextPage:page+1,
+                        isEnd:isEnd1
+                    });
+                }
+            }
+        });
     }
 
     addMore() {
@@ -72,7 +68,6 @@ export default class SalesList extends React.PureComponent {
 
 
     render() {
-
         const content = this.state.data && this.state.data.map((item, index) => {
             let start = new Date(item.startTime).toLocaleString();
             let end = new Date(item.endTime).toLocaleString();
@@ -135,13 +130,11 @@ export default class SalesList extends React.PureComponent {
             <div style={{borderBottom: '1px solid green', backgroundColor: 'white', color: 'green', fontSize: 'bold'}}>
                 <Flex>
                     <Flex.Item style={{flex: '0 0 4%', marginRight: '0.4rem'}}>
-                        <img src='./images/category/菜篮子.png'
-                             style={{width: '90%', margin: '0.4rem'}}/>
+                        <img src='./images/category/菜篮子.png' style={{width: '90%', margin: '0.4rem'}}/>
                     </Flex.Item>
                     <Flex.Item>{this.props.name}</Flex.Item>
                 </Flex>
             </div>
-
 
             {content}
 

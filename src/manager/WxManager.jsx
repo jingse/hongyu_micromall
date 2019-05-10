@@ -7,9 +7,10 @@ const host = wxconfig.hostURL;
 
 function share() {
     let shareData = {//自定义分享数据
-        title: '土特产微商城',
-        desc: '来自' + locManager.getMyNickname() + '的分享',
-        link: host + locManager.generateSaleLink()
+        title: '土特产微商城',   // 分享标题
+        desc: '来自' + locManager.getMyNickname() + '的分享', //这是分享给朋友描述
+        link: host + locManager.getUId(), //分享链接
+        imgUrl: './images/zz_help_smile.png', // 分享图标
     };
 
     wx.ready(function () {
@@ -29,7 +30,6 @@ function share() {
     });
 }
 
-
 function auth() {
     const url = encodeURIComponent(window.location.href.split('#')[0]);
 
@@ -46,10 +46,35 @@ function auth() {
     });
 }
 
+//关闭微信页面
+function wxClosePage(curPage) {
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', closeOperation, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', closeOperation);
+            document.attachEvent('onWeixinJSBridgeReady', closeOperation);
+        }
+    } else {
+        closeOperation(curPage);
+    }
+}
+
+//关闭微商城的操作
+function closeOperation(curPage) {
+    if (curPage === "/cart/payment")
+        alert("确认要离开吗？");
+
+    alert("确认要离开吗？");
+    WeixinJSBridge.call('closeWindow');
+    localStorage.clear();
+}
+
 
 const WxManager = {
     share,
     auth,
+    wxClosePage,
 };
 
 export default WxManager;

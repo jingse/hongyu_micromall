@@ -8,5 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jweixin-1.2.0" level="application" />
+    <orderEntry type="library" name="fastclick" level="application" />
+    <orderEntry type="library" name="video" level="application" />
+    <orderEntry type="library" name="es6-promise" level="application" />
   </component>
 </module>

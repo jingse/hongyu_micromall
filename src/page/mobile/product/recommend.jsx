@@ -12,6 +12,7 @@ export const Recommend = (props) => {
     const content = props.recommend && props.recommend.map((item, index) => {
 
         return <ProductCard key={index}
+                            isRecommend={true}
                             targetLink={{pathname: '/redirect', state: item.id}}
                             cardProductImgUrl={SaleManager.getSalesDetailIcon(item.images)}
                             cardProductName={item.name}

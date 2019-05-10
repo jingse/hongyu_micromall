@@ -55,6 +55,10 @@ class Payment extends React.PureComponent {
             presents: [],
         };
         this.payCharge = this.payCharge.bind(this);
+        this.cartPaySuccessCallback = this.cartPaySuccessCallback.bind(this);
+        this.cartPayCancelCallback = this.cartPayCancelCallback.bind(this);
+        this.cartPayFailCallback = this.cartPayFailCallback.bind(this);
+        this.cartPayCallback = this.cartPayCallback.bind(this);
     }
 
     componentWillMount() {
@@ -79,9 +83,8 @@ class Payment extends React.PureComponent {
             productApi.getSpecialtySpecificationDetailBySpecialtyID(item.specialtyId, (rs) => {
                 if (rs && rs.success) {
                     console.log('rsn', rs);
-                    if (rs.obj[0].shipType > shipType) {
+                    if (rs.obj[0].shipType > shipType)
                         shipType = rs.obj.shipType;
-                    }
                 }
                 //shipFee = rs.obj.shipFee;
                 //console.log("邮费",shipFee);
@@ -104,9 +107,9 @@ class Payment extends React.PureComponent {
                 }
                 break;
             case 1:
-                if (localStorage.getItem("isVip") === "false") {
+                if (localStorage.getItem("isVip") === "false")
                     shipFee = 0.01; //邮费到时候从接口中拿
-                }
+
                 this.requestDefaultUserAddress();
                 break;
             case 2:
@@ -184,7 +187,6 @@ class Payment extends React.PureComponent {
             if (rs && rs.success) {
                 console.log("default user address", rs);
                 const address = rs.obj;
-
                 this.setState({
                     address: address,
                 });
@@ -196,7 +198,6 @@ class Payment extends React.PureComponent {
         addressApi.getDefaultMerchantAddress(uid, (rs) => {
             if (rs && rs.success) {
                 const address = rs.obj;
-
                 this.setState({
                     address: address,
                 });
@@ -219,7 +220,6 @@ class Payment extends React.PureComponent {
         settingApi.getSystemSetting("余额最大支付比例", (rs) => {
             if (rs && rs.success) {
                 const ratio = parseFloat(rs.obj.settingValue);
-
                 this.setState({
                     balanceMaxRatio: ratio,
                 });
@@ -233,16 +233,11 @@ class Payment extends React.PureComponent {
 
     cartPayCancelCallback() {
         Modal.alert('取消付款', '您确认要取消吗？', [
-            {
-                text: '再想想', onPress: () => {
-                }
-            },
-            {
-                text: '确认', onPress: () => {
+            { text: '再想想', onPress: () => {} },
+            { text: '确认', onPress: () => {
                     Toast.info("已取消，您可在个人中心的待付款订单查看", 1);
                     this.linkTo({pathname: '/my/order', state: 1});
-                }
-            },
+                } },
         ])
     }
 
@@ -281,6 +276,7 @@ class Payment extends React.PureComponent {
 
     getOrderItems() {
         console.log("this.props.location.products:", this.props.location.products);
+        console.log("origin!!!!", this.props.location.origin);
         const items = this.state.products && this.state.products.map((item, index) => {
             if (this.props.location.origin === "cart") {
                 this.state.ids.push(item.id);
@@ -409,8 +405,8 @@ class Payment extends React.PureComponent {
                 "timestamp": rs.result.timestamp,
             };
 
-            this.code = this.state.orderCode;
-            console.log("this.code", this.code);
+            // this.code = this.state.orderCode;
+            // console.log("this.code", this.code);
 
             PayManager.doPay(payConfig, this.cartPaySuccessCallback, this.cartPayCancelCallback, this.cartPayFailCallback, this.cartPayCallback);
         });
@@ -512,15 +508,14 @@ class Payment extends React.PureComponent {
 
     checkPromotionMoney(money) {
         if (money > 0) {
-            if (this.props.location.isPromotion) {
+            if (this.props.location.isPromotion)
                 return <div>
                     <div className="discount_select price_text">-￥{money}</div>
                     <div className="discount_title">立减</div>
                     <WhiteSpace size="xs"/>
-                </div>
-            } else {
+                </div>;
+            else
                 this.state.priceResult.promotionMoney = 0;
-            }
         }
         return null
     }
@@ -583,7 +578,6 @@ class Payment extends React.PureComponent {
 
         if (!this.state.products || JSON.stringify(this.state.products) === "[]")
             return null;
-
 
         const orderProducts = this.state.products && this.state.products.map((item, index) => {
             console.log('item11111111111111111111111111111', item)
@@ -648,7 +642,6 @@ class Payment extends React.PureComponent {
             <WhiteSpace size="xs"/>
 
             {this.checkFullPresents()}
-
 
             <Card className="payment_card">
                 <div>

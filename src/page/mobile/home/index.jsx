@@ -20,7 +20,6 @@ import {getServerIp} from '../../../config.jsx';
 import './index.less';
 
 
-
 class Home extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
@@ -73,6 +72,7 @@ class Home extends React.PureComponent {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        // WxManager.wxClosePage('home');
     }
 
 
@@ -132,7 +132,7 @@ class Home extends React.PureComponent {
         // let leoname = 'lulifeng';
 
 
-        // 微商测试
+        //微商测试
         // let leoopid = 'oH0MfxOKM2dnWQBFsMW9KTnPuf-s';
         // let uuuu = 27;
         // let leoname = 'Guihuan';
@@ -271,26 +271,21 @@ class Home extends React.PureComponent {
             primaryImages[1] = primaryImages[0];
 
         content = primaryImages && primaryImages.map((data, index) => {
-            if (data.type === "广告") {
+            if (data.type === "广告")
                 return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
                     <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
-                         onLoad={() => {
-                             window.dispatchEvent(new Event('resize'));
-                         }}/>
-                </Link>
-            } else if (data.type === "活动") {
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
+                </Link>;
+            else if (data.type === "活动")
                 return <Link to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}} key={index}>
-                    <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                        window.dispatchEvent(new Event('resize'));
-                    }}/>
-                </Link>
-            } else {
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
+                </Link>;
+            else
                 return <Link to={`/product/${data.targetId}`} key={index}>
-                    <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                        window.dispatchEvent(new Event('resize'));
-                    }}/>
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
                 </Link>
-            }
         });
 
         return <Layout header={true} footer={true}>
