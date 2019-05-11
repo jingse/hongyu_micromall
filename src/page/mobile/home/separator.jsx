@@ -23,8 +23,7 @@ export const Separator = (props) => {
                             pathname: '/home/category',
                             category: separatorData,
                             categoryId: categoryData
-                        }}
-                              style={{color: 'darkorange'}}>
+                        }}>
                             <img src={"http://" + getServerIp() + picUrl} height='105' width='100%'/>
                         </Link>
 

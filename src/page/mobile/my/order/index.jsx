@@ -4,13 +4,7 @@ import {Button, Flex, Modal, PullToRefresh, Tabs, Toast, WhiteSpace} from 'antd-
 import {Link} from 'react-router-dom';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
-import {
-    PayButton,
-    CancelOrderButton,
-    ConfirmReceiveButton,
-    EvaluateOrderButton,
-    ViewOrderDetailButton
-} from "../../../../components/order_button/orderButton.jsx";
+import {PayButton, CancelOrderButton, ConfirmReceiveButton, EvaluateOrderButton, ViewOrderDetailButton} from "../../../../components/order_button/orderButton.jsx";
 import myApi from "../../../../api/my.jsx";
 import orderApi from "../../../../api/my.jsx";
 import paymentApi from "../../../../api/payment.jsx";
@@ -100,10 +94,6 @@ export default class Order extends React.PureComponent {
     }
 
     componentDidMount() {
-        console.log('hei', this.refs.lv)
-        const hei = this.state.height - this.refs.lv;
-        console.log('hei', hei)
-
         WxManager.share();
     }
 
@@ -611,16 +601,15 @@ export default class Order extends React.PureComponent {
                     }, 1000);
                 }}
             >
-                {/* <div ref={el => this.lv = el} style={{
-                height: this.state.height,
-            }}> */}
+
                 {orderContent}
+
                 <div className='addMore' onClick={() => this.addMore()}>加载更多</div>
+
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                {/* </div> */}
 
             </PullToRefresh>
         </div>
