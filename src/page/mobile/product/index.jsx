@@ -12,6 +12,7 @@ import {getServerIp} from "../../../config.jsx";
 import Card from "../../../components/card/index.jsx";
 import CartModal from '../../../components/cart/cartmodal.jsx';
 import PutInCart from '../../../components/cart/putincart.jsx';
+import {ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
 
 import Comment from "./comment.jsx";
 import {Recommend} from "./recommend.jsx";
@@ -52,6 +53,7 @@ class Product extends React.PureComponent {
 
             // 页面显示
             isNull: false, // 控制页面显示
+            isReqFail: false,
             commentNum: 0,
             currentPrePrice: 0,
             currentMarketPrice: 0,
@@ -74,14 +76,13 @@ class Product extends React.PureComponent {
         this.requestProductDetailData(this.state.specialtyId);
         this.requestProductCommentData(this.state.specialtyId, 1, 10);
         this.requestServicePromise();
-
-        WxManager.auth();
-
-        localStorage.removeItem("inputBalance");
     }
 
     componentDidMount() {
+        WxManager.auth();
         WxManager.share();
+
+        localStorage.removeItem("inputBalance");
     }
 
 
@@ -115,7 +116,7 @@ class Product extends React.PureComponent {
                 }
 
             } else {
-                this.setState({isNull: true});
+                this.setState({isReqFail: true});
             }
         });
     }
@@ -189,8 +190,13 @@ class Product extends React.PureComponent {
             </Layout>;
 
 
+        if (this.state.isReqFail)
+            return <ReqFailTip/>;
+
         if (!this.state.data || JSON.stringify(this.state.data) === "{}" ||
             !this.state.data[0].specialty || !this.state.data[0].specialty.images)
+            // return <ActivityIndicator animating toast text="Loading..."/>;
+            // return <ReqIngTip/>;
             return null;
 
 
