@@ -10,6 +10,7 @@ import proApi from "../../../api/product.jsx";
 import './index.less';
 import {getServerIp} from "../../../config.jsx";
 import {NumStepper} from "../../../components/num_stepper/numStepper.jsx";
+import {ReqIngTip, ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
 
 let items = [];  //为了传递给下个界面
 let stock = 0;
@@ -37,6 +38,8 @@ class Cart extends React.PureComponent {
             showEdit: [],
             swipeoutDisabled: false,
             animating: false,
+            isCartNull: false,
+            isReqFail: false,
 
             presents: [],
             payM: 0,
@@ -82,11 +85,17 @@ class Cart extends React.PureComponent {
             if (rs && rs.success) {
                 const cartData = rs.obj;
 
+                if (!cartData || JSON.stringify(cartData) === "[]")
+                    this.setState({isCartNull: true});
+
                 this.setState({
                     cartData: cartData,
                     cartListCount: cartData.length,
                 });
                 localStorage.setItem("cartCount", rs.obj.length);
+            } else {
+                this.setState({isReqFail: true});
+                // Toast.info("请求失败！", 0.5);
             }
         });
     }
@@ -276,7 +285,7 @@ class Cart extends React.PureComponent {
             products: items,
             price: this.state.priceResult,
             presents: this.state.presents,
-            origin:'cart',
+            origin: 'cart',
         });
     }
 
@@ -295,103 +304,110 @@ class Cart extends React.PureComponent {
 
     render() {
         console.log("this.state.cartData", this.state.cartData);
-        const content = this.state.cartData && this.state.cartData.map((item, index) => {
+        let content;
 
-            // 普通商品
-            return <div key={index}>
-                <Card className="cart_card" key={index}>
-                    <SwipeAction
-                        autoClose
-                        disabled={this.state.swipeoutDisabled}
-                        right={[
-                            {
-                                text: '编辑',
-                                onPress: () => {
-                                    console.log("item", item);
-                                    this.trueShowEdit(index);
-                                    this.getDefaultNum(item.quantity);
-                                    this.getStock(item.specialtySpecificationId);
+        if (this.state.isReqFail)
+            content = <ReqFailTip/>;
+        else if (JSON.stringify(this.state.cartData) === "[]" && !this.state.isCartNull)
+            content = <ReqIngTip/>;
+        else
+            content = this.state.cartData && this.state.cartData.map((item, index) => {
+                // 普通商品
+                return <div key={index}>
+                    <Card className="cart_card" key={index}>
+                        <SwipeAction
+                            autoClose
+                            disabled={this.state.swipeoutDisabled}
+                            right={[
+                                {
+                                    text: '编辑',
+                                    onPress: () => {
+                                        console.log("item", item);
+                                        this.trueShowEdit(index);
+                                        this.getDefaultNum(item.quantity);
+                                        this.getStock(item.specialtySpecificationId);
+                                    },
+                                    style: {backgroundColor: '#ddd', color: 'white', width: '100%'},
                                 },
-                                style: {backgroundColor: '#ddd', color: 'white', width: '100%'},
-                            },
-                            {
-                                text: '删除',
-                                onPress: () => this.deleteCartItem(item.id),
-                                style: {backgroundColor: '#F4333C', color: 'white', width: '100%'},
-                            },
-                        ]}
-                    >
-                        <Flex className="cart_card_container cart_card_underline">
+                                {
+                                    text: '删除',
+                                    onPress: () => this.deleteCartItem(item.id),
+                                    style: {backgroundColor: '#F4333C', color: 'white', width: '100%'},
+                                },
+                            ]}
+                        >
+                            <Flex className="cart_card_container cart_card_underline">
 
-                            <Flex.Item style={{flex: '0 0 10%'}}>
-                            <input type="checkbox" checked={this.state.checkbox[index]} onChange={() => {
-                                this.state.checkbox[index] = !this.state.checkbox[index];
-                                if (this.state.checkbox[index]) {
-                                    this.state.cartItems.push(this.state.cartData[index]);
-                                } else {
-                                    this.state.cartItems.splice(this.findItemIndex(item), 1);
-                                }
-                                this.state.chooseAll = this.isChooseAll();
-                                this.setState({
-                                    checkbox: this.state.checkbox,
-                                    chooseAll: this.state.chooseAll,
-                                    cartItems: this.state.cartItems,
-                                });
-                                items = this.state.cartItems;
-                                this.requestTotalPrice(this.state.cartItems);
-                            }} style={{width: '50%'}}/>
-                            </Flex.Item>
+                                <Flex.Item style={{flex: '0 0 10%'}}>
+                                    <input type="checkbox" checked={this.state.checkbox[index]} onChange={() => {
+                                        this.state.checkbox[index] = !this.state.checkbox[index];
+                                        if (this.state.checkbox[index]) {
+                                            this.state.cartItems.push(this.state.cartData[index]);
+                                        } else {
+                                            this.state.cartItems.splice(this.findItemIndex(item), 1);
+                                        }
+                                        this.state.chooseAll = this.isChooseAll();
+                                        this.setState({
+                                            checkbox: this.state.checkbox,
+                                            chooseAll: this.state.chooseAll,
+                                            cartItems: this.state.cartItems,
+                                        });
+                                        items = this.state.cartItems;
+                                        this.requestTotalPrice(this.state.cartItems);
+                                    }} style={{width: '50%'}}/>
+                                </Flex.Item>
 
-                            <Flex.Item style={{flex: '0 0 20%'}}>
-                                <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{height: '4rem'}}/>
-                            </Flex.Item>
+                                <Flex.Item style={{flex: '0 0 20%'}}>
+                                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
+                                         style={{height: '4rem'}}/>
+                                </Flex.Item>
 
-                            <Flex.Item style={{flex: '0 0 50%'}}>
-                                <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
-                                    <div className="title_text">{item.name}</div>
-                                    <div className="commodity_prop">{item.specification}</div>
-                                    <div className="price_text">￥{item.curPrice}</div>
-                                </div>
-                                <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
-                                    <NumStepper numVal={this.state.num}
-                                                minusNumAction={this.minusNum.bind(this, this.state.num)}
-                                                addNumAction={this.addNum.bind(this, this.state.num)}/>
-                                </div>
-                            </Flex.Item>
-
-                            <Flex.Item style={{flex: '0 0 20%'}}>
-                                <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
-                                    <div style={{fontColor: "#ccc", fontSize: '0.8rem', display: 'block'}}>
-                                        x {item.quantity}
+                                <Flex.Item style={{flex: '0 0 50%'}}>
+                                    <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
+                                        <div className="title_text">{item.name}</div>
+                                        <div className="commodity_prop">{item.specification}</div>
+                                        <div className="price_text">￥{item.curPrice}</div>
                                     </div>
-                                </div>
-                                <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
-                                    <div style={{
-                                        flex: '0 0 30%', backgroundColor: 'darkorange', color: 'white',
-                                        fontSize: '0.6rem', textAlign: 'center'
-                                    }}
-                                         onClick={() => {
-                                             this.setEditId(item.id);
-                                             this.changeItemQuantity(item.id, this.state.num);
-                                             this.falseShowEdit(index);
-                                             stock = 0;
-                                         }}>
-
-                                        <WhiteSpace size="lg"/>
-                                        <WhiteSpace size="xs"/>
-                                        <WhiteSpace size="xs"/>
-                                        完成
-                                        <WhiteSpace size="lg"/>
-                                        <WhiteSpace size="lg"/>
-                                        <WhiteSpace size="xs"/>
+                                    <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
+                                        <NumStepper numVal={this.state.num}
+                                                    minusNumAction={this.minusNum.bind(this, this.state.num)}
+                                                    addNumAction={this.addNum.bind(this, this.state.num)}/>
                                     </div>
-                                </div>
-                            </Flex.Item>
-                        </Flex>
-                    </SwipeAction>
-                </Card>
-            </div>
-        });
+                                </Flex.Item>
+
+                                <Flex.Item style={{flex: '0 0 20%'}}>
+                                    <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
+                                        <div style={{fontColor: "#ccc", fontSize: '0.8rem', display: 'block'}}>
+                                            x {item.quantity}
+                                        </div>
+                                    </div>
+                                    <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
+                                        <div style={{
+                                            flex: '0 0 30%', backgroundColor: 'darkorange', color: 'white',
+                                            fontSize: '0.6rem', textAlign: 'center'
+                                        }}
+                                             onClick={() => {
+                                                 this.setEditId(item.id);
+                                                 this.changeItemQuantity(item.id, this.state.num);
+                                                 this.falseShowEdit(index);
+                                                 stock = 0;
+                                             }}>
+
+                                            <WhiteSpace size="lg"/>
+                                            <WhiteSpace size="xs"/>
+                                            <WhiteSpace size="xs"/>
+                                            完成
+                                            <WhiteSpace size="lg"/>
+                                            <WhiteSpace size="lg"/>
+                                            <WhiteSpace size="xs"/>
+                                        </div>
+                                    </div>
+                                </Flex.Item>
+                            </Flex>
+                        </SwipeAction>
+                    </Card>
+                </div>
+            });
 
         return <Layout footer={true} cartcount={this.state.cartListCount}>
 

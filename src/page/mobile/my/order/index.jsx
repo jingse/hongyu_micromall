@@ -46,6 +46,8 @@ export default class Order extends React.PureComponent {
             evaluate: [],
             refund: [],
 
+            isNull: false,
+
             allPage: 0,
             payPage: 0,
             deliverPage: 0,
@@ -106,6 +108,7 @@ export default class Order extends React.PureComponent {
     }
 
     requestTabData(tab, page, rows) {
+        this.setState({isNull: false});
         switch (tab) {
             case 0:
                 this.requestAllOrder(this.state.wechatId, page, rows);
@@ -139,8 +142,10 @@ export default class Order extends React.PureComponent {
                 all: alltemp,
                 allPage: rs.obj.totalPages,
             });
-            if (page === 1)
+            if (page === 1 && allOrder.length <= 0) {
+                this.setState({isNull: true});
                 return;
+            }
             if (allOrder.length <= 0)
                 Toast.info("没有更多订单", 1);
         });
@@ -157,8 +162,10 @@ export default class Order extends React.PureComponent {
                 pay: paytemp,
                 payPage: rs.obj.totalPages,
             });
-            if (page === 1)
+            if (page === 1 && payOrder.length <= 0) {
+                this.setState({isNull: true});
                 return;
+            }
             if (payOrder.length <= 0)
                 Toast.info("没有更多订单", 1);
         });
@@ -183,8 +190,10 @@ export default class Order extends React.PureComponent {
                         deliver: delivertemp.concat(order1),
                         deliverPage: this.state.deliverPage + rs.obj.totalPages,
                     });
-                    if (page === 1)
+                    if (page === 1 && order1.length <= 0) {
+                        this.setState({isNull: true});
                         return;
+                    }
                     if (order1.length <= 0)
                         Toast.info("没有更多订单", 1);
                 });
@@ -204,8 +213,10 @@ export default class Order extends React.PureComponent {
                 receive: receivetemp.concat(order),
                 receivePage: rs.obj.totalPages,
             });
-            if (page === 1)
+            if (page === 1 && order.length <= 0) {
+                this.setState({isNull: true});
                 return;
+            }
             if (order.length <= 0)
                 Toast.info("没有更多订单", 1);
         });
@@ -241,8 +252,10 @@ export default class Order extends React.PureComponent {
                     evaluate: evaluateetemp.concat(order),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                 });
-                if (page === 1)
+                if (page === 1 && order.length <= 0) {
+                    this.setState({isNull: true});
                     return;
+                }
                 if (order.length <= 0)
                     Toast.info("没有更多订单", 1);
             });
@@ -276,8 +289,10 @@ export default class Order extends React.PureComponent {
                                 refund: refundtemp.concat(order1),
                                 refundPage: this.state.refundPage + rs.obj.totalPages,
                             });
-                            if (page === 1)
+                            if (page === 1 && order1.length <= 0) {
+                                this.setState({isNull: true});
                                 return;
+                            }
                             if (order1.length <= 0)
                                 Toast.info("没有更多订单", 1);
                         });
@@ -469,14 +484,17 @@ export default class Order extends React.PureComponent {
     getOrderContent(order, orderStateStr) {
         let orderContent;
 
-        if (!order || order.length === 0) {
+        if (this.state.isNull)
             return <div className="tip">
                 <div>您还没有{OrderManager.checkOrder(this.state.tab)}订单哦！</div>
                 <WhiteSpace/>
                 <Button type="ghost" inline size="small" onClick={() => {
                     this.linkTo('/home')
                 }}>去逛逛</Button>
-            </div>
+            </div>;
+
+        if (!order || order.length === 0) {
+            return <div className="tip">请求中...</div>
         } else {
             orderContent = order && order.map((item, index) => {
                 console.log('itemitemitemitemitemitemitemitem', item)

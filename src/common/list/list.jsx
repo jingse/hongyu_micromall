@@ -6,6 +6,7 @@ import Layout from "../../common/layout/layout.jsx";
 import {ListHeader} from "../../components/list_header/listHeader.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
+import {ReqFailTip, ReqNullTip} from "../../components/req_tip/reqTip.jsx";
 
 
 let hasMore = true;
@@ -44,6 +45,7 @@ export default class List extends React.PureComponent {
             height: document.documentElement.clientHeight * 3 / 4,
 
             isNull: false,
+            isReqFail: false,
         };
         this.onTabsChange = this.onTabsChange.bind(this);
     }
@@ -94,7 +96,8 @@ export default class List extends React.PureComponent {
                     data: data,
                     isLoading: false
                 });
-            }
+            } else
+                this.setState({isReqFail: true});
         });
     }
 
@@ -262,8 +265,33 @@ export default class List extends React.PureComponent {
             } else {
                 return null;
             }
-
         };
+
+        let content;
+
+        if (this.state.isReqFail)
+            content = <ReqFailTip/>;
+        else if (this.state.isNull)
+            content = <ReqNullTip/>;
+        else
+            content = <ListView
+                ref={el => this.lv = el}
+                dataSource={this.state.dataSource}
+                renderFooter={() => (<div style={{height: '10%', textAlign: 'center'}}>
+                    {this.state.isLoading ? '加载中...' : (hasMore ? '加载完成' : '没有更多信息')}
+                </div>)}
+                renderBodyComponent={() => <MyBody/>}
+                renderRow={row}
+                style={{
+                    height: this.state.height,
+                    overflow: 'auto',
+                }}
+                pageSize={10}
+                scrollRenderAheadDistance={500}
+                onEndReached={this.onEndReached}
+                onEndReachedThreshold={10}
+            />;
+
 
         return <Layout header={true} footer={false} isSearchAgain={this.props.isSearchAgain}>
 
@@ -280,27 +308,7 @@ export default class List extends React.PureComponent {
                 </Tabs>
             </div>
 
-            {
-                this.state.isNull ? <div className="null_product">目前无优惠产品</div> :
-                    <ListView
-                        ref={el => this.lv = el}
-                        dataSource={this.state.dataSource}
-                        renderFooter={() => (<div style={{height: '10%', textAlign: 'center'}}>
-                            {this.state.isLoading ? '加载中...' : (hasMore ? '加载完成' : '没有更多信息')}
-                        </div>)}
-                        renderBodyComponent={() => <MyBody/>}
-                        renderRow={row}
-                        style={{
-                            height: this.state.height,
-                            overflow: 'auto',
-                        }}
-                        pageSize={10}
-                        scrollRenderAheadDistance={500}
-                        onEndReached={this.onEndReached}
-                        onEndReachedThreshold={10}
-                    />
-            }
-
+            {content}
 
         </Layout>
     }

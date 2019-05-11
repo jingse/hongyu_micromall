@@ -7,6 +7,7 @@ import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
 import SaleManager from '../../manager/SaleManager.jsx';
 import "./saleList.less";
+import {ReqNullTip, ReqFailTip, ReqIngTip} from "../../components/req_tip/reqTip.jsx";
 
 
 export default class SalesList extends React.PureComponent {
@@ -19,6 +20,7 @@ export default class SalesList extends React.PureComponent {
             nextPage: 2,
             isEnd: false,
             isNull: false,
+            isReqFail: false,
         };
     }
 
@@ -64,7 +66,7 @@ export default class SalesList extends React.PureComponent {
                     });
                 }
             } else {
-                this.setState({isNull: true});
+                this.setState({isReqFail: true});
             }
         });
     }
@@ -77,8 +79,12 @@ export default class SalesList extends React.PureComponent {
     render() {
         let content = null;
 
-        if (this.state.isNull)
-            content = <div className="null_product">目前无优惠产品</div>;
+        if (this.state.isReqFail)
+            content = <ReqFailTip/>;
+        else if (this.state.isNull)
+            content = <ReqNullTip/>;
+        else if (JSON.stringify(this.state.data) === "[]")
+            content = <ReqIngTip/>;
         else {
             content = this.state.data && this.state.data.map((item, index) => {
                 let start = new Date(item.startTime).toLocaleString();
