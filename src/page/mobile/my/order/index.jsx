@@ -139,12 +139,10 @@ export default class Order extends React.PureComponent {
                 all: alltemp,
                 allPage: rs.obj.totalPages,
             });
-            if (allOrder.length > 0) {
-
-            } else {
+            if (page === 1)
+                return;
+            if (allOrder.length <= 0)
                 Toast.info("没有更多订单", 1);
-            }
-
         });
     }
 
@@ -159,11 +157,10 @@ export default class Order extends React.PureComponent {
                 pay: paytemp,
                 payPage: rs.obj.totalPages,
             });
-            if (payOrder.length > 0) {
-
-            } else {
+            if (page === 1)
+                return;
+            if (payOrder.length <= 0)
                 Toast.info("没有更多订单", 1);
-            }
         });
 
     }
@@ -186,11 +183,10 @@ export default class Order extends React.PureComponent {
                         deliver: delivertemp.concat(order1),
                         deliverPage: this.state.deliverPage + rs.obj.totalPages,
                     });
-                    if (order1.length > 0) {
-
-                    } else {
+                    if (page === 1)
+                        return;
+                    if (order1.length <= 0)
                         Toast.info("没有更多订单", 1);
-                    }
                 });
             });
         });
@@ -208,10 +204,10 @@ export default class Order extends React.PureComponent {
                 receive: receivetemp.concat(order),
                 receivePage: rs.obj.totalPages,
             });
-            if (order.length > 0) {
-            } else {
+            if (page === 1)
+                return;
+            if (order.length <= 0)
                 Toast.info("没有更多订单", 1);
-            }
         });
 
     }
@@ -245,12 +241,10 @@ export default class Order extends React.PureComponent {
                     evaluate: evaluateetemp.concat(order),
                     evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
                 });
-                if (order.length > 0) {
-
-                } else {
+                if (page === 1)
+                    return;
+                if (order.length <= 0)
                     Toast.info("没有更多订单", 1);
-                }
-
             });
         });
 
@@ -282,12 +276,10 @@ export default class Order extends React.PureComponent {
                                 refund: refundtemp.concat(order1),
                                 refundPage: this.state.refundPage + rs.obj.totalPages,
                             });
-                            if (order1.length > 0) {
-
-                            } else {
+                            if (page === 1)
+                                return;
+                            if (order1.length <= 0)
                                 Toast.info("没有更多订单", 1);
-                            }
-
                         });
                     });
 

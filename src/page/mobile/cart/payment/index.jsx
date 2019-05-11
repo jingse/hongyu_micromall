@@ -419,7 +419,7 @@ class Payment extends React.PureComponent {
 
     checkAvailableCoupon() {
         if (this.state.available || localStorage.getItem("choose")) {
-            return <List.Item style={{borderBottom: '1px solid #ccc'}}
+            return <List.Item style={{borderBottom: '1px solid #eee'}}
                               arrow="horizontal"
                               extra={localStorage.getItem("choose")}
                               onClick={() => {
@@ -428,7 +428,7 @@ class Payment extends React.PureComponent {
                 优惠券
             </List.Item>
         }
-        return <List.Item style={{borderBottom: '1px solid #ccc'}}
+        return <List.Item style={{borderBottom: '1px solid #eee'}}
                           extra="暂无可用">
             优惠券
         </List.Item>
@@ -437,7 +437,7 @@ class Payment extends React.PureComponent {
     checkBalance() {
         if (this.state.balance !== 0) {
 
-            return <List style={{borderBottom: '1px solid #ccc'}}>
+            return <List style={{borderBottom: '1px solid #eee'}}>
                 <InputItem
                     type='money'
                     value={this.state.balanceInput}
@@ -649,7 +649,7 @@ class Payment extends React.PureComponent {
 
                     {this.checkAvailableCoupon()}
 
-                    <List style={{borderBottom: '1px solid #ccc'}}>
+                    <List style={{borderBottom: '1px solid #eee'}}>
                         <InputItem {...getFieldProps("liuyan")} value={this.state.marks} onChange={(v) => {
                             this.setState({marks: v});
                         }}>买家留言：</InputItem>
