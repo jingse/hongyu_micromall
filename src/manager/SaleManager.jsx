@@ -69,8 +69,8 @@ function getSalesIconImg(salesImages) {
     salesImages.pics && salesImages.pics.map((item, index) => {
 
         // 产品下架了，优惠却没下架的情况
-        // if (JSON.stringify(salesImages.hySingleitemPromotions) === "[]")
-        //     return item.mediumPath;
+        if (JSON.stringify(salesImages.hySingleitemPromotions) === "[]")
+            return item.mediumPath;
 
         if (!salesImages.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
             if (item.isTag)

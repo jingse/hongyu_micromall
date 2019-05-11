@@ -210,7 +210,7 @@ export default class SalesDetail extends React.PureComponent {
             specification: active.specification,
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
-        }, ()=>{
+        }, () => {
             if (this.state.action === "addToCart")
                 this.child.addToCart(cartProps);
             else if (this.state.action === "buyImmediately")
@@ -409,9 +409,10 @@ export default class SalesDetail extends React.PureComponent {
                             <div/>}
                     </h4>
                     {/* <h4>
-                结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
-            </h4> */}
-                    <hr/>
+                        结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
+                        </h4> */}
+
+                    <WhiteSpace/>
 
                     {content}
                     {this.checkPresents()}

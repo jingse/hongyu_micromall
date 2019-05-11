@@ -380,12 +380,10 @@ export default class SalesGroupDetail extends React.PureComponent {
                     <h4>
                         {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
                             style={{color: 'black'}}>{parseFloat(this.state.salesGroupDetail.divideMoney).toFixed(2)}</span>
-                        </div> : <div></div>}
+                        </div> : <div/>}
                     </h4>
-                    <hr/>
 
-                    <WhiteSpace/>
-                    <WhiteSpace/>
+                    <WhiteSpace size="xs"/>
 
                 </WingBlank>
             </Card>
