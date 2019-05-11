@@ -87,9 +87,7 @@ export default class Comment extends React.PureComponent {
         if ((this.state.curPage - 1) < 1) {
             Toast.info("已经是第一页啦", 1);
         } else {
-            this.setState({
-                curPage: --this.state.curPage,
-            });
+            this.setState({curPage: --this.state.curPage,});
             this.requestComment(this.state.curPage);
         }
     }
@@ -98,9 +96,7 @@ export default class Comment extends React.PureComponent {
         if ((this.state.curPage + 1) > totalPages) {
             Toast.info("已经是最后一页啦", 1);
         } else {
-            this.setState({
-                curPage: ++this.state.curPage,
-            });
+            this.setState({curPage: ++this.state.curPage,});
             this.requestComment(this.state.curPage);
         }
     }
@@ -117,18 +113,12 @@ export default class Comment extends React.PureComponent {
                             className="custom-pagination"
                             current={this.state.curPage}
                             locale={{
-                                prevText: (<span className="arrow-align"
-                                                 onClick={() => {
-                                                     this.requestFormerPage()
-                                                 }}
-                                >
-                                    上一页</span>),
-                                nextText: (<span className="arrow-align"
-                                                 onClick={() => {
-                                                     this.requestLatterPage()
-                                                 }}
-                                >
-                                    下一页</span>),
+                                prevText: (<span className="arrow-align" onClick={() => {
+                                    this.requestFormerPage()
+                                }}>上一页</span>),
+                                nextText: (<span className="arrow-align" onClick={() => {
+                                    this.requestLatterPage()
+                                }}>下一页</span>),
                             }}
                             style={{width: '80%', marginLeft: '10%', marginTop: "0.5rem"}}
                 />

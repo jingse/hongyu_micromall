@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {Flex} from 'antd-mobile';
-import {getServerIp} from "../../../config.jsx";
 import homeApi from "../../../api/home.jsx";
 import {ProductCard} from "../../../components/product_card/proCard.jsx";
+import {CateHeader} from "../../../components/home_cate_header/cateHeader.jsx";
+
 
 export default class TagShow extends React.PureComponent {
     constructor(props, context) {
@@ -49,9 +49,8 @@ export default class TagShow extends React.PureComponent {
         return <div>
             {
                 content.length > 0 ?
-                    <Link to={{pathname: `/home/tag`, category: name, categoryId: tagId}}>
-                        <img src={"http://" + getServerIp() + picUrl} height='120' width='100%'/>
-                    </Link>
+                    <CateHeader targetUrl={{pathname: `/home/tag`, category: name, categoryId: tagId}}
+                                imgPath={picUrl}/>
                     :
                     <div/>
             }

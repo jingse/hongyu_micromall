@@ -195,7 +195,6 @@ class Home extends React.PureComponent {
         homeApi.getCarousel((rs) => {
             if (rs && rs.success) {
                 const carousel = rs.obj;
-
                 this.setState({
                     carousel,
                 });

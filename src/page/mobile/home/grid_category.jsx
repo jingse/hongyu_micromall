@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {Flex} from 'antd-mobile';
+import {FixedHeader} from "../../../components/home_cate_header/cateHeader.jsx";
 import {ProductCard, PromotionCard} from "../../../components/product_card/proCard.jsx";
 import homeApi from "../../../api/home.jsx";
 import Tag from "./tagShow.jsx";
@@ -116,36 +116,25 @@ export default class GridCategory extends React.PureComponent {
         return (<div>
                 <Flex>
                     <Flex.Item style={couponImgBlockStyle}>
-                        <Link to={{pathname: 'home/recharge'}}>
-                            <img src='./images/category/优惠券图片.jpg' height='auto' width='100%'/>
-                        </Link>
-                        <Link to={{pathname: '/home/coupon'}}
-                              style={{color: 'darkorange'}}>
-                            <img src='./images/category/电子券图片.jpg' height='auto' width='100%'/>
-                        </Link>
+                        <FixedHeader targetUrl={{pathname: 'home/recharge'}} imgPath='./images/category/优惠券图片.jpg' isAuto={true}/>
+                        <FixedHeader targetUrl={{pathname: '/home/coupon'}} imgPath='./images/category/电子券图片.jpg' isAuto={true}/>
                     </Flex.Item>
                 </Flex>
 
                 {/*普通优惠*/}
-                <Link to={{pathname: '/home/sales'}}>
-                    <img src='./images/category/1.jpg' height='120' width='100%'/>
-                </Link>
+                <FixedHeader targetUrl={{pathname: '/home/sales'}} imgPath='./images/category/1.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content1}
                 </Flex>
 
                 {/*组合优惠*/}
-                <Link to={{pathname: '/home/sales_group'}}>
-                    <img src='./images/category/2.jpg' height='120' width='100%'/>
-                </Link>
+                <FixedHeader targetUrl={{pathname: '/home/sales_group'}} imgPath='./images/category/2.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content2}
                 </Flex>
 
                 {/*推荐产品*/}
-                <Link to={{pathname: '/home/recommend'}}>
-                    <img src='./images/category/3.jpg' height='120' width='100%'/>
-                </Link>
+                <FixedHeader targetUrl={{pathname: '/home/recommend'}} imgPath='./images/category/3.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content3}
                 </Flex>

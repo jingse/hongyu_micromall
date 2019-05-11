@@ -16,7 +16,6 @@ export default class CategoryGrid extends React.PureComponent {
         this.requestTopNOfCategory(this.props.categoryId);
     }
 
-
     requestTopNOfCategory(categoryId) {
         console.log("categoryId", categoryId);
         homeApi.getTopNOfCategory(categoryId, 6, (rs) => {

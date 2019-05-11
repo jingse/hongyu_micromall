@@ -59,15 +59,11 @@ export default class PaginationList extends React.PureComponent {
                     prevText: (<span className="arrow-align"
                                      onClick={() => {
                                          this.requestFormerPage()
-                                     }}
-                    >
-                                    上一页</span>),
+                                     }}>上一页</span>),
                     nextText: (<span className="arrow-align"
                                      onClick={() => {
                                          this.requestLatterPage()
-                                     }}
-                    >
-                                    下一页</span>),
+                                     }}>下一页</span>),
                 }}
                 style={{width: '90%', marginLeft: '5%', marginRight: '5%', fontSize: '0.7rem'}}
             />

@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 import {Link} from 'react-router-dom';
 import {Flex, ListView, Tabs, WhiteSpace} from 'antd-mobile';
 import Layout from "../../common/layout/layout.jsx";
+import {ListHeader} from "../../components/list_header/listHeader.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
+
 
 let hasMore = true;
 const NUM_SECTIONS = 1;
@@ -262,15 +264,7 @@ export default class List extends React.PureComponent {
 
             <WhiteSpace size="xs"/>
 
-
-            <div style={{borderBottom: '1px solid green', backgroundColor: 'white', color: 'green', fontSize: 'bold'}}>
-                <Flex>
-                    <Flex.Item style={{flex: '0 0 4%', marginRight: '0.4rem'}}>
-                        <img src='./images/category/菜篮子.png' style={{width: '90%', margin: '0.4rem'}}/>
-                    </Flex.Item>
-                    <Flex.Item>{this.props.name}</Flex.Item>
-                </Flex>
-            </div>
+            <ListHeader listName={this.props.name}/>
 
             <div className="search_container">
                 <Tabs tabs={tabs}

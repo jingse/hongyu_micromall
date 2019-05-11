@@ -4,7 +4,13 @@ import {Button, Flex, Modal, PullToRefresh, Tabs, Toast, WhiteSpace} from 'antd-
 import {Link} from 'react-router-dom';
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
-import {PayButton, CancelOrderButton, ConfirmReceiveButton, EvaluateOrderButton, ViewOrderDetailButton} from "../../../../components/order_button/orderButton.jsx";
+import {
+    PayButton,
+    CancelOrderButton,
+    ConfirmReceiveButton,
+    EvaluateOrderButton,
+    ViewOrderDetailButton
+} from "../../../../components/order_button/orderButton.jsx";
 import myApi from "../../../../api/my.jsx";
 import orderApi from "../../../../api/my.jsx";
 import paymentApi from "../../../../api/payment.jsx";
@@ -282,7 +288,6 @@ export default class Order extends React.PureComponent {
                                 Toast.info("没有更多订单", 1);
                             }
 
-
                         });
                     });
 
@@ -309,7 +314,7 @@ export default class Order extends React.PureComponent {
             case 1:
                 return <Flex justify="between" style={{width: '50%'}}>
                     <PayButton payAction={this.payCharge.bind(this, item)}/>
-                    <CancelOrderButton cancelOrderAction={this.cancelOrderConfirm.bind(this, item.id)}/>
+                    <CancelOrderButton cancelOrderAction={this.cancelOrderPay.bind(this, item.id)}/>
                 </Flex>;
 
             case 2:
@@ -385,7 +390,6 @@ export default class Order extends React.PureComponent {
                 this.requestTabData(1, 1, pageSize);
             }
         });
-
     }
 
     deleteOrder(orderId) {
@@ -413,6 +417,7 @@ export default class Order extends React.PureComponent {
     orderPayFailCallback() {
         Toast.info("支付失败");
     }
+
     orderPayCallback() {
         console.log('待付款刷新1')
         this.requestTabData(1, 1, pageSize);
@@ -455,7 +460,8 @@ export default class Order extends React.PureComponent {
             if (orderStateDetail === 6 || orderStateDetail === 7 || orderStateDetail === 12) {
                 return <img src="./images/icons/删除.png" style={{width: '5%'}} onClick={() => alert('删除订单', '您确定要删除吗？', [
                     {
-                        text: '取消', onPress: () => {}
+                        text: '取消', onPress: () => {
+                        }
                     },
                     {
                         text: '确认', onPress: () => {
@@ -488,7 +494,8 @@ export default class Order extends React.PureComponent {
                             <div className="order_card_group">
                                 <span>下单时间：{new Date(item.orderTime).toLocaleString()}</span>
                                 {/*<span style={{marginLeft:'1rem'}}>下单人id:{this.state.wechatId}</span>*/}
-                                <span className="order_card_status">{OrderManager.checkDetailState(item.orderState)}</span>
+                                <span
+                                    className="order_card_status">{OrderManager.checkDetailState(item.orderState)}</span>
                             </div>
                             {/*<Link to='/my/order/detail'>*/}
                             <Link to={{
