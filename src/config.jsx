@@ -1,4 +1,4 @@
-const is47Server = true;  //控制配置是47服务器的还是123服务器的
+const is47Server = false;  //控制配置是47服务器的还是123服务器的
 
 function getServerHost() {
 
