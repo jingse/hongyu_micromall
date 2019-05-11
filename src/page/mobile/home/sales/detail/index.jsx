@@ -215,6 +215,7 @@ export default class SalesDetail extends React.PureComponent {
                 this.child.addToCart(cartProps);
             else if (this.state.action === "buyImmediately")
                 this.child.buyImmediately(buyProps);
+            this.setState({action: ""});
         });
     }
 

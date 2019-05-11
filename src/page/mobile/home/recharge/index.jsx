@@ -7,6 +7,7 @@ import homeApi from "../../../../api/home.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import PropTypes from "prop-types";
 import {createForm} from 'rc-form';
+import {NumStepper} from "../../../../components/num_stepper/numStepper.jsx";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -187,29 +188,9 @@ class Recharge extends React.PureComponent {
                     <Flex>
                         <Flex.Item style={{flex: '0 0 20%', fontSize: '1.1rem'}}>数量</Flex.Item>
                         <Flex.Item style={{flex: '0 0 80%'}}>
-                            <div className="step1">
-                                <div className="add_minus" onClick={() => {
-                                    this.minusNum(this.state.num)
-                                }}
-                                     style={{
-                                         backgroundImage: 'url(./images/icons/minus.png)',
-                                         backgroundRepeat: 'no-repeat',
-                                         backgroundPosition: 'center'
-                                     }}>
-                                </div>
-                                <div className="value">
-                                    {this.state.num}
-                                </div>
-                                <div className="add_minus" onClick={() => {
-                                    this.addNum(this.state.num)
-                                }}
-                                     style={{
-                                         backgroundImage: 'url(./images/icons/add.png)',
-                                         backgroundRepeat: 'no-repeat',
-                                         backgroundPosition: 'center'
-                                     }}>
-                                </div>
-                            </div>
+                            <NumStepper numVal={this.state.num}
+                                        minusNumAction={this.minusNum.bind(this, this.state.num)}
+                                        addNumAction={this.addNum.bind(this, this.state.num)}/>
                         </Flex.Item>
                     </Flex>
                 </WingBlank>
@@ -221,9 +202,7 @@ class Recharge extends React.PureComponent {
                     <Flex.Item>
                         <Button disabled={this.state.delay} type="primary" inline size="small"
                                 style={{marginRight: '4px'}}
-                                onClick={() => {
-                                    this.getCode()
-                                }}>
+                                onClick={() => { this.getCode() }}>
                             {this.state.delay === false ? '获取验证码' : '重新发送(' + this.state.timer + ')'}
                         </Button>
                     </Flex.Item>

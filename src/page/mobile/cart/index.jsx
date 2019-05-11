@@ -9,6 +9,7 @@ import cartApi from "../../../api/cart.jsx";
 import proApi from "../../../api/product.jsx";
 import './index.less';
 import {getServerIp} from "../../../config.jsx";
+import {NumStepper} from "../../../components/num_stepper/numStepper.jsx";
 
 let items = [];  //为了传递给下个界面
 let stock = 0;
@@ -345,29 +346,9 @@ class Cart extends React.PureComponent {
                                     <div className="price_text">￥{item.curPrice}</div>
                                 </div>
                                 <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
-                                    <div className="step1">
-                                        <div className="add_minus" onClick={() => {
-                                            this.minusNum(this.state.num)
-                                        }}
-                                             style={{
-                                                 backgroundImage: 'url(./images/icons/minus.png)',
-                                                 backgroundRepeat: 'no-repeat',
-                                                 backgroundPosition: 'center'
-                                             }}>
-                                        </div>
-                                        <div className="value">
-                                            {this.state.num}
-                                        </div>
-                                        <div className="add_minus" onClick={() => {
-                                            this.addNum(this.state.num)
-                                        }}
-                                             style={{
-                                                 backgroundImage: 'url(./images/icons/add.png)',
-                                                 backgroundRepeat: 'no-repeat',
-                                                 backgroundPosition: 'center'
-                                             }}>
-                                        </div>
-                                    </div>
+                                    <NumStepper numVal={this.state.num}
+                                                minusNumAction={this.minusNum.bind(this, this.state.num)}
+                                                addNumAction={this.addNum.bind(this, this.state.num)}/>
                                 </div>
                             </Flex.Item>
 

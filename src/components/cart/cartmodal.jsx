@@ -3,6 +3,7 @@ import {Flex, Modal, Toast} from 'antd-mobile';
 import "./cartmodal.less";
 import proApi from "../../api/product.jsx";
 import {getServerIp} from "../../config.jsx";
+import {NumStepper} from "../num_stepper/numStepper.jsx";
 
 
 let temp = [];
@@ -82,6 +83,14 @@ export default class CartModal extends React.PureComponent {
             });
         console.log("temp", temp);
     }
+
+    addNum = (val) => {
+        this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)});
+    };
+    minusNum = (val) => {
+        this.setState({val: (this.state.val - 1) > 1 ? this.state.val - 1 : 1});
+    };
+
 
     onChange = (val) => {
         this.setState({val});
@@ -230,27 +239,10 @@ export default class CartModal extends React.PureComponent {
                     <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div> : ""}
                 {dataSet}
                 <div style={{float: 'left', marginLeft: '1rem'}}>数量</div>
-                <div className="step">
-                    <div className="add_minus" onClick={() => {
-                        this.setState({val: (this.state.val - 1) > 1 ? this.state.val - 1 : 1})
-                    }}
-                         style={{
-                             backgroundImage: 'url(./images/icons/minus.png)', backgroundRepeat: 'no-repeat',
-                             backgroundPosition: 'center'
-                         }}>
-                    </div>
-                    <div className="value">
-                        {this.state.val}
-                    </div>
-                    <div className="add_minus" onClick={() => {
-                        this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)})
-                    }}
-                         style={{
-                             backgroundImage: 'url(./images/icons/add.png)', backgroundRepeat: 'no-repeat',
-                             backgroundPosition: 'center'
-                         }}>
-                    </div>
-                </div>
+                <NumStepper isProduct={true}
+                            numVal={this.state.val}
+                            minusNumAction={this.minusNum.bind(this, this.state.val)}
+                            addNumAction={this.addNum.bind(this, this.state.val)}/>
             </div>
         </Modal>
     }
