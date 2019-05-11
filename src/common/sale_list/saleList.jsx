@@ -39,9 +39,8 @@ export default class SalesList extends React.PureComponent {
 
                 const proList = rs.obj.rows;
 
-                if (!proList || JSON.stringify(proList) === "[]") {
+                if (!proList || JSON.stringify(proList) === "[]")
                     this.setState({isNull: true});
-                }
 
                 if(page === 1) {
                     console.log('getGroupPromotionList',rs);

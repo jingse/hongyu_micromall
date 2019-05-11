@@ -34,7 +34,7 @@ export default class List extends React.PureComponent {
         this.state = {
             // 接口调用需要的参数
             anotherValue: this.props.anotherValue,
-            fixedValue:this.props.fixedValue,
+            fixedValue: this.props.fixedValue,
 
             data: [],
             dataSource,
@@ -42,6 +42,8 @@ export default class List extends React.PureComponent {
             isLoading: true,
             tabIndex: 0,
             height: document.documentElement.clientHeight * 3 / 4,
+
+            isNull: false,
         };
         this.onTabsChange = this.onTabsChange.bind(this);
     }
@@ -79,6 +81,9 @@ export default class List extends React.PureComponent {
         homeApi[name](unUsed1, unUsed2, page, rows, condition, (rs) => {
             if (rs && rs.success) {
                 const data = rs.obj.rows;
+
+                if (!data || JSON.stringify(data) === "[]")
+                    this.setState({isNull: true});
 
                 let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;
 
@@ -238,7 +243,7 @@ export default class List extends React.PureComponent {
             const obj = rowdata;
             if (obj) {
                 return (
-                    <div key={rowID} style={{padding: '0 15px', borderBottom:'1px solid #eee'}}>
+                    <div key={rowID} style={{padding: '0 15px', borderBottom: '1px solid #eee'}}>
                         <Link to={{pathname: `/product/${obj.specialty.id}`}}>
                             <div style={{display: 'flex', padding: '15px 0'}}>
                                 <img style={{height: '4rem', width: '25%', marginRight: '2rem'}}
@@ -275,23 +280,27 @@ export default class List extends React.PureComponent {
                 </Tabs>
             </div>
 
-            <ListView
-                ref={el => this.lv = el}
-                dataSource={this.state.dataSource}
-                renderFooter={() => (<div style={{height: '10%', textAlign: 'center'}}>
-                    {this.state.isLoading ? '加载中...' : (hasMore ? '加载完成' : '没有更多信息')}
-                </div>)}
-                renderBodyComponent={() => <MyBody/>}
-                renderRow={row}
-                style={{
-                    height: this.state.height,
-                    overflow: 'auto',
-                }}
-                pageSize={10}
-                scrollRenderAheadDistance={500}
-                onEndReached={this.onEndReached}
-                onEndReachedThreshold={10}
-            />
+            {
+                this.state.isNull ? <div className="null_product">目前无优惠产品</div> :
+                    <ListView
+                        ref={el => this.lv = el}
+                        dataSource={this.state.dataSource}
+                        renderFooter={() => (<div style={{height: '10%', textAlign: 'center'}}>
+                            {this.state.isLoading ? '加载中...' : (hasMore ? '加载完成' : '没有更多信息')}
+                        </div>)}
+                        renderBodyComponent={() => <MyBody/>}
+                        renderRow={row}
+                        style={{
+                            height: this.state.height,
+                            overflow: 'auto',
+                        }}
+                        pageSize={10}
+                        scrollRenderAheadDistance={500}
+                        onEndReached={this.onEndReached}
+                        onEndReachedThreshold={10}
+                    />
+            }
+
 
         </Layout>
     }
