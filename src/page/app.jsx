@@ -22,7 +22,6 @@ import Sales from "./mobile/home/sales/index.jsx";
 import SalesDetail from "./mobile/home/sales/detail/index.jsx";
 import SalesGroup from "./mobile/home/sales_group/index.jsx";
 import SalesGroupDetail from "./mobile/home/sales_group/detail/index.jsx";
-import SalesGroupProducts from "./mobile/home/sales_group/detail/products/index.jsx";
 import Recommend from "./mobile/home/recommend/index.jsx";
 import Tag from "./mobile/home/tag/index.jsx";
 /*产品页*/
@@ -84,7 +83,6 @@ export default class App extends React.Component {
                         <Route component={SalesDetail} path='/home/sales/detail' exact/>
                         <Route component={SalesGroup} path='/home/sales_group' exact/>
                         <Route component={SalesGroupDetail} path='/home/sales_group/detail' exact/>
-                        <Route component={SalesGroupProducts} path='/home/sales_group/detail/products' exact/>
                         <Route component={Recharge} path='/home/recharge' exact/>
                         <Route component={CouponBalance} path='/home/recharge/payment' exact/>
                         <Route component={HomeCoupon} path='/home/coupon' exact/>

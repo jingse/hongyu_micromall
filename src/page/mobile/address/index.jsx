@@ -9,7 +9,7 @@ import addressApi from "../../../api/address.jsx";
 import './index.less';
 
 
-export default class Address extends React.Component {
+export default class Address extends React.PureComponent {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };
@@ -97,6 +97,9 @@ export default class Address extends React.Component {
     }
 
     chooseAddress(item) {
+        if (!this.props.location.state)
+            this.linkTo("/cart/payment");
+
         if (this.props.location.state.fromSet === 'set')
             return;
         console.log("item", item);

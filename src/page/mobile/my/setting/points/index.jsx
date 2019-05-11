@@ -4,7 +4,7 @@ import Navigation from "../../../../../components/navigation/index.jsx";
 import {Card, WhiteSpace, WingBlank} from 'antd-mobile';
 import pointsApi from "../../../../../api/points.jsx";
 
-export default class Points extends React.Component {
+export default class Points extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

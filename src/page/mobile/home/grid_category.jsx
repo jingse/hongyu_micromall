@@ -1,14 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Flex, WhiteSpace} from 'antd-mobile';
-import {getServerIp} from "../../../config.jsx";
+import {Flex} from 'antd-mobile';
+import {FixedHeader} from "../../../components/home_cate_header/cateHeader.jsx";
+import {ProductCard, PromotionCard} from "../../../components/product_card/proCard.jsx";
 import homeApi from "../../../api/home.jsx";
 import Tag from "./tagShow.jsx";
-import SaleManager from "../../../common/SaleManager.jsx";
+import SaleManager from "../../../manager/SaleManager.jsx";
 import './index.less';
 
 
-export default class GridCategory extends React.Component {
+export default class GridCategory extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -16,7 +16,6 @@ export default class GridCategory extends React.Component {
             data2: [],
             data3: [],
             tags: [],
-            mypic: ""
         };
     }
 
@@ -58,188 +57,93 @@ export default class GridCategory extends React.Component {
                 const thetags = rs.obj;
                 this.setState({
                     tags: thetags
-
                 });
             }
         });
-
     }
 
 
-
     render() {
+        const couponImgBlockStyle = {textAlign: 'right', marginRight: '0.8rem', marginLeft: '0.5rem', marginTop: '0.5rem'};
 
         let topOfCoupon1 = this.state.data1;
-        if (!topOfCoupon1 || JSON.stringify(topOfCoupon1) === "{}") {
+        if (!topOfCoupon1 || JSON.stringify(topOfCoupon1) === "{}")
             return null;
-        }
 
         let topOfCoupon2 = this.state.data2;
-        if (!topOfCoupon2 || JSON.stringify(topOfCoupon2) === "{}") {
+        if (!topOfCoupon2 || JSON.stringify(topOfCoupon2) === "{}")
             return null;
-        }
 
         let topOfCoupon3 = this.state.data3;
-        if (!topOfCoupon3 || JSON.stringify(topOfCoupon3) === "{}") {
+        if (!topOfCoupon3 || JSON.stringify(topOfCoupon3) === "{}")
             return null;
-        }
 
-        const hometag = this.state.tags;
+
+        let hometag = this.state.tags;
         const hometags = hometag && hometag.map((item, index) => {
-            console.log("名字", item);
             return <Tag key={index} tagId={item.id} name={item.productName} picUrl={item.iconUrl}/>
         });
 
         const content1 = topOfCoupon1 && topOfCoupon1.map((item, index) => {
-            console.log("sfdsaf", item);
-            for (let i = 0; i < item.pics.length; i++) {
-                if (item.hySingleitemPromotions[0].hyPromotion.syncTagpic == false) {
-                    if (item.pics[i].isTag == true) {
-                        this.state.mypic = item.pics[i].mediumPath;
-                    }
-                } else {
-                    if (item.pics[i].isLogo == true) {
-                        this.state.mypic = item.pics[i].mediumPath;
-                    }
-                }
-            }
-            return (
-
-                <Flex.Item key={index} className="product_card"
-                           style={{
-                               backgroundColor: 'white',
-                               marginBottom: '0.1rem',
-                               flex: '0 0 30%',
-                               marginLeft: '1.5%',
-                               marginRight: '1.5%'
-                           }}>
-                    <Link to={{pathname: `/home/sales/detail`, state: item.id}}>
-                        <div><img src={"http://" + getServerIp() + this.state.mypic}
-                                  style={{width: '6rem', height: '6rem'}}/></div>
-                        {/* <div><img style={{width:'6rem', height: '6rem'}}/></div> */}
-                        <WhiteSpace/>
-                        <div className="product_name">{item.name}</div>
-                        <WhiteSpace/>
-                        <div
-                            className="myzhekou_amount">{SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
-                        <WhiteSpace/>
-                        <div className="myzhekou_amount">{item.hySingleitemPromotions[0].havePromoted}人付款</div>
-                        <WhiteSpace/>
-                        <div className="myzhekou_amount"><font
-                            color="red">￥{item.hySingleitemPromotions[0].specificationId.platformPrice}起</font></div>
-                        {/* <div className="product_price">￥{item.pPrice}元起</div>
-                    <WhiteSpace size='xs'/> */}
-                    </Link>
-                </Flex.Item>
-            )
+            return <PromotionCard key={index}
+                                  targetLink={{pathname: `/home/sales/detail`, state: item.id}}
+                                  cardPromotionImgUrl={SaleManager.getSalesIconImg(item)}
+                                  cardPromotionName={item.name}
+                                  cardPromotionRule={SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
+                                  cardPromotionHasSold={item.hySingleitemPromotions[0].havePromoted}
+                                  cardPromotionPlatformPrice={item.hySingleitemPromotions[0].specificationId.platformPrice}/>;
         });
 
         const content2 = topOfCoupon2 && topOfCoupon2.map((item, index) => {
-            console.log("sfdsaf2", item);
-            for (var i = 0; i < item.pics.length; i++) {
-                if (item.pics[i].isTag == 1) {
-                    this.state.mypic = item.pics[i].mediumPath;
-                }
-            }
-            return (
-                <Flex.Item key={index} className="product_card"
-                           style={{
-                               backgroundColor: 'white',
-                               marginBottom: '0.1rem',
-                               flex: '0 0 30%',
-                               marginLeft: '1.5%',
-                               marginRight: '1.5%'
-                           }}>
-                    <Link to={{pathname: `/home/sales_group/detail`, state: item.id}}>
-                        <div><img src={"http://" + getServerIp() + this.state.mypic}
-                                  style={{width: '6rem', height: '6rem'}}/></div>
-                        {/* <div><img style={{width:'6rem', height: '6rem'}}/></div> */}
-                        <WhiteSpace/>
-                        <div className="product_name">{item.name}</div>
-                        <WhiteSpace/>
-                        <div
-                            className="myzhekou_amount">{SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}</div>
-                        <WhiteSpace/>
-                        <div className="myzhekou_amount">{item.groupItemPromotions[0].havePromoted}人付款</div>
-                        <WhiteSpace/>
-                        <div className="myzhekou_amount"><font
-                            color="red">￥{item.groupItemPromotions[0].sellPrice}起</font></div>
-                        {/* <div className="product_price">￥{item.pPrice}元起</div>
-                    <WhiteSpace size='xs'/> */}
-                    </Link>
-                </Flex.Item>
-            )
+            return <PromotionCard key={index}
+                                  targetLink={{pathname: `/home/sales_group/detail`, state: item.id}}
+                                  cardPromotionImgUrl={SaleManager.getSalesGroupIconImg(item.pics)}
+                                  cardPromotionName={item.name}
+                                  cardPromotionRule={SaleManager.getHomeSalesContent(item.ruleType, item.fullSubstracts, item.fullDiscounts, item.fullPresents)}
+                                  cardPromotionHasSold={item.groupItemPromotions[0].havePromoted}
+                                  cardPromotionPlatformPrice={item.groupItemPromotions[0].sellPrice}/>;
         });
 
         const content3 = topOfCoupon3 && topOfCoupon3.map((item, index) => {
-            return (
-                <Flex.Item key={index} className="product_card"
-                           style={{
-                               backgroundColor: 'white',
-                               marginBottom: '0.1rem',
-                               flex: '0 0 30%',
-                               marginLeft: '1.5%',
-                               marginRight: '1.5%'
-                           }}>
-                    <Link to={`/product/${item.specialty.id}`}>
-                        <div><img src={"http://" + getServerIp() + item.iconURL.mediumPath}
-                                  style={{width: '6rem', height: '6rem'}} alt=""/></div>
-                        <WhiteSpace/>
-                        <div className="product_name">{item.specialty.name}</div>
-                        <WhiteSpace/>
-                        <div className="product_amount">{item.hasSold}人付款</div>
-                        <WhiteSpace/>
-                        <div className="product_price">￥{item.pPrice}元起</div>
-                        <WhiteSpace size='xs'/>
-                    </Link>
-                </Flex.Item>
-            )
+            return <ProductCard key={index}
+                                targetLink={`/product/${item.specialty.id}`}
+                                cardProductImgUrl={item.iconURL.mediumPath}
+                                cardProductName={item.specialty.name}
+                                cardProductHasSold={item.hasSold}
+                                cardProductPlatformPrice={item.pPrice}/>;
         });
 
         return (<div>
                 <Flex>
-                    <Flex.Item
-                        style={{textAlign: 'right', marginRight: '0.8rem', marginLeft: '0.5rem', marginTop: '0.5rem'}}>
-                        <Link to={{pathname: 'home/recharge'}}
-                              style={{color: 'darkorange'}}>
-                            <img src='./images/category/优惠券图片.jpg' height='auto' width='100%'
-                            />
-                        </Link>
-                        <Link to={{pathname: '/home/coupon'}}
-                              style={{color: 'darkorange'}}>
-                            <img src='./images/category/电子券图片.jpg' height='auto' width='100%'
-                            />
-                        </Link>
+                    <Flex.Item style={couponImgBlockStyle}>
+                        <FixedHeader targetUrl={{pathname: 'home/recharge'}} imgPath='./images/category/优惠券图片.jpg' isAuto={true}/>
+                        <FixedHeader targetUrl={{pathname: '/home/coupon'}} imgPath='./images/category/电子券图片.jpg' isAuto={true}/>
                     </Flex.Item>
                 </Flex>
 
-                <Link to={{pathname: '/home/sales'}} style={{color: 'darkorange'}}>
-                    <img src='./images/category/1.jpg' height='120' width='100%'/>
-                </Link>
+                {/*普通优惠*/}
+                <FixedHeader targetUrl={{pathname: '/home/sales'}} imgPath='./images/category/1.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content1}
                 </Flex>
 
-                <Link to={{pathname: '/home/sales_group'}} style={{color: 'darkorange'}}>
-                    <img src='./images/category/2.jpg' height='120' width='100%'/>
-                </Link>
+                {/*组合优惠*/}
+                <FixedHeader targetUrl={{pathname: '/home/sales_group'}} imgPath='./images/category/2.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content2}
                 </Flex>
 
-                <Link to={{pathname: '/home/recommend'}} style={{color: 'darkorange'}}>
-                    <img src='./images/category/3.jpg' height='120' width='100%'/>
-                </Link>
+                {/*推荐产品*/}
+                <FixedHeader targetUrl={{pathname: '/home/recommend'}} imgPath='./images/category/3.jpg'/>
                 <Flex style={{flexWrap: 'nowrap', overflow: 'scroll'}}>
                     {content3}
                 </Flex>
 
-
+                {/*标签*/}
                 {hometags}
 
 
             </div>
         )
-
     }
 }

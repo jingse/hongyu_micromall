@@ -7,7 +7,7 @@ import myApi from "../../../../api/my.jsx";
 import PropTypes from "prop-types";
 
 
-export default class TelBinding extends React.Component {
+export default class TelBinding extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +18,7 @@ export default class TelBinding extends React.Component {
             timer: 60,
             siv: null
         };
+        this.validatePhone = this.validatePhone.bind(this);
     }
 
     validatePhone() {
@@ -114,7 +115,7 @@ export default class TelBinding extends React.Component {
                     </Flex.Item>
                     <Flex.Item>
                         <Button disabled={this.state.delay} type="primary" inline size="small"
-                                style={{marginRight: '4px'}} onClick={this.validatePhone.bind(this)}>
+                                style={{marginRight: '4px'}} onClick={this.validatePhone}>
                             {this.state.delay === false ? '获取激活码' : '重新发送(' + this.state.timer + ')'}
                         </Button>
                     </Flex.Item>

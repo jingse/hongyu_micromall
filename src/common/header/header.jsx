@@ -4,7 +4,7 @@ import {SearchBar} from 'antd-mobile';
 import "./header.less";
 
 
-export default class Header extends React.Component {
+export default class Header extends React.PureComponent {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };
@@ -13,27 +13,25 @@ export default class Header extends React.Component {
         super(props, context);
         this.state = {
             value: ''
-        }
+        };
+        this.onCancel = this.onCancel.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onCancel(value) {
-        this.setState({
-            value: ''
-        });
+        this.setState({value: ''});
     }
 
     onChange(value) {
-        this.setState({
-            value: value
-        });
+        this.setState({value: value});
     }
 
     onSubmit(value) {
-        if (this.props.isSearchAgain) {
+        if (this.props.isSearchAgain)
             this.context.router.history.push({pathname: '../searchRedirect', state: this.state.value});
-        } else {
+        else
             this.context.router.history.push({pathname: '../search', value: this.state.value});
-        }
     }
 
     render() {
@@ -42,9 +40,9 @@ export default class Header extends React.Component {
             <SearchBar
                 value={this.state.value}
                 placeholder="搜索"
-                onCancel={this.onCancel.bind(this)}
-                onChange={this.onChange.bind(this)}
-                onSubmit={this.onSubmit.bind(this)}
+                onCancel={this.onCancel}
+                onChange={this.onChange}
+                onSubmit={this.onSubmit}
             />
         </div>
     }

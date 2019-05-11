@@ -8,7 +8,7 @@ import './index.less';
 import myApi from "../../../../api/my.jsx";
 
 
-export default class ProfitShare extends React.Component {
+export default class ProfitShare extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
@@ -70,14 +70,25 @@ export default class ProfitShare extends React.Component {
     render() {
 
         let dataList = [];
-        if (this.props.location.type === 'daily') {
+        if (this.props.location.type === 'daily')
             dataList = this.state.dailyDataList;
-        } else if (this.props.location.type === 'total') {
+        else if (this.props.location.type === 'total')
             dataList = this.state.totalDataList;
-        }
+
+        const content = dataList.map((item, index) => {
+                let data = {
+                    time: item.ordertime,
+                    user_name: item.wechatName,
+                    total_fee: item.totalAmount,
+                    share_fee: item.weBusinessAmount,
+                    goods_name: item.itemName,
+                };
+                return <InfoCard data={data} key={index}/>
+        });
 
 
         return <Layout header={false} footer={false}>
+
             <Navigation title="微商分成" left={true}/>
 
             <WhiteSpace size="xs"/>
@@ -90,17 +101,7 @@ export default class ProfitShare extends React.Component {
                 </Flex>
             </Card>
 
-            {dataList.map((item, index) => {
-                let data = {
-                    time: item.ordertime,
-                    user_name: item.wechatName,
-                    total_fee: item.totalAmount,
-                    share_fee: item.weBusinessAmount,
-                    goods_name: item.itemName,
-                };
-                return <InfoCard data={data} key={index}/>
-            })}
-
+            {content}
 
         </Layout>
     }

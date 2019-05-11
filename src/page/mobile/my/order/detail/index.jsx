@@ -1,23 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Button, Flex, Modal, WhiteSpace} from "antd-mobile";
+import {Flex, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import {getServerIp} from "../../../../../config.jsx";
 import orderApi from "../../../../../api/my.jsx";
 import paymentApi from "../../../../../api/payment.jsx";
-import wxApi from "../../../../../api/wechat.jsx";
+import WxManager from "../../../../../manager/WxManager.jsx";
+import PayManager from "../../../../../manager/payManager.jsx";
+import OrderManager from "../../../../../manager/OrderManager.jsx";
+import {CancelOrderButton, ApplyForRefundButton} from "../../../../../components/order_button/orderButton.jsx";
+import {ConfirmReceiveButton, EvaluateOrderButton, PayButton} from "../../../../../components/order_button/orderButton.jsx";
+
 
 //传到这个页面的参数：this.props.location.orderId
 
-const alert = Modal.alert;
-
 //去付款需要的参数
-var orderCode = "";
-var payMoney = 0;
+let orderCode = "";
+let payMoney = 0;
 
-export default class OrderDetail extends React.Component {
+export default class OrderDetail extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -25,6 +28,8 @@ export default class OrderDetail extends React.Component {
             orderId: (!this.props.location.orderId) ? localStorage.getItem("orderId") : this.props.location.orderId,
             orderState: (!this.props.location.orderState && this.props.location.orderState !== 0) ? parseInt(localStorage.getItem("orderState")) : this.props.location.orderState,
         };
+        this.payCharge = this.payCharge.bind(this);
+        this.orderDetailPaySuccessCallback = this.orderDetailPaySuccessCallback.bind(this);
     }
 
     componentWillMount() {
@@ -35,20 +40,7 @@ export default class OrderDetail extends React.Component {
 
         this.requestOrderDetail();
 
-        // console.log("window.location.href.split('#')[0]", window.location.href.split('#')[0]);
-
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
     }
 
     requestOrderDetail() {
@@ -67,67 +59,30 @@ export default class OrderDetail extends React.Component {
     }
 
     componentDidMount() {
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
     }
 
-
-    // 微信支付接口
-    onBridgeReady() {
-        WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-                "appId": this.appId,             //公众号名称，由商户传入
-                "timeStamp": this.timestamp,     //时间戳，自1970年以来的秒数
-                "nonceStr": this.nonceStr,       //随机串
-                "package": this.package,
-                "signType": this.signType,       //微信签名方式：
-                "paySign": this.paySign          //微信签名
-            },
-            function (res) {
-                if (res.err_msg === "get_brand_wcpay_request:ok") {
-                    this.linkTo({pathname: '/my/order', state: 2});
-                }
-            }
-        );
+    orderDetailPaySuccessCallback() {
+        this.linkTo({pathname: '/my/order', state: 2});
     }
 
     payCharge() {
         const openid = localStorage.getItem("openid");
-
         console.log("payMoney", payMoney);
+
         paymentApi.confirmOrder(orderCode, payMoney, openid, (rs) => {
             console.log("confirmOrder rs", rs);
 
-            this.appId = rs.result.appId;
-            this.nonceStr = rs.result.nonceStr;
-            this.package = rs.result.package;
-            this.paySign = rs.result.paySign;
-            this.signType = rs.result.signType;
-            this.timestamp = rs.result.timestamp;
+            let payConfig = {
+                "appId": rs.result.appId,
+                "nonceStr": rs.result.nonceStr,
+                "package": rs.result.package,
+                "paySign": rs.result.paySign,
+                "signType": rs.result.signType,
+                "timestamp": rs.result.timestamp,
+            };
 
-            this.code = orderCode;
-
-            // 调起微信支付接口
-            if (typeof WeixinJSBridge === "undefined") {
-                if (document.addEventListener) {
-                    document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                } else if (document.attachEvent) {
-                    document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                    document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
-                }
-            } else {
-                this.onBridgeReady();
-            }
+            PayManager.doPay(payConfig, this.orderDetailPaySuccessCallback, null, null, null);
         });
     }
 
@@ -149,133 +104,39 @@ export default class OrderDetail extends React.Component {
         });
     }
 
+    applyForRefundAction() {
+        this.linkTo('/my/order/refund');
+    }
+
+    evaluateOrderAction() {
+        this.context.router.history.push({pathname: '/my/order/comment', order: this.state.detail});
+    }
+
     linkTo(link) {
         this.context.router.history.push({pathname: link, state: this.state.detail});
     }
 
-    checkDetailState(orderState) {
-        var stateStr = '';
-        switch (orderState) {
-            case 0:
-                stateStr = "待付款";
-                break;
-            case 1:
-                stateStr = "待审核";
-                break;
-            case 2:
-                stateStr = "待出库";
-                break;
-            case 3:
-                stateStr = "待发货";
-                break;
-            case 4:
-                stateStr = "待收货";
-                break;
-            case 5:
-                stateStr = "已收货";
-                break;
-            case 6:
-                stateStr = "已完成";
-                break;
-            case 7:
-                stateStr = "已取消";///////
-                break;
-            case 8:
-                stateStr = "待确认";
-                break;
-            case 9:
-                stateStr = "待退货";
-                break;
-            case 10:
-                stateStr = "待入库";
-                break;
-            case 11:
-                stateStr = "待退款";
-                break;
-            case 12:
-                stateStr = "已退款";
-                break;
-        }
-        return stateStr
-    }
-
     getOrderButtonContent(orderState) {
-        if (orderState === 0 || orderState === 1 || orderState === 2) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => alert('取消订单', '您确定要取消吗？', [
-                               {
-                                   text: '取消', onPress: () => {
-                                   }
-                               },
-                               {
-                                   text: '确认', onPress: () => {
-                                       this.cancelOrderConfirm(this.state.orderId)
-                                   }
-                               },
-                           ])}>
-                取消订单
-            </Button>
-        } else if (orderState === 5) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.linkTo('/my/order/refund')
-                           }}>
-                申请退款
-            </Button>
-        } else {
+        if (orderState === 0 || orderState === 1 || orderState === 2)
+            return <CancelOrderButton cancelOrderAction={this.cancelOrderConfirm.bind(this, this.state.orderId)} isDetail={true}/>;
+        else if (orderState === 5)
+            return <ApplyForRefundButton applyForRefundAction={this.applyForRefundAction.bind(this)} isDetail={true}/>;
+        else
             return null
-        }
     }
 
     getButtonContent(orderState) {
         if (orderState === 0) {
             orderCode = this.state.detail.baseInfo.orderCode;
-            payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100); //TODO
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={this.payCharge.bind(this)}>
-                去付款
-            </Button>
-        } else if (orderState === 4) {
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.orderConfirmReceive(this.state.orderId)
-                           }}>
-                确认收货
-            </Button>
-        } else if (orderState === 5 || orderState === 6) {
-            //return "评价";
-            return <Button type="ghost" inline size="small"
-                           style={{
-                               marginLeft: '65%', marginTop: '4px', marginBottom: '4px', marginRight: '10%',
-                               width: '25%', backgroundColor: 'white', fontSize: '0.8rem'
-                           }}
-                           onClick={() => {
-                               this.context.router.history.push({
-                                   pathname: '/my/order/comment',
-                                   order: this.state.detail
-                               })
-                           }}>
-                去评价
-            </Button>
-        } else {
+            payMoney = Math.round(this.state.detail.baseInfo.payMoney * 100);
+
+            return <PayButton payAction={this.payCharge} isDetail={true}/>
+        } else if (orderState === 4)
+            return <ConfirmReceiveButton confirmReceiveAction={this.orderConfirmReceive.bind(this, this.state.orderId)} isDetail={true}/>;
+        else if (orderState === 5 || orderState === 6)
+            return <EvaluateOrderButton evaluateOrderAction={this.evaluateOrderAction.bind(this)} isDetail={true}/>;
+         else
             return null
-        }
     }
 
     getLogisticInfo() {
@@ -311,9 +172,9 @@ export default class OrderDetail extends React.Component {
                     <WhiteSpace/>
                     <div>{new Date(this.state.detail.ships[0].recordTime).toLocaleString()}</div>
                 </Flex.Item>
-                <Flex.Item style={{flex: '0 0 15%'}}>
-                    <img src="./images/icons/向右.png" style={{width: '%10', float: 'right'}}/>
-                </Flex.Item>
+                {/*<Flex.Item style={{flex: '0 0 15%'}}>*/}
+                {/*    <img src="./images/icons/向右.png" style={{width: '%10', float: 'right'}}/>*/}
+                {/*</Flex.Item>*/}
             </Flex>
             <WhiteSpace/>
         </div>
@@ -327,9 +188,9 @@ export default class OrderDetail extends React.Component {
 
     render() {
         console.log("this.state.detail: ", this.state.detail);
-        if (!this.state.detail || JSON.stringify(this.state.detail) === '[]') {
-            return null
-        }
+        if (!this.state.detail || JSON.stringify(this.state.detail) === '[]')
+            return null;
+
 
         console.log("this.props.location.orderState", this.props.location.orderState);
         console.log("this.state.orderState", this.state.orderState);
@@ -376,7 +237,7 @@ export default class OrderDetail extends React.Component {
                 fontSize: '0.8rem',
                 color: 'white'
             }}>
-                {this.checkDetailState(this.state.orderState)}
+                {OrderManager.checkDetailState(this.state.orderState)}
             </div>
 
             <WhiteSpace/>

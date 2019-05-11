@@ -1,22 +1,26 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {ActivityIndicator, Carousel, Modal, WhiteSpace} from "antd-mobile";
+
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
-import InfoCard from "./card.jsx";
+
+import {InfoCard} from "./card.jsx";
 import GridCategory from "./grid_category.jsx"
 import Grid from "./grid_categoryList.jsx";
+
+import WxManager from "../../../manager/WxManager.jsx";
+import locManager from "../../../manager/LockManager.jsx";
+
 import homeApi from "../../../api/home.jsx";
-import './index.less';
-import wxApi from "../../../api/wechat.jsx";
-import locManager from "../../../common/LockManager.jsx";
 import cartApi from "../../../api/cart.jsx";
-import {getServerIp, wxconfig} from '../../../config.jsx';
-import {Link} from 'react-router-dom';
+import {getServerIp} from '../../../config.jsx';
 
-const host = wxconfig.hostURL;
+import './index.less';
 
-class Home extends React.Component {
+
+class Home extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -34,7 +38,8 @@ class Home extends React.Component {
     componentWillMount() {
 
         this.setState({animating: !this.state.animating});
-        console.log("browser localStorage", localStorage.valueOf());
+
+        // console.log("browser localStorage", localStorage.valueOf());
 
         // window.addEventListener("popstate", function(e) {
         //     //alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
@@ -46,71 +51,11 @@ class Home extends React.Component {
         // }, false);
 
 
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
 
-        // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=你自己的appid&redirect_uri=微信想要回调的你的页面&response_type=code&scope=snsapi_userinfo&state=xxx#wechat_redirect'
-        var uid = locManager.getUId();
-        const from_user = locManager.getFromUser();
-        const myopenid = locManager.getMyOpenId();
+        this.init();
 
-        // Toast.info(`oldUid: ${oldUid}`,1)
-        console.log("openid: ", myopenid);
-
-        const mynickname = locManager.getMyNickname();
-        var shareData = {   // 自定义分享数据
-            title: '土特产微商城',
-            desc: '来自' + locManager.getMyNickname() + '的分享',
-            link: host + locManager.generateSaleLink()
-        };
-
-        if (uid) {          // 第一次扫码，url带uid字段，不带from_user
-            localStorage.setItem("uid", uid);
-
-            console.log("uid存在");
-            console.log("myopenid", myopenid);
-
-            homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
-                if (rs.msg && rs.msg !== "")
-                    console.log(rs);
-
-                if (rs.obj !== null)
-                    window.location.href = rs.obj;
-
-            });
-
-        } else {            // 分享后的链接，url不带uid字段，带from_user
-            console.log("uid不存在");
-            homeApi.createAccount(mynickname, myopenid, (rs) => {
-                // localStorage.setItem("isWebusiness", 'false');
-                // alert(rs);
-            });
-        }
-
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-            wx.onMenuShareAppMessage(shareData);
-            wx.onMenuShareTimeline(shareData);
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
 
         setTimeout(() => {
             this.checkLogin();
@@ -127,20 +72,50 @@ class Home extends React.Component {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        // WxManager.wxClosePage('home');
     }
 
-    getCartCount() {
-        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
-            if (rs && rs.success) {
-                const count = rs.obj.length;
-                localStorage.setItem("cartCount", count);
-            }
-        });
+
+    // 初始操作：判断用户是否是第一次登录
+    // 是微商第一次登录：将他的微信昵称、微信openid、点开的链接中的微商uid提交给后台
+    // 不是第一次登录：提交微信昵称、微信openid给后台，创建账号
+    init() {
+        // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=你自己的appid&redirect_uri=微信想要回调的你的页面&response_type=code&scope=snsapi_userinfo&state=xxx#wechat_redirect'
+        const uid = locManager.getUId();
+        const myopenid = locManager.getMyOpenId();
+        const mynickname = locManager.getMyNickname();
+
+        // Toast.info(`oldUid: ${oldUid}`,1)
+        console.log("openid: ", myopenid);
+
+
+        if (uid) {          // 第一次扫码，url带uid字段，不带from_user
+            localStorage.setItem("uid", uid);
+
+            console.log("uid存在");
+            console.log("myopenid", myopenid);
+
+            homeApi.postOpenId(uid, mynickname, myopenid, (rs) => {
+                if (rs.msg && rs.msg !== "")
+                    console.log(rs);
+
+                if (rs.obj !== null)
+                    window.location.href = rs.obj;
+            });
+
+        } else {            // 分享后的链接，url不带uid字段，带from_user
+            console.log("uid不存在");
+            homeApi.createAccount(mynickname, myopenid, (rs) => {
+                // localStorage.setItem("isWebusiness", 'false');
+                // alert(rs);
+            });
+        }
     }
+
 
     checkLogin() {
 
-        var uid = locManager.getUId();
+        let uid = locManager.getUId();
         const myopenid = locManager.getMyOpenId();
         const wechatName = localStorage.getItem('nickname');
 
@@ -157,7 +132,7 @@ class Home extends React.Component {
         // let leoname = 'lulifeng';
 
 
-        // 微商测试
+        //微商测试
         // let leoopid = 'oH0MfxOKM2dnWQBFsMW9KTnPuf-s';
         // let uuuu = 27;
         // let leoname = 'Guihuan';
@@ -178,27 +153,25 @@ class Home extends React.Component {
                 const isVip = rs.obj.isVip;
                 // const bindPhone = rs.obj.phone;
 
-                localStorage.setItem("wechatId", wechatId);
 
-                if (rs.obj.isWeBusiness) {
-                    localStorage.setItem("isWebusiness", '1');
-                } else {
-                    localStorage.setItem("isWebusiness", '0');
-                }
-                if (rs.obj.phone) {
+                rs.obj.isWeBusiness ? localStorage.setItem("isWebusiness", '1') : localStorage.setItem("isWebusiness", '0');
+
+                if (rs.obj.phone)
                     localStorage.setItem("bindPhone", rs.obj.phone);
-                }
+
+                localStorage.setItem("wechatId", wechatId);
                 localStorage.setItem("balance", balance);
                 localStorage.setItem("isVip", isVip);
-
-                this.requestMerchantInfo(uid);
-                this.requestTags();
-                this.requestCategories();
             }
         });
 
 
         this.requestCarousel();
+        uid !== -1 && this.requestMerchantInfo(uid);
+        this.requestTags();
+        this.requestCategories();
+
+
         localStorage.setItem("firstLog", 'true');
 
 
@@ -210,7 +183,7 @@ class Home extends React.Component {
         // }
 
 
-        this.getCartCount(); //拿到购物车的数量
+        this.requestCartCount(); //设置初始时购物车的数量
 
         console.log("localStorage wechatId", localStorage.getItem("wechatId"));
         console.log("localStorage isWebusiness", localStorage.getItem("isWebusiness"));
@@ -222,7 +195,6 @@ class Home extends React.Component {
         homeApi.getCarousel((rs) => {
             if (rs && rs.success) {
                 const carousel = rs.obj;
-
                 this.setState({
                     carousel,
                 });
@@ -232,7 +204,7 @@ class Home extends React.Component {
 
     requestMerchantInfo(merchantId) {
         homeApi.getMerchantInfo(merchantId, (rs) => {
-            if (rs.obj.weBusiness.isActive != true)
+            if (!rs.obj.weBusiness.isActive)
                 this.setState({modalBack: true});
 
             if (rs && rs.success) {
@@ -275,74 +247,45 @@ class Home extends React.Component {
         });
     }
 
-    checkPromotion(isCheck) {
-        switch (isCheck) {
-            case 0:
-                return "/home/sales";
-            case 1:
-                return "/home/sales_group";
-            default:
-                return null;
-        }
+    requestCartCount() {
+        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
+            if (rs && rs.success) {
+                const count = rs.obj.length;
+                localStorage.setItem("cartCount", count);
+            }
+        });
     }
 
 
     render() {
 
+        let content;
         const category = this.state.gridCategory;
         const categories = category && category.map((item, index) => {
-            return <Grid key={index} categoryId={item.id} categoryData={item.name} picUrl={item.iconUrl} type="fruits"/>
+            return <Grid key={index} categoryId={item.id} categoryPropData={item.name} picUrl={item.iconUrl} type="fruits"/>
         });
 
-        var primaryImages = this.state.carousel;
-        if (primaryImages.length == 1) {
+        const primaryImages = this.state.carousel;
+        if (primaryImages.length === 1)
             primaryImages[1] = primaryImages[0];
-            var content = primaryImages && primaryImages.map((data, index) => {
-                if (data.type === "广告") {
-                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
-                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
-                             onLoad={() => {
-                                 window.dispatchEvent(new Event('resize'));
-                             }}/>
-                    </Link>
-                } else if (data.type === "活动") {
-                    return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                } else {
-                    return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                }
-            });
-        } else {
-            var content = primaryImages && primaryImages.map((data, index) => {
-                if (data.type === "广告") {
-                    return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
-                        <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
-                             onLoad={() => {
-                                 window.dispatchEvent(new Event('resize'));
-                             }}/>
-                    </Link>
-                } else if (data.type === "活动") {
-                    return <Link to={{pathname: this.checkPromotion(data.isCheck), state: data.targetId}} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                } else {
-                    return <Link to={`/product/${data.targetId}`} key={index}>
-                        <img src={"http://" + getServerIp() + data.img} className="carousel-img" onLoad={() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }}/>
-                    </Link>
-                }
-            });
-        }
+
+        content = primaryImages && primaryImages.map((data, index) => {
+            if (data.type === "广告")
+                return <Link to={{pathname: '/home/ad', state: data.link}} key={index}>
+                    <img key={index} src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
+                </Link>;
+            else if (data.type === "活动")
+                return <Link to={{pathname: data.isCheck === 0 ? "/home/sales" : "/home/sales_group", state: data.targetId}} key={index}>
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
+                </Link>;
+            else
+                return <Link to={`/product/${data.targetId}`} key={index}>
+                    <img src={"http://" + getServerIp() + data.img} className="carousel-img"
+                         onLoad={() => { window.dispatchEvent(new Event('resize')); }}/>
+                </Link>
+        });
 
         return <Layout header={true} footer={true}>
 

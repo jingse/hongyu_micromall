@@ -1,11 +1,11 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
 
     //----------------------------------add to cart api-------------------------------------------
     addSingleItemToCart(id, specificationId, specialtyId, isGroupPromotion, quantity, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: "POST",
             url: getServerHost() + '/shopping_cart/add_items?wechat_id=' + id + "&specialtySpecificationId=" + specificationId
                 + "&specialtyId=" + specialtyId + "&isGroupPromotion=" + isGroupPromotion + "&quantity=" + quantity,
@@ -21,7 +21,7 @@ var api = {
 
     //params: wechat_id
     getCartItemsList(id, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/shopping_cart/get_items?wechat_id=" + id,
             // data: {
             //     wechat_id: 8,
@@ -33,7 +33,7 @@ var api = {
     },
 
     editItemsCountInCart(id, quantity, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/shopping_cart/edit_items?id=" + id + "&quantity=" + quantity,
             success: (rs) => {
                 callback && callback(rs);
@@ -42,7 +42,7 @@ var api = {
     },
 
     deleteItemsInCart(id, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + "/shopping_cart/delete_items?id=" + id,
             success: (rs) => {
                 callback && callback(rs);
@@ -51,7 +51,7 @@ var api = {
     },
 
     getTotalPriceInCart(items, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             url: getServerHost() + "/shopping_cart/total_price",
             type: 'application/json',

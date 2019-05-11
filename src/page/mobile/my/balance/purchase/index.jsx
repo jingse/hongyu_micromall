@@ -3,13 +3,13 @@ import {List, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
-import DateManager from "../../../../../common/DateManager.jsx";
+import DateManager from "../../../../../manager/DateManager.jsx";
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
 
-export default class BalancePurchase extends React.Component {
+export default class BalancePurchase extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
@@ -40,9 +40,9 @@ export default class BalancePurchase extends React.Component {
 
     render() {
 
-        // if(JSON.stringify(this.state.purchase) === "[]") {
-        //     return null
-        // }
+        // if(JSON.stringify(this.state.purchase) === "[]")
+        //     return null;
+
         console.log("this.state.purchase", this.state.purchase);
 
         const content = this.state.purchase && this.state.purchase.map((item, index) => {

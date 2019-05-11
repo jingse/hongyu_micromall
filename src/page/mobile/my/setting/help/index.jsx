@@ -3,7 +3,7 @@ import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import {WhiteSpace} from 'antd-mobile';
 
-export default class MyHelp extends React.Component {
+export default class MyHelp extends React.PureComponent {
 
     render() {
         return <Layout>

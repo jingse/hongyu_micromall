@@ -3,12 +3,12 @@ import {Checkbox, Flex, NoticeBar, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../../common/layout/layout.jsx";
 import Navigation from "../../../../../components/navigation/index.jsx";
 import couponApi from "../../../../../api/coupon.jsx";
-import DateManager from "../../../../../common/DateManager.jsx";
+import DateManager from "../../../../../manager/DateManager.jsx";
 
 const CheckboxItem = Checkbox.CheckboxItem;
 const wechatId = parseInt(localStorage.getItem("wechatId"));
 
-export default class CouponChoose extends React.Component {
+export default class CouponChoose extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
@@ -42,18 +42,18 @@ export default class CouponChoose extends React.Component {
     }
 
     isChosen() {
-        if (this.state.choose === '') {
+        if (this.state.choose === '')
             return <NoticeBar icon={null}>请选择优惠券</NoticeBar>
-        }
+
         return <NoticeBar icon={null}>
             您已选中优惠券一张，共可抵用<span style={{color: 'darkorange'}}>￥{this.state.choose}</span>
         </NoticeBar>
     }
 
     checkOverlay(overlay) {
-        if (overlay === 1) {
+        if (overlay === 1)
             return <div style={{marginBottom: 10, color: 'darkorange'}}>叠</div>
-        }
+
         return <WhiteSpace/>
     }
 
@@ -63,6 +63,7 @@ export default class CouponChoose extends React.Component {
         const available_coupon = this.state.available && this.state.available.map((item, index) => {
             return <div key={index} style={{padding: '0 15px'}}>
                 <Flex style={{background: '#fff'}}>
+
                     <Flex.Item style={{flex: '0 0 25%', backgroundColor: "#99CCFF"}}>
                         <div style={{textAlign: 'center', color: 'white'}}>
                             <WhiteSpace/>
@@ -75,6 +76,7 @@ export default class CouponChoose extends React.Component {
                             <WhiteSpace/>
                         </div>
                     </Flex.Item>
+
                     <Flex.Item style={{flex: '0 0 50%', color: 'black'}}>
                         <WhiteSpace/>
                         {this.checkOverlay(item.canOverlay)}
@@ -83,6 +85,7 @@ export default class CouponChoose extends React.Component {
                         </div>
                         <WhiteSpace/>
                     </Flex.Item>
+
                     <Flex.Item style={{flex: '0 0 25%'}}>
                         <CheckboxItem onChange={() => {
                             localStorage.setItem("useCouponId", item.id);

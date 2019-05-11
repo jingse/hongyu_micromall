@@ -1,32 +1,35 @@
 import React from 'react';
-import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 'antd-mobile';
 import {Link} from 'react-router-dom';
+import {createForm} from 'rc-form';
+import PropTypes from "prop-types";
+
+import {Badge, Flex, InputItem, List, Modal, NoticeBar, Toast, WhiteSpace} from 'antd-mobile';
+
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx"
 import Card from "../../../../components/card/index.jsx";
+import {PresentCard} from "../../../../components/present_card/presentCard.jsx";
 import './index.less';
-import {createForm} from 'rc-form';
-import PropTypes from "prop-types";
-import wxApi from "../../../../api/wechat.jsx";
+
+
 import productApi from "../../../../api/product.jsx";
 import addressApi from "../../../../api/address.jsx";
 import cartApi from "../../../../api/cart.jsx";
 import paymentApi from "../../../../api/payment.jsx";
-import {getServerIp} from "../../../../config.jsx";
 import couponApi from "../../../../api/coupon.jsx";
 import myApi from "../../../../api/my.jsx";
 import settingApi from "../../../../api/setting.jsx";
 
-// 设置全局变量
-// var balance = 0;
-// var shipFee = 0;
-// var couponSub = 0.0;
-// var products = [];
+import WxManager from "../../../../manager/WxManager.jsx";
+import PayManager from "../../../../manager/payManager.jsx";
+import SaleManager from "../../../../manager/SaleManager.jsx";
+import {getServerIp} from "../../../../config.jsx";
+
 
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
-class Payment extends React.Component {
+class Payment extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -46,11 +49,16 @@ class Payment extends React.Component {
             balance: 0,//余额
             balanceInput: '',//使用余额
             balanceNum: 0,
-            balanceMaxRatio: 1,
+            balanceMaxRatio: 1, //余额最大支付比例
             shipFee: 0,
             couponSub: 0,//电子券
             presents: [],
         };
+        this.payCharge = this.payCharge.bind(this);
+        this.cartPaySuccessCallback = this.cartPaySuccessCallback.bind(this);
+        this.cartPayCancelCallback = this.cartPayCancelCallback.bind(this);
+        this.cartPayFailCallback = this.cartPayFailCallback.bind(this);
+        this.cartPayCallback = this.cartPayCallback.bind(this);
     }
 
     componentWillMount() {
@@ -75,15 +83,15 @@ class Payment extends React.Component {
             productApi.getSpecialtySpecificationDetailBySpecialtyID(item.specialtyId, (rs) => {
                 if (rs && rs.success) {
                     console.log('rsn', rs);
-                    if (rs.obj[0].shipType > shipType) {
+                    if (rs.obj[0].shipType > shipType)
                         shipType = rs.obj.shipType;
-                    }
                 }
                 //shipFee = rs.obj.shipFee;
                 //console.log("邮费",shipFee);
             });
         });
 
+        this.requestMaxBalanceRatio();
 
         switch (shipType) {
             case 0:
@@ -99,9 +107,9 @@ class Payment extends React.Component {
                 }
                 break;
             case 1:
-                if (localStorage.getItem("isVip") === "false") {
+                if (localStorage.getItem("isVip") === "false")
                     shipFee = 0.01; //邮费到时候从接口中拿
-                }
+
                 this.requestDefaultUserAddress();
                 break;
             case 2:
@@ -109,8 +117,6 @@ class Payment extends React.Component {
                 this.requestDefaultMerchantAddress(uid);
                 break;
         }
-
-        this.requestMaxBalanceRatio();
 
 
         if (this.props.location.products && this.props.location.price && this.props.location.presents) {
@@ -150,19 +156,8 @@ class Payment extends React.Component {
         console.log("localStorage.getItem(\"uid\")", localStorage.getItem("uid"));
         console.log("webusinessId", webusinessId);
 
-        //微信相关
-        const url = encodeURIComponent(window.location.href.split('#')[0]);
-        wxApi.postJsApiData(url, (rs) => {
-            const data = rs.result;
-            wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: data.appId, // 必填，公众号的唯一标识
-                timestamp: data.timestamp, // 必填，生成签名的时间戳
-                nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                signature: data.signature, // 必填，签名，见附录1
-                jsApiList: ["chooseWXPay", "onMenuShareTimeline", "onMenuShareAppMessage"]
-            });
-        });
+        WxManager.auth();
+
         myApi.getInfo(localStorage.getItem("wechatId"), (rs) => {
             if (rs && rs.success) {
                 console.log('rs余额', rs);
@@ -183,18 +178,7 @@ class Payment extends React.Component {
     }
 
     componentDidMount() {
-        wx.ready(function () {
-            wx.checkJsApi({
-                jsApiList: ['chooseWXPay', "onMenuShareTimeline", "onMenuShareAppMessage"],
-                success: function (res) {
-                    console.log(res)
-                }
-            });
-        });
-        wx.error(function (res) {
-            console.log('wx.error');
-            console.log(res);
-        });
+        WxManager.share();
     }
 
 
@@ -203,7 +187,6 @@ class Payment extends React.Component {
             if (rs && rs.success) {
                 console.log("default user address", rs);
                 const address = rs.obj;
-
                 this.setState({
                     address: address,
                 });
@@ -215,7 +198,6 @@ class Payment extends React.Component {
         addressApi.getDefaultMerchantAddress(uid, (rs) => {
             if (rs && rs.success) {
                 const address = rs.obj;
-
                 this.setState({
                     address: address,
                 });
@@ -238,7 +220,6 @@ class Payment extends React.Component {
         settingApi.getSystemSetting("余额最大支付比例", (rs) => {
             if (rs && rs.success) {
                 const ratio = parseFloat(rs.obj.settingValue);
-
                 this.setState({
                     balanceMaxRatio: ratio,
                 });
@@ -246,49 +227,32 @@ class Payment extends React.Component {
         });
     }
 
-    // 微信支付接口
-    onBridgeReady() {
-        WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-                "appId": this.appId,             //公众号名称，由商户传入
-                "timeStamp": this.timestamp,     //时间戳，自1970年以来的秒数
-                "nonceStr": this.nonceStr,       //随机串
-                "package": this.package,
-                "signType": this.signType,       //微信签名方式：
-                "paySign": this.paySign          //微信签名
-            },
-            function (res) {
-                if (res.err_msg === "get_brand_wcpay_request:ok") {
+    cartPaySuccessCallback() {
+        this.linkTo({pathname: '/my/order', state: 2});
+    }
 
-                    this.linkTo({pathname: '/my/order', state: 2});
+    cartPayCancelCallback() {
+        Modal.alert('取消付款', '您确认要取消吗？', [
+            { text: '再想想', onPress: () => {} },
+            { text: '确认', onPress: () => {
+                    Toast.info("已取消，您可在个人中心的待付款订单查看", 1);
+                    this.linkTo({pathname: '/my/order', state: 1});
+                } },
+        ])
+    }
 
-                } else if (res.err_msg === "get_brand_wcpay_request:cancel") {
-                    Modal.alert('取消付款', '您确认要取消吗？', [
-                        {
-                            text: '再想想', onPress: () => {
-                            }
-                        },
-                        {
-                            text: '确认', onPress: () => {
-                                Toast.info("已取消，您可在个人中心的待付款订单查看", 1);
-                                this.linkTo({pathname: '/my/order', state: 1});
-                            }
-                        },
-                    ])
-                } else {
-                    Toast.info("支付失败", 1);
-                }
+    cartPayFailCallback() {
+        Toast.info("支付失败", 1);
+    }
 
-                //删除购物车相关商品
-                if (localStorage.getItem("origin") === "cart") {
-                    this.state.ids && this.state.ids.map((item, index) => {
-                        cartApi.deleteItemsInCart(item, (rs) => {
-                        });
-                    });
-                }
-
-            }.bind(this)
-        );
+    cartPayCallback() {
+        //删除购物车相关商品
+        if (this.props.location.origin === "cart") {
+            this.state.ids && this.state.ids.map((item, index) => {
+                cartApi.deleteItemsInCart(item, (rs) => {
+                });
+            });
+        }
     }
 
     payCharge() {
@@ -312,8 +276,9 @@ class Payment extends React.Component {
 
     getOrderItems() {
         console.log("this.props.location.products:", this.props.location.products);
+        console.log("origin!!!!", this.props.location.origin);
         const items = this.state.products && this.state.products.map((item, index) => {
-            if (localStorage.getItem("origin") === "cart") {
+            if (this.props.location.origin === "cart") {
                 this.state.ids.push(item.id);
                 this.setState({ids: this.state.ids});
             }
@@ -337,7 +302,7 @@ class Payment extends React.Component {
     cartCreateOrder(wechatId, webusinessId, items) {
         console.log("this.state.address", this.state.address);
 
-        var presents = [];
+        let presents = [];
         this.state.presents && this.state.presents.map((item, index) => {
             const present = {
                 "id": null,
@@ -357,7 +322,7 @@ class Payment extends React.Component {
         });
 
 
-        var order = {
+        let order = {
             "orderPhone": localStorage.getItem("bindPhone"),
             "orderWechatId": wechatId,
             "webusinessId": webusinessId,
@@ -431,28 +396,19 @@ class Payment extends React.Component {
         paymentApi.confirmOrder(this.state.orderCode, fee, openid, (rs) => {
             console.log("confirm rs: ", rs);
 
-            // this.appId = 'wx6d6fd71af24c22c3';
-            this.appId = rs.result.appId;
-            this.nonceStr = rs.result.nonceStr;
-            this.package = rs.result.package;
-            this.paySign = rs.result.paySign;
-            this.signType = rs.result.signType;
-            this.timestamp = rs.result.timestamp;
+            let payConfig = {
+                "appId": rs.result.appId,   // this.appId = 'wx6d6fd71af24c22c3';
+                "nonceStr": rs.result.nonceStr,
+                "package": rs.result.package,
+                "paySign": rs.result.paySign,
+                "signType": rs.result.signType,
+                "timestamp": rs.result.timestamp,
+            };
 
-            this.code = this.state.orderCode;
-            console.log("this.code", this.code);
+            // this.code = this.state.orderCode;
+            // console.log("this.code", this.code);
 
-            // 调起微信支付接口
-            if (typeof WeixinJSBridge === "undefined") {
-                if (document.addEventListener) {
-                    document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                } else if (document.attachEvent) {
-                    document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                    document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
-                }
-            } else {
-                this.onBridgeReady();
-            }
+            PayManager.doPay(payConfig, this.cartPaySuccessCallback, this.cartPayCancelCallback, this.cartPayFailCallback, this.cartPayCallback);
         });
     }
 
@@ -463,7 +419,8 @@ class Payment extends React.Component {
 
     checkAvailableCoupon() {
         if (this.state.available || localStorage.getItem("choose")) {
-            return <List.Item style={{borderBottom: '1px solid #ccc'}} arrow="horizontal"
+            return <List.Item style={{borderBottom: '1px solid #eee'}}
+                              arrow="horizontal"
                               extra={localStorage.getItem("choose")}
                               onClick={() => {
                                   this.linkTo('/cart/payment/coupon')
@@ -471,7 +428,7 @@ class Payment extends React.Component {
                 优惠券
             </List.Item>
         }
-        return <List.Item style={{borderBottom: '1px solid #ccc'}}
+        return <List.Item style={{borderBottom: '1px solid #eee'}}
                           extra="暂无可用">
             优惠券
         </List.Item>
@@ -480,7 +437,7 @@ class Payment extends React.Component {
     checkBalance() {
         if (this.state.balance !== 0) {
 
-            return <List style={{borderBottom: '1px solid #ccc'}}>
+            return <List style={{borderBottom: '1px solid #eee'}}>
                 <InputItem
                     type='money'
                     value={this.state.balanceInput}
@@ -551,21 +508,20 @@ class Payment extends React.Component {
 
     checkPromotionMoney(money) {
         if (money > 0) {
-            if (this.props.location.isPromotion == true) {
+            if (this.props.location.isPromotion)
                 return <div>
                     <div className="discount_select price_text">-￥{money}</div>
                     <div className="discount_title">立减</div>
                     <WhiteSpace size="xs"/>
-                </div>
-            } else {
+                </div>;
+            else
                 this.state.priceResult.promotionMoney = 0;
-            }
         }
         return null
     }
 
     checkFullPresents() {
-        var fullPresents = null;
+        let fullPresents = null;
 
         console.log("this.state.presents: ", this.state.presents);
 
@@ -573,31 +529,18 @@ class Payment extends React.Component {
 
             fullPresents = this.state.presents && this.state.presents.map((item, index) => {
                 console.log("item:", item);
-                return <Flex style={{background: '#fff'}} key={index}>
-                    <Flex.Item style={{flex: '0 0 30%'}}>
-                        <img src={"http://" + getServerIp() + this.getSalesDetailIcon(item.fullPresentProduct.images)}
-                             style={{width: '70%', height: '4rem', margin: '0.4rem'}}/>
-                    </Flex.Item>
-                    <Flex.Item style={{flex: '0 0 60%', color: 'black'}}>
-                        <WhiteSpace/>
-                        <div style={{marginBottom: 10, fontWeight: 'bold'}}>
-                            {item.fullPresentProduct.name}
-                            <span style={{color: 'darkorange', fontWeight: 'bold'}}> (赠)</span>
-                        </div>
-                        <div style={{marginBottom: 10}}>赠品数量：<span
-                            style={{color: 'red'}}>{item.fullPresentProductNumber}</span></div>
-                        <div style={{marginBottom: 10}}>商品规格：<span
-                            style={{color: 'red'}}>{item.fullPresentProductSpecification.specification}</span></div>
-                        {/*<div>销量：<span style={{color:'red'}}>{item.specificationId.hasSold}</span></div>*/}
-                        <WhiteSpace/>
-                    </Flex.Item>
-                </Flex>
+                return <PresentCard key={index}
+                                    isPresent={true}
+                                    column1="赠品数量："
+                                    column2="商品规格："
+                                    presentImgUrl={SaleManager.getSalesDetailIcon(item.fullPresentProduct.images)}
+                                    presentName={item.fullPresentProduct.name}
+                                    presentNum={item.fullPresentProductNumber}
+                                    presentSpecification={item.fullPresentProductSpecification.specification}/>;
             });
 
             return <Card className="payment_card clearfix">
                 <List renderHeader={() => '赠品'}>
-                    {/*<List>*/}
-                    {/*<div>赠品</div>*/}
                     {fullPresents}
                 </List>
             </Card>
@@ -606,34 +549,26 @@ class Payment extends React.Component {
         return fullPresents
     }
 
-    checkDefault() {
-        if (this.state.address.isDefaultReceiverAddress) {
-            return <Badge text="默认"
-                          style={{marginLeft: 2, padding: '0 3px', backgroundColor: '#21b68a', borderRadius: 2}}/>
-        }
-    }
-
-    getSalesDetailIcon(salesImages) {
-        var img = null;
-        salesImages && salesImages.map((item, index) => {
-            if (item.isLogo) {
-                img = item.mediumPath
-            }
-        });
-        console.log("img", img);
-        return img
-    }
-
     backTo(specialtyId) {
-        if (localStorage.getItem("origin") === "cart") {
-            localStorage.removeItem("origin");
-            this.context.router.history.push({pathname: '/cart'});
-        } else if (localStorage.getItem("origin") === "sales_group") {
-            localStorage.removeItem("origin");
-            this.context.router.history.push({pathname: '/home/sales_group/detail'});
-        } else {
-            localStorage.setItem("dest", "/home");
-            this.context.router.history.push({pathname: `/product/${specialtyId}`});
+        const origin = this.props.location.origin;
+
+        switch (origin) {
+            case "cart" :
+                this.context.router.history.push({pathname: '/cart'});
+                break;
+            case "sales" :
+                this.context.router.history.push({pathname: '/home/sales/detail'});
+                break;
+            case "sales_group":
+                this.context.router.history.push({pathname: '/home/sales_group/detail'});
+                break;
+            case "product": // 从product页面进入此页面，将product页面的返回路径设为home首页
+                localStorage.setItem("dest", "/home");
+                this.context.router.history.push({pathname: `/product/${specialtyId}`});
+                break;
+            default: //默认从地址页面返回
+                this.context.router.history.push({pathname: '/cart'});
+                break;
         }
     }
 
@@ -641,15 +576,14 @@ class Payment extends React.Component {
     render() {
         const {getFieldProps} = this.props.form;
 
-        if (!this.state.products || JSON.stringify(this.state.products) === "[]") {
-            return null
-        }
+        if (!this.state.products || JSON.stringify(this.state.products) === "[]")
+            return null;
 
         const orderProducts = this.state.products && this.state.products.map((item, index) => {
             console.log('item11111111111111111111111111111', item)
             return <List.Item key={index}>
                 <div className="payment_card_img">
-                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath}/>
+                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath} alt=""/>
                 </div>
                 <div className="payment_card_text">
                     <div className="title_text">{item.name}</div>
@@ -660,10 +594,13 @@ class Payment extends React.Component {
             </List.Item>
         });
 
+
         return <Layout header={false} footer={false}>
 
             <Navigation title="支付" left={true}/>
+
             <WhiteSpace/>
+
             <div style={{display: this.state.isNewOrder ? 'inline' : 'none'}}>
                 <NoticeBar marqueeProps={{loop: true, style: {padding: '0 7.5px'}}}>
                     首单奖励：全现金购买，奖励订单金额的20%余额（最多不超过50元）
@@ -674,8 +611,14 @@ class Payment extends React.Component {
                 <Link to={{pathname: "/address", state: {fromSet: 'cart'}}}>
                     <Flex>
                         <Flex.Item style={{flex: '0 0 10%'}}>
-                            <img src="./images/icons/地址.png" style={{width: '%10'}}/>
-                            {this.checkDefault()}
+                            <img src="./images/icons/地址.png" style={{width: '%10'}} alt=""/>
+                            {this.state.address.isDefaultReceiverAddress ?
+                                <Badge text="默认" style={{
+                                    marginLeft: 2,
+                                    padding: '0 3px',
+                                    backgroundColor: '#21b68a',
+                                    borderRadius: 2
+                                }}/> : ""}
                         </Flex.Item>
                         <Flex.Item style={{flex: '0 0 70%'}}>
                             <div>收货人：{this.state.address.receiverName}
@@ -700,15 +643,13 @@ class Payment extends React.Component {
 
             {this.checkFullPresents()}
 
-
             <Card className="payment_card">
                 <div>
                     {this.checkBalance()}
 
-
                     {this.checkAvailableCoupon()}
 
-                    <List style={{borderBottom: '1px solid #ccc'}}>
+                    <List style={{borderBottom: '1px solid #eee'}}>
                         <InputItem {...getFieldProps("liuyan")} value={this.state.marks} onChange={(v) => {
                             this.setState({marks: v});
                         }}>买家留言：</InputItem>
@@ -740,7 +681,7 @@ class Payment extends React.Component {
                 <WhiteSpace/>
                 <WhiteSpace/>
 
-                <div className="bigbutton" onClick={this.payCharge.bind(this)}>确认支付</div>
+                <div className="bigbutton" onClick={this.payCharge}>确认支付</div>
                 <div className="bigbutton cancel" onClick={() => {
                     this.backTo(this.state.products[0].specialtyId)
                 }}>取消付款

@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {Button, Modal, TabBar} from 'antd-mobile';
+import {Button, Modal, TabBar, Toast} from 'antd-mobile';
 import "./putincart.less";
+import cartApi from "../../api/cart.jsx";
 
 
 const alert = Modal.alert;
 
 
-export default class PutInCart extends React.Component {
+export default class PutInCart extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
             selectedTab: '',
+
+            cartCount: parseInt(localStorage.getItem("cartCount")) !== 0 ? parseInt(localStorage.getItem("cartCount")) : 0,
         };
     }
 
+    componentDidMount(){
+        this.props.onRef(this);
+    }
 
     linkTo(link) {
         if (link !== this.state.selectedTab) {
@@ -26,8 +32,96 @@ export default class PutInCart extends React.Component {
         }
     }
 
+    getCartCount() {
+        cartApi.getCartItemsList(localStorage.getItem("wechatId"), (rs) => {
+            if (rs && rs.success) {
+                const count = rs.obj.length;
+                localStorage.setItem("cartCount", count);
 
-    renderButton() {
+                this.setState({
+                    cartCount: count,
+                });
+            }
+        });
+    }
+
+
+    checkSpecificationSelection(modalSelectorText, showModal) {
+        if (modalSelectorText === '未选择') {
+            Toast.info("您还未选择商品规格~", 1);
+
+            showModal();
+
+            return false;
+        }
+        return true;
+    }
+
+    addToCart(cartProps) {
+        cartApi.addSingleItemToCart(cartProps.wechatId, cartProps.specificationId, cartProps.specialtyId,
+            cartProps.isGroupPromotion, cartProps.quantity, (rs) => {
+
+                if (rs && rs.success) {
+                    Toast.success('加入成功，快去购物车看看你的宝贝吧～', 1, null, false);
+
+                    this.getCartCount();
+                } else {
+                    Toast.info("添加失败！", 1);
+                }
+
+            });
+    }
+
+
+    buyImmediately(buyProps) {
+        let buyItem = buyProps.buyItem;
+        let isPromotion = buyProps.isPromotion;
+        let origin = buyProps.origin;
+
+        let price = {};
+        let presents = [];
+
+        cartApi.getTotalPriceInCart(buyItem, (rs) => {
+            if (rs && rs.success) {
+                price = rs.obj;
+
+                rs.obj.promotions && rs.obj.promotions.map((item, index) => {
+                    if (item.promotion && JSON.stringify(item.promotion) !== '{}') {
+                        if (item.promotion.promotionRule === "满赠") {
+                            item.promotionCondition && item.promotionCondition.map((pre, index2) => {
+                                pre.promotionId = item.promotionId;
+                                presents.push(pre);
+                            });
+                        }
+                    }
+                });
+
+                console.log("赠品：", presents);
+                console.log("buyImmediately price", price);
+
+                if (price !== {}) {
+
+                    this.context.router.history.push({
+                        pathname: '/cart/payment',
+
+                        origin: origin,
+                        isPromotion: isPromotion,
+                        products: buyItem,
+
+                        price: price,
+                        presents: presents,
+                        // shipFee: this.state.data[0].deliverPrice
+                    });
+                }
+            } else {
+                Toast.info("购买失败！", 1);
+            }
+        });
+
+    }
+
+
+    renderButton(modalSelectorText, showModal, cartProps, buyProps) {
 
         return <div className="putincart">
 
@@ -72,7 +166,7 @@ export default class PutInCart extends React.Component {
                         }}
                         />}
                         key="购物车"
-                        badge={this.props.cartCount}
+                        badge={this.state.cartCount}
                         selected={this.state.selectedTab === 'cart'}
                         onPress={() => {
                             this.linkTo('/cart');
@@ -121,7 +215,8 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.props.addToCart()
+                        this.props.handleAction('addToCart');
+                        this.checkSpecificationSelection(modalSelectorText, showModal) && this.addToCart(cartProps)
                     }}>
                 加购物车
             </Button>
@@ -136,7 +231,8 @@ export default class PutInCart extends React.Component {
                         fontSize: '1rem'
                     }}
                     onClick={() => {
-                        this.props.buyImmediately()
+                        this.props.handleAction('buyImmediately');
+                        this.checkSpecificationSelection(modalSelectorText, showModal) && this.buyImmediately(buyProps)
                     }}>
                 立即购买
             </Button>
@@ -145,9 +241,10 @@ export default class PutInCart extends React.Component {
     }
 
     render() {
-        const button = this.renderButton();
+        let {style, modalSelectorText, showModal, cartProps, buyProps} = this.props;
+        const button = this.renderButton(modalSelectorText, showModal, cartProps, buyProps);
 
-        return <div style={{...this.props.style}}>
+        return <div style={{...style}}>
             {button}
         </div>
     }

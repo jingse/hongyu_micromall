@@ -47,11 +47,11 @@ function generateSaleLink() {
         return '?from_user=' + myopenid;
     }
 
-    var newObj = {};
-    var ismine = false;
+    let newObj = {};
+    let ismine = false;
     newObj.from_user = parsed.from_user;
     delete parsed.from_user;     // 删除from_user参数，开始生成salelink
-    for (var i in parsed) {
+    for (let i in parsed) {
         if (parsed[i] === myopenid) {
             ismine = true;      // 存在分享环
             break;

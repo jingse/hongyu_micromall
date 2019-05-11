@@ -1,9 +1,9 @@
 import {getServerHost} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
     getVipRank(wechat_id, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/vip/detail/view?id=' + wechat_id,
             crossDomain: true,
             success: (rs) => {
@@ -13,7 +13,7 @@ var api = {
     },
 
     getPointsChangeRecords(wechat_id, page, rows, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/vip/pointrecord/page/view?id=' + wechat_id + "&page=" + page + "&rows=" + rows,
             crossDomain: true,
             success: (rs) => {
@@ -23,7 +23,7 @@ var api = {
     },
 
     exchangePoints(wechat_id, changeValue, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/vip/point/change?id=' + wechat_id + "&changevalue=" + changeValue,
             crossDomain: true,
             success: (rs) => {
@@ -34,7 +34,7 @@ var api = {
 
 
     getSystemSetting(name, callback) {
-        http.ajax({
+        httpManager.ajax({
             url: getServerHost() + '/system_settings/detail/view?name=' + name,
             crossDomain: true,
             success: (rs) => {

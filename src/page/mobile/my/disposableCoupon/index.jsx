@@ -3,13 +3,13 @@ import {Card, Flex, List, SegmentedControl, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 import couponApi from "../../../../api/coupon.jsx";
-import DateManager from "../../../../common/DateManager.jsx";
+import DateManager from "../../../../manager/DateManager.jsx";
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
 
-export default class DisposableCoupon extends React.Component {
+export default class DisposableCoupon extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

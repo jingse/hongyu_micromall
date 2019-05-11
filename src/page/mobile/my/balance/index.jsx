@@ -7,7 +7,7 @@ import myApi from "../../../../api/my.jsx";
 
 const wechatId = localStorage.getItem("wechatId");
 
-export default class Balance extends React.Component {
+export default class Balance extends React.PureComponent {
 
     constructor(props, context) {
         super(props, context);

@@ -58,22 +58,69 @@ function getHomeSalesContent(ruleType, substracts, discounts, presents) {
 function getSalesDetailIcon(salesImages) {
     let img = null;
     salesImages && salesImages.map((item, index) => {
-        if (item.isLogo) {
+        if (item.isLogo)
             img = item.mediumPath
-        }
     });
-    console.log("img", img);
     return img
 }
 
+function getSalesIconImg(salesImages) {
+    let img = null;
+    salesImages.pics && salesImages.pics.map((item, index) => {
 
+        // 产品下架了，优惠却没下架的情况
+        if (JSON.stringify(salesImages.hySingleitemPromotions) === "[]")
+            return item.mediumPath;
+
+        if (!salesImages.hySingleitemPromotions[0].hyPromotion.syncTagpic) {
+            if (item.isTag)
+                img = item.mediumPath;
+        } else {
+            if (item.isLogo)
+                img = item.mediumPath;
+        }
+    });
+    return img
+}
+
+//sales_group的detail页面多用到的一个函数
+function getSalesGroupIconImg(salesImages) {
+    let img = null;
+    salesImages && salesImages.map((item, index) => {
+        if (item.isTag)
+            img = item.mediumPath
+    });
+    return img
+}
+
+function gerSalesGroupIconByItem(item) {
+    let img = null;
+    item.pics && item.pics.map((image, index) => {
+        if (image.isTag)
+            img = image.mediumPath
+    });
+    return img
+}
+
+function getSalesGroupIconImgArray(salesImages) {
+    let img = null;
+    salesImages && salesImages.map((item, index) => {
+        if (item.isTag)
+            img = item
+    });
+    return img
+}
 
 const SaleManager = {
     getSalesContent,
     getDetailSalesContent,
     getHomeSalesContent,
 
-    getSalesDetailIcon
+    getSalesIconImg,
+    getSalesGroupIconImg,
+    gerSalesGroupIconByItem,
+    getSalesGroupIconImgArray,
+    getSalesDetailIcon,
 };
 
 export default SaleManager;

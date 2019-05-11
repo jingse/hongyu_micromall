@@ -3,11 +3,13 @@ import ReactDOM from "react-dom";
 import {Link} from 'react-router-dom';
 import {Flex, ListView, Tabs, WhiteSpace} from 'antd-mobile';
 import Layout from "../../common/layout/layout.jsx";
+import {ListHeader} from "../../components/list_header/listHeader.jsx";
 import {getServerIp} from "../../config.jsx";
 import homeApi from "../../api/home.jsx";
-import http from '../../common/http.jsx';  //不能删除
+import {ReqFailTip, ReqNullTip} from "../../components/req_tip/reqTip.jsx";
 
-var hasMore = true;
+
+let hasMore = true;
 const NUM_SECTIONS = 1;
 const NUM_ROWS_PER_SECTION = 10;
 let pageIndex = 0;
@@ -17,7 +19,7 @@ let sectionIDs = [];
 let rowIDs = [];
 
 
-export default class List extends React.Component {
+export default class List extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
@@ -33,7 +35,7 @@ export default class List extends React.Component {
         this.state = {
             // 接口调用需要的参数
             anotherValue: this.props.anotherValue,
-            fixedValue:this.props.fixedValue,
+            fixedValue: this.props.fixedValue,
 
             data: [],
             dataSource,
@@ -41,7 +43,11 @@ export default class List extends React.Component {
             isLoading: true,
             tabIndex: 0,
             height: document.documentElement.clientHeight * 3 / 4,
+
+            isNull: false,
+            isReqFail: false,
         };
+        this.onTabsChange = this.onTabsChange.bind(this);
     }
 
 
@@ -74,20 +80,25 @@ export default class List extends React.Component {
     requestListData(unUsed1, unUsed2, page, rows, condition) {
         const name = this.props.funcName;
 
-        eval( "(" + homeApi[name] + ')' + "(unUsed1, unUsed2, page, rows, condition, (rs) => {\n" +
-            "            if (rs && rs.success) {\n" +
-            "                const proList = rs.obj.rows;\n" +
-            "                let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;\n" +
-            "\n" +
-            "                if (numlist === rs.obj.total)\n" +
-            "                    hasMore = false;\n" +
-            "                \n" +
-            "                this.setState({\n" +
-            "                    data: proList,\n" +
-            "                    isLoading: false\n" +
-            "                });\n" +
-            "            }\n" +
-            "        })");
+        homeApi[name](unUsed1, unUsed2, page, rows, condition, (rs) => {
+            if (rs && rs.success) {
+                const data = rs.obj.rows;
+
+                if (!data || JSON.stringify(data) === "[]")
+                    this.setState({isNull: true});
+
+                let numlist = (rs.obj.pageNumber - 1) * 10 + rs.obj.rows.length;
+
+                if (numlist === rs.obj.total)
+                    hasMore = false;
+
+                this.setState({
+                    data: data,
+                    isLoading: false
+                });
+            } else
+                this.setState({isReqFail: true});
+        });
     }
 
     onEndReached = (event) => {
@@ -224,16 +235,6 @@ export default class List extends React.Component {
             {title: '按销量排序', sub: 'comments'},
         ];
 
-        const separator = (sectionID, rowID) => (
-            <div
-                key={`${sectionID}-${rowID}`}
-                style={{
-                    backgroundColor: '#F5F5F9',
-                    borderTop: '1px dashed #ECECED',
-                    borderBottom: '1px dashed #ECECED',
-                }}
-            />
-        );
         const data = this.state.data;
 
         let index = data.length - 1;
@@ -245,7 +246,7 @@ export default class List extends React.Component {
             const obj = rowdata;
             if (obj) {
                 return (
-                    <div key={rowID} style={{padding: '0 15px'}}>
+                    <div key={rowID} style={{padding: '0 15px', borderBottom: '1px solid #eee'}}>
                         <Link to={{pathname: `/product/${obj.specialty.id}`}}>
                             <div style={{display: 'flex', padding: '15px 0'}}>
                                 <img style={{height: '4rem', width: '25%', marginRight: '2rem'}}
@@ -264,34 +265,16 @@ export default class List extends React.Component {
             } else {
                 return null;
             }
-
         };
 
-        return <Layout header={true} footer={false} isSearchAgain={this.props.isSearchAgain}>
+        let content;
 
-            <WhiteSpace size="xs"/>
-
-
-            <div style={{borderBottom: '1px solid green', backgroundColor: 'white', color: 'green', fontSize: 'bold'}}>
-                <Flex>
-                    <Flex.Item style={{flex: '0 0 4%', marginRight: '0.4rem'}}>
-                        <img src='./images/category/菜篮子.png'
-                             style={{width: '90%', margin: '0.4rem'}}/>
-                    </Flex.Item>
-                    <Flex.Item>{this.props.name}</Flex.Item>
-                </Flex>
-            </div>
-
-            <div className="search_container">
-                <Tabs tabs={tabs}
-                      onChange={this.onTabsChange.bind(this)}
-                      initialPage={this.state.tabIndex}
-                      useOnPan={false}
-                >
-                </Tabs>
-            </div>
-
-            <ListView
+        if (this.state.isReqFail)
+            content = <ReqFailTip/>;
+        else if (this.state.isNull)
+            content = <ReqNullTip/>;
+        else
+            content = <ListView
                 ref={el => this.lv = el}
                 dataSource={this.state.dataSource}
                 renderFooter={() => (<div style={{height: '10%', textAlign: 'center'}}>
@@ -299,7 +282,6 @@ export default class List extends React.Component {
                 </div>)}
                 renderBodyComponent={() => <MyBody/>}
                 renderRow={row}
-                renderSeparator={separator}
                 style={{
                     height: this.state.height,
                     overflow: 'auto',
@@ -308,7 +290,25 @@ export default class List extends React.Component {
                 scrollRenderAheadDistance={500}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={10}
-            />
+            />;
+
+
+        return <Layout header={true} footer={false} isSearchAgain={this.props.isSearchAgain}>
+
+            <WhiteSpace size="xs"/>
+
+            <ListHeader listName={this.props.name}/>
+
+            <div className="search_container">
+                <Tabs tabs={tabs}
+                      onChange={this.onTabsChange}
+                      initialPage={this.state.tabIndex}
+                      useOnPan={false}
+                >
+                </Tabs>
+            </div>
+
+            {content}
 
         </Layout>
     }

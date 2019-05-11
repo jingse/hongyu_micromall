@@ -1,9 +1,9 @@
 import {wxconfig} from '../config.jsx';
-import http from '../common/http.jsx';
+import httpManager from '../manager/HttpManager.jsx';
 
 var api = {
     postJsApiData(url, callback) {
-        http.ajax({
+        httpManager.ajax({
             method: 'POST',
             //url: 'http://ymymmall.lvxingbox.cn/auth',
             url: wxconfig.hostURL + 'auth',

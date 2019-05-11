@@ -3,12 +3,13 @@ import {Flex, Modal, Toast} from 'antd-mobile';
 import "./cartmodal.less";
 import proApi from "../../api/product.jsx";
 import {getServerIp} from "../../config.jsx";
+import {NumStepper} from "../num_stepper/numStepper.jsx";
 
 
-var temp = [];
+let temp = [];
 
 
-export default class CartModal extends React.Component {
+export default class CartModal extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();
@@ -23,51 +24,76 @@ export default class CartModal extends React.Component {
         console.log('isWebusiness', localStorage.getItem('isWebusiness'))
 
 
-        for (let i in data) {
+        for (let i in data)
             Object.assign(active, data[0]);
-        }
+
+
+        if (this.props.hasSpecification)
+            return {
+                active,
+                val: 1,
+
+                salePrice: this.props.productData[0].pPrice,
+                mPrice: this.props.productData[0].mPrice,
+                inbound: parseInt(this.props.stock),
+                specificationId: this.props.modalData[0].id,
+                //divideRatio: this.props.productData[0].divideRatio,
+                divideMoney: this.props.productData[0].divideMoney,
+
+                isWebusiness: localStorage.getItem('isWebusiness'),
+                myoptions: "",
+                ischange: -1
+            };
+
+        // 无规格数据时，如sales_group页面
         return {
             active,
             val: 1,
-            salePrice: this.props.productData[0].pPrice,
-            mPrice: this.props.productData[0].mPrice,
-            inbound: this.props.productData[0].inbound,
-            specificationId: this.props.modalData[0].id,
-            //divideRatio: this.props.productData[0].divideRatio,
-            divideMoney: this.props.productData[0].divideMoney,
             isWebusiness: localStorage.getItem('isWebusiness'),
             myoptions: "",
+            inbound: parseInt(this.props.stock),
             ischange: -1
         };
     }
 
     componentWillMount() {
 
-        this.props.modalData.map((option, key) => {
-            let tempID = option.id;
+        if (this.props.hasSpecification)
+            this.props.modalData.map((option, key) => {
+                let tempID = option.id;
 
-            proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
-                console.log("test", key, rs);
-                if (rs.obj.length === 0) {
-                    temp[key] = false;
-                    console.log("temp", key, temp[key]);
-                    return
-                }
-                if (!rs.success) {
-                    temp[key] = false;
-                    console.log("temp", key, temp[key]);
-                    return
-                }
-                if (rs && rs.success) {
-                    temp[key] = true;
-                    console.log("temp", key, temp[key]);
-                }
+                proApi.getSpecialtySpecificationDetailBySpecificationID(tempID, (rs) => {
+                    console.log("test", key, rs);
+                    if (rs.obj.length === 0) {
+                        temp[key] = false;
+                        console.log("temp", key, temp[key]);
+                        return
+                    }
+                    if (!rs.success) {
+                        temp[key] = false;
+                        console.log("temp", key, temp[key]);
+                        return
+                    }
+                    if (rs && rs.success) {
+                        temp[key] = true;
+                        console.log("temp", key, temp[key]);
+                    }
 
+                });
+                // temp[key]=option.show
             });
-            // temp[key]=option.show
-        });
         console.log("temp", temp);
     }
+
+    addNum = (val) => {
+        if (val >= this.state.inbound)
+            Toast.info("库存只有这么多了！", 0.5);
+        this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)});
+    };
+    minusNum = (val) => {
+        this.setState({val: (this.state.val - 1) > 1 ? this.state.val - 1 : 1});
+    };
+
 
     onChange = (val) => {
         this.setState({val});
@@ -116,9 +142,9 @@ export default class CartModal extends React.Component {
         const optionsData = this.props.modalData.map((option, key) => {
             let className = "select_item";
 
-            if (JSON.stringify(this.state.active) === JSON.stringify(option)) {
+            if (JSON.stringify(this.state.active) === JSON.stringify(option))
                 className += " select_active";
-            }
+
             if (this.props.limit && this.state.ischange == -1) {
                 console.log("asdasdfaf");
                 this.clickSelector(option)
@@ -148,7 +174,8 @@ export default class CartModal extends React.Component {
 
     render() {
         // console.log("active", this.state.active);
-        const title = <div className="popup_modal_header">
+
+        const title = this.props.hasSpecification && <div className="popup_modal_header">
             <Flex justify="end">
 
                 <Flex.Item style={{flex: '0 0 30%'}}>
@@ -181,20 +208,31 @@ export default class CartModal extends React.Component {
             onPress: () => {
                 console.log("asdasd", this.state.val, this.props.limit, this.state.myoptions, this.props.guige);
 
-                if (this.state.val > this.props.limit && this.state.myoptions === this.props.guige) {
-                    Toast.info("超出限购数量！");
+                if (this.state.inbound <= 0) {
+                    Toast.info("抱歉，此商品无库存了！不能购买，换个商品看看吧");
+                    this.props.hideModal();
+                    return;
+                }
+
+                if (this.state.val > this.props.limit) {
+                    if (this.props.hasSpecification) {
+                        if (this.state.myoptions === this.props.guige)
+                            Toast.info("超出限购数量！", 0.5);
+                    } else
+                        Toast.info("超出限购数量！", 0.5);
                 } else {
                     this.props.hideModal && this.props.hideModal('success');
                     this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,
                         this.state.specificationId, this.state.mPrice, this.state.salePrice, 'success');
                 }
+
             }
         }];
 
-        const dataSet = this.generateDataSet();
+        const dataSet = this.props.hasSpecification && this.generateDataSet();
 
         return <Modal
-            visible={this.props.modal}
+            visible={this.props.visible}
             popup
             animationType="slide-up"
             closable
@@ -206,30 +244,14 @@ export default class CartModal extends React.Component {
             className="popup_modal"
         >
             <div className="popup_modal_content">
-                <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div>
+                {this.props.hasSpecification ?
+                    <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div> : ""}
                 {dataSet}
                 <div style={{float: 'left', marginLeft: '1rem'}}>数量</div>
-                <div className="step">
-                    <div className="add_minus" onClick={() => {
-                        this.setState({val: (this.state.val - 1) > 1 ? this.state.val - 1 : 1})
-                    }}
-                         style={{
-                             backgroundImage: 'url(./images/icons/minus.png)', backgroundRepeat: 'no-repeat',
-                             backgroundPosition: 'center'
-                         }}>
-                    </div>
-                    <div className="value">
-                        {this.state.val}
-                    </div>
-                    <div className="add_minus" onClick={() => {
-                        this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)})
-                    }}
-                         style={{
-                             backgroundImage: 'url(./images/icons/add.png)', backgroundRepeat: 'no-repeat',
-                             backgroundPosition: 'center'
-                         }}>
-                    </div>
-                </div>
+                <NumStepper isProduct={true}
+                            numVal={this.state.val}
+                            minusNumAction={this.minusNum.bind(this, this.state.val)}
+                            addNumAction={this.addNum.bind(this, this.state.val)}/>
             </div>
         </Modal>
     }
