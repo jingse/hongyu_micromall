@@ -250,13 +250,19 @@ class Cart extends React.PureComponent {
 
     addNum = (val) => {
         console.log('stock', stock);
+        if (val >= stock) {
+            Toast.info("抱歉，没有更多库存", 0.5);
+            return;
+        }
         this.setState({
             num: (val + 1) <= stock ? val + 1 : stock,
         });
-        if (val == stock)
-            Toast.info("没有更多库存", 0.5)
     };
     minusNum = (val) => {
+        if (val === 1) {
+            Toast.info("没法再继续减少了哟", 0.5);
+            return;
+        }
         this.setState({
             num: (val - 1) > 1 ? val - 1 : 1,
         });
@@ -317,6 +323,7 @@ class Cart extends React.PureComponent {
                     >
                         <Flex className="cart_card_container cart_card_underline">
 
+                            <Flex.Item style={{flex: '0 0 10%'}}>
                             <input type="checkbox" checked={this.state.checkbox[index]} onChange={() => {
                                 this.state.checkbox[index] = !this.state.checkbox[index];
                                 if (this.state.checkbox[index]) {
@@ -333,11 +340,11 @@ class Cart extends React.PureComponent {
                                 items = this.state.cartItems;
                                 this.requestTotalPrice(this.state.cartItems);
                             }} style={{width: '50%'}}/>
+                            </Flex.Item>
 
-                            <div className="cart_card_img">
-                                <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
-                                     style={{height: '4rem'}}/>
-                            </div>
+                            <Flex.Item style={{flex: '0 0 20%'}}>
+                                <img src={"http://" + getServerIp() + item.iconURL.mediumPath} style={{height: '4rem'}}/>
+                            </Flex.Item>
 
                             <Flex.Item style={{flex: '0 0 50%'}}>
                                 <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
