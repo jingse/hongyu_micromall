@@ -440,6 +440,7 @@ export default class SalesGroupDetail extends React.PureComponent {
                 selectorText={this.changeModalSelectorText}
 
                 limit={this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum}
+                stock={this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum}
             />
         </Layout>
     }

@@ -451,6 +451,7 @@ class Product extends React.PureComponent {
 
                     guige={this.props.location.guige}
                     limit={this.props.location.limitedNum}
+                    stock={proData.inbound}
                 />}
 
         </Layout>

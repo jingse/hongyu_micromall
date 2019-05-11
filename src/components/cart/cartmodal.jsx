@@ -35,7 +35,7 @@ export default class CartModal extends React.PureComponent {
 
                 salePrice: this.props.productData[0].pPrice,
                 mPrice: this.props.productData[0].mPrice,
-                inbound: this.props.productData[0].inbound,
+                inbound: parseInt(this.props.stock),
                 specificationId: this.props.modalData[0].id,
                 //divideRatio: this.props.productData[0].divideRatio,
                 divideMoney: this.props.productData[0].divideMoney,
@@ -51,6 +51,7 @@ export default class CartModal extends React.PureComponent {
             val: 1,
             isWebusiness: localStorage.getItem('isWebusiness'),
             myoptions: "",
+            inbound: parseInt(this.props.stock),
             ischange: -1
         };
     }
@@ -85,6 +86,8 @@ export default class CartModal extends React.PureComponent {
     }
 
     addNum = (val) => {
+        if (val >= this.state.inbound)
+            Toast.info("库存只有这么多了！", 0.5);
         this.setState({val: (this.state.val + 1 > this.state.inbound ? this.state.val : this.state.val + 1)});
     };
     minusNum = (val) => {
@@ -205,12 +208,18 @@ export default class CartModal extends React.PureComponent {
             onPress: () => {
                 console.log("asdasd", this.state.val, this.props.limit, this.state.myoptions, this.props.guige);
 
+                if (this.state.inbound <= 0) {
+                    Toast.info("抱歉，此商品无库存了！不能购买，换个商品看看吧");
+                    this.props.hideModal();
+                    return;
+                }
+
                 if (this.state.val > this.props.limit) {
                     if (this.props.hasSpecification) {
                         if (this.state.myoptions === this.props.guige)
-                            Toast.info("超出限购数量！");
+                            Toast.info("超出限购数量！", 0.5);
                     } else
-                        Toast.info("超出限购数量！");
+                        Toast.info("超出限购数量！", 0.5);
                 } else {
                     this.props.hideModal && this.props.hideModal('success');
                     this.props.selectorText && this.props.selectorText(this.state.active, this.state.val,

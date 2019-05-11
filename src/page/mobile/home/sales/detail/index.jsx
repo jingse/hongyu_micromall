@@ -477,6 +477,7 @@ export default class SalesDetail extends React.PureComponent {
 
                     guige={this.state.salesDetail.hySingleitemPromotions[0].specificationId.specification}
                     limit={this.state.salesDetail.hySingleitemPromotions[0].limitedNum}
+                    stock={this.state.salesDetail.hySingleitemPromotions[0].promoteNum}
                 /> : ""}
 
         </Layout>
