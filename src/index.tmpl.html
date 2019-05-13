@@ -8,36 +8,38 @@
     <meta content="土特产微商城, 电商平台" name="keywords">
     <meta content="WF电商平台通用客户端，灵活组合可配置，我们不一样！" name="description">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" ref="stylesheet">
-
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
     <script async src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script async src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
-
-    <script>
-        if ('addEventListener' in document) {
-            document.addEventListener('DOMContentLoaded', function () {
-                FastClick.attach(document.body);
-            }, false);
-        }
-        if (!window.Promise) {
-            document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
-        }
-    </script>
 
     <title>土特产微商城</title>
 </head>
 
 <body>
-<div id="root"></div>
+    <div id="root"></div>
 </body>
 
-<script async>
+
+<script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function () {
+            FastClick.attach(document.body);
+        }, false);
+    }
+    if (!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+</script>
+
+
+<script defer>
     window.localStorage.setItem("openid", '{{openid}}');
     window.localStorage.setItem("unionid", '{{unionid}}');
     window.localStorage.setItem("nickname", '{{nickname}}');
     window.localStorage.setItem("province", '{{province}}');
     window.localStorage.setItem("headimgurl", '{{headimgurl}}');
 </script>
+
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" ref="stylesheet">-->
+<!--<script defer src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>-->
 
 </html>
