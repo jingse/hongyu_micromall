@@ -406,26 +406,6 @@ class Product extends React.PureComponent {
                         </div>
                     </WingBlank>
 
-
-                    {/* <WingBlank>*/}
-                    {/*<video*/}
-                    {/*id="my-player"*/}
-                    {/*className="video-js vjs-default-skin vjs-fluid"*/}
-                    {/*// x5-video-player-type="h5"*/}
-                    {/*// x-webkit-airplay="true" */}
-                    {/*// playsinline webkit-playsinline="true"*/}
-                    {/*width="100%"*/}
-                    {/*controls="false" */}
-                    {/*loop="true" //自动循环*/}
-                    {/*preload="metadata" //auto metadata none */}
-                    {/*poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1531238777253&di=ee388000b58e23ebda4df9ee02f224d6&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Faa64034f78f0f736fd98e0fe0655b319eac413ee.jpg"*/}
-                    {/*data-setup='{}'>*/}
-                    {/*<source src="http://ohjdda8lm.bkt.clouddn.com/course/sample1.mp4" type="video/mp4"></source>*/}
-                    {/*/!* <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>*/}
-                    {/*<source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source> *!/*/}
-                    {/*</video>*/}
-                    {/*</WingBlank>*/}
-
                 </div>
 
             </Card>
