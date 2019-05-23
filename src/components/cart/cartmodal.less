@@ -36,11 +36,14 @@
 
   .popup_modal_content {
     max-height: 20rem;
-
+    -webkit-overflow-scrolling: touch;
     .content_sec {
       padding-bottom: 1rem;
       margin-bottom: 0.5rem;
       border-bottom: 1px solid #eee;
+      max-height: 20rem;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
 
       header {
         color: #333;
@@ -63,4 +66,8 @@
       }
     }
   }
+}
+.fixios{
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }

@@ -165,11 +165,13 @@ export default class CartModal extends React.PureComponent {
             </div> : <div key={key}/>
         });
 
-        return <Flex wrap="wrap" className="content_sec">
-            <Flex.Item>
+        return <div wrap="wrap" className="content_sec">
+            {/* <Flex.Item   style={{overflow: 'scroll'}}> */}
+            <div   style={{overflow: 'scroll'}}>
                 {optionsData}
-            </Flex.Item>
-        </Flex>
+            </div>
+            {/* </Flex.Item> */}
+        </div>
     }
 
     render() {
