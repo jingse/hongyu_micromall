@@ -195,7 +195,7 @@ export default class CartModal extends React.PureComponent {
                         </div>
                         <div className="extractPrice"
                              style={{display: (this.state.isWebusiness === '1') ? 'inline' : "none"}}>
-                            提成金额：{(this.state.isWebusiness === '1') ? parseFloat(this.state.divideMoney).toFixed(2) : 0}
+                            提成金额：{(this.state.isWebusiness === '1') ? (parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0) : 0}
                         </div>
                     </Flex>
                     {/* <h3>{this.props.productData[0].specialty.name}</h3>

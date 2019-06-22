@@ -405,7 +405,7 @@ export default class SalesDetail extends React.PureComponent {
                     <h4>
                         {console.log("safasd", this.state.salesDetail)}
                         {(localStorage.getItem('isWebusiness') === '1') && this.state.salesDetail ? <div
-                                style={{marginBottom: 10}}>提成金额：{parseFloat(this.state.salesDetail.divideMoney).toFixed(2)}</div> :
+                                style={{marginBottom: 10}}>提成金额：{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</div> :
                             <div/>}
                     </h4>
                     {/* <h4>
