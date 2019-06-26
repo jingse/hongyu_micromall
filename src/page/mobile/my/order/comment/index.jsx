@@ -24,7 +24,7 @@ const filesURL = new Array();
 let sendPic = 0;
 
 
-class CommentOn extends React.PureComponent {
+class CommentOn extends React.Component {
 
     constructor(props) {
         super(props);
