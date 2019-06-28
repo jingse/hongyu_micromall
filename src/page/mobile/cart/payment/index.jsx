@@ -508,6 +508,7 @@ class Payment extends React.PureComponent {
 
     checkPromotionMoney(money) {
         if (money > 0) {
+            this.props.location.isPromotion = true
             if (this.props.location.isPromotion)
                 return <div>
                     <div className="discount_select price_text">-￥{money}</div>
@@ -575,7 +576,7 @@ class Payment extends React.PureComponent {
 
     render() {
         const {getFieldProps} = this.props.form;
-
+        console.log("???",this)
         if (!this.state.products || JSON.stringify(this.state.products) === "[]")
             return null;
 
