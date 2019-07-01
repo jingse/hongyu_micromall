@@ -23,7 +23,7 @@ const shipStateOption = [
 const refundReasonOption = [
     {value: 0, checked: false, label: '拍错/多拍/不想要'},
     {value: 1, checked: false, label: '商品有问题'},
-    {value: 2, checked: false, label: '未按时间发货'},
+    // {value: 2, checked: false, label: '未按时间发货'},
     {value: 3, checked: false, label: '未按时间发货'},
     {value: 4, checked: false, label: '其他'},
 ];
