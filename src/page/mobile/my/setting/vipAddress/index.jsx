@@ -9,7 +9,7 @@ import myApi from "../../../../../api/my.jsx";
 const wechatId = localStorage.getItem("wechatId");
 
 
-export default class vipAddress extends React.PureComponent {
+export default class vipAddress extends React.Component {
 
     constructor(props, context) {
         super(props, context);

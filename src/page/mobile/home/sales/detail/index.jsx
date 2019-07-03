@@ -22,7 +22,7 @@ import "./index.less";
 let cartProps = {};
 let buyProps = {};
 
-export default class SalesDetail extends React.PureComponent {
+export default class SalesDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context);

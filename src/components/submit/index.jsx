@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.less';
 
-export default class Card extends React.PureComponent {
+export default class Card extends React.Component {
     render() {
         const {children, blockStyle, buttonStyle, ...others} = this.props;
 

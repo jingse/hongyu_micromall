@@ -20,7 +20,7 @@ import {ConfirmReceiveButton, EvaluateOrderButton, PayButton} from "../../../../
 let orderCode = "";
 let payMoney = 0;
 
-export default class OrderDetail extends React.PureComponent {
+export default class OrderDetail extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {

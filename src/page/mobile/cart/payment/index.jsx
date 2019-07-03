@@ -29,7 +29,7 @@ import {getServerIp} from "../../../../config.jsx";
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
-class Payment extends React.PureComponent {
+class Payment extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {

@@ -15,7 +15,7 @@ import {ReqIngTip, ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
 let items = [];  //为了传递给下个界面
 let stock = 0;
 
-class Cart extends React.PureComponent {
+class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

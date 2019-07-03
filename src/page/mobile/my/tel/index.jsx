@@ -7,7 +7,7 @@ import myApi from "../../../../api/my.jsx";
 import PropTypes from "prop-types";
 
 
-export default class TelBinding extends React.PureComponent {
+export default class TelBinding extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

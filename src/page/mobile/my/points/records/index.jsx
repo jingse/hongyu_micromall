@@ -7,7 +7,7 @@ import DateManager from "../../../../../manager/DateManager.jsx";
 import "./index.less";
 
 
-export default class ExchangeRecords extends React.PureComponent {
+export default class ExchangeRecords extends React.Component {
 
     constructor(props, context) {
         super(props, context);

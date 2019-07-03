@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="改成47服务器">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="评论bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/content/content.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/content/content.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/footer/footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/footer/footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/header/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/header/header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/layout/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/layout/layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/list/list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/list/list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/pagination_list/paginationList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/pagination_list/paginationList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/bottom/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bottom/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart/cartmodal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/cartmodal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cart/putincart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cart/putincart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/submit/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/submit/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/add/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/add/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/edit/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/edit/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/coupon/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/adDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/category/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/grid_categoryList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/payment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recommend/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/search/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/search/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/search/searchRedirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/search/searchRedirect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tag/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/tagShow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/history/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/purchase/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/recharge/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/recharge/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/records/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/exchange/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/records/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/help/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/member/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/points/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/tel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/tel/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/vipAddress/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/vipAddress/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/comment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/redirect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/redirect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/pc/help.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/pc/help.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,23 +87,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/product/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="165">
+              <caret line="20" column="46" lean-forward="true" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -505,14 +564,8 @@
       <workItem from="1557978141135" duration="23000" />
       <workItem from="1557992198342" duration="64000" />
       <workItem from="1558404337715" duration="112000" />
-      <workItem from="1561511063393" duration="68000" />
-    </task>
-    <task id="LOCAL-00088" summary="修改产品详情页">
-      <created>1554793676946</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1554793676947</updated>
+      <workItem from="1561511063393" duration="974000" />
+      <workItem from="1562118436002" duration="227000" />
     </task>
     <task id="LOCAL-00089" summary="修改颜色">
       <created>1554796486401</created>
@@ -850,11 +903,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557578466290</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="评论bug">
+      <created>1561511162055</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1561511162055</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1378854000" />
+    <option name="totallyTimeSpent" value="1379760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -867,7 +927,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6" visible="true" weight="0.16078985" />
       <window_info id="Structure" order="1" sideWeight="0.4" side_tool="true" weight="0.17437252" />
@@ -882,8 +941,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3275401" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.506605" side_tool="true" weight="0.19498608" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.3275401" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" weight="0.080213904" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" visible="true" weight="0.091755316" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49339497" visible="true" weight="0.07978723" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49255952" weight="0.09163347" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.328877" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -935,7 +994,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="抽象出sales salesGroup一样的list" />
     <MESSAGE value="不用在意的修改" />
     <MESSAGE value="抽出一些相同的函数到SaleManager" />
     <MESSAGE value="删" />
@@ -960,7 +1018,8 @@
     <MESSAGE value="添加库存提醒" />
     <MESSAGE value="调整script位置减少首屏加载时间" />
     <MESSAGE value="改成47服务器" />
-    <option name="LAST_COMMIT_MESSAGE" value="改成47服务器" />
+    <MESSAGE value="评论bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="评论bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/page/mobile/home/sales/index.jsx">
@@ -1405,8 +1464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="-315">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

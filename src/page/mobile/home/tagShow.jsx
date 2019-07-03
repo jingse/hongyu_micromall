@@ -5,7 +5,7 @@ import {ProductCard} from "../../../components/product_card/proCard.jsx";
 import {CateHeader} from "../../../components/home_cate_header/cateHeader.jsx";
 
 
-export default class TagShow extends React.PureComponent {
+export default class TagShow extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {

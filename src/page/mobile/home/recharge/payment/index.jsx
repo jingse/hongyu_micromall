@@ -8,7 +8,7 @@ import WxManager from "../../../../../manager/WxManager.jsx";
 import PayManager from "../../../../../manager/payManager.jsx";
 
 
-export default class CouponBalance extends React.PureComponent {
+export default class CouponBalance extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {

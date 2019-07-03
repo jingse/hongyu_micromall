@@ -9,7 +9,7 @@ const Brief = Item.Brief;
 
 const wechatId = localStorage.getItem("wechatId");
 
-export default class HomeCoupon extends React.PureComponent {
+export default class HomeCoupon extends React.Component {
 
     constructor(props) {
         super(props);

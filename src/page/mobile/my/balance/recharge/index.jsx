@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 const wechatId = localStorage.getItem("wechatId");
 
 
-class BalanceRecharge extends React.PureComponent {
+class BalanceRecharge extends React.Component {
 
     constructor(props, context) {
         super(props, context);

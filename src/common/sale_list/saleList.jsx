@@ -10,7 +10,7 @@ import "./saleList.less";
 import {ReqNullTip, ReqFailTip, ReqIngTip} from "../../components/req_tip/reqTip.jsx";
 
 
-export default class SalesList extends React.PureComponent {
+export default class SalesList extends React.Component {
 
     constructor(props) {
         super(props);

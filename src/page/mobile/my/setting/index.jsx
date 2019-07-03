@@ -12,7 +12,7 @@ const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
 const wechatId = localStorage.getItem("wechatId");
 
-export default class Setting extends React.PureComponent {
+export default class Setting extends React.Component {
 
     constructor(props, context) {
         super(props, context);

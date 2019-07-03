@@ -19,7 +19,7 @@ let sectionIDs = [];
 let rowIDs = [];
 
 
-export default class List extends React.PureComponent {
+export default class List extends React.Component {
     constructor(props, context) {
         super(props, context);
         const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];

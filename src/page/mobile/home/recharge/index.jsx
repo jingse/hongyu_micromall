@@ -14,7 +14,7 @@ const Brief = Item.Brief;
 const wechatId = localStorage.getItem("wechatId");
 
 
-class Recharge extends React.PureComponent {
+class Recharge extends React.Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };

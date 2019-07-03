@@ -20,7 +20,7 @@ import {getServerIp} from '../../../config.jsx';
 import './index.less';
 
 
-class Home extends React.PureComponent {
+class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {

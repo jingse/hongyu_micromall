@@ -34,7 +34,7 @@ const refundType = [
 ];
 
 
-class RefundApply extends React.PureComponent {
+class RefundApply extends React.Component {
 
     constructor(props) {
         super(props);

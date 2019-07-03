@@ -9,7 +9,7 @@ import './index.less';
 const pageSize = 10;
 let totalPages = 0;
 
-export default class Comment extends React.PureComponent {
+export default class Comment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

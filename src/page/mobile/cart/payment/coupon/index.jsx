@@ -8,7 +8,7 @@ import DateManager from "../../../../../manager/DateManager.jsx";
 const CheckboxItem = Checkbox.CheckboxItem;
 const wechatId = parseInt(localStorage.getItem("wechatId"));
 
-export default class CouponChoose extends React.PureComponent {
+export default class CouponChoose extends React.Component {
 
     constructor(props, context) {
         super(props, context);

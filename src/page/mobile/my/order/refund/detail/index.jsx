@@ -7,7 +7,7 @@ import {getServerIp} from "../../../../../../config.jsx";
 import OrderManager from "../../../../../../manager/OrderManager.jsx";
 
 
-export default class RefundDetail extends React.PureComponent {
+export default class RefundDetail extends React.Component {
 
     constructor(props) {
         super(props);

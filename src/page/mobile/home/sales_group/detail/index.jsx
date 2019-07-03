@@ -22,7 +22,7 @@ let cartProps;
 let buyProps;
 
 
-export default class SalesGroupDetail extends React.PureComponent {
+export default class SalesGroupDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context);
