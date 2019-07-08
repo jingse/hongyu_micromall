@@ -36,23 +36,28 @@ export default class EditAddress extends React.PureComponent {
     }
 
     editAddress() {
-        const address = {
-            "id": this.props.location.state.id,
-            "wechat_id": localStorage.getItem("wechatId"),
-            "receiverName": this.state.name,
-            "receiverAddress": this.state.province,
-            "receiverMobile": this.state.phone,
-            "isDefaultReceiverAddress": this.state.isDefault,
-        };
-
-        addressApi.editAddress(address, (rs) => {
-            if (rs && rs.success) {
-                // console.log("rs.msg: ", rs.msg);
-                Toast.info(rs.msg, 1);
-                history.go(-1);
-                // this.context.router.history.push("/address");
-            }
-        });
+        if(this.state.name==""||this.state.province==""||this.state.phone==""){
+            Toast.info("您有信息未填写", 1);
+        }
+        else{
+            const address = {
+                "id": this.props.location.state.id,
+                "wechat_id": localStorage.getItem("wechatId"),
+                "receiverName": this.state.name,
+                "receiverAddress": this.state.province,
+                "receiverMobile": this.state.phone,
+                "isDefaultReceiverAddress": this.state.isDefault,
+            };
+    
+            addressApi.editAddress(address, (rs) => {
+                if (rs && rs.success) {
+                    // console.log("rs.msg: ", rs.msg);
+                    Toast.info(rs.msg, 1);
+                    history.go(-1);
+                    // this.context.router.history.push("/address");
+                }
+            });
+        }
     }
 
     onReceiverNameChange = (value) => {

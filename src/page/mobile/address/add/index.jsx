@@ -22,21 +22,26 @@ export default class AddAddress extends React.PureComponent {
     }
 
     addUserAddress() {
-        const address = {
-            "wechat_id": wechatId,
-            "receiverName": this.state.name,
-            "receiverAddress": this.state.address,
-            "receiverMobile": this.state.phone,
-            "isDefaultReceiverAddress": false,
-        };
-
-        addressApi.addAddress(address, (rs) => {
-            if (rs && rs.success) {
-                Toast.info(rs.msg, 1);
-                // this.context.router.history.push("/address");
-                history.go(-1);
-            }
-        });
+        if(this.state.name==""||this.state.address==""||this.state.phone==""){
+            Toast.info("您有信息未填写", 1);
+        }
+        else{
+            const address = {
+                "wechat_id": wechatId,
+                "receiverName": this.state.name,
+                "receiverAddress": this.state.address,
+                "receiverMobile": this.state.phone,
+                "isDefaultReceiverAddress": false,
+            };
+    
+            addressApi.addAddress(address, (rs) => {
+                if (rs && rs.success) {
+                    Toast.info(rs.msg, 1);
+                    // this.context.router.history.push("/address");
+                    history.go(-1);
+                }
+            });
+        }
     }
 
     onReceiverNameChange = (value) => {
