@@ -323,7 +323,7 @@ class Payment extends React.PureComponent {
 
 
         let order = {
-            "orderPhone": localStorage.getItem("bindPhone"),
+            "orderPhone": localStorage.getItem("bindPhone")!="null"?localStorage.getItem("bindPhone"):null,
             "orderWechatId": wechatId,
             "webusinessId": webusinessId,
 
