@@ -379,7 +379,7 @@ export default class SalesGroupDetail extends React.Component {
                     </h4>
                     <h4>
                         {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
-                            style={{color: 'black'}}>{parseFloat(this.state.salesGroupDetail.divideMoney).toFixed(2)}</span>
+                            style={{color: 'black'}}>{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</span>
                         </div> : <div/>}
                     </h4>
 

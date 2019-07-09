@@ -162,12 +162,19 @@ class Home extends React.Component {
                 localStorage.setItem("wechatId", wechatId);
                 localStorage.setItem("balance", balance);
                 localStorage.setItem("isVip", isVip);
+
+                if(uid == -1 && rs.obj.customer_uid  != null){
+                    uid = rs.obj.customer_uid
+                }
+
+                localStorage.setItem("cusuid", rs.obj.customer_uid);
+                uid !== -1 && this.requestMerchantInfo(uid);
             }
         });
 
 
         this.requestCarousel();
-        uid !== -1 && this.requestMerchantInfo(uid);
+        // uid !== -1 && this.requestMerchantInfo(uid);
         this.requestTags();
         this.requestCategories();
 
@@ -208,6 +215,7 @@ class Home extends React.Component {
                 this.setState({modalBack: true});
 
             if (rs && rs.success) {
+                localStorage.setItem("shopname",rs.obj.weBusiness.shopName)
                 const card = rs.obj;
                 this.setState({
                     card

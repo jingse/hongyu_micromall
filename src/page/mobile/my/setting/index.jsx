@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import {DatePicker, List, Modal, Toast, WhiteSpace} from "antd-mobile";
 import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
@@ -154,13 +154,16 @@ export default class Setting extends React.Component {
                                     text: '设置', onPress: value => {
                                         myApi.webusinessShopNameEdit(localStorage.getItem('WebusinessID'), value, (rs) => {
                                             console.log('设置微商城名称rs', rs)
+                                            if(rs&&rs.success){
+                                                localStorage.setItem("shopname",value)
+                                            }
                                         })
                                         // myApi.webusinessShopNameEdit(191,value,(rs)=>{
                                         //     console.log('设置微商城名称rs',rs)
                                         // })
                                     }
                                 },
-                            ], 'default', '土特产微商城')
+                            ], 'default', localStorage.getItem("shopname"))
                         }}
                     >
                         设置微商城名称

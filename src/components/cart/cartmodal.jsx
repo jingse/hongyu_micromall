@@ -165,11 +165,13 @@ export default class CartModal extends React.Component {
             </div> : <div key={key}/>
         });
 
-        return <Flex wrap="wrap" className="content_sec">
-            <Flex.Item>
+        return <div wrap="wrap" className="content_sec">
+            {/* <Flex.Item   style={{overflow: 'scroll'}}> */}
+            <div   style={{overflow: 'scroll'}}>
                 {optionsData}
-            </Flex.Item>
-        </Flex>
+            </div>
+            {/* </Flex.Item> */}
+        </div>
     }
 
     render() {
@@ -193,7 +195,7 @@ export default class CartModal extends React.Component {
                         </div>
                         <div className="extractPrice"
                              style={{display: (this.state.isWebusiness === '1') ? 'inline' : "none"}}>
-                            提成金额：{(this.state.isWebusiness === '1') ? parseFloat(this.state.divideMoney).toFixed(2) : 0}
+                            提成金额：{(this.state.isWebusiness === '1') ? (parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0) : 0}
                         </div>
                     </Flex>
                     {/* <h3>{this.props.productData[0].specialty.name}</h3>
