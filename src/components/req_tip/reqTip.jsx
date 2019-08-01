@@ -11,7 +11,7 @@ export const ReqIngTip = (props) => {
 export const ReqFailTip = (props) => {
     let content = [];
     if (props.errorMsg) {
-        content.push(<div>
+        content.push(<div key="errorMsg">
             {props.errorMsg}
         </div>);
     }

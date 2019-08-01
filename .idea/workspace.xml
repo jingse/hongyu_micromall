@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="添加购物车列表获取失败的错误信息提示">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="优化优惠列表页以及订单列表页显示“加载更多”的逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/req_tip/reqTip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/req_tip/reqTip.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -304,14 +302,7 @@
       <workItem from="1561511063393" duration="974000" />
       <workItem from="1562118436002" duration="287000" />
       <workItem from="1562671129621" duration="581000" />
-      <workItem from="1564560320786" duration="12486000" />
-    </task>
-    <task id="LOCAL-00093" summary="优惠产品详情页不显示更多优惠">
-      <created>1555036342920</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1555036342921</updated>
+      <workItem from="1564560320786" duration="13083000" />
     </task>
     <task id="LOCAL-00094" summary="整理代码清除无用的注释">
       <created>1555054193026</created>
@@ -649,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564629743030</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="优化优惠列表页以及订单列表页显示“加载更多”的逻辑">
+      <created>1564646997465</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1564646997466</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TodoView">
@@ -692,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作" />
     <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作&#10;支付功能待测试" />
     <MESSAGE value="fix" />
     <MESSAGE value="性能优化&#10;抽出首页的card" />
@@ -717,6 +714,7 @@
     <MESSAGE value="同步修复地址列表bug" />
     <MESSAGE value="console分组，便于调试" />
     <MESSAGE value="添加购物车列表获取失败的错误信息提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加购物车列表获取失败的错误信息提示" />
+    <MESSAGE value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
   </component>
 </project>
