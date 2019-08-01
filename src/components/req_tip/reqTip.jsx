@@ -9,7 +9,17 @@ export const ReqIngTip = (props) => {
 
 //请求失败
 export const ReqFailTip = (props) => {
-    return <div className="null_product">请求失败orz</div>
+    let content = [];
+    if (props.errorMsg) {
+        content.push(<div>
+            {props.errorMsg}
+        </div>);
+    }
+
+    return <div className="null_product">
+        请求失败orz
+        {content}
+    </div>
 };
 
 //请求结果为空

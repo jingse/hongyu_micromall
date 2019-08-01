@@ -67,7 +67,7 @@ function ajax(params) {
         if (this.status >= 200 && this.status < 300) {
             params.success && params.success(JSON.parse(this.response));
         } else {
-            params.fail && params.fail(this.statusText);
+            params.fail && params.fail(this.status + "" + this.statusText);
         }
         params.complete && params.complete(JSON.parse(this.response));
         clearTimeout(timeout);

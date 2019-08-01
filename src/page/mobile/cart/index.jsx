@@ -40,6 +40,7 @@ class Cart extends React.Component {
             animating: false,
             isCartNull: false,
             isReqFail: false,
+            errorMsg: "",
 
             presents: [],
             payM: 0,
@@ -99,6 +100,9 @@ class Cart extends React.Component {
                 this.setState({isReqFail: true});
                 // Toast.info("请求失败！", 0.5);
             }
+        }, (errorMsg) => {
+            console.log(errorMsg);
+            this.setState({isReqFail: true, errorMsg: errorMsg});
         });
     }
 
@@ -309,7 +313,7 @@ class Cart extends React.Component {
         let content;
 
         if (this.state.isReqFail)
-            content = <ReqFailTip/>;
+            content = <ReqFailTip errorMsg={this.state.errorMsg}/>;
         else if (JSON.stringify(this.state.cartData) === "[]" && !this.state.isCartNull)
             content = <ReqIngTip/>;
         else
