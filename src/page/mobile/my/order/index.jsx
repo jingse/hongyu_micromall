@@ -42,17 +42,11 @@ export default class Order extends React.Component {
 
             isNull: false,
 
-            allPage: 0,
-            payPage: 0,
-            deliverPage: 0,
-            receivePage: 0,
-            evaluatePage: 0,
-            refundPage: 0,
+            curOrderPage: 2,
+            pageNum: [0, 0, 0, 0, 0, 0],
 
             refreshing: false,                                   //刷新状态上拉
             height: document.documentElement.clientHeight,       //新添加高度
-
-            curOrderPage: 2,
         };
         this.orderPaySuccessCallback = this.orderPaySuccessCallback.bind(this);
         this.orderPayFailCallback = this.orderPayFailCallback.bind(this);
@@ -134,9 +128,10 @@ export default class Order extends React.Component {
             const allOrder = rs.obj.rows;
             console.log("allOrder", rs);
             let alltemp = (page === 1) ? allOrder : this.state.all.concat(allOrder);
+            this.state.pageNum[this.state.tab] = rs.obj.totalPages;
             this.setState({
                 all: alltemp,
-                allPage: rs.obj.totalPages,
+                pageNum: this.state.pageNum,
             });
             if (page === 1 && allOrder.length <= 0) {
                 this.setState({isNull: true});
@@ -154,9 +149,10 @@ export default class Order extends React.Component {
             const payOrder = rs.obj.rows;
             console.log("请求待付款订单", rs);
             let paytemp = (page === 1) ? payOrder : this.state.pay.concat(payOrder);
+            this.state.pageNum[this.state.tab] = rs.obj.totalPages;
             this.setState({
                 pay: paytemp,
-                payPage: rs.obj.totalPages,
+                pageNum: this.state.pageNum,
             });
             if (page === 1 && payOrder.length <= 0) {
                 this.setState({isNull: true});
@@ -171,20 +167,25 @@ export default class Order extends React.Component {
     requestDeliverOrder(wechatId, page, rows) {
         console.log("请求待发货订单");
         let delivertemp = (page === 1) ? [] : this.state.deliver;
+        let totalNum = 0;
         //待发货订单
         myApi.getOrderListByAccount(wechatId, 1, page, rows, (rs) => {
             let order1 = rs.obj.rows;
+            totalNum += rs.obj.total;
 
             myApi.getOrderListByAccount(wechatId, 2, page, rows, (rs) => {
                 let order2 = rs.obj.rows;
                 order1 = order1.concat(order2);
+                totalNum += rs.obj.total;
 
                 myApi.getOrderListByAccount(wechatId, 3, page, rows, (rs) => {
                     let order3 = rs.obj.rows;
                     order1 = order1.concat(order3);
+                    totalNum += rs.obj.total;
+                    this.state.pageNum[this.state.tab] = Math.ceil(totalNum / rs.obj.pageSize);
                     this.setState({
                         deliver: delivertemp.concat(order1),
-                        deliverPage: this.state.deliverPage + rs.obj.totalPages,
+                        pageNum: this.state.pageNum,
                     });
                     if (page === 1 && order1.length <= 0) {
                         this.setState({isNull: true});
@@ -203,11 +204,12 @@ export default class Order extends React.Component {
         //待收货订单
         myApi.getOrderListByAccount(wechatId, 4, page, rows, (rs) => {
             const order = rs.obj.rows;
+            this.state.pageNum[this.state.tab] = rs.obj.totalPages;
             console.log("order", order, rs);
             console.log("receivetemp", receivetemp);
             this.setState({
                 receive: receivetemp.concat(order),
-                receivePage: rs.obj.totalPages,
+                pageNum: this.state.pageNum,
             });
             if (page === 1 && order.length <= 0) {
                 this.setState({isNull: true});
@@ -225,6 +227,7 @@ export default class Order extends React.Component {
         let evaluateetemp = (page === 1) ? [] : this.state.evaluate;
         //待评价订单
         let order = [];
+        let totalNum = 0;
         myApi.getOrderListByAccount(wechatId, 5, page, rows, (rs) => {
             let order1 = rs.obj.rows;
             let valid1 = [];
@@ -234,6 +237,7 @@ export default class Order extends React.Component {
                 }
             });
             order = order.concat(valid1);
+            totalNum += rs.obj.total;
             myApi.getOrderListByAccount(wechatId, 6, page, rows, (rs) => {
                 const order2 = rs.obj.rows;
                 let valid2 = [];
@@ -244,9 +248,11 @@ export default class Order extends React.Component {
                 });
                 order = order.concat(valid2);
                 console.log("requestEvaluateOrder", evaluateetemp.concat(order));
+                totalNum += rs.obj.total;
+                this.state.pageNum[this.state.tab] = Math.ceil(totalNum / rs.obj.pageSize);
                 this.setState({
                     evaluate: evaluateetemp.concat(order),
-                    evaluatePage: this.state.evaluatePage + rs.obj.totalPages,
+                    pageNum: this.state.pageNum,
                 });
                 if (page === 1 && order.length <= 0) {
                     this.setState({isNull: true});
@@ -262,28 +268,38 @@ export default class Order extends React.Component {
     requestRefundOrder(wechatId, page, rows) {
         console.log("请求退款订单");
         let refundtemp = (page === 1) ? [] : this.state.refund;
+        let totalNum = 0;
         //退款订单
         myApi.getOrderListByAccount(wechatId, 8, page, rows, (rs) => {
             let order1 = rs.obj.rows;
+            totalNum += rs.obj.total;
 
             myApi.getOrderListByAccount(wechatId, 9, page, rows, (rs) => {
                 let order2 = rs.obj.rows;
                 order1 = order1.concat(order2);
+                totalNum += rs.obj.total;
 
                 myApi.getOrderListByAccount(wechatId, 10, page, rows, (rs) => {
                     let order3 = rs.obj.rows;
                     order1 = order1.concat(order3);
+                    totalNum += rs.obj.total;
 
                     myApi.getOrderListByAccount(wechatId, 11, page, rows, (rs) => {
                         let order4 = rs.obj.rows;
                         order1 = order1.concat(order4);
+                        totalNum += rs.obj.total;
 
                         myApi.getOrderListByAccount(wechatId, 12, page, rows, (rs) => {
                             let order5 = rs.obj.rows;
                             order1 = order1.concat(order5);
+                            totalNum += rs.obj.total;
+                            let baseNum = totalNum / rs.obj.pageSize;
+                            // console.warn("baseNum", baseNum);
+                            this.state.pageNum[this.state.tab] = Math.ceil(totalNum / rs.obj.pageSize);
+
                             this.setState({
                                 refund: refundtemp.concat(order1),
-                                refundPage: this.state.refundPage + rs.obj.totalPages,
+                                pageNum: this.state.pageNum,
                             });
                             if (page === 1 && order1.length <= 0) {
                                 this.setState({isNull: true});
@@ -493,7 +509,7 @@ export default class Order extends React.Component {
             return <div className="tip">请求中...</div>
         } else {
             orderContent = order && order.map((item, index) => {
-                console.log('itemitemitemitemitemitemitemitem', item)
+                // console.log('itemitemitemitemitemitemitemitem', item)
                 if (item.orderItems.length === 1) {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) => {
                         return <div key={index} className="order_card">
@@ -610,7 +626,7 @@ export default class Order extends React.Component {
 
                 {orderContent}
 
-                <div className='addMore' onClick={() => this.addMore()}>加载更多</div>
+                {this.state.curOrderPage <= this.state.pageNum[this.state.tab] ? <div className='addMore' onClick={() => this.addMore()}>加载更多</div> : null}
 
                 <WhiteSpace/>
                 <WhiteSpace/>
@@ -639,6 +655,8 @@ export default class Order extends React.Component {
         // console.log("this.state.receive: ", this.state.receive);
         // console.log("this.state.evaluate: ", this.state.evaluate);
         // console.log("this.state.refund: ", this.state.refund);
+        console.log("this.state.curPage", this.state.curOrderPage);
+        console.log("this.state.pageNum", this.state.pageNum);
 
         const allOrders = this.getOrderContent(this.state.all, "all");
         const payOrders = this.getOrderContent(this.state.pay, "");

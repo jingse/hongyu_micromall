@@ -145,7 +145,8 @@ export default class SalesList extends React.Component {
                     <WhiteSpace/>
                 </Link>
             });
-            content.push(<div className='addMore' key={this.state.data.length + 1} onClick={() => this.addMore()}>加载更多</div>);
+            if (!this.state.isEnd)
+                content.push(<div className='addMore' key={this.state.data.length + 1} onClick={() => this.addMore()}>加载更多</div>);
         }
 
 

@@ -297,7 +297,7 @@ export default class My extends React.Component {
 
     checkPhone() {
         // console.log("my bindPhone", localStorage.getItem("bindPhone"));
-        console.log("bindPhone", this.state.userData.phone);
+        // console.log("bindPhone", this.state.userData.phone);
         localStorage.setItem("bindPhone", this.state.userData.phone);
 
         //if (this.state.userData.phone || localStorage.getItem("bindPhone")) {      
@@ -364,6 +364,7 @@ export default class My extends React.Component {
                             {/*{this.checkVip()}*/}
 
                         </div>
+
 
                         {this.checkPhone()}
 
