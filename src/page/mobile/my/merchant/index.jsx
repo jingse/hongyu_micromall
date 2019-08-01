@@ -8,7 +8,7 @@ import './index.less';
 import myApi from "../../../../api/my.jsx";
 
 
-export default class ProfitShare extends React.PureComponent {
+export default class ProfitShare extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -25,6 +25,7 @@ export default class ProfitShare extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("微商分成页");
         this.requestData();
     }
 
@@ -46,7 +47,10 @@ export default class ProfitShare extends React.PureComponent {
             default:
                 break;
         }
+    }
 
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestData() {

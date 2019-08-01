@@ -7,7 +7,7 @@ import {getServerIp} from "../../../../../../config.jsx";
 import OrderManager from "../../../../../../manager/OrderManager.jsx";
 
 
-export default class RefundDetail extends React.PureComponent {
+export default class RefundDetail extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,7 +17,12 @@ export default class RefundDetail extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("退款详情页");
         this.requestRefundOrderDetail(this.props.location.orderId);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestRefundOrderDetail(orderId) {

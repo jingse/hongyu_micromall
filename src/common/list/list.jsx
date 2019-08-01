@@ -19,7 +19,7 @@ let sectionIDs = [];
 let rowIDs = [];
 
 
-export default class List extends React.PureComponent {
+export default class List extends React.Component {
     constructor(props, context) {
         super(props, context);
         const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
@@ -52,6 +52,7 @@ export default class List extends React.PureComponent {
 
 
     componentWillMount() {
+        console.groupCollapsed(this.props.name);
 
         this.requestListData(this.state.fixedValue, this.state.anotherValue, 1, 10, 0);
 
@@ -75,6 +76,10 @@ export default class List extends React.PureComponent {
             this.genData();
 
         }, 300);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestListData(unUsed1, unUsed2, page, rows, condition) {
@@ -225,7 +230,7 @@ export default class List extends React.PureComponent {
                             console.log("降序")
                         }}>
                             <img src={this.state.ascChoose ? "./images/icons/降序.png" : "./images/icons/降序-选中.png"}
-                                 style={{width: '50%'}}/>
+                                 style={{width: '50%'}} alt=""/>
                         </div>
                     </Flex.Item>
 

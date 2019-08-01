@@ -9,7 +9,7 @@ import {NumStepper} from "../num_stepper/numStepper.jsx";
 let temp = [];
 
 
-export default class CartModal extends React.PureComponent {
+export default class CartModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();

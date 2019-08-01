@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {TabBar} from 'antd-mobile';
 import './footer.less';
 
-export default class MyFooter extends React.PureComponent {
+export default class MyFooter extends React.Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };

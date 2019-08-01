@@ -51,10 +51,7 @@ function ajax(params) {
         //client.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         client.setRequestHeader("Content-Type", params.type);
     }
-    if (params.withCredentials == false)
-        client.withCredentials = false;
-    else
-        client.withCredentials = true;
+    client.withCredentials = params.withCredentials !== false;
     if (method === 'GET') {
         client.send();
     } else {
@@ -70,7 +67,7 @@ function ajax(params) {
         if (this.status >= 200 && this.status < 300) {
             params.success && params.success(JSON.parse(this.response));
         } else {
-            params.fail && params.fail(this.statusText);
+            params.fail && params.fail(this.status + "" + this.statusText);
         }
         params.complete && params.complete(JSON.parse(this.response));
         clearTimeout(timeout);

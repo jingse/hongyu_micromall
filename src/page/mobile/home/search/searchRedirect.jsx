@@ -4,7 +4,7 @@ import Layout from "../../../../common/layout/layout.jsx";
 import Navigation from "../../../../components/navigation/index.jsx";
 
 
-export default class searchRedirect extends React.PureComponent {
+export default class searchRedirect extends React.Component {
 
     constructor(props, context) {
         super(props, context);

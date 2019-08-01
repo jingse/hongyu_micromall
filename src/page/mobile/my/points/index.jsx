@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import myApi from "../../../../api/my.jsx";
 
 
-export default class MyPoints extends React.PureComponent {
+export default class MyPoints extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -17,12 +17,17 @@ export default class MyPoints extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("积分页");
         if (this.props.location.totalPoints && this.props.location.availablePoints) {
             localStorage.setItem("totalPoints", this.props.location.totalPoints.toString());
             localStorage.setItem("availablePoints", this.props.location.availablePoints.toString());
         }
 
         this.requestInfo();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     // 请求个人信息

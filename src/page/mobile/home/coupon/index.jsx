@@ -9,7 +9,7 @@ const Brief = Item.Brief;
 
 const wechatId = localStorage.getItem("wechatId");
 
-export default class HomeCoupon extends React.PureComponent {
+export default class HomeCoupon extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,7 +19,12 @@ export default class HomeCoupon extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页领券中心页");
         this.requestCoupons(wechatId);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestCoupons(wechatId) {

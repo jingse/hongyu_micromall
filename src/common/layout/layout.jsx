@@ -3,7 +3,7 @@ import Footer from '../footer/footer.jsx';
 import Header from '../header/header.jsx';
 import Content from '../content/content.jsx';
 
-export default class MyLayout extends React.PureComponent {
+export default class MyLayout extends React.Component {
     constructor(props, context) {
         super(props, context);
     }

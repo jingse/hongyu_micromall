@@ -15,7 +15,7 @@ import {ReqIngTip, ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
 let items = [];  //为了传递给下个界面
 let stock = 0;
 
-class Cart extends React.PureComponent {
+class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,6 +40,7 @@ class Cart extends React.PureComponent {
             animating: false,
             isCartNull: false,
             isReqFail: false,
+            errorMsg: "",
 
             presents: [],
             payM: 0,
@@ -48,6 +49,7 @@ class Cart extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("购物车");
         this.setState({animating: !this.state.animating});
 
         // window.onpopstate = function(event) {this.console.log("event",event)}
@@ -77,6 +79,7 @@ class Cart extends React.PureComponent {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        console.groupEnd();
     }
 
     requestCartList() {
@@ -97,6 +100,9 @@ class Cart extends React.PureComponent {
                 this.setState({isReqFail: true});
                 // Toast.info("请求失败！", 0.5);
             }
+        }, (errorMsg) => {
+            console.log(errorMsg);
+            this.setState({isReqFail: true, errorMsg: errorMsg});
         });
     }
 
@@ -307,7 +313,7 @@ class Cart extends React.PureComponent {
         let content;
 
         if (this.state.isReqFail)
-            content = <ReqFailTip/>;
+            content = <ReqFailTip errorMsg={this.state.errorMsg}/>;
         else if (JSON.stringify(this.state.cartData) === "[]" && !this.state.isCartNull)
             content = <ReqIngTip/>;
         else

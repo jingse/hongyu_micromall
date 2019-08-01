@@ -13,7 +13,7 @@ const Item = List.Item;
 const pageSize = 10;
 let wechatIdmy = localStorage.getItem("wechatId");
 
-export default class My extends React.PureComponent {
+export default class My extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,6 +40,8 @@ export default class My extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("个人中心页");
+
         wechatIdmy = localStorage.getItem("wechatId");
         let str = localStorage.getItem("nickname");
         let s = str;
@@ -73,6 +75,10 @@ export default class My extends React.PureComponent {
 
     componentDidMount() {
         localStorage.removeItem("tab");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     // 请求个人信息
@@ -291,7 +297,7 @@ export default class My extends React.PureComponent {
 
     checkPhone() {
         // console.log("my bindPhone", localStorage.getItem("bindPhone"));
-        console.log("bindPhone", this.state.userData.phone);
+        // console.log("bindPhone", this.state.userData.phone);
         localStorage.setItem("bindPhone", this.state.userData.phone);
 
         //if (this.state.userData.phone || localStorage.getItem("bindPhone")) {      
@@ -358,6 +364,7 @@ export default class My extends React.PureComponent {
                             {/*{this.checkVip()}*/}
 
                         </div>
+
 
                         {this.checkPhone()}
 

@@ -31,7 +31,7 @@ import settingApi from "../../../api/setting.jsx";
 let cartProps;
 let buyProps;
 
-class Product extends React.PureComponent {
+class Product extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -73,6 +73,8 @@ class Product extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("产品详情页");
+
         this.requestProductDetailData(this.state.specialtyId);
         this.requestProductCommentData(this.state.specialtyId, 1, 10);
         this.requestServicePromise();
@@ -83,6 +85,10 @@ class Product extends React.PureComponent {
         WxManager.share();
 
         localStorage.removeItem("inputBalance");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 

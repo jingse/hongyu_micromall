@@ -4,7 +4,7 @@ import {SearchBar} from 'antd-mobile';
 import "./header.less";
 
 
-export default class Header extends React.PureComponent {
+export default class Header extends React.Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };

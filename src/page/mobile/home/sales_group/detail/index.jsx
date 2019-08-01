@@ -22,7 +22,7 @@ let cartProps;
 let buyProps;
 
 
-export default class SalesGroupDetail extends React.PureComponent {
+export default class SalesGroupDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -70,6 +70,8 @@ export default class SalesGroupDetail extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("组合优惠详情页");
+
         let groupPromotionId = 0;
         if (!this.props.location.state) {
             groupPromotionId = localStorage.getItem("groupPromotionId");
@@ -123,6 +125,10 @@ export default class SalesGroupDetail extends React.PureComponent {
         this.requestServicePromise();
 
         localStorage.removeItem("inputBalance");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestGroupPromotionDetail(groupPromotionId) {

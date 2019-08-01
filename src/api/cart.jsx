@@ -20,15 +20,15 @@ var api = {
     //----------------------------------cart page api-------------------------------------------
 
     //params: wechat_id
-    getCartItemsList(id, callback) {
+    getCartItemsList(id, callback, errorHandler) {
         httpManager.ajax({
             url: getServerHost() + "/shopping_cart/get_items?wechat_id=" + id,
-            // data: {
-            //     wechat_id: 8,
-            // },
             success: (rs) => {
                 callback && callback(rs);
-            }
+            },
+            fail: (rs) => {
+                errorHandler && errorHandler(rs);
+            },
         });
     },
 

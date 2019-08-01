@@ -20,7 +20,7 @@ import {getServerIp} from '../../../config.jsx';
 import './index.less';
 
 
-class Home extends React.PureComponent {
+class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -36,6 +36,7 @@ class Home extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页");
 
         this.setState({animating: !this.state.animating});
 
@@ -72,6 +73,7 @@ class Home extends React.PureComponent {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        console.groupEnd();
         // WxManager.wxClosePage('home');
     }
 

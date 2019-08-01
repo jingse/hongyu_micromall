@@ -12,7 +12,7 @@ const now = new Date(nowTimeStamp);
 const minDate = new Date('1900/01/01');
 const wechatId = localStorage.getItem("wechatId");
 
-export default class Setting extends React.PureComponent {
+export default class Setting extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -30,6 +30,8 @@ export default class Setting extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("设置页");
+
         //获得会员地址and生日
         console.log('this.props isVip', localStorage.getItem("isVip"), wechatId, localStorage.getItem("bindPhone"))
         myApi.vipAddressView(wechatId, (rs) => {
@@ -46,6 +48,10 @@ export default class Setting extends React.PureComponent {
                 })
             }
         })
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     static formatDate(date) {
@@ -78,7 +84,7 @@ export default class Setting extends React.PureComponent {
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                     onClick={() => {
-                        this.context.router.history.push({pathname: '/address', state: {fromSet: 'set'}})
+                        this.context.router.history.push({pathname: '/my/address'})
                     }}
                     arrow="horizontal"
                 >

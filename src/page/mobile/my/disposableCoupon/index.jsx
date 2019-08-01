@@ -9,7 +9,7 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-export default class DisposableCoupon extends React.PureComponent {
+export default class DisposableCoupon extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -24,7 +24,12 @@ export default class DisposableCoupon extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("一次性电子券页");
         this.requestDisposableCoupons();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestDisposableCoupons() {

@@ -14,7 +14,7 @@ const Brief = Item.Brief;
 const wechatId = localStorage.getItem("wechatId");
 
 
-class Recharge extends React.PureComponent {
+class Recharge extends React.Component {
     static contextTypes = {
         router: PropTypes.object.isRequired
     };
@@ -42,11 +42,13 @@ class Recharge extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页电子券购买页");
         this.requestRechargeCoupon();
     }
 
     componentWillUnmount() {
         clearInterval(this.state.siv);
+        console.groupEnd();
     }
 
     requestRechargeCoupon() {

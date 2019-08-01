@@ -22,7 +22,7 @@ import "./index.less";
 let cartProps = {};
 let buyProps = {};
 
-export default class SalesDetail extends React.PureComponent {
+export default class SalesDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context);
@@ -67,6 +67,8 @@ export default class SalesDetail extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("普通优惠详情页");
+
         let promotionId = 0;
         if (!this.props.location.state) {
             promotionId = localStorage.getItem("promotionId");
@@ -116,6 +118,10 @@ export default class SalesDetail extends React.PureComponent {
 
         this.requestOrdinaryPromotionDetail(promotionId);
         this.requestServicePromise();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestProductDetailData(specialtyId) {

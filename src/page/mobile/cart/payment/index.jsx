@@ -29,7 +29,7 @@ import {getServerIp} from "../../../../config.jsx";
 const webusinessId = (!localStorage.getItem("uid")) ? 26 : parseInt(localStorage.getItem("uid"));
 
 
-class Payment extends React.PureComponent {
+class Payment extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -62,6 +62,7 @@ class Payment extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("下单支付页");
 
         // get the items ticked in the shopping cart
         console.log('this.props.location', this.props.location);
@@ -175,6 +176,8 @@ class Payment extends React.PureComponent {
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");
+
+        console.groupEnd();
     }
 
     componentDidMount() {
@@ -609,7 +612,7 @@ class Payment extends React.PureComponent {
             </div>
 
             <Card className="payment_card">
-                <Link to={{pathname: "/address", state: {fromSet: 'cart'}}}>
+                <Link to={{pathname: `/payment/address`}}>
                     <Flex>
                         <Flex.Item style={{flex: '0 0 10%'}}>
                             <img src="./images/icons/地址.png" style={{width: '%10'}} alt=""/>

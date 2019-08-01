@@ -34,7 +34,7 @@ const refundType = [
 ];
 
 
-class RefundApply extends React.PureComponent {
+class RefundApply extends React.Component {
 
     constructor(props) {
         super(props);
@@ -65,6 +65,8 @@ class RefundApply extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed("申请退款页");
+
         // this.setState({
         //     product: this.props.location.state,
         // });
@@ -96,6 +98,10 @@ class RefundApply extends React.PureComponent {
 
         // console.log("this.props.location.state", JSON.stringify(this.props.location.state));
         // console.log("this.state.produce", JSON.stringify(this.state.product));
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 

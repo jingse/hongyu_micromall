@@ -7,7 +7,7 @@ import myApi from "../../../../api/my.jsx";
 import PropTypes from "prop-types";
 
 
-export default class TelBinding extends React.PureComponent {
+export default class TelBinding extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +19,10 @@ export default class TelBinding extends React.PureComponent {
             siv: null
         };
         this.validatePhone = this.validatePhone.bind(this);
+    }
+
+    componentWillMount() {
+        console.groupCollapsed("手机号绑定页");
     }
 
     validatePhone() {
@@ -60,6 +64,7 @@ export default class TelBinding extends React.PureComponent {
 
     componentWillUnmount() {
         clearInterval(this.state.siv);
+        console.groupEnd();
     }
 
     bindTel(wechatId, phone, code) {

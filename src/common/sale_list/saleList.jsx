@@ -10,7 +10,7 @@ import "./saleList.less";
 import {ReqNullTip, ReqFailTip, ReqIngTip} from "../../components/req_tip/reqTip.jsx";
 
 
-export default class SalesList extends React.PureComponent {
+export default class SalesList extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +25,12 @@ export default class SalesList extends React.PureComponent {
     }
 
     componentWillMount() {
+        console.groupCollapsed(this.props.name);
         this.requestPromotionList(1);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 
@@ -57,7 +62,7 @@ export default class SalesList extends React.PureComponent {
                         return;
                     }
 
-                    console.log('getOrdinaryPromotionList2', rs, page, proList.length, numlist);
+                    console.log('getPromotionList2', rs, page, proList.length, numlist);
                     this.setState({
                         data: this.state.data.concat(proList),
                         isLoading: false,
@@ -140,7 +145,8 @@ export default class SalesList extends React.PureComponent {
                     <WhiteSpace/>
                 </Link>
             });
-            content.push(<div className='addMore' key={this.state.data.length + 1} onClick={() => this.addMore()}>加载更多</div>);
+            if (!this.state.isEnd)
+                content.push(<div className='addMore' key={this.state.data.length + 1} onClick={() => this.addMore()}>加载更多</div>);
         }
 
 

@@ -6,7 +6,7 @@ import couponApi from "../../../../../api/coupon.jsx";
 import DateManager from "../../../../../manager/DateManager.jsx";
 
 
-export default class BalanceRecords extends React.PureComponent {
+export default class BalanceRecords extends React.Component {
 
     constructor(props, context) {
         super(props, context);

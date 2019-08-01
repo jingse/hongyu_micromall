@@ -8,7 +8,7 @@ import SaleManager from "../../../manager/SaleManager.jsx";
 import './index.less';
 
 
-export default class GridCategory extends React.PureComponent {
+export default class GridCategory extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
