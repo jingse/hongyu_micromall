@@ -1,59 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="將PureComponent改回Component">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="同步修复地址列表bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/list/list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/list/list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/pagination_list/paginationList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/pagination_list/paginationList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/HttpManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/HttpManager.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/app.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/address/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/payment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/coupon/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/recharge/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/balance/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/coupon/index.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/disposableCoupon/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/merchant/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/comment/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/points/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/setting/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/tel/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/product/index.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>赠</find>
-      <find>价格</find>
-      <find>赠品</find>
-      <find>PresentCard</find>
-      <find>localStorage.getItem(</find>
-      <find>InfoCard</find>
-      <find>localStorage.getItem(&quot;origin&quot;</find>
-      <find>gridCategory</find>
-      <find>llfrs</find>
-      <find>fromSet</find>
-      <find>requestListData</find>
-      <find>paymentApi</find>
-      <find>alert</find>
-      <find>请求待付款订单</find>
-      <find>origin</find>
-      <find>待付款刷新2</find>
-      <find>getIconFunc</find>
-      <find>加载更多</find>
-      <find>modalBack</find>
-      <find>add_</find>
-      <find>stock</find>
-      <find>hr</find>
-      <find>limit</find>
-      <find>库存</find>
-      <find>inbound</find>
-      <find>deliverPage</find>
-      <find>isNull</find>
-      <find>ActivityIndicator</find>
-      <find>loading</find>
-      <find>PureComponent</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>Component</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>E:\Codes\React\47hongyu</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -346,14 +329,7 @@
       <workItem from="1561511063393" duration="974000" />
       <workItem from="1562118436002" duration="287000" />
       <workItem from="1562671129621" duration="581000" />
-      <workItem from="1564560320786" duration="1875000" />
-    </task>
-    <task id="LOCAL-00090" summary="删除普通优惠和组合优惠列表的顶部搜索栏&#10;修改产品详情页card&#10;增加广告的跳转页面">
-      <created>1554886323736</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1554886323737</updated>
+      <workItem from="1564560320786" duration="5759000" />
     </task>
     <task id="LOCAL-00091" summary="去除产品详情页的运费显示&#10;增加产品详情页座机号">
       <created>1554950928865</created>
@@ -691,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562118702343</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="同步修复地址列表bug">
+      <created>1564624178295</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1564624178295</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TodoView">
@@ -734,7 +717,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="抽出一些相同的函数到SaleManager" />
     <MESSAGE value="删" />
     <MESSAGE value="代码性能优化：bind部分" />
     <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作" />
@@ -759,6 +741,7 @@
     <MESSAGE value="改成47服务器" />
     <MESSAGE value="评论bug" />
     <MESSAGE value="將PureComponent改回Component" />
-    <option name="LAST_COMMIT_MESSAGE" value="將PureComponent改回Component" />
+    <MESSAGE value="同步修复地址列表bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="同步修复地址列表bug" />
   </component>
 </project>

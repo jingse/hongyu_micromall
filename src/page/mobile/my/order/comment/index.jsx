@@ -53,9 +53,15 @@ class CommentOn extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("订单评价页");
+
         let length = this.props.location.order.orderItems.length;
         for (let i = 0; i < length; i++)
             filesURL[i] = new Array();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     getStarCount(index) {

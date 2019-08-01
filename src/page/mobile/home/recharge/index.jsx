@@ -42,11 +42,13 @@ class Recharge extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页电子券购买页");
         this.requestRechargeCoupon();
     }
 
     componentWillUnmount() {
         clearInterval(this.state.siv);
+        console.groupEnd();
     }
 
     requestRechargeCoupon() {

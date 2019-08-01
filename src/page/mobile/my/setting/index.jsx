@@ -30,6 +30,8 @@ export default class Setting extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("设置页");
+
         //获得会员地址and生日
         console.log('this.props isVip', localStorage.getItem("isVip"), wechatId, localStorage.getItem("bindPhone"))
         myApi.vipAddressView(wechatId, (rs) => {
@@ -46,6 +48,10 @@ export default class Setting extends React.Component {
                 })
             }
         })
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     static formatDate(date) {

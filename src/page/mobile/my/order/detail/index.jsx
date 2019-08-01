@@ -33,6 +33,8 @@ export default class OrderDetail extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("订单详情页");
+
         if (this.props.location.orderId && this.props.location.orderState) {
             localStorage.setItem("orderId", this.props.location.orderId);
             localStorage.setItem("orderState", this.props.location.orderState);
@@ -60,6 +62,10 @@ export default class OrderDetail extends React.Component {
 
     componentDidMount() {
         WxManager.share();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     orderDetailPaySuccessCallback() {

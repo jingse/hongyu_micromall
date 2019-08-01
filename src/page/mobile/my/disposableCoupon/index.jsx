@@ -24,7 +24,12 @@ export default class DisposableCoupon extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("一次性电子券页");
         this.requestDisposableCoupons();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestDisposableCoupons() {

@@ -41,7 +41,6 @@ import Address from "./mobile/address/index.jsx";
 import AddAddress from "./mobile/address/add/index.jsx";
 import EditAddress from "./mobile/address/edit/index.jsx";
 /*个人中心-电子券、余额、积分*/
-import Coupon from "./mobile/my/coupon/index.jsx";
 import Balance from "./mobile/my/balance/index.jsx";
 import BalancePurchase from "./mobile/my/balance/purchase/index.jsx";
 import BalanceRecords from "./mobile/my/balance/records/index.jsx";
@@ -116,7 +115,6 @@ export default class App extends React.Component {
                         <Route component={ExchangePoints} path='/my/points/exchange' exact/>
                         <Route component={ExchangeRecords} path='/my/points/records' exact/>
 
-                        <Route component={Coupon} path='/my/coupon' exact/>
                         <Route component={Balance} path='/my/balance' exact/>
                         <Route component={BalancePurchase} path='/my/balance/purchase' exact/>
                         <Route component={BalanceRecords} path='/my/balance/records' exact/>

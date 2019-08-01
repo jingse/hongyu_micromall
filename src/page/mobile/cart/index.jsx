@@ -48,6 +48,7 @@ class Cart extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("购物车");
         this.setState({animating: !this.state.animating});
 
         // window.onpopstate = function(event) {this.console.log("event",event)}
@@ -77,6 +78,7 @@ class Cart extends React.Component {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        console.groupEnd();
     }
 
     requestCartList() {

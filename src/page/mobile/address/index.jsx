@@ -24,7 +24,12 @@ export default class Address extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("地址列表页");
         this.requestAddressList();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestAddressList() {

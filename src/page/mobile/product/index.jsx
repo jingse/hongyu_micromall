@@ -73,6 +73,8 @@ class Product extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("产品详情页");
+
         this.requestProductDetailData(this.state.specialtyId);
         this.requestProductCommentData(this.state.specialtyId, 1, 10);
         this.requestServicePromise();
@@ -83,6 +85,10 @@ class Product extends React.Component {
         WxManager.share();
 
         localStorage.removeItem("inputBalance");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 

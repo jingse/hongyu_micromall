@@ -17,7 +17,12 @@ export default class RefundDetail extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("退款详情页");
         this.requestRefundOrderDetail(this.props.location.orderId);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestRefundOrderDetail(orderId) {

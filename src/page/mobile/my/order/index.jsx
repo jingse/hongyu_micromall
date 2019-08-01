@@ -60,6 +60,8 @@ export default class Order extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("订单列表页");
+
         console.log("wechatId", this.state.wechatId);
         console.log("this.state.id", this.state.id);
 
@@ -95,6 +97,10 @@ export default class Order extends React.Component {
 
     componentDidMount() {
         WxManager.share();
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestTabData(tab, page, rows) {

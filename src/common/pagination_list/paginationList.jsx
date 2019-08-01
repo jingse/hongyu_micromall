@@ -16,7 +16,12 @@ export default class PaginationList extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed(this.props.title);
         this.props.reqDataFunc(wechatId, 1, 10);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestFormerPage() {

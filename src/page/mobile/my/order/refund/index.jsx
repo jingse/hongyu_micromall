@@ -65,6 +65,8 @@ class RefundApply extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("申请退款页");
+
         // this.setState({
         //     product: this.props.location.state,
         // });
@@ -96,6 +98,10 @@ class RefundApply extends React.Component {
 
         // console.log("this.props.location.state", JSON.stringify(this.props.location.state));
         // console.log("this.state.produce", JSON.stringify(this.state.product));
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 

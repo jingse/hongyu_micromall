@@ -40,6 +40,8 @@ export default class My extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("个人中心页");
+
         wechatIdmy = localStorage.getItem("wechatId");
         let str = localStorage.getItem("nickname");
         let s = str;
@@ -73,6 +75,10 @@ export default class My extends React.Component {
 
     componentDidMount() {
         localStorage.removeItem("tab");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     // 请求个人信息

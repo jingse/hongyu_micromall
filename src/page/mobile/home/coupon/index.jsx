@@ -19,7 +19,12 @@ export default class HomeCoupon extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页领券中心页");
         this.requestCoupons(wechatId);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestCoupons(wechatId) {

@@ -36,6 +36,7 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("首页");
 
         this.setState({animating: !this.state.animating});
 
@@ -72,6 +73,7 @@ class Home extends React.Component {
 
     componentWillUnmount() {
         clearTimeout(this.closeTimer);
+        console.groupEnd();
         // WxManager.wxClosePage('home');
     }
 

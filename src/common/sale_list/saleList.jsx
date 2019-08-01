@@ -25,7 +25,12 @@ export default class SalesList extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed(this.props.name);
         this.requestPromotionList(1);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
 
@@ -57,7 +62,7 @@ export default class SalesList extends React.Component {
                         return;
                     }
 
-                    console.log('getOrdinaryPromotionList2', rs, page, proList.length, numlist);
+                    console.log('getPromotionList2', rs, page, proList.length, numlist);
                     this.setState({
                         data: this.state.data.concat(proList),
                         isLoading: false,

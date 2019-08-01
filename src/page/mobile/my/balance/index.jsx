@@ -17,8 +17,13 @@ export default class Balance extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("余额页");
         console.log('rs11', wechatId)
         this.requestInfo(wechatId);
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestInfo(wechatId) {

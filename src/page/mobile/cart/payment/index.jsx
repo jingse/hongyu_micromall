@@ -62,6 +62,7 @@ class Payment extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("下单支付页");
 
         // get the items ticked in the shopping cart
         console.log('this.props.location', this.props.location);
@@ -175,6 +176,8 @@ class Payment extends React.Component {
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");
+
+        console.groupEnd();
     }
 
     componentDidMount() {

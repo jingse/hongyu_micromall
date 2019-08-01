@@ -70,6 +70,8 @@ export default class SalesGroupDetail extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("组合优惠详情页");
+
         let groupPromotionId = 0;
         if (!this.props.location.state) {
             groupPromotionId = localStorage.getItem("groupPromotionId");
@@ -123,6 +125,10 @@ export default class SalesGroupDetail extends React.Component {
         this.requestServicePromise();
 
         localStorage.removeItem("inputBalance");
+    }
+
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestGroupPromotionDetail(groupPromotionId) {

@@ -25,6 +25,7 @@ export default class ProfitShare extends React.Component {
     }
 
     componentWillMount() {
+        console.groupCollapsed("微商分成页");
         this.requestData();
     }
 
@@ -46,7 +47,10 @@ export default class ProfitShare extends React.Component {
             default:
                 break;
         }
+    }
 
+    componentWillUnmount() {
+        console.groupEnd();
     }
 
     requestData() {

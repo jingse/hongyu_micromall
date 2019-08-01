@@ -21,6 +21,10 @@ export default class TelBinding extends React.Component {
         this.validatePhone = this.validatePhone.bind(this);
     }
 
+    componentWillMount() {
+        console.groupCollapsed("手机号绑定页");
+    }
+
     validatePhone() {
         const phone = this.state.phone.replace(/\s+/g, "");
         console.log("phone", phone);
@@ -60,6 +64,7 @@ export default class TelBinding extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.state.siv);
+        console.groupEnd();
     }
 
     bindTel(wechatId, phone, code) {
