@@ -99,9 +99,9 @@ export default class App extends React.Component {
                         <Route component={Payment} path='/cart/payment' exact/>
                         <Route component={CouponChoose} path='/cart/payment/coupon' exact/>
 
-                        <Route component={Address} path='/address' exact/>
-                        <Route component={AddAddress} path='/address/add' exact/>
-                        <Route component={EditAddress} path='/address/edit' exact/>
+                        <Route component={Address} path='/:path/address' exact/>
+                        <Route component={AddAddress} path='/:path/address/add' exact/>
+                        <Route component={EditAddress} path='/:path/address/edit' exact/>
 
                         <Route component={Order} path='/my/order' exact/>
                         <Route component={OrderDetail} path='/my/order/detail' exact/>

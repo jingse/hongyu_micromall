@@ -97,16 +97,17 @@ export default class Address extends React.Component {
     }
 
     chooseAddress(item) {
-        if (!this.props.location.state)
-            this.linkTo("/cart/payment");
+        console.log("url: ", window.location.href.split('#'));
+        const curUrl = window.location.href.split('#')[1];
 
-        if (this.props.location.state.fromSet === 'set')
-            return;
-        console.log("item", item);
-        localStorage.setItem("chooseAddress", JSON.stringify(item));
-        history.go(-1)
-        // this.linkTo("/cart/payment");
+        //如果是设置页面进入的地址页面，不做任何操作
+        //如果是支付页面进入的地址页面，选择了地址后就返回支付页面
+        if (curUrl === "/payment/address") {
+            localStorage.setItem("chooseAddress", JSON.stringify(item));
+            history.go(-1)
+        }
     }
+
 
     linkTo(link) {
         this.context.router.history.push(link);
@@ -131,7 +132,7 @@ export default class Address extends React.Component {
                              this.deleteAddress(item.id)
                          }}/>
 
-                    <Link to={{pathname: '/address/edit', state: item}}>
+                    <Link to={{pathname: window.location.href.split('#')[1] + '/edit', state: item}}>
                         <img src="./images/icons/编辑.png" style={{float: 'right', width: '4%', marginLeft: "3rem"}}/>
                     </Link>
                 </div>
@@ -147,7 +148,7 @@ export default class Address extends React.Component {
             {content}
 
             <Submit onClick={() => {
-                this.linkTo('address/add')
+                this.linkTo(window.location.href.split('#')[1] + '/add')
             }}>添加新地址</Submit>
         </div>
     }

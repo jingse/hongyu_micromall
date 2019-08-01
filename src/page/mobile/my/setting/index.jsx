@@ -78,7 +78,7 @@ export default class Setting extends React.Component {
                 <List.Item
                     // thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                     onClick={() => {
-                        this.context.router.history.push({pathname: '/address', state: {fromSet: 'set'}})
+                        this.context.router.history.push({pathname: '/my/address'})
                     }}
                     arrow="horizontal"
                 >

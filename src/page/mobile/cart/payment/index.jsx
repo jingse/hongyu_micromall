@@ -609,7 +609,7 @@ class Payment extends React.Component {
             </div>
 
             <Card className="payment_card">
-                <Link to={{pathname: "/address", state: {fromSet: 'cart'}}}>
+                <Link to={{pathname: `/payment/address`}}>
                     <Flex>
                         <Flex.Item style={{flex: '0 0 10%'}}>
                             <img src="./images/icons/地址.png" style={{width: '%10'}} alt=""/>
