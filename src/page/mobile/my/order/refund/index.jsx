@@ -8,8 +8,10 @@ import LoadingHoc from "../../../../../common/loading/loading-hoc.jsx";
 import {createForm} from 'rc-form';
 import {getServerIp} from "../../../../../config.jsx";
 import myApi from "../../../../../api/my.jsx";
+import {SecondLineFontColor} from "../../../../../manager/ConstantManager.jsx";
 import PropTypes from "prop-types";
 import "./index.less";
+
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -293,7 +295,7 @@ class RefundApply extends React.Component {
                          this.openNav(index);
                      }}/>
                 <WhiteSpace/>
-                <div style={{marginTop: '0.5rem', fontColor: "#808080"}}>x {item.quantity}</div>
+                <div style={{marginTop: '0.5rem', fontColor: SecondLineFontColor}}>x {item.quantity}</div>
             </Flex.Item>
         } else {
             return null
@@ -334,7 +336,7 @@ class RefundApply extends React.Component {
                              style={{width: '60%', margin: '1rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 50%'}}>
-                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#808080'}}>￥{item.salePrice}</span>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: SecondLineFontColor}}>￥{item.salePrice}</span>
                         </div>
                         <div style={{color: "darkorange"}}>退款数量：{this.state.refundQuantity[index]}</div>
                     </Flex.Item>
@@ -344,7 +346,7 @@ class RefundApply extends React.Component {
                                  this.setEditId(item.id);
                                  this.openNav(index);
                              }}/>
-                        <div style={{fontColor: "#808080"}}>x {item.quantity}</div>
+                        <div style={{fontColor: SecondLineFontColor}}>x {item.quantity}</div>
                     </Flex.Item>
                 </Flex>
             } else {
@@ -358,7 +360,7 @@ class RefundApply extends React.Component {
                              style={{width: '60%', margin: '0.5rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 40%'}}>
-                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#808080'}}>￥{item.salePrice}</span>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: SecondLineFontColor}}>￥{item.salePrice}</span>
                         </div>
                         {this.showRefundQuantity(index)}
                     </Flex.Item>

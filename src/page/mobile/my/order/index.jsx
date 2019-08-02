@@ -11,6 +11,7 @@ import paymentApi from "../../../../api/payment.jsx";
 import WxManager from "../../../../manager/WxManager.jsx";
 import PayManager from "../../../../manager/payManager.jsx";
 import OrderManager from "../../../../manager/OrderManager.jsx";
+import {SecondLineFontColor} from "../../../../manager/ConstantManager.jsx";
 import {getServerIp} from "../../../../config.jsx";
 import './index.less';
 
@@ -532,7 +533,7 @@ export default class Order extends React.Component {
                                     </Flex.Item>
                                     <Flex.Item style={{flex: '0 0 40%', color: 'black', fontSize: '0.8rem'}}>
                                         <div style={{marginBottom: 10}}>{product.name}</div>
-                                        <div style={{marginBottom: 10, color: '#808080'}}>{product.specification}</div>
+                                        <div style={{marginBottom: 10, color: SecondLineFontColor}}>{product.specification}</div>
                                         <WhiteSpace/>
                                     </Flex.Item>
                                     <Flex.Item style={{flex: '0 0 25%', fontSize: '0.8rem'}}>
@@ -543,7 +544,7 @@ export default class Order extends React.Component {
                                         }}>￥{product.salePrice}</div>
                                         <div style={{
                                             marginBottom: 10,
-                                            color: '#808080',
+                                            color: SecondLineFontColor,
                                             textAlign: 'right'
                                         }}>x {product.quantity}</div>
                                         <WhiteSpace/>

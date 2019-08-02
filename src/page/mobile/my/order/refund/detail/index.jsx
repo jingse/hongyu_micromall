@@ -5,6 +5,7 @@ import Navigation from "../../../../../../components/navigation/index.jsx";
 import myApi from "../../../../../../api/my.jsx";
 import {getServerIp} from "../../../../../../config.jsx";
 import OrderManager from "../../../../../../manager/OrderManager.jsx";
+import {SecondLineFontColor} from "../../../../../../manager/ConstantManager.jsx";
 
 
 export default class RefundDetail extends React.Component {
@@ -53,7 +54,7 @@ export default class RefundDetail extends React.Component {
                 </Flex.Item>
                 <Flex.Item style={{flex: '0 0 40%', fontSize: '0.8rem'}}>
                     <div style={{paddingBottom: '1rem'}}>{item.name}</div>
-                    <div style={{fontSize: '0.7rem', color: '#808080', paddingBottom: '1rem'}}>{item.specification}</div>
+                    <div style={{fontSize: '0.7rem', color: SecondLineFontColor, paddingBottom: '1rem'}}>{item.specification}</div>
                 </Flex.Item>
                 <Flex.Item style={{flex: '0 0 30%', fontSize: '0.8rem'}}>
                     <div style={{fontSize: '0.8rem'}}>退款数量 ×{item.returnQuantity}</div>
@@ -100,7 +101,7 @@ export default class RefundDetail extends React.Component {
 
                 {refundProduct}
 
-                <div style={{color: '#808080', fontSize: '0.8rem'}}>
+                <div style={{color: SecondLineFontColor, fontSize: '0.8rem'}}>
                     <WingBlank style={{padding: '0.5rem'}}>退款原因：{this.state.result.refundReson}</WingBlank>
                     <WingBlank style={{padding: '0.5rem'}}>退款金额：￥{this.state.result.refundTotalAmount}</WingBlank>
                     <WingBlank style={{padding: '0.5rem'}}>申请个数：{this.state.result.refundItems.length}</WingBlank>
