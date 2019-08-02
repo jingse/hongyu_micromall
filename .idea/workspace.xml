@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="优化优惠列表页以及订单列表页显示“加载更多”的逻辑">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="小bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/req_tip/reqTip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/req_tip/reqTip.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -302,14 +306,9 @@
       <workItem from="1561511063393" duration="974000" />
       <workItem from="1562118436002" duration="287000" />
       <workItem from="1562671129621" duration="581000" />
-      <workItem from="1564560320786" duration="13083000" />
-    </task>
-    <task id="LOCAL-00094" summary="整理代码清除无用的注释">
-      <created>1555054193026</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1555054193027</updated>
+      <workItem from="1564560320786" duration="13606000" />
+      <workItem from="1564709866987" duration="271000" />
+      <workItem from="1564733897274" duration="1152000" />
     </task>
     <task id="LOCAL-00095" summary="下单的orderPhone">
       <created>1555059191371</created>
@@ -647,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564646997466</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="小bug">
+      <created>1564647641680</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1564647641680</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TodoView">
@@ -690,7 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="抽离出公共的微信支付：PayManager&#10;点击加购物车或立即购买后点击确定直接进行操作&#10;支付功能待测试" />
     <MESSAGE value="fix" />
     <MESSAGE value="性能优化&#10;抽出首页的card" />
     <MESSAGE value="性能优化&#10;抽出presentCard组件" />
@@ -715,6 +720,7 @@
     <MESSAGE value="console分组，便于调试" />
     <MESSAGE value="添加购物车列表获取失败的错误信息提示" />
     <MESSAGE value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
+    <MESSAGE value="小bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="小bug" />
   </component>
 </project>

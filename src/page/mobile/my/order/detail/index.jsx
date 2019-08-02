@@ -220,12 +220,12 @@ export default class OrderDetail extends React.Component {
                             {item.name}
                             {this.checkPresent(item.isGift)}
                         </div>
-                        <div style={{marginBottom: 10, color: '#ccc'}}>{item.specification}</div>
+                        <div style={{marginBottom: 10, color: '#808080'}}>{item.specification}</div>
                         <WhiteSpace/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 25%', fontSize: '0.8rem'}}>
                         <div style={{marginBottom: 10, color: 'black', textAlign: 'right'}}>{item.salePrice}</div>
-                        <div style={{marginBottom: 10, color: '#ccc', textAlign: 'right'}}>x {item.quantity}</div>
+                        <div style={{marginBottom: 10, color: '#808080', textAlign: 'right'}}>x {item.quantity}</div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
@@ -302,7 +302,7 @@ export default class OrderDetail extends React.Component {
             </div>
             <WhiteSpace/>
 
-            <div style={{backgroundColor: 'white', fontSize: '0.7rem', color: '#999'}}>
+            <div style={{backgroundColor: 'white', fontSize: '0.7rem', color: '#808080'}}>
                 <WhiteSpace/>
                 <div style={{marginLeft: '0.6rem'}}>订单编号：{this.state.detail.baseInfo.orderCode}</div>
                 <WhiteSpace/>

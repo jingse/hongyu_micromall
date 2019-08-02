@@ -293,7 +293,7 @@ class RefundApply extends React.Component {
                          this.openNav(index);
                      }}/>
                 <WhiteSpace/>
-                <div style={{marginTop: '0.5rem', fontColor: "#ccc"}}>x {item.quantity}</div>
+                <div style={{marginTop: '0.5rem', fontColor: "#808080"}}>x {item.quantity}</div>
             </Flex.Item>
         } else {
             return null
@@ -334,7 +334,7 @@ class RefundApply extends React.Component {
                              style={{width: '60%', margin: '1rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 50%'}}>
-                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#ccc'}}>￥{item.salePrice}</span>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#808080'}}>￥{item.salePrice}</span>
                         </div>
                         <div style={{color: "darkorange"}}>退款数量：{this.state.refundQuantity[index]}</div>
                     </Flex.Item>
@@ -344,7 +344,7 @@ class RefundApply extends React.Component {
                                  this.setEditId(item.id);
                                  this.openNav(index);
                              }}/>
-                        <div style={{fontColor: "#ccc"}}>x {item.quantity}</div>
+                        <div style={{fontColor: "#808080"}}>x {item.quantity}</div>
                     </Flex.Item>
                 </Flex>
             } else {
@@ -358,7 +358,7 @@ class RefundApply extends React.Component {
                              style={{width: '60%', margin: '0.5rem'}}/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 40%'}}>
-                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#ccc'}}>￥{item.salePrice}</span>
+                        <div>{item.name} <span style={{marginLeft: '0.5rem', color: '#808080'}}>￥{item.salePrice}</span>
                         </div>
                         {this.showRefundQuantity(index)}
                     </Flex.Item>
