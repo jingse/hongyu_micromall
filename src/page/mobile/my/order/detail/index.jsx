@@ -10,6 +10,7 @@ import paymentApi from "../../../../../api/payment.jsx";
 import WxManager from "../../../../../manager/WxManager.jsx";
 import PayManager from "../../../../../manager/payManager.jsx";
 import OrderManager from "../../../../../manager/OrderManager.jsx";
+import {SecondLineFontColor} from "../../../../../manager/ConstantManager.jsx";
 import {CancelOrderButton, ApplyForRefundButton} from "../../../../../components/order_button/orderButton.jsx";
 import {ConfirmReceiveButton, EvaluateOrderButton, PayButton} from "../../../../../components/order_button/orderButton.jsx";
 
@@ -220,12 +221,12 @@ export default class OrderDetail extends React.Component {
                             {item.name}
                             {this.checkPresent(item.isGift)}
                         </div>
-                        <div style={{marginBottom: 10, color: '#808080'}}>{item.specification}</div>
+                        <div style={{marginBottom: 10, color: SecondLineFontColor}}>{item.specification}</div>
                         <WhiteSpace/>
                     </Flex.Item>
                     <Flex.Item style={{flex: '0 0 25%', fontSize: '0.8rem'}}>
                         <div style={{marginBottom: 10, color: 'black', textAlign: 'right'}}>{item.salePrice}</div>
-                        <div style={{marginBottom: 10, color: '#808080', textAlign: 'right'}}>x {item.quantity}</div>
+                        <div style={{marginBottom: 10, color: SecondLineFontColor, textAlign: 'right'}}>x {item.quantity}</div>
                         <WhiteSpace/>
                     </Flex.Item>
                 </Flex>
@@ -302,7 +303,7 @@ export default class OrderDetail extends React.Component {
             </div>
             <WhiteSpace/>
 
-            <div style={{backgroundColor: 'white', fontSize: '0.7rem', color: '#808080'}}>
+            <div style={{backgroundColor: 'white', fontSize: '0.7rem', color: SecondLineFontColor}}>
                 <WhiteSpace/>
                 <div style={{marginLeft: '0.6rem'}}>订单编号：{this.state.detail.baseInfo.orderCode}</div>
                 <WhiteSpace/>

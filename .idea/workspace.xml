@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="小bug">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="调整订单列表页和详情页的字体颜色">
+      <change afterPath="$PROJECT_DIR$/src/manager/ConstantManager.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
@@ -33,12 +34,15 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/manager" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="D:\Program\Front\WebStorm\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\OneDrive - bupt.edu.cn\Codes\React\47hongyu\src\manager" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Codes\React\47hongyu\src\manager" />
       <recent name="E:\Codes\React\47hongyu\src\common\sale_list" />
@@ -308,14 +312,8 @@
       <workItem from="1562671129621" duration="581000" />
       <workItem from="1564560320786" duration="13606000" />
       <workItem from="1564709866987" duration="271000" />
-      <workItem from="1564733897274" duration="1152000" />
-    </task>
-    <task id="LOCAL-00095" summary="下单的orderPhone">
-      <created>1555059191371</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1555059191372</updated>
+      <workItem from="1564733897274" duration="1311000" />
+      <workItem from="1564748640936" duration="318000" />
     </task>
     <task id="LOCAL-00096" summary="修改微商分成总价不显示的bug">
       <created>1555210506014</created>
@@ -653,7 +651,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564647641680</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="调整订单列表页和详情页的字体颜色">
+      <created>1564735209577</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1564735209577</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TodoView">
@@ -696,7 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix" />
     <MESSAGE value="性能优化&#10;抽出首页的card" />
     <MESSAGE value="性能优化&#10;抽出presentCard组件" />
     <MESSAGE value="无关" />
@@ -721,6 +725,7 @@
     <MESSAGE value="添加购物车列表获取失败的错误信息提示" />
     <MESSAGE value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
     <MESSAGE value="小bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="小bug" />
+    <MESSAGE value="调整订单列表页和详情页的字体颜色" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整订单列表页和详情页的字体颜色" />
   </component>
 </project>
