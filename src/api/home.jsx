@@ -61,7 +61,15 @@ var api = {
         });
     },
 
-
+    getmoren(callback) {
+        httpManager.ajax({
+            method: 'get',
+            url: "http://admin.lvxingbox.cn/hyapi/ymmall/system_settings/detail/view?name=门户微商ID",
+            success: (rs) => {
+                callback && callback(rs);
+            }
+        });
+    },
     //----------------------------------homepage api-------------------------------------------
 
     getCarousel(callback) {
