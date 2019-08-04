@@ -244,7 +244,7 @@ export default class CartModal extends React.Component {
             title={title}
             footer={footer}
             className="popup_modal"
-        >
+        >   {console.log("购物车数量",this.state.val)}
             <div className="popup_modal_content">
                 {this.props.hasSpecification ?
                     <div style={{float: 'left', marginLeft: '1rem', marginRight: '1rem'}}>规格</div> : ""}

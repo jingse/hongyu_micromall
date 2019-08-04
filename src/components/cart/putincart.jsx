@@ -80,7 +80,7 @@ export default class PutInCart extends React.Component {
 
         let price = {};
         let presents = [];
-
+        console.log("???what",buyItem)
         cartApi.getTotalPriceInCart(buyItem, (rs) => {
             if (rs && rs.success) {
                 price = rs.obj;
@@ -232,6 +232,7 @@ export default class PutInCart extends React.Component {
                     }}
                     onClick={() => {
                         this.props.handleAction('buyImmediately');
+                        console.log("???",buyProps)
                         this.checkSpecificationSelection(modalSelectorText, showModal) && this.buyImmediately(buyProps)
                     }}>
                 立即购买

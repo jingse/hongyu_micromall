@@ -58,6 +58,7 @@ export default class SalesDetail extends React.Component {
             data: {},
             featureData: -1,
             dots: true,
+            divideMoney:0
         };
 
         this.handleAction = this.handleAction.bind(this);
@@ -171,7 +172,8 @@ export default class SalesDetail extends React.Component {
                     subtracts: rs.obj.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
                     discounts: rs.obj.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts,
                     ruleType: rs.obj.hySingleitemPromotions[0].hyPromotion.promotionRule,
-                    specialtyId: rs.obj.hySingleitemPromotions[0].specialtyId.id
+                    specialtyId: rs.obj.hySingleitemPromotions[0].specialtyId.id,
+                    divideMoney: proDetail.divideMoney
                 });
             }
         });
@@ -217,6 +219,9 @@ export default class SalesDetail extends React.Component {
             specificationId: specificationId,
             modalSelectorText: active.specification + '  ×' + num,
         }, () => {
+            cartProps.quantity = num
+            buyProps.buyItem[0].quantity = num
+            console.log("hahahahha",num,this.state.quantity,buyProps.buyItem.quantity)
             if (this.state.action === "addToCart")
                 this.child.addToCart(cartProps);
             else if (this.state.action === "buyImmediately")
@@ -277,9 +282,9 @@ export default class SalesDetail extends React.Component {
 
             let buyItem = [{
                 "id": null,
-                "iconURL": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].iconURL,
+                "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
                 "isGroupPromotion": this.state.isGroupPromotion,
-                "curPrice": this.state.currentPrePrice,
+                "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
                 "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
                 "quantity": this.state.quantity,
                 "specialtyId": this.state.specialtyId,
