@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Navigation from "../../../components/navigation/index.jsx"
-import {ActivityIndicator, Flex, SwipeAction, Toast, WhiteSpace, Button} from 'antd-mobile';
+import {ActivityIndicator, Flex, SwipeAction, Toast, WhiteSpace, Modal} from 'antd-mobile';
 import {createForm} from 'rc-form';
 import cartApi from "../../../api/cart.jsx";
 import proApi from "../../../api/product.jsx";
@@ -15,6 +15,7 @@ import {Link} from "react-router-dom";
 
 let items = [];  //为了传递给下个界面
 let stock = 0;
+const alert = Modal.alert;
 
 class Cart extends React.Component {
     constructor(props) {
@@ -391,17 +392,18 @@ class Cart extends React.Component {
                                         x {item.quantity}
                                     </div>
                                     <div style={{marginTop: '20%'}}>
-                                        <img src="./images/icons/编辑.png" style={{ width: '27%'}}
+                                        <img src="./images/icons/编辑.png" style={{ width: '30%'}}
                                             onClick={() => {
                                                 console.log("item", item);
                                                 this.trueShowEdit(index);
                                                 this.getDefaultNum(item.quantity);
                                                 this.getStock(item.specialtySpecificationId);
                                             }}/>
-                                        <img src="./images/icons/删除.png" style={{ width: '27%', marginLeft: '10%'}}
-                                             onClick={() => {
-                                                 this.deleteCartItem(item.id)
-                                             }}/>
+                                        <img src="./images/icons/删除.png" style={{ width: '30%', marginLeft: '20%'}}
+                                             onClick={() => alert('确认删除', '您确定要删除吗？', [
+                                                 { text: '取消', onPress: () => {} },
+                                                 { text: '确认', onPress: () => {this.deleteCartItem(item.id)} },
+                                             ])}/>
                                     </div>
                                 </div>
                                 <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
