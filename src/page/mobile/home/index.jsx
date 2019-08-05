@@ -57,7 +57,10 @@ class Home extends React.Component {
         this.init();
 
         WxManager.share();
-
+        homeApi.getmoren((rs)=>{
+            console.log("默认",rs.obj.settingValue)
+            localStorage.setItem("moren",rs.obj.settingValue)
+        })
         setTimeout(() => {
             this.checkLogin();
         }, 1000);
@@ -166,8 +169,15 @@ class Home extends React.Component {
                 localStorage.setItem("isVip", isVip);
 
                 if(uid == -1 && rs.obj.customer_uid  != null){
+                    console.log("?进到这了",this.state.cusuid)
                     uid = rs.obj.customer_uid
+                    window.location.href="http://ymymmall.lvxingbox.cn/?uid=" + uid; 
                 }
+                else if(uid == -1 && rs.obj.customer_uid  == null){
+                    uid = localStorage.getItem("moren")
+                    window.location.href="http://ymymmall.lvxingbox.cn/?uid=" + uid; 
+                }
+
 
                 localStorage.setItem("cusuid", rs.obj.customer_uid);
                 uid !== -1 && this.requestMerchantInfo(uid);
@@ -297,7 +307,7 @@ class Home extends React.Component {
                 </Link>
         });
 
-        return <Layout header={true} footer={true}>
+        return locManager.getUId()?<Layout header={true} footer={true}>
 
             <div className="carousel_view">
                 <Carousel
@@ -341,7 +351,12 @@ class Home extends React.Component {
             >
                 该微商已失效
             </Modal>
-        </Layout>
+        </Layout>:
+        <div>
+        <div style={{height:'40%'}}></div>
+        <div className="tiaozhuan" style={{height:'50%'}}><font size="3">跳转中...</font></div>
+        {/* <ActivityIndicator toast text="跳转中..." /> */}
+        </div>    
     }
 }
 

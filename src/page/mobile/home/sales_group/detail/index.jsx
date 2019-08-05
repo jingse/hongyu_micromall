@@ -61,6 +61,7 @@ export default class SalesGroupDetail extends React.Component {
             data: {},
             featureData: -1,
             dots: true,
+            divideMoney: 0
         };
 
         this.handleAction = this.handleAction.bind(this);
@@ -144,7 +145,8 @@ export default class SalesGroupDetail extends React.Component {
                     salesGroupDetail: proDetail,
                     salesGroupData: this.state.salesGroupData,
                     isLoading: false,
-                    inbound: proDetail.hyGroupitemPromotions[0].promoteNum
+                    inbound: proDetail.hyGroupitemPromotions[0].promoteNum,
+                    divideMoney : proDetail.divideMoney
                 });
             }
         });
