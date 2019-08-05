@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Layout from "../../../common/layout/layout.jsx";
 import Card from "../../../components/card/index.jsx";
 import Navigation from "../../../components/navigation/index.jsx"
-import {ActivityIndicator, Flex, SwipeAction, Toast, WhiteSpace} from 'antd-mobile';
+import {ActivityIndicator, Flex, SwipeAction, Toast, WhiteSpace, Button} from 'antd-mobile';
 import {createForm} from 'rc-form';
 import cartApi from "../../../api/cart.jsx";
 import proApi from "../../../api/product.jsx";
@@ -11,6 +11,7 @@ import './index.less';
 import {getServerIp} from "../../../config.jsx";
 import {NumStepper} from "../../../components/num_stepper/numStepper.jsx";
 import {ReqIngTip, ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
+import {Link} from "react-router-dom";
 
 let items = [];  //为了传递给下个界面
 let stock = 0;
@@ -321,96 +322,112 @@ class Cart extends React.Component {
                 // 普通商品
                 return <div key={index}>
                     <Card className="cart_card" key={index}>
-                        <SwipeAction
-                            autoClose
-                            disabled={this.state.swipeoutDisabled}
-                            right={[
-                                {
-                                    text: '编辑',
-                                    onPress: () => {
-                                        console.log("item", item);
-                                        this.trueShowEdit(index);
-                                        this.getDefaultNum(item.quantity);
-                                        this.getStock(item.specialtySpecificationId);
-                                    },
-                                    style: {backgroundColor: '#ddd', color: 'white', width: '100%'},
-                                },
-                                {
-                                    text: '删除',
-                                    onPress: () => this.deleteCartItem(item.id),
-                                    style: {backgroundColor: '#F4333C', color: 'white', width: '100%'},
-                                },
-                            ]}
-                        >
-                            <Flex className="cart_card_container cart_card_underline">
+                        {/*<SwipeAction*/}
+                        {/*    autoClose*/}
+                        {/*    disabled={this.state.swipeoutDisabled}*/}
+                        {/*    right={[*/}
+                        {/*        {*/}
+                        {/*            text: '编辑',*/}
+                        {/*            onPress: () => {*/}
+                        {/*                console.log("item", item);*/}
+                        {/*                this.trueShowEdit(index);*/}
+                        {/*                this.getDefaultNum(item.quantity);*/}
+                        {/*                this.getStock(item.specialtySpecificationId);*/}
+                        {/*            },*/}
+                        {/*            style: {backgroundColor: '#ddd', color: 'white', width: '100%'},*/}
+                        {/*        },*/}
+                        {/*        {*/}
+                        {/*            text: '删除',*/}
+                        {/*            onPress: () => this.deleteCartItem(item.id),*/}
+                        {/*            style: {backgroundColor: '#F4333C', color: 'white', width: '100%'},*/}
+                        {/*        },*/}
+                        {/*    ]}*/}
+                        {/*>*/}
 
-                                <Flex.Item style={{flex: '0 0 10%'}}>
-                                    <input type="checkbox" checked={this.state.checkbox[index]} onChange={() => {
-                                        this.state.checkbox[index] = !this.state.checkbox[index];
-                                        if (this.state.checkbox[index]) {
-                                            this.state.cartItems.push(this.state.cartData[index]);
-                                        } else {
-                                            this.state.cartItems.splice(this.findItemIndex(item), 1);
-                                        }
-                                        this.state.chooseAll = this.isChooseAll();
-                                        this.setState({
-                                            checkbox: this.state.checkbox,
-                                            chooseAll: this.state.chooseAll,
-                                            cartItems: this.state.cartItems,
-                                        });
-                                        items = this.state.cartItems;
-                                        this.requestTotalPrice(this.state.cartItems);
-                                    }} style={{width: '50%'}}/>
-                                </Flex.Item>
+                        {/*</SwipeAction>*/}
 
-                                <Flex.Item style={{flex: '0 0 20%'}}>
-                                    <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
-                                         style={{height: '4rem'}}/>
-                                </Flex.Item>
+                        <Flex className="cart_card_container cart_card_underline">
 
-                                <Flex.Item style={{flex: '0 0 50%'}}>
-                                    <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
-                                        <div className="title_text">{item.name}</div>
-                                        <div className="commodity_prop">{item.specification}</div>
-                                        <div className="price_text">￥{item.curPrice}</div>
+                            <Flex.Item style={{flex: '0 0 10%'}}>
+                                <input type="checkbox" checked={this.state.checkbox[index]} onChange={() => {
+                                    this.state.checkbox[index] = !this.state.checkbox[index];
+                                    if (this.state.checkbox[index]) {
+                                        this.state.cartItems.push(this.state.cartData[index]);
+                                    } else {
+                                        this.state.cartItems.splice(this.findItemIndex(item), 1);
+                                    }
+                                    this.state.chooseAll = this.isChooseAll();
+                                    this.setState({
+                                        checkbox: this.state.checkbox,
+                                        chooseAll: this.state.chooseAll,
+                                        cartItems: this.state.cartItems,
+                                    });
+                                    items = this.state.cartItems;
+                                    this.requestTotalPrice(this.state.cartItems);
+                                }} style={{width: '50%'}}/>
+                            </Flex.Item>
+
+                            <Flex.Item style={{flex: '0 0 20%'}}>
+                                <img src={"http://" + getServerIp() + item.iconURL.mediumPath}
+                                     style={{height: '4rem'}}/>
+                            </Flex.Item>
+
+                            <Flex.Item style={{flex: '0 0 50%'}}>
+                                <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
+                                    <div className="title_text">{item.name}</div>
+                                    <div className="commodity_prop">{item.specification}</div>
+                                    <div className="price_text">￥{item.curPrice}</div>
+                                </div>
+                                <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
+                                    <NumStepper numVal={this.state.num}
+                                                minusNumAction={this.minusNum.bind(this, this.state.num)}
+                                                addNumAction={this.addNum.bind(this, this.state.num)}/>
+                                </div>
+                            </Flex.Item>
+
+                            <Flex.Item style={{flex: '0 0 20%'}}>
+                                <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
+                                    <div style={{fontColor: "#ccc", fontSize: '0.8rem', display: 'block', marginLeft: '20%'}}>
+                                        x {item.quantity}
                                     </div>
-                                    <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
-                                        <NumStepper numVal={this.state.num}
-                                                    minusNumAction={this.minusNum.bind(this, this.state.num)}
-                                                    addNumAction={this.addNum.bind(this, this.state.num)}/>
-                                    </div>
-                                </Flex.Item>
-
-                                <Flex.Item style={{flex: '0 0 20%'}}>
-                                    <div style={{display: this.state.showEdit[index] === true ? 'none' : 'block'}}>
-                                        <div style={{fontColor: "#ccc", fontSize: '0.8rem', display: 'block'}}>
-                                            x {item.quantity}
-                                        </div>
-                                    </div>
-                                    <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
-                                        <div style={{
-                                            flex: '0 0 30%', backgroundColor: 'darkorange', color: 'white',
-                                            fontSize: '0.6rem', textAlign: 'center'
-                                        }}
+                                    <div style={{marginTop: '20%'}}>
+                                        <img src="./images/icons/编辑.png" style={{ width: '27%'}}
+                                            onClick={() => {
+                                                console.log("item", item);
+                                                this.trueShowEdit(index);
+                                                this.getDefaultNum(item.quantity);
+                                                this.getStock(item.specialtySpecificationId);
+                                            }}/>
+                                        <img src="./images/icons/删除.png" style={{ width: '27%', marginLeft: '10%'}}
                                              onClick={() => {
-                                                 this.setEditId(item.id);
-                                                 this.changeItemQuantity(item.id, this.state.num);
-                                                 this.falseShowEdit(index);
-                                                 stock = 0;
-                                             }}>
-
-                                            <WhiteSpace size="lg"/>
-                                            <WhiteSpace size="xs"/>
-                                            <WhiteSpace size="xs"/>
-                                            完成
-                                            <WhiteSpace size="lg"/>
-                                            <WhiteSpace size="lg"/>
-                                            <WhiteSpace size="xs"/>
-                                        </div>
+                                                 this.deleteCartItem(item.id)
+                                             }}/>
                                     </div>
-                                </Flex.Item>
-                            </Flex>
-                        </SwipeAction>
+                                </div>
+                                <div style={{display: this.state.showEdit[index] === true ? 'block' : 'none'}}>
+                                    <div style={{
+                                        flex: '0 0 30%', backgroundColor: 'darkorange', color: 'white',
+                                        fontSize: '0.6rem', textAlign: 'center'
+                                    }}
+                                         onClick={() => {
+                                             this.setEditId(item.id);
+                                             this.changeItemQuantity(item.id, this.state.num);
+                                             this.falseShowEdit(index);
+                                             stock = 0;
+                                         }}>
+
+                                        <WhiteSpace size="lg"/>
+                                        <WhiteSpace size="xs"/>
+                                        <WhiteSpace size="xs"/>
+                                        完成
+                                        <WhiteSpace size="lg"/>
+                                        <WhiteSpace size="lg"/>
+                                        <WhiteSpace size="xs"/>
+                                    </div>
+                                </div>
+                            </Flex.Item>
+                        </Flex>
+
                     </Card>
                 </div>
             });
