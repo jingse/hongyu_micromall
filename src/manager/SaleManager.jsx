@@ -1,3 +1,7 @@
+import React from "react";
+import {BannerImg} from "../components/banner/banner.jsx";
+
+
 // sales和sales_group列表页用到的函数
 function getSalesContent(ruleType, substracts, discounts, presents) {
     switch (ruleType) {
@@ -111,6 +115,46 @@ function getSalesGroupIconImgArray(salesImages) {
     return img
 }
 
+/*Sales和SalesGroup的Detail页面公用的函数*/
+function getBannerContent(judgeParam, picsParam) {
+    let banContent = [];
+    if (judgeParam) {
+        // console.log("before", picsParam);
+        for (let i = 0; i < picsParam.length; i++) {
+            if (picsParam[i].isTag)
+                picsParam.splice(i, 1);
+        }
+        // console.log("after", picsParam);
+        banContent = picsParam && picsParam.map((item, index) => {
+            if (!item.isTag)
+                return <BannerImg imgPath={item.sourcePath} index={index}/>
+        });
+    }
+    return banContent
+}
+
+function getActivityStartTime(judgeParam, startParam) {
+    let start, a;
+    if (judgeParam) {
+        start = new Date(startParam).toLocaleString();
+        a = start.indexOf("午");
+        // console.log("safsfasfsa", a, start.substring(0, a + 2));
+        start.substring(0, a + 2);
+    }
+    return start.substring(0, a + 2)
+}
+
+function getActivityEndTime(judgeParam, endParam) {
+    let end, b;
+    if (judgeParam) {
+        end = new Date(endParam).toLocaleString();
+        b = end.indexOf("午");
+        // console.log("safsfasfsa", b, end.substring(0, b + 2));
+        end.substring(0, b + 2);
+    }
+    return end.substring(0, b + 2)
+}
+
 const SaleManager = {
     getSalesContent,
     getDetailSalesContent,
@@ -121,6 +165,10 @@ const SaleManager = {
     gerSalesGroupIconByItem,
     getSalesGroupIconImgArray,
     getSalesDetailIcon,
+
+    getBannerContent,
+    getActivityStartTime,
+    getActivityEndTime,
 };
 
 export default SaleManager;

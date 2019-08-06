@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="提出banner、banner图片、产品介绍、服务承诺、温馨提示等组件">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="提出普通优惠和组合优惠详情页的信息介绍组件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common_detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common_detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/SaleManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/SaleManager.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
     </list>
@@ -308,14 +308,7 @@
       <workItem from="1564748640936" duration="508000" />
       <workItem from="1564815769185" duration="139000" />
       <workItem from="1564997347695" duration="3633000" />
-      <workItem from="1565097289302" duration="5346000" />
-    </task>
-    <task id="LOCAL-00099" summary="下单支付页的最大余额支付比例bug修改">
-      <created>1555230806224</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1555230806226</updated>
+      <workItem from="1565097289302" duration="7052000" />
     </task>
     <task id="LOCAL-00100" summary="下单支付页的最大余额支付改成不减去0.01 提取getDate函数">
       <created>1555235774754</created>
@@ -653,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565100958124</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="提出普通优惠和组合优惠详情页的信息介绍组件">
+      <created>1565102705611</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1565102705611</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TodoView">
@@ -696,7 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="无关" />
     <MESSAGE value="改写无状态组件" />
     <MESSAGE value="fix bug" />
     <MESSAGE value="性能优化：继承PureComponent" />
@@ -721,6 +720,7 @@
     <MESSAGE value="调整订单列表页和详情页的字体颜色" />
     <MESSAGE value="购物车修改不隐藏编辑和删除" />
     <MESSAGE value="提出banner、banner图片、产品介绍、服务承诺、温馨提示等组件" />
-    <option name="LAST_COMMIT_MESSAGE" value="提出banner、banner图片、产品介绍、服务承诺、温馨提示等组件" />
+    <MESSAGE value="提出普通优惠和组合优惠详情页的信息介绍组件" />
+    <option name="LAST_COMMIT_MESSAGE" value="提出普通优惠和组合优惠详情页的信息介绍组件" />
   </component>
 </project>

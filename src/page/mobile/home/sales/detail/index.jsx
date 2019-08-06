@@ -7,7 +7,7 @@ import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from '../../../../../components/cart/cartmodal.jsx';
-import {Banner, BannerImg} from "../../../../../components/banner/banner.jsx";
+import {Banner} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
 import {Introduction, ServicePromise, WarmPrompt, SalesInfo} from "../../../../../components/common_detail/index.jsx";
 
@@ -27,8 +27,9 @@ export default class SalesDetail extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            salesDetail: [],
             isLoading: false,
+
+            salesDetail: [],
             servicePromise: {},
 
             ruleType: '',
@@ -305,36 +306,9 @@ export default class SalesDetail extends React.Component {
         });
         console.log("lalalalal", this.state.salesDetail.hySingleitemPromotions);
 
-        let bancontent = [];
-        if (this.state.salesDetail.hySingleitemPromotions) {
-            let tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
-            console.log("before", tempban);
-            for (let i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag)
-                    tempban.splice(i, 1);
-            }
-            console.log("after", tempban);
-            bancontent = tempban && tempban.map((item, index) => {
-                if (!item.isTag)
-                    return <BannerImg imgPath={item.sourcePath} index={index}/>
-            });
-            // if(bancontent.length==1){
-            //     this.state.dots=false;
-            //     bancontent[1]=bancontent[0];
-            // }
-            console.log("wgudsiuasjd", bancontent);
-        }
-
-        let start, end, a, b;
-        if (this.state.salesDetail.hySingleitemPromotions) {
-            start = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString();
-            end = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime).toLocaleString();
-            a = start.indexOf("午");
-            b = end.indexOf("午");
-            console.log("safsfasfsa", a, b, start.substring(0, a + 2), end.substring(0, b + 2));
-            start.substring(0, a + 2);
-            end.substring(0, b + 2);
-        }
+        let bancontent = SaleManager.getBannerContent(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics);
+        let start = SaleManager.getActivityStartTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime);
+        let end = SaleManager.getActivityEndTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime);
 
         if (this.state.specialtyId != -1 && this.state.mynum == -1) {
             this.requestProductDetailData(this.state.specialtyId);
@@ -374,7 +348,7 @@ export default class SalesDetail extends React.Component {
                 <Banner content={bancontent}/>
 
                 <SalesInfo name={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
-                           salePeriod={this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
+                           salePeriod={this.state.salesDetail.hySingleitemPromotions ? start + "时 ~ " + end + "时" : ""}
                            saleType={this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
                                this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
                            activityPrice={this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
