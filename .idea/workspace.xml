@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="调整订单列表页和详情页的字体颜色">
-      <change afterPath="$PROJECT_DIR$/src/manager/ConstantManager.jsx" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="购物车修改不隐藏编辑和删除">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/my/order/refund/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/cart/index.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +29,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/manager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="D:\Program\Front\WebStorm\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -313,21 +308,9 @@
       <workItem from="1564560320786" duration="13606000" />
       <workItem from="1564709866987" duration="271000" />
       <workItem from="1564733897274" duration="1311000" />
-      <workItem from="1564748640936" duration="318000" />
-    </task>
-    <task id="LOCAL-00096" summary="修改微商分成总价不显示的bug">
-      <created>1555210506014</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1555210506015</updated>
-    </task>
-    <task id="LOCAL-00097" summary="bug">
-      <created>1555210609859</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1555210609859</updated>
+      <workItem from="1564748640936" duration="508000" />
+      <workItem from="1564815769185" duration="139000" />
+      <workItem from="1564997347695" duration="3633000" />
     </task>
     <task id="LOCAL-00098" summary="优惠页面到产品详情页的价格显示 下单支付页的最大余额支付比例 去除无用的支付结果页和物流页面">
       <created>1555229093433</created>
@@ -658,7 +641,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564735209577</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="调整订单列表页和详情页的字体颜色">
+      <created>1564749038742</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1564749038742</updated>
+    </task>
+    <task id="LOCAL-00146" summary="购物车修改不隐藏编辑和删除">
+      <created>1564999300168</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1564999300169</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TodoView">
@@ -701,7 +698,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="性能优化&#10;抽出首页的card" />
     <MESSAGE value="性能优化&#10;抽出presentCard组件" />
     <MESSAGE value="无关" />
     <MESSAGE value="改写无状态组件" />
@@ -726,6 +722,7 @@
     <MESSAGE value="优化优惠列表页以及订单列表页显示“加载更多”的逻辑" />
     <MESSAGE value="小bug" />
     <MESSAGE value="调整订单列表页和详情页的字体颜色" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整订单列表页和详情页的字体颜色" />
+    <MESSAGE value="购物车修改不隐藏编辑和删除" />
+    <option name="LAST_COMMIT_MESSAGE" value="购物车修改不隐藏编辑和删除" />
   </component>
 </project>
