@@ -75,7 +75,14 @@ export default class Address extends React.Component {
     deleteAddress(id) {
         addressApi.deleteAddress(id, (rs) => {
             if (rs && rs.success) {
-                console.log(rs.msg);
+                console.log("删除地址返回",rs.msg,JSON.parse(localStorage.getItem("chooseAddress")).id);
+                if (localStorage.hasOwnProperty("chooseAddress")) {
+                    console.log("1111")
+                    if(JSON.parse(localStorage.getItem("chooseAddress")).id == id){
+                        console.log("1112")
+                        localStorage.removeItem("chooseAddress")
+                    }
+                }
                 this.requestAddressList();
             }
         });

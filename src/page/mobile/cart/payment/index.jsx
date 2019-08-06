@@ -172,7 +172,7 @@ class Payment extends React.Component {
     }
 
     componentWillUnmount() {
-        localStorage.removeItem("chooseAddress");
+        // localStorage.removeItem("chooseAddress");
         localStorage.removeItem("useCouponId");
         localStorage.removeItem("choose");
         localStorage.removeItem("reduce");

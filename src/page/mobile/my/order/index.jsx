@@ -513,6 +513,7 @@ export default class Order extends React.Component {
                 // console.log('itemitemitemitemitemitemitemitem', item)
                 if (item.orderItems.length === 1) {
                     const singleProduct = item.orderItems && item.orderItems.map((product, index2) => {
+                        console.log("asdfdsa",item)
                         return <div key={index} className="order_card">
                             <div className="order_card_group">
                                 <span>下单时间：{new Date(item.orderTime).toLocaleString()}</span>
