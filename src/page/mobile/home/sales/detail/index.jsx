@@ -280,9 +280,27 @@ export default class SalesDetail extends React.Component {
                 "quantity": this.state.quantity,
             };
 
+            let tempban,tempurl
+            if(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic==true){
+                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images));
+                console.log("before", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
+                for (let i = 0; i < tempban.length; i++) {
+                    if (tempban[i].isLogo==true)
+                        tempurl = tempban[i]
+                }
+            }
+            else{
+                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics));
+                console.log("before", tempban);
+                for (let i = 0; i < tempban.length; i++) {
+                    if (tempban[i].isTag==true)
+                        tempurl = tempban[i]
+                    }
+            }
+
             let buyItem = [{
                 "id": null,
-                "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
+                "iconURL": tempurl,
                 "isGroupPromotion": this.state.isGroupPromotion,
                 "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
                 "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
@@ -344,7 +362,6 @@ export default class SalesDetail extends React.Component {
                 for (let i = 0; i < tempban.length; i++) {
                     if (tempban[i].isLogo==true)
                         tempban.splice(i, 1);
-                        console
                 }
             }
             else{
@@ -352,8 +369,7 @@ export default class SalesDetail extends React.Component {
                 console.log("before", tempban);
                 for (let i = 0; i < tempban.length; i++) {
                     if (tempban[i].isTag==true)
-                        // tempban.splice(i, 1);
-                        console
+                        tempban.splice(i, 1);
                 }
             }
             console.log("beforeafter", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
