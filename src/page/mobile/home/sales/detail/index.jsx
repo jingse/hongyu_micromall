@@ -299,7 +299,7 @@ export default class SalesDetail extends React.Component {
                 "origin": "sales",
             };
         }
-
+        console.log('itemitemitemitem1', this.state.salesDetail.hySingleitemPromotions)
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
 
             console.log('itemitemitemitem', item)
@@ -336,13 +336,27 @@ export default class SalesDetail extends React.Component {
 
         let bancontent;
         if (this.state.salesDetail.hySingleitemPromotions) {
-            let tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
-            console.log("before", tempban);
-            for (let i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag)
-                    tempban.splice(i, 1);
+            // const tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic? this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images:this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
+            let tempban
+            if(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic==true){
+                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images));
+                console.log("before", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
+                for (let i = 0; i < tempban.length; i++) {
+                    if (tempban[i].isLogo==true)
+                        tempban.splice(i, 1);
+                        console
+                }
             }
-            console.log("after", tempban);
+            else{
+                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics));
+                console.log("before", tempban);
+                for (let i = 0; i < tempban.length; i++) {
+                    if (tempban[i].isTag==true)
+                        // tempban.splice(i, 1);
+                        console
+                }
+            }
+            console.log("beforeafter", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
             bancontent = tempban && tempban.map((item, index) => {
                 if (!item.isTag)
                     return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}

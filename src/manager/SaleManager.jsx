@@ -61,6 +61,7 @@ function getSalesDetailIcon(salesImages) {
         if (item.isLogo)
             img = item.mediumPath
     });
+    console.log("fanhui",img,salesImages)
     return img
 }
 
