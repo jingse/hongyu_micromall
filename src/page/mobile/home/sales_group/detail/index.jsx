@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+import {Card, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from "../../../../../components/cart/cartmodal.jsx";
+import {Banner, BannerImg} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
+import {Introduction, ServicePromise, WarmPrompt} from "../../../../../components/common_detail/index.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
 import homeApi from "../../../../../api/home.jsx";
 import settingApi from "../../../../../api/setting.jsx";
-import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
 
@@ -274,7 +275,7 @@ export default class SalesGroupDetail extends React.Component {
             </Link>
         });
 
-        let bancontent;
+        let bancontent = [];
         if (this.state.salesGroupDetail.hyGroupitemPromotions) {
             let tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
             console.log("before", tempban);
@@ -284,15 +285,8 @@ export default class SalesGroupDetail extends React.Component {
             }
             console.log("after", tempban);
             bancontent = tempban && tempban.map((item, index) => {
-                if (!item.isTag) {
-                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                                src={"http:" + getServerIp() + item.sourcePath}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                }}/>
-                }
-
+                if (!item.isTag)
+                    return <BannerImg imgPath={item.sourcePath} index={index}/>
             });
         }
         // if(bancontent.length==1){
@@ -344,16 +338,7 @@ export default class SalesGroupDetail extends React.Component {
         return <Layout>
             {/*<Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>*/}
             <Card>
-                <Carousel
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={this.state.dots}
-                >
-                    {bancontent}
-                </Carousel>
+                <Banner content={bancontent}/>
 
                 <WingBlank>
                     <h3>
@@ -401,24 +386,9 @@ export default class SalesGroupDetail extends React.Component {
             {content}
             {this.checkPresents()}
 
-            <WingBlank>
-                <div className="para_title">活动介绍</div>
-                <div dangerouslySetInnerHTML={{__html: this.state.salesGroupData.introduction}}/>
-            </WingBlank>
-
-            <WingBlank>
-                <div className="para_title">服务承诺</div>
-                <div className="paragraph">
-                    {this.state.servicePromise.servicePromise}
-                </div>
-            </WingBlank>
-
-            <WingBlank>
-                <div className="para_title">温馨提示</div>
-                <div className="paragraph">
-                    {this.state.servicePromise.prompt}
-                </div>
-            </WingBlank>
+            <Introduction title="活动介绍" content={this.state.salesGroupData.introduction}/>
+            <ServicePromise content={this.state.servicePromise.servicePromise}/>
+            <WarmPrompt content={this.state.servicePromise.prompt}/>
 
             <WhiteSpace/>
             <WhiteSpace/>

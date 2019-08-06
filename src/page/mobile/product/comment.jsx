@@ -1,5 +1,6 @@
 import React from 'react';
-import {ActivityIndicator, Button, Flex, Pagination, Toast, WhiteSpace} from 'antd-mobile';
+import {ActivityIndicator, Button, Flex, Pagination, Toast, WhiteSpace, WingBlank} from 'antd-mobile';
+import Card from "../../../components/card/index.jsx";
 import productApi from "../../../api/product.jsx";
 import ImageView from 'react-mobile-imgview';
 import 'react-mobile-imgview/dist/react-mobile-imgview.css'
@@ -157,28 +158,32 @@ export default class Comment extends React.Component {
         });
 
 
-        return <div className="comment">
+        return <Card className="general_container">
+                <WingBlank>
+                    <WhiteSpace/>
+                    <div className="comment">
 
-            <div className="comment_title">评价({this.props.total})</div>
+                        <div className="comment_title">评价({this.props.total})</div>
 
-            {content}
+                        {content}
 
-            {this.checkPagination(this.props.total)}
+                        {this.checkPagination(this.props.total)}
 
-            <ActivityIndicator
-                toast
-                text="Loading..."
-                animating={this.state.animating}
-            />
+                        <ActivityIndicator
+                            toast
+                            text="Loading..."
+                            animating={this.state.animating}
+                        />
 
-            <div>
-                {
-                    this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close}/>
-                }
-            </div>
+                        <div>
+                            {
+                                this.state.showViewer && <ImageView imagelist={this.state.imagelist} close={this.close}/>
+                            }
+                        </div>
 
-        </div>
-
+                    </div>
+                </WingBlank>
+            </Card>
     }
 
 }

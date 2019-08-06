@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+import {Card, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from '../../../../../components/cart/cartmodal.jsx';
+import {Banner, BannerImg} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
+import {Introduction, ServicePromise, WarmPrompt} from "../../../../../components/common_detail/index.jsx";
 
 import settingApi from "../../../../../api/setting.jsx";
 import homeApi from "../../../../../api/home.jsx";
 import proApi from "../../../../../api/product.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
-import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
 
@@ -334,7 +335,7 @@ export default class SalesDetail extends React.Component {
         });
         console.log("lalalalal", this.state.salesDetail.hySingleitemPromotions);
 
-        let bancontent;
+        let bancontent = [];
         if (this.state.salesDetail.hySingleitemPromotions) {
             let tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
             console.log("before", tempban);
@@ -345,12 +346,7 @@ export default class SalesDetail extends React.Component {
             console.log("after", tempban);
             bancontent = tempban && tempban.map((item, index) => {
                 if (!item.isTag)
-                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                                src={"http://" + getServerIp() + item.sourcePath}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                }}/>
+                    return <BannerImg imgPath={item.sourcePath} index={index}/>
             });
             // if(bancontent.length==1){
             //     this.state.dots=false;
@@ -373,16 +369,7 @@ export default class SalesDetail extends React.Component {
 
         return <Layout>
             <Card>
-                <Carousel
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={this.state.dots}
-                >
-                    {bancontent}
-                </Carousel>
+                <Banner content={bancontent}/>
 
                 <WingBlank>
                     <h3>
@@ -431,36 +418,20 @@ export default class SalesDetail extends React.Component {
                     {this.state.data[0] ?
                         <Card className="general_container">
                             <div>
-                                <WingBlank>
-                                    <div className="para_title">活动介绍</div>
-                                    <div
-                                        dangerouslySetInnerHTML={{__html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}}/>
-                                </WingBlank>
-
-                                <WingBlank>
-                                    <div className="para_title">服务承诺</div>
-                                    <div className="paragraph">
-                                        {this.state.servicePromise.servicePromise}
-                                    </div>
-                                </WingBlank>
-
-                                <WingBlank>
-                                    <div className="para_title">温馨提示</div>
-                                    <div className="paragraph">
-                                        {this.state.servicePromise.prompt}
-                                    </div>
-                                </WingBlank>
-
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
+                                <Introduction title="活动介绍" content={this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}/>
+                                <ServicePromise content={this.state.servicePromise.servicePromise}/>
+                                <WarmPrompt content={this.state.servicePromise.prompt}/>
                             </div>
                         </Card> : <div/>}
 
                 </WingBlank>
+
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
             </Card>
 
 
