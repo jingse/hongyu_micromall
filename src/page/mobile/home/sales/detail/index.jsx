@@ -9,7 +9,7 @@ import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from '../../../../../components/cart/cartmodal.jsx';
 import {Banner, BannerImg} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
-import {Introduction, ServicePromise, WarmPrompt} from "../../../../../components/common_detail/index.jsx";
+import {Introduction, ServicePromise, WarmPrompt, SalesInfo} from "../../../../../components/common_detail/index.jsx";
 
 import settingApi from "../../../../../api/setting.jsx";
 import homeApi from "../../../../../api/home.jsx";
@@ -18,7 +18,6 @@ import proApi from "../../../../../api/product.jsx";
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
 import "./index.less";
-
 
 let cartProps = {};
 let buyProps = {};
@@ -267,39 +266,10 @@ export default class SalesDetail extends React.Component {
     render() {
 
         // console.log("this.state.specialtyId ", this.state.specialtyId )
+        if (!this.state.salesDetail || JSON.stringify(this.state.salesDetail) === "[]")
+            return null;
+
         // console.log("this.state.mynum ", this.state.mynum )
-
-        if (this.state.specialtyId != -1 && this.state.mynum == -1) {
-            this.requestProductDetailData(this.state.specialtyId);
-            this.state.mynum = 0;
-
-            cartProps = {
-                "wechatId": localStorage.getItem("wechatId"),
-                "specificationId": this.state.specificationId,
-                "specialtyId": this.state.specialtyId,
-                "isGroupPromotion": this.state.isGroupPromotion,
-                "quantity": this.state.quantity,
-            };
-
-            let buyItem = [{
-                "id": null,
-                "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
-                "isGroupPromotion": this.state.isGroupPromotion,
-                "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
-                "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
-                "quantity": this.state.quantity,
-                "specialtyId": this.state.specialtyId,
-                "specialtySpecificationId": this.state.specificationId,
-                "specification": this.state.specification,
-                "promotionId": this.state.salesDetail.id,
-            }];
-
-            buyProps = {
-                "buyItem": buyItem,
-                "isPromotion": true,
-                "origin": "sales",
-            };
-        }
 
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
 
@@ -366,52 +336,55 @@ export default class SalesDetail extends React.Component {
             end.substring(0, b + 2);
         }
 
+        if (this.state.specialtyId != -1 && this.state.mynum == -1) {
+            this.requestProductDetailData(this.state.specialtyId);
+            this.state.mynum = 0;
+
+            cartProps = {
+                "wechatId": localStorage.getItem("wechatId"),
+                "specificationId": this.state.specificationId,
+                "specialtyId": this.state.specialtyId,
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "quantity": this.state.quantity,
+            };
+
+            let buyItem = [{
+                "id": null,
+                "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
+                "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
+                "quantity": this.state.quantity,
+                "specialtyId": this.state.specialtyId,
+                "specialtySpecificationId": this.state.specificationId,
+                "specification": this.state.specification,
+                "promotionId": this.state.salesDetail.id,
+            }];
+
+            buyProps = {
+                "buyItem": buyItem,
+                "isPromotion": true,
+                "origin": "sales",
+            };
+        }
+
 
         return <Layout>
             <Card>
                 <Banner content={bancontent}/>
 
+                <SalesInfo name={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
+                           salePeriod={this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
+                           saleType={this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                               this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
+                           activityPrice={this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
+                           sellNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
+                           limitNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
+                           activityInbound={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
+                           divideMoney={this.state.divideMoney}
+                />
+
                 <WingBlank>
-                    <h3>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
-                    </h3>
-                    <h4>
-                        <font color="red">优惠时间：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">优惠类型：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
-                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {console.log("safasd", this.state.salesDetail)}
-                        {(localStorage.getItem('isWebusiness') === '1') && this.state.salesDetail ? <div
-                                style={{marginBottom: 10}}>提成金额：{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</div> :
-                            <div/>}
-                    </h4>
-                    {/* <h4>
-                        结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
-                        </h4> */}
-
-                    <WhiteSpace/>
-
                     {content}
                     {this.checkPresents()}
 

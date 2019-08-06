@@ -9,7 +9,7 @@ import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from "../../../../../components/cart/cartmodal.jsx";
 import {Banner, BannerImg} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
-import {Introduction, ServicePromise, WarmPrompt} from "../../../../../components/common_detail/index.jsx";
+import {Introduction, ServicePromise, WarmPrompt, SalesInfo} from "../../../../../components/common_detail/index.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
@@ -17,7 +17,6 @@ import homeApi from "../../../../../api/home.jsx";
 import settingApi from "../../../../../api/setting.jsx";
 
 import "./index.less";
-
 
 let cartProps;
 let buyProps;
@@ -340,45 +339,16 @@ export default class SalesGroupDetail extends React.Component {
             <Card>
                 <Banner content={bancontent}/>
 
-                <WingBlank>
-                    <h3>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName : ""}
-                    </h3>
-                    <h4>
-                        <font color="red">优惠时间：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
-                    </h4>
-                    <h4>
-                        <div style={{marginBottom: 5}}><span style={{color: 'red'}}>优惠类型：</span>
-                            {SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
-                                this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
-                        </div>
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? "￥" + this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
-                            style={{color: 'black'}}>{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</span>
-                        </div> : <div/>}
-                    </h4>
-
-                    <WhiteSpace size="xs"/>
-
-                </WingBlank>
+                <SalesInfo name={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName : ""}
+                           salePeriod={this.state.salesGroupDetail.hyGroupitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
+                           saleType={SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                               this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
+                           activityPrice={this.state.salesGroupDetail.hyGroupitemPromotions ? "￥" + this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice : ""}
+                           sellNum={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted : ""}
+                           limitNum={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum : ""}
+                           activityInbound={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum : ""}
+                           divideMoney={this.state.divideMoney}
+                />
             </Card>
 
             <WhiteSpace/>
