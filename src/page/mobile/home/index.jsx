@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {ActivityIndicator, Carousel, Modal, WhiteSpace} from "antd-mobile";
+import {ActivityIndicator, Modal, WhiteSpace} from "antd-mobile";
 
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
@@ -344,7 +344,7 @@ class Home extends React.Component {
             </Modal>
         </Layout>:
         <div>
-        <div style={{height:'40%'}}></div>
+        <div style={{height: '40%'}}/>
         <div className="tiaozhuan" style={{height:'50%'}}><font size="3">跳转中...</font></div>
         {/* <ActivityIndicator toast text="跳转中..." /> */}
         </div>    
