@@ -1,7 +1,7 @@
 {
   "name": "supermall",
   "version": "1.0.0",
-  "description": "土特产微商城",
+  "description": "游买有卖微商城",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
