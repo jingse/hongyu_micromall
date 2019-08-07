@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="提出普通优惠和组合优惠详情页的其它公用函数">
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/index.jsx" afterDir="false" />
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="little无关">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/manager/SaleManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/SaleManager.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -305,14 +307,8 @@
       <workItem from="1564748640936" duration="508000" />
       <workItem from="1564815769185" duration="139000" />
       <workItem from="1564997347695" duration="3633000" />
-      <workItem from="1565097289302" duration="7395000" />
-    </task>
-    <task id="LOCAL-00101" summary="bug">
-      <created>1555235867049</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1555235867049</updated>
+      <workItem from="1565097289302" duration="7524000" />
+      <workItem from="1565154063112" duration="1518000" />
     </task>
     <task id="LOCAL-00102" summary="删除无用搜索框">
       <created>1555236463896</created>
@@ -650,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565104605180</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="little无关">
+      <created>1565104745665</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1565104745665</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TodoView">
@@ -693,7 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix bug" />
     <MESSAGE value="性能优化：继承PureComponent" />
     <MESSAGE value="抽出无状态组件" />
     <MESSAGE value="修改列表页的separator" />
@@ -718,6 +720,7 @@
     <MESSAGE value="提出banner、banner图片、产品介绍、服务承诺、温馨提示等组件" />
     <MESSAGE value="提出普通优惠和组合优惠详情页的信息介绍组件" />
     <MESSAGE value="提出普通优惠和组合优惠详情页的其它公用函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="提出普通优惠和组合优惠详情页的其它公用函数" />
+    <MESSAGE value="little无关" />
+    <option name="LAST_COMMIT_MESSAGE" value="little无关" />
   </component>
 </project>

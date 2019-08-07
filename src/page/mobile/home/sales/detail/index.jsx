@@ -59,7 +59,7 @@ export default class SalesDetail extends React.Component {
             data: {},
             featureData: -1,
             dots: true,
-            divideMoney:0
+            divideMoney: 0
         };
 
         this.handleAction = this.handleAction.bind(this);
@@ -222,7 +222,7 @@ export default class SalesDetail extends React.Component {
         }, () => {
             cartProps.quantity = num
             buyProps.buyItem[0].quantity = num
-            console.log("hahahahha",num,this.state.quantity,buyProps.buyItem.quantity)
+            console.log("hahahahha", num, this.state.quantity, buyProps.buyItem.quantity)
             if (this.state.action === "addToCart")
                 this.child.addToCart(cartProps);
             else if (this.state.action === "buyImmediately")
@@ -306,7 +306,10 @@ export default class SalesDetail extends React.Component {
         });
         console.log("lalalalal", this.state.salesDetail.hySingleitemPromotions);
 
-        let bancontent = SaleManager.getBannerContent(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics);
+        let bancontent = SaleManager.getSalesBannerContent(this.state.salesDetail.hySingleitemPromotions,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics);
         let start = SaleManager.getActivityStartTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime);
         let end = SaleManager.getActivityEndTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime);
 
@@ -324,7 +327,9 @@ export default class SalesDetail extends React.Component {
 
             let buyItem = [{
                 "id": null,
-                "iconURL": SaleManager.getSalesGroupIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
+                "iconURL": SaleManager.getSalesIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
                 "isGroupPromotion": this.state.isGroupPromotion,
                 "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
                 "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
@@ -347,15 +352,16 @@ export default class SalesDetail extends React.Component {
             <Card>
                 <Banner content={bancontent}/>
 
-                <SalesInfo name={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
-                           salePeriod={this.state.salesDetail.hySingleitemPromotions ? start + "时 ~ " + end + "时" : ""}
-                           saleType={this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
-                               this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
-                           activityPrice={this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
-                           sellNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
-                           limitNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
-                           activityInbound={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
-                           divideMoney={this.state.divideMoney}
+                <SalesInfo
+                    name={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
+                    salePeriod={this.state.salesDetail.hySingleitemPromotions ? start + "时 ~ " + end + "时" : ""}
+                    saleType={this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                        this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
+                    activityPrice={this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
+                    sellNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
+                    limitNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
+                    activityInbound={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
+                    divideMoney={this.state.divideMoney}
                 />
 
                 <WingBlank>
@@ -365,7 +371,8 @@ export default class SalesDetail extends React.Component {
                     {this.state.data[0] ?
                         <Card className="general_container">
                             <div>
-                                <Introduction title="活动介绍" content={this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}/>
+                                <Introduction title="活动介绍"
+                                              content={this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}/>
                                 <ServicePromise content={this.state.servicePromise.servicePromise}/>
                                 <WarmPrompt content={this.state.servicePromise.prompt}/>
                             </div>
