@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+import {Card, Toast, WhiteSpace, WingBlank} from "antd-mobile";
 
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from '../../../../../components/cart/cartmodal.jsx';
+import {Banner} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
+import {Introduction, ServicePromise, WarmPrompt, SalesInfo} from "../../../../../components/common_detail/index.jsx";
 
 import settingApi from "../../../../../api/setting.jsx";
 import homeApi from "../../../../../api/home.jsx";
 import proApi from "../../../../../api/product.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
-import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
-
 
 let cartProps = {};
 let buyProps = {};
@@ -27,8 +27,9 @@ export default class SalesDetail extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            salesDetail: [],
             isLoading: false,
+
+            salesDetail: [],
             servicePromise: {},
 
             ruleType: '',
@@ -58,7 +59,7 @@ export default class SalesDetail extends React.Component {
             data: {},
             featureData: -1,
             dots: true,
-            divideMoney:0
+            divideMoney: 0
         };
 
         this.handleAction = this.handleAction.bind(this);
@@ -221,7 +222,7 @@ export default class SalesDetail extends React.Component {
         }, () => {
             cartProps.quantity = num
             buyProps.buyItem[0].quantity = num
-            console.log("hahahahha",num,this.state.quantity,buyProps.buyItem.quantity)
+            console.log("hahahahha", num, this.state.quantity, buyProps.buyItem.quantity)
             if (this.state.action === "addToCart")
                 this.child.addToCart(cartProps);
             else if (this.state.action === "buyImmediately")
@@ -266,58 +267,11 @@ export default class SalesDetail extends React.Component {
     render() {
 
         // console.log("this.state.specialtyId ", this.state.specialtyId )
+        if (!this.state.salesDetail || JSON.stringify(this.state.salesDetail) === "[]")
+            return null;
+
         // console.log("this.state.mynum ", this.state.mynum )
 
-        if (this.state.specialtyId != -1 && this.state.mynum == -1) {
-            this.requestProductDetailData(this.state.specialtyId);
-            this.state.mynum = 0;
-
-            cartProps = {
-                "wechatId": localStorage.getItem("wechatId"),
-                "specificationId": this.state.specificationId,
-                "specialtyId": this.state.specialtyId,
-                "isGroupPromotion": this.state.isGroupPromotion,
-                "quantity": this.state.quantity,
-            };
-
-            let tempban,tempurl
-            if(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic==true){
-                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images));
-                console.log("before", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
-                for (let i = 0; i < tempban.length; i++) {
-                    if (tempban[i].isLogo==true)
-                        tempurl = tempban[i]
-                }
-            }
-            else{
-                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics));
-                console.log("before", tempban);
-                for (let i = 0; i < tempban.length; i++) {
-                    if (tempban[i].isTag==true)
-                        tempurl = tempban[i]
-                    }
-            }
-
-            let buyItem = [{
-                "id": null,
-                "iconURL": tempurl,
-                "isGroupPromotion": this.state.isGroupPromotion,
-                "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
-                "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
-                "quantity": this.state.quantity,
-                "specialtyId": this.state.specialtyId,
-                "specialtySpecificationId": this.state.specificationId,
-                "specification": this.state.specification,
-                "promotionId": this.state.salesDetail.id,
-            }];
-
-            buyProps = {
-                "buyItem": buyItem,
-                "isPromotion": true,
-                "origin": "sales",
-            };
-        }
-        console.log('itemitemitemitem1', this.state.salesDetail.hySingleitemPromotions)
         const content = this.state.salesDetail.hySingleitemPromotions && this.state.salesDetail.hySingleitemPromotions.map((item, index) => {
 
             console.log('itemitemitemitem', item)
@@ -352,145 +306,86 @@ export default class SalesDetail extends React.Component {
         });
         console.log("lalalalal", this.state.salesDetail.hySingleitemPromotions);
 
-        let bancontent;
-        if (this.state.salesDetail.hySingleitemPromotions) {
-            // const tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic? this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images:this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
-            let tempban
-            if(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic==true){
-                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images));
-                console.log("before", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
-                for (let i = 0; i < tempban.length; i++) {
-                    if (tempban[i].isLogo==true)
-                        tempban.splice(i, 1);
-                }
-            }
-            else{
-                tempban = JSON.parse(JSON.stringify(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics));
-                console.log("before", tempban);
-                for (let i = 0; i < tempban.length; i++) {
-                    if (tempban[i].isTag==true)
-                        tempban.splice(i, 1);
-                }
-            }
-            console.log("beforeafter", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
-            bancontent = tempban && tempban.map((item, index) => {
-                if (!item.isTag)
-                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                                src={"http://" + getServerIp() + item.sourcePath}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                }}/>
-            });
-            // if(bancontent.length==1){
-            //     this.state.dots=false;
-            //     bancontent[1]=bancontent[0];
-            // }
-            console.log("wgudsiuasjd", bancontent);
-        }
+        let bancontent = SaleManager.getSalesBannerContent(this.state.salesDetail.hySingleitemPromotions,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics);
+        let start = SaleManager.getActivityStartTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime);
+        let end = SaleManager.getActivityEndTime(this.state.salesDetail.hySingleitemPromotions, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime);
 
-        let start, end, a, b;
-        if (this.state.salesDetail.hySingleitemPromotions) {
-            start = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionStarttime).toLocaleString();
-            end = new Date(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionEndtime).toLocaleString();
-            a = start.indexOf("午");
-            b = end.indexOf("午");
-            console.log("safsfasfsa", a, b, start.substring(0, a + 2), end.substring(0, b + 2));
-            start.substring(0, a + 2);
-            end.substring(0, b + 2);
+        if (this.state.specialtyId != -1 && this.state.mynum == -1) {
+            this.requestProductDetailData(this.state.specialtyId);
+            this.state.mynum = 0;
+
+            cartProps = {
+                "wechatId": localStorage.getItem("wechatId"),
+                "specificationId": this.state.specificationId,
+                "specialtyId": this.state.specialtyId,
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "quantity": this.state.quantity,
+            };
+
+            let buyItem = [{
+                "id": null,
+                "iconURL": SaleManager.getSalesIconImgArray(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images,
+                                                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics),
+                "isGroupPromotion": this.state.isGroupPromotion,
+                "curPrice": this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice,
+                "name": (JSON.stringify(this.state.data) !== "{}") && this.state.data[0].specialty.name,
+                "quantity": this.state.quantity,
+                "specialtyId": this.state.specialtyId,
+                "specialtySpecificationId": this.state.specificationId,
+                "specification": this.state.specification,
+                "promotionId": this.state.salesDetail.id,
+            }];
+
+            buyProps = {
+                "buyItem": buyItem,
+                "isPromotion": true,
+                "origin": "sales",
+            };
         }
 
 
         return <Layout>
             <Card>
-                <Carousel
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={this.state.dots}
-                >
-                    {bancontent}
-                </Carousel>
+                <Banner content={bancontent}/>
+
+                <SalesInfo
+                    name={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
+                    salePeriod={this.state.salesDetail.hySingleitemPromotions ? start + "时 ~ " + end + "时" : ""}
+                    saleType={this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
+                        this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
+                    activityPrice={this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
+                    sellNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
+                    limitNum={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
+                    activityInbound={this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
+                    divideMoney={this.state.divideMoney}
+                />
 
                 <WingBlank>
-                    <h3>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionName : ""}
-                    </h3>
-                    <h4>
-                        <font color="red">优惠时间：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">优惠类型：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? SaleManager.getDetailSalesContent(this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.promotionRule, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullSubstracts,
-                            this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullDiscounts, this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyFullPresents) : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? "￥" + this.state.salesDetail.hySingleitemPromotions[0].specificationId.platformPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesDetail.hySingleitemPromotions ? this.state.salesDetail.hySingleitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {console.log("safasd", this.state.salesDetail)}
-                        {(localStorage.getItem('isWebusiness') === '1') && this.state.salesDetail ? <div
-                                style={{marginBottom: 10}}>提成金额：{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</div> :
-                            <div/>}
-                    </h4>
-                    {/* <h4>
-                        结束时间：{this.state.salesDetail.hySingleitemPromotions?end.substring(0,b+2)+"时":""}
-                        </h4> */}
-
-                    <WhiteSpace/>
-
                     {content}
                     {this.checkPresents()}
 
                     {this.state.data[0] ?
                         <Card className="general_container">
                             <div>
-                                <WingBlank>
-                                    <div className="para_title">活动介绍</div>
-                                    <div
-                                        dangerouslySetInnerHTML={{__html: this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}}/>
-                                </WingBlank>
-
-                                <WingBlank>
-                                    <div className="para_title">服务承诺</div>
-                                    <div className="paragraph">
-                                        {this.state.servicePromise.servicePromise}
-                                    </div>
-                                </WingBlank>
-
-                                <WingBlank>
-                                    <div className="para_title">温馨提示</div>
-                                    <div className="paragraph">
-                                        {this.state.servicePromise.prompt}
-                                    </div>
-                                </WingBlank>
-
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
-                                <WhiteSpace/>
+                                <Introduction title="活动介绍"
+                                              content={this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.introduction}/>
+                                <ServicePromise content={this.state.servicePromise.servicePromise}/>
+                                <WarmPrompt content={this.state.servicePromise.prompt}/>
                             </div>
                         </Card> : <div/>}
 
                 </WingBlank>
+
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
             </Card>
 
 

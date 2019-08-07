@@ -1,3 +1,7 @@
+import React from "react";
+import {BannerImg} from "../components/banner/banner.jsx";
+
+
 // sales和sales_group列表页用到的函数
 function getSalesContent(ruleType, substracts, discounts, presents) {
     switch (ruleType) {
@@ -112,6 +116,98 @@ function getSalesGroupIconImgArray(salesImages) {
     return img
 }
 
+function getSalesIconImgArray(judgeParam, salesImages, anotherSalesImages) {
+    let tempban, tempurl;
+    if(judgeParam){
+        tempban = JSON.parse(JSON.stringify(salesImages));
+        // console.log("before", tempban,this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images);
+        for (let i = 0; i < tempban.length; i++) {
+            if (tempban[i].isLogo)
+                tempurl = tempban[i]
+        }
+    } else{
+        tempban = JSON.parse(JSON.stringify(anotherSalesImages));
+        // console.log("before", tempban);
+        for (let i = 0; i < tempban.length; i++) {
+            if (tempban[i].isTag)
+                tempurl = tempban[i]
+        }
+    }
+    return tempurl
+}
+
+//Sales的Detail页面获取banner的方法（修复可能出现没有banner的bug）
+function getSalesBannerContent(judgeParam, anotherJudgeParam, picsParam, anotherPicsParam) {
+    let banContent = [];
+    if (judgeParam) {
+        // const tempban = this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.syncTagpic? this.state.salesDetail.hySingleitemPromotions[0].specialtyId.images:this.state.salesDetail.hySingleitemPromotions[0].hyPromotion.hyPromotionPics;
+        let tempban;
+        if(anotherJudgeParam){
+            tempban = JSON.parse(JSON.stringify(picsParam));
+            // console.log("before", tempban, picsParam);
+            for (let i = 0; i < tempban.length; i++) {
+                if (tempban[i].isLogo)
+                    tempban.splice(i, 1);
+            }
+        } else {
+            tempban = JSON.parse(JSON.stringify(anotherPicsParam));
+            // console.log("before", tempban);
+            for (let i = 0; i < tempban.length; i++) {
+                if (tempban[i].isTag)
+                    tempban.splice(i, 1);
+            }
+        }
+        // console.log("beforeafter", tempban, picsParam);
+        banContent = tempban && tempban.map((item, index) => {
+            if (!item.isTag)
+                return <BannerImg imgPath={item.sourcePath} index={index}/>
+        });
+        // console.log("wgudsiuasjd", bancontent);
+    }
+    return banContent
+}
+
+//SalesGroup的Detail页面获取banner的方法
+function getBannerContent(judgeParam, picsParam) {
+    let banContent = [];
+    if (judgeParam) {
+        // console.log("before", picsParam);
+        for (let i = 0; i < picsParam.length; i++) {
+            if (picsParam[i].isTag)
+                picsParam.splice(i, 1);
+        }
+        // console.log("after", picsParam);
+        banContent = picsParam && picsParam.map((item, index) => {
+            if (!item.isTag)
+                return <BannerImg imgPath={item.sourcePath} index={index}/>
+        });
+    }
+    return banContent
+}
+
+/*Sales和SalesGroup的Detail页面公用的函数*/
+function getActivityStartTime(judgeParam, startParam) {
+    let start, a;
+    if (judgeParam) {
+        start = new Date(startParam).toLocaleString();
+        a = start.indexOf("午");
+        // console.log("safsfasfsa", a, start.substring(0, a + 2));
+        start.substring(0, a + 2);
+    }
+    return start.substring(0, a + 2)
+}
+
+function getActivityEndTime(judgeParam, endParam) {
+    let end, b;
+    if (judgeParam) {
+        end = new Date(endParam).toLocaleString();
+        b = end.indexOf("午");
+        // console.log("safsfasfsa", b, end.substring(0, b + 2));
+        end.substring(0, b + 2);
+    }
+    return end.substring(0, b + 2)
+}
+
 const SaleManager = {
     getSalesContent,
     getDetailSalesContent,
@@ -122,6 +218,12 @@ const SaleManager = {
     gerSalesGroupIconByItem,
     getSalesGroupIconImgArray,
     getSalesDetailIcon,
+    getSalesIconImgArray,
+
+    getSalesBannerContent,
+    getBannerContent,
+    getActivityStartTime,
+    getActivityEndTime,
 };
 
 export default SaleManager;

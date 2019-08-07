@@ -1,5 +1,5 @@
 import React from 'react';
-import {Carousel, Flex, Toast, WhiteSpace, WingBlank} from 'antd-mobile';
+import {Flex, Toast, WhiteSpace, WingBlank} from 'antd-mobile';
 import PropTypes from "prop-types";
 
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
@@ -7,11 +7,11 @@ import Layout from "../../../common/layout/layout.jsx";
 
 import WxManager from "../../../manager/WxManager.jsx";
 
-import {getServerIp} from "../../../config.jsx";
-
 import Card from "../../../components/card/index.jsx";
 import CartModal from '../../../components/cart/cartmodal.jsx';
 import PutInCart from '../../../components/cart/putincart.jsx';
+import {Banner, BannerImg} from "../../../components/banner/banner.jsx";
+import {Introduction, ServicePromise, WarmPrompt} from "../../../components/common_detail/index.jsx";
 import {ReqFailTip} from "../../../components/req_tip/reqTip.jsx";
 
 import Comment from "./comment.jsx";
@@ -243,13 +243,8 @@ class Product extends React.Component {
         // if(primaryImages.length === 1)
         //     primaryImages[1] = primaryImages[0];
 
-
         const images = primaryImages && primaryImages.map((img, index) => {
-            return <img src={"http://" + getServerIp() + img.sourcePath}
-                        key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                        alt="" onLoad={() => {
-                window.dispatchEvent(new Event('resize')); // fire window resize event to change height
-            }}/>
+            return <BannerImg imgPath={img.sourcePath} index={index}/>
         });
 
 
@@ -258,16 +253,7 @@ class Product extends React.Component {
             <a name="top"/>
 
             <Card className="general_container">
-                <Carousel
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={true}
-                >
-                    {images}
-                </Carousel>
+                <Banner content={images}/>
 
 
                 <WingBlank>
@@ -367,10 +353,7 @@ class Product extends React.Component {
 
             <Card className="general_container">
                 <div>
-                    <WingBlank>
-                        <div className="para_title">产品介绍</div>
-                        <div className="para_html" dangerouslySetInnerHTML={{__html: proData.specialty.descriptions}}/>
-                    </WingBlank>
+                    <Introduction title="产品介绍" content={proData.specialty.descriptions}/>
                 </div>
             </Card>
 
@@ -378,14 +361,7 @@ class Product extends React.Component {
             <WhiteSpace size="xs"/>
 
 
-            <Card className="general_container">
-                <WingBlank>
-                    <WhiteSpace/>
-                    <Comment specialtyId={this.state.specialtyId} comment={this.state.comment}
-                             total={this.state.commentNum}/>
-                </WingBlank>
-            </Card>
-
+            <Comment specialtyId={this.state.specialtyId} comment={this.state.comment} total={this.state.commentNum}/>
 
             <WhiteSpace size="xs"/>
 
@@ -395,25 +371,10 @@ class Product extends React.Component {
 
 
             <Card className="general_container">
-
                 <div>
-
-                    <WingBlank>
-                        <div className="para_title">服务承诺</div>
-                        <div className="paragraph">
-                            {this.state.servicePromise.servicePromise}
-                        </div>
-                    </WingBlank>
-
-                    <WingBlank>
-                        <div className="para_title">温馨提示</div>
-                        <div className="paragraph">
-                            {this.state.servicePromise.prompt}
-                        </div>
-                    </WingBlank>
-
+                    <ServicePromise content={this.state.servicePromise.servicePromise}/>
+                    <WarmPrompt content={this.state.servicePromise.prompt}/>
                 </div>
-
             </Card>
 
             {/*如果是优惠产品页进来的，不显示规格选择*/}

@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {ActivityIndicator, Carousel, Modal, WhiteSpace} from "antd-mobile";
+import {ActivityIndicator, Modal, WhiteSpace} from "antd-mobile";
 
 import LoadingHoc from "../../../common/loading/loading-hoc.jsx";
 import Layout from "../../../common/layout/layout.jsx";
 import Bottom from "../../../components/bottom/index.jsx";
+import {Banner} from "../../../components/banner/banner.jsx";
 
 import {InfoCard} from "./card.jsx";
 import GridCategory from "./grid_category.jsx"
@@ -310,17 +311,7 @@ class Home extends React.Component {
         return locManager.getUId()?<Layout header={true} footer={true}>
 
             <div className="carousel_view">
-                <Carousel
-                    className="my-carousel"
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={true}
-                >
-                    {content}
-                </Carousel>
+                <Banner content={content}/>
             </div>
 
             <InfoCard cardData={this.state.card}/>
@@ -353,7 +344,7 @@ class Home extends React.Component {
             </Modal>
         </Layout>:
         <div>
-        <div style={{height:'40%'}}></div>
+        <div style={{height: '40%'}}/>
         <div className="tiaozhuan" style={{height:'50%'}}><font size="3">跳转中...</font></div>
         {/* <ActivityIndicator toast text="跳转中..." /> */}
         </div>    

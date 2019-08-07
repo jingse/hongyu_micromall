@@ -1,22 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, Carousel, Flex, Toast, WhiteSpace, WingBlank} from "antd-mobile";
+import {Card, Toast, WhiteSpace} from "antd-mobile";
 
 import Layout from "../../../../../common/layout/layout.jsx";
 
 import PutInCart from '../../../../../components/cart/putincart.jsx';
 import CartModal from "../../../../../components/cart/cartmodal.jsx";
+import {Banner} from "../../../../../components/banner/banner.jsx";
 import {PresentCard} from "../../../../../components/present_card/presentCard.jsx";
+import {Introduction, ServicePromise, WarmPrompt, SalesInfo} from "../../../../../components/common_detail/index.jsx";
 
 import SaleManager from "../../../../../manager/SaleManager.jsx";
 
 import homeApi from "../../../../../api/home.jsx";
 import settingApi from "../../../../../api/setting.jsx";
-import {getServerIp} from "../../../../../config.jsx";
 
 import "./index.less";
-
 
 let cartProps;
 let buyProps;
@@ -225,13 +225,6 @@ export default class SalesGroupDetail extends React.Component {
         return fullPresents
     }
 
-    // showWebusinessInfo(item) {
-    //     console.log("??", localStorage.getItem("isWebusiness"));
-    //     if (localStorage.getItem("isWebusiness") == 1) {
-    //         return <WingBlank>提成比例：{item.businessPersonDivide.proportion}</WingBlank>
-    //     }
-    // }
-
 
     render() {
 
@@ -274,44 +267,10 @@ export default class SalesGroupDetail extends React.Component {
             </Link>
         });
 
-        let bancontent;
-        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
-            let tempban = this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics;
-            console.log("before", tempban);
-            for (let i = 0; i < tempban.length; i++) {
-                if (tempban[i].isTag)
-                    tempban.splice(i, 1);
-            }
-            console.log("after", tempban);
-            bancontent = tempban && tempban.map((item, index) => {
-                if (!item.isTag) {
-                    return <img key={index} style={{margin: '0 auto', height: '12rem', width: '100%'}}
-                                src={"http:" + getServerIp() + item.sourcePath}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                }}/>
-                }
-
-            });
-        }
-        // if(bancontent.length==1){
-        //     this.state.dots=false;
-        //     bancontent[1]=bancontent[0];
-        // }
-        console.log("wgudsiuasjd", bancontent);
-
-        let start, end, a, b;
-        if (this.state.salesGroupDetail.hyGroupitemPromotions) {
-            start = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime).toLocaleString();
-            end = new Date(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime).toLocaleString();
-            a = start.indexOf("午");
-            b = end.indexOf("午");
-            console.log("safsfasfsa", a, b, start.substring(0, a + 2), end.substring(0, b + 2));
-            start.substring(0, a + 2);
-            end.substring(0, b + 2);
-        }
-
+        let bancontent = SaleManager.getBannerContent(this.state.salesGroupDetail.hyGroupitemPromotions, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyPromotionPics);
+        // console.log("wgudsiuasjd", bancontent);
+        let start = SaleManager.getActivityStartTime(this.state.salesGroupDetail.hyGroupitemPromotions, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionStarttime);
+        let end = SaleManager.getActivityEndTime(this.state.salesGroupDetail.hyGroupitemPromotions, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionEndtime);
 
         cartProps = {
             "wechatId": localStorage.getItem("wechatId"),
@@ -344,56 +303,18 @@ export default class SalesGroupDetail extends React.Component {
         return <Layout>
             {/*<Navigation title={this.state.salesGroupDetail.name + "详情"} left={true} backLink='/home/'/>*/}
             <Card>
-                <Carousel
-                    style={{touchAction: 'none'}}
-                    autoplay={true}
-                    infinite
-                    selectedIndex={0}
-                    swipeSpeed={35}
-                    dots={this.state.dots}
-                >
-                    {bancontent}
-                </Carousel>
+                <Banner content={bancontent}/>
 
-                <WingBlank>
-                    <h3>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName : ""}
-                    </h3>
-                    <h4>
-                        <font color="red">优惠时间：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? start.substring(0, a + 2) + "时 ~ " + end.substring(0, b + 2) + "时" : ""}
-                    </h4>
-                    <h4>
-                        <div style={{marginBottom: 5}}><span style={{color: 'red'}}>优惠类型：</span>
-                            {SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
-                                this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
-                        </div>
-                    </h4>
-                    <h4>
-                        <font color="red">活动价格：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? "￥" + this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">已售数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">限购数量：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum : ""}
-                    </h4>
-                    <h4>
-                        <font color="red">活动库存：</font>
-                        {this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum : ""}
-                    </h4>
-                    <h4>
-                        {(localStorage.getItem('isWebusiness') === '1') ? <div style={{marginBottom: 10}}>提成金额：<span
-                            style={{color: 'black'}}>{(parseFloat(this.state.divideMoney).toFixed(2)>0?parseFloat(this.state.divideMoney).toFixed(2):0)}</span>
-                        </div> : <div/>}
-                    </h4>
-
-                    <WhiteSpace size="xs"/>
-
-                </WingBlank>
+                <SalesInfo name={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionName : ""}
+                           salePeriod={this.state.salesGroupDetail.hyGroupitemPromotions ? start + "时 ~ " + end + "时" : ""}
+                           saleType={SaleManager.getDetailSalesContent(this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.promotionRule, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullSubstracts,
+                               this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullDiscounts, this.state.salesGroupDetail.hyGroupitemPromotions[0].promotionId.hyFullPresents)}
+                           activityPrice={this.state.salesGroupDetail.hyGroupitemPromotions ? "￥" + this.state.salesGroupDetail.hyGroupitemPromotions[0].sellPrice : ""}
+                           sellNum={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].havePromoted : ""}
+                           limitNum={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].limitedNum : ""}
+                           activityInbound={this.state.salesGroupDetail.hyGroupitemPromotions ? this.state.salesGroupDetail.hyGroupitemPromotions[0].promoteNum : ""}
+                           divideMoney={this.state.divideMoney}
+                />
             </Card>
 
             <WhiteSpace/>
@@ -401,24 +322,9 @@ export default class SalesGroupDetail extends React.Component {
             {content}
             {this.checkPresents()}
 
-            <WingBlank>
-                <div className="para_title">活动介绍</div>
-                <div dangerouslySetInnerHTML={{__html: this.state.salesGroupData.introduction}}/>
-            </WingBlank>
-
-            <WingBlank>
-                <div className="para_title">服务承诺</div>
-                <div className="paragraph">
-                    {this.state.servicePromise.servicePromise}
-                </div>
-            </WingBlank>
-
-            <WingBlank>
-                <div className="para_title">温馨提示</div>
-                <div className="paragraph">
-                    {this.state.servicePromise.prompt}
-                </div>
-            </WingBlank>
+            <Introduction title="活动介绍" content={this.state.salesGroupData.introduction}/>
+            <ServicePromise content={this.state.servicePromise.servicePromise}/>
+            <WarmPrompt content={this.state.servicePromise.prompt}/>
 
             <WhiteSpace/>
             <WhiteSpace/>
