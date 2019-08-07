@@ -15,7 +15,7 @@ export default class DisposableCoupon extends React.Component {
         super(props, context);
 
         this.state = {
-            type: "使用记录",
+            type: "我的券",
             coupons: [],
             couponUnused: [],
             couponRecords: [],
@@ -163,7 +163,7 @@ export default class DisposableCoupon extends React.Component {
             <Navigation title="一次性电子券" left={true}/>
 
             <SegmentedControl
-                values={['使用记录', '我的券']}
+                values={['我的券', '使用记录']}
                 onValueChange={this.onValueChange}
             />
 
