@@ -329,9 +329,6 @@ export default class SalesGroupDetail extends React.Component {
             <WhiteSpace/>
             <WhiteSpace/>
             <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
-            <WhiteSpace/>
 
             <PutInCart style={{height: '3.125rem'}}
                        onRef={this.onRef}

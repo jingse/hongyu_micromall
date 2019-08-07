@@ -383,9 +383,7 @@ export default class SalesDetail extends React.Component {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <WhiteSpace/>
-                <WhiteSpace/>
-                <WhiteSpace/>
+
             </Card>
 
 

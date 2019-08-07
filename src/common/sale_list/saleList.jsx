@@ -92,13 +92,8 @@ export default class SalesList extends React.Component {
             content = <ReqIngTip/>;
         else {
             content = this.state.data && this.state.data.map((item, index) => {
-                let start = new Date(item.startTime).toLocaleString();
-                let end = new Date(item.endTime).toLocaleString();
-                let a = start.indexOf("午");
-                let b = end.indexOf("午");
-
-                start.substring(0, a + 2);
-                end.substring(0, b + 2);
+                let start = SaleManager.getActivityStartTime(true, item.startTime);
+                let end = SaleManager.getActivityEndTime(true, item.endTime);
 
                 return <Link to={{
                     pathname: this.props.targetLink, state: item.id, ruleType: item.ruleType,
@@ -135,8 +130,8 @@ export default class SalesList extends React.Component {
                                 </span>
                                 </Flex.Item>
                                 <Flex.Item style={{flex: '0 0 70%'}}>
-                                    <div className="sales_time_text">{start.substring(0, a + 2) + "时"}</div>
-                                    <div className="sales_time_text">{end.substring(0, b + 2) + "时"}</div>
+                                    <div className="sales_time_text">{start + "时"}</div>
+                                    <div className="sales_time_text">{end + "时"}</div>
                                 </Flex.Item>
                             </Flex>
                             <WhiteSpace/>
