@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="手动合并冲突">
+    <list default="true" id="56bd6456-7889-4b24-9795-d86dad3fabc1" name="Default" comment="减少普通优惠和组合优惠详情页底部空白以及小改动">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/sale_list/saleList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales/detail/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/mobile/home/sales_group/detail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.prod.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.prod.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +26,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Codes/React/SpecialtyShoppingMall/src/page/mobile/cart/payment/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../selfmall_wechat" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="D:\Program\Front\WebStorm\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -309,14 +309,7 @@
       <workItem from="1564815769185" duration="139000" />
       <workItem from="1564997347695" duration="3633000" />
       <workItem from="1565097289302" duration="7524000" />
-      <workItem from="1565154063112" duration="3477000" />
-    </task>
-    <task id="LOCAL-00103" summary="提出购物车组件 修改组合优惠加购物车购物车小红点数字不变的bug">
-      <created>1555243401035</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1555243401035</updated>
+      <workItem from="1565154063112" duration="3714000" />
     </task>
     <task id="LOCAL-00104" summary="修改微商分成“总价”为“利润”">
       <created>1555465374367</created>
@@ -654,7 +647,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565155667343</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="减少普通优惠和组合优惠详情页底部空白以及小改动">
+      <created>1565157633483</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1565157633483</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TodoView">
@@ -697,7 +697,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="抽出无状态组件" />
     <MESSAGE value="修改列表页的separator" />
     <MESSAGE value="修改订单按钮 支付管理的bug&#10;将config改回47" />
     <MESSAGE value="fix&#10;加上优惠列表为空的判断" />
@@ -722,6 +721,7 @@
     <MESSAGE value="提出普通优惠和组合优惠详情页的其它公用函数" />
     <MESSAGE value="little无关" />
     <MESSAGE value="手动合并冲突" />
-    <option name="LAST_COMMIT_MESSAGE" value="手动合并冲突" />
+    <MESSAGE value="减少普通优惠和组合优惠详情页底部空白以及小改动" />
+    <option name="LAST_COMMIT_MESSAGE" value="减少普通优惠和组合优惠详情页底部空白以及小改动" />
   </component>
 </project>

@@ -49,7 +49,7 @@ module.exports = {
         contentBase: path.resolve(__dirname, 'build'),
         inline: true,
         hot: true,
-        host: '0.0.0.0'
+        host: 'localhost'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),  //热加载插件
