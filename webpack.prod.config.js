@@ -61,7 +61,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + "/src/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
         }),
-        new BundleAnalyzerPlugin(),                //打包分析工具
+        new BundleAnalyzerPlugin({      //打包分析工具
+            analyzerMode: 'disabled',        //analyzerMode: 'server'时每次打包时自动打开浏览器；为disabled时运行特定命令才打开
+            generateStatsFile: true,
+            statsOptions: { source: false }
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
