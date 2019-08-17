@@ -1,12 +1,13 @@
 import React from "react";
 import {WingBlank, WhiteSpace} from "antd-mobile";
+import './index.less';
 
 /*产品详情页、优惠活动详情页的一些公用组件*/
 
 export const Introduction = (props) => {
     return <WingBlank>
         <div className="para_title">{props.title}</div>
-        <div dangerouslySetInnerHTML={{__html: props.content}}/>
+        <div className="para_html" dangerouslySetInnerHTML={{__html: props.content}}/>
     </WingBlank>
 };
 
